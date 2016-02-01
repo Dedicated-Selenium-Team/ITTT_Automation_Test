@@ -1,7 +1,7 @@
 # ittt
 <p>
 The GOAL of ITTT is to:
-- a) Drive more attention and discussion - down to the individual level - around the hours given for the tasks to be completed during ESTIMATION vs. PLANNING vs. ACTUAL.
+- a) Drive more attention and discussion - down to the individual level - around the hours given during ESTIIMATION vs. PLANNING vs. ACTUAL - for any project/activity.
 - b) Drive more attention and effort to the ESTIMATION process. For "new projects" and/or "Additional Requests".
 - c) Drive more attention and effort to the PLANNING process. Planning: The step that happens POST estimate approval and prior to project commencement. This involves reviewing the estimate and deciding "who will be working on what" and "what hours they have to work against".
 - d) Drive more attention and discussion around the hours given for the tasks to be completed during ESTIMATION vs. PLANNING vs. ACTUAL.

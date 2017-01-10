@@ -1,0 +1,143 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="wrap-content cf">
+
+<a href="/user-management" title="Back" class="back">Back</a>
+
+<h1>Create User</h1>
+
+<?php echo Form::open(array('url' => 'store-user', 'id' => 'create-user')); ?>
+
+
+<div class="form-group cf">
+  <?php echo Form::label('fname', 'First Name'); ?>
+
+  <?php echo Form::text('fname', Input::old('fname'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('fname', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('lname', 'Last Name'); ?>
+
+  <?php echo Form::text('lname', Input::old('lname'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('lname', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('designation', 'Designation'); ?>
+
+  <?php echo Form::select('designation', $designation); ?>
+
+  <?php echo Form::hidden('designation-id', '', array('id' => 'designation-id')); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('qualification', 'Qualification'); ?>
+
+  <?php echo Form::text('qualification', Input::old('qualification'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('qualification', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('address', 'Address'); ?>
+
+  <?php echo Form::text('address', Input::old('address'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('address', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('mobile_no', 'Mobile Number'); ?>
+
+  <?php echo Form::text('mobile_no', Input::old('mobile_no'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('mobile_no', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('alt_no', 'Alternate Number'); ?>
+
+  <?php echo Form::text('alt_no', Input::old('alt_no'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('alt_no', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('joining_date', 'Date of Joining'); ?>
+
+  <?php echo Form::date('joining_date', \Carbon\Carbon::now()); ?>
+
+  <?php echo $errors->first('joining_date', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('email', 'Email'); ?>
+
+  <?php echo Form::text('email', Input::old('name'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('email', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('password', 'Password'); ?>
+
+  <?php echo Form::password('password', Input::old('password'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('password', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('re-password', 'Re-enter Password'); ?>
+
+  <?php echo Form::password('re-password', Input::old('re-password'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('re-password', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('role', 'Role type'); ?>
+
+
+  <?php echo Form::select('role', $roles); ?>
+
+  <?php echo Form::hidden('role-id', '', array('id' => 'role-id')); ?>
+
+  <p class="error"></p>
+</div>
+
+<?php echo Form::submit('Add', array('class' => 'add-user-btn')); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

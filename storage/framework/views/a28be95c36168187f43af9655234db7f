@@ -1,0 +1,229 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="wrap-content cf project-view">
+
+<a href="/project-management" title="Back" class="back">Back</a>
+
+<h1>Create Project</h1>
+
+<?php echo Form::open(array('url' => 'store-project', 'id' => 'create-project')); ?>
+
+
+<div class="form-group cf">
+  <?php echo Form::label('project-name', 'Project Name'); ?>
+
+  <?php echo Form::text('project-name', Input::old('project-name'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('project-name', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('client', 'Client'); ?>
+
+  <?php echo Form::select('client', $client); ?>
+
+  <?php echo Form::hidden('client-id', '', array('id' => 'client-id')); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('project-priority', 'Priority'); ?>
+
+  <?php echo Form::select('project-priority', array('' => 'Please Select', 'Low' => 'Low', 'Medium' => 'Medium', 'High' => 'High')); ?>
+
+  <?php echo Form::hidden('project-priority-level', '', array('id' => 'project-priority-level')); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('project-status', 'Status'); ?>
+
+  <?php echo Form::select('project-status', array('' => 'Please Select', 'Submitted by Client for Estimation' => 'Submitted by Client for Estimation', 'Approved/Awaiting Start' => 'Approved/Awaiting Start', 'In Discussion' => 'In Discussion', 'Awaiting Approval (On Estimate)' => 'Awaiting Approval (On Estimate)', 'Maintenance/On-going' => 'Maintenance/On-Going', 'On Hold' => 'On Hold', 'Closed' => 'Closed', 'Completed' => 'Completed', 'Need to Invoice' => 'Need to Invoice')); ?>
+
+  <?php echo Form::hidden('project-status-level', '', array('id' => 'project-status-level')); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('project-start-date', 'Start Date'); ?>
+
+  <?php echo Form::date('project-start-date', \Carbon\Carbon::now()); ?>
+
+  <?php echo $errors->first('project-start-date', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('project-end-date', 'End Date'); ?>
+
+  <?php echo Form::date('project-end-date'); ?>
+
+  <?php echo $errors->first('project-end-date', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('hours-tracker', 'Hours Tracker Link'); ?>
+
+  <?php echo Form::text('hours-tracker', Input::old('hours-tracker'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('hours-tracker', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('dev-completion-status', 'Developer Completion (%)'); ?>
+
+  <?php echo Form::text('dev-completion-status', Input::old('dev-completion-status'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('dev-completion-status', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('qa-completion-status', 'QA Completion (%)'); ?>
+
+  <?php echo Form::text('qa-completion-status', Input::old('qa-completion-status'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('qa-completion-status', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('design-completion-status', 'Design Completion (%)'); ?>
+
+  <?php echo Form::text('design-completion-status', Input::old('design-completion-status'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('design-completion-status', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('pm-completion-status', 'PM Completion (%)'); ?>
+
+  <?php echo Form::text('pm-completion-status', Input::old('pm-completion-status'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('pm-completion-status', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('dev-live-url', 'Dev/Live URL'); ?>
+
+  <?php echo Form::text('dev-live-url', Input::old('dev-live-url'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('dev-live-url', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('asana-git-url', 'Asana/Git URL'); ?>
+
+  <?php echo Form::text('asana-git-url', Input::old('asana-git-url'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('asana-git-url', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('project-sow-url', 'SOW'); ?>
+
+  <?php echo Form::text('project-sow-url', Input::old('project-sow-url'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('project-sow-url', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('q-and-a-doc', 'Q&A Doc Reference'); ?>
+
+  <?php echo Form::text('q-and-a-doc', Input::old('q-and-a-doc'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('q-and-a-doc', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('ticket-ref', 'PRDXN ticket Reference'); ?>
+
+  <?php echo Form::text('ticket-ref', Input::old('ticket-ref'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('ticket-ref', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('project-manager', 'Project Manager'); ?>
+
+  <?php echo Form::select('project-manager', $project_manager, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-pm">Add</span>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('developer', 'Developers'); ?>
+
+
+  <?php echo Form::select('developer', $developer, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-developer">Add</span>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('quality-analyst', 'Quality Analyst'); ?>
+
+  <?php echo Form::select('quality-analyst', $quality_analyst, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-qa">Add</span>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('design', 'Design Team'); ?>
+
+  <?php echo Form::select('design', $design_team, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-design" class="add-style">Add</span>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('estimated-time', 'Estimated Time'); ?>
+
+  <?php echo Form::text('estimated-time', Input::old('estimated-time'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('estimated-time', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<?php echo Form::submit('Add', array('class' => 'add-project-btn')); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

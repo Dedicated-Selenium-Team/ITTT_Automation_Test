@@ -1,0 +1,41 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="wrap-content login-form-wrapper">
+
+<h1>Login</h1>
+
+<?php echo e($error); ?>
+
+
+<?php echo Form::open(array('url' => 'login')); ?>
+
+
+<div class="form-group cf">
+  <?php echo Form::label('email', 'Email'); ?>
+
+  <?php echo Form::text('email', Input::old('name'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('email', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('password', 'Password'); ?>
+
+  <?php echo Form::password('password', Input::old('password'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('password', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<?php echo Form::submit('Login', array('class' => 'submit-btn')); ?>
+
+
+<?php echo Form::close(); ?>
+
+</div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

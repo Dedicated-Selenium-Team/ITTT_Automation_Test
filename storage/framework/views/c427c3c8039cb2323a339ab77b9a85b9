@@ -1,0 +1,33 @@
+<div class="logo-logout cf">
+	<div class="logo">
+		<h1>
+			<a href="/" title="PRDXN">PRDXN</a>
+		</h1>
+	</div>
+
+
+
+<?php
+$role_id = Session::get('user')[0]['role_id'];
+if ($role_id) {?>
+	<a href="logout" title="Logout" class="logout">Logout</a>
+						<div class="name">
+							<span class="fname"><?php echo e(Auth::user()->first_name); ?></span>
+							<span class="lname"><?php echo e(Auth::user()->last_name); ?></span>
+						</div>
+	<?php }
+// $user_name = Session::get('user')[0]['user_name'];
+// echo $user_name;
+
+?>
+</div>
+<?php
+$role_id = Session::get('user')[0]['role_id'];
+if ($role_id) {?>
+	<div class="header-content">
+	<?php }?>
+
+<?php if ($role_id == 1 || $role_id == 2) {?>
+	<?php echo $__env->make('templates/menu', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+				</div>
+	<?php }?>

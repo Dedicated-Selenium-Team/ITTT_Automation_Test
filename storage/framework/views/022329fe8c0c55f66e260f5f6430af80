@@ -1,0 +1,31 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="wrap-content cf">
+
+<a href="/client-management" title="Back" class="back">Back</a>
+
+<h1>Edit Client</h1>
+
+<?php echo Form::open(array('url' => array('update-client', $client->client_id))); ?>
+
+
+<div class="form-group cf">
+  <?php echo Form::label('client-name', 'Client Name'); ?>
+
+  <?php echo Form::text('client-name', $client->client_name, array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('client-name', '<div>:message</div>'); ?>
+
+</div>
+
+<?php echo Form::submit('Update'); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

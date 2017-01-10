@@ -1,0 +1,142 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="wrap-content cf">
+
+<a href="/user-management" title="Back" class="back">Back</a>
+
+<h1>Edit User</h1>
+
+<?php echo Form::open(array('url' => array('update-user', $user->user_id), 'id' => 'edit-user')); ?>
+
+
+<div class="form-group cf">
+  <?php echo Form::label('fname', 'First Name'); ?>
+
+  <?php echo Form::text('fname', $user->first_name, array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('fname', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('lname', 'Last Name'); ?>
+
+  <?php echo Form::text('lname', $user->last_name, array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('lname', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('designation', 'Designation'); ?>
+
+  <?php echo Form::select('designation', $designation); ?>
+
+  <?php echo Form::hidden('designation-id', $user->UserDetails->designation_id, array('id' => 'designation-id')); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('qualification', 'Qualification'); ?>
+
+  <?php echo Form::text('qualification', $user->UserDetails->qualification, array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('qualification', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('address', 'Address'); ?>
+
+  <?php echo Form::text('address', $user->UserDetails->address, array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('address', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('mobile_no', 'Mobile Number'); ?>
+
+  <?php echo Form::text('mobile_no', $user->UserDetails->mobile_no, array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('mobile_no', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('alt_no', 'Alternate Number'); ?>
+
+  <?php echo Form::text('alt_no', $user->UserDetails->alternate_no, array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('alt_no', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('joining_date', 'Date of Joining'); ?>
+
+  <?php echo Form::date('joining_date', $user->UserDetails->joining_date); ?>
+
+  <?php echo $errors->first('joining_date', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('email', 'Email'); ?>
+
+  <?php echo Form::text('email', $user->username, array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('email', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('edit-password', 'Password'); ?>
+
+  <?php echo Form::password('edit-password', Input::old('edit-password'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('edit-password', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('edit-re-password', 'Re-enter Password'); ?>
+
+  <?php echo Form::password('edit-re-password', Input::old('edit-re-password'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('edit-re-password', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('role', 'Role type'); ?>
+
+  <?php echo Form::select('role', $roles); ?>
+
+  <?php echo Form::hidden('role-id', $user->role_id, array('id' => 'role-id')); ?>
+
+  <p class="error"></p>
+</div>
+
+<?php echo Form::submit('Save', array('class' => 'edit-user-btn')); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

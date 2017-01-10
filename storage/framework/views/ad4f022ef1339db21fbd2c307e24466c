@@ -1,0 +1,23 @@
+<html>
+	<head>
+		<title>ITTT</title>
+		<link href="/css/style.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header class="cf">
+		  <div class="wrapper">
+			  <?php echo $__env->make('templates/header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			</div>
+		</header>
+		<div class="content">
+		  <div class="wrapper">
+			  <?php echo $__env->yieldContent('content'); ?>
+			 </div>
+		</div>
+		<footer>
+
+		</footer>
+		<script src="/vendor/jquery-2.1.1.min.js"></script>
+		<script src="/js/script.js"></script>
+	</body>
+</html>

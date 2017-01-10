@@ -1,0 +1,87 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="wrap-content cf">
+
+<a href="/project-management" title="Back" class="back">Back</a>
+
+<h1>Create Project</h1>
+
+<?php echo Form::open(array('url' => 'store-project', 'id' => 'create-project')); ?>
+
+
+<div class="form-group cf">
+  <?php echo Form::label('project-name', 'Project Name'); ?>
+
+  <?php echo Form::text('project-name', Input::old('project-name'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('project-name', '<div>:message</div>'); ?>
+
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('client', 'Client'); ?>
+
+  <?php echo Form::select('client', $client); ?>
+
+  <?php echo Form::hidden('client-id', '', array('id' => 'client-id')); ?>
+
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('project-manager', 'Project Manager'); ?>
+
+  <?php echo Form::select('project-manager', $project_manager, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-pm">Add</span>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('developer', 'Developers'); ?>
+
+
+  <?php echo Form::select('developer', $developer, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-developer">Add</span>
+
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('quality-analyst', 'Quality Analyst'); ?>
+
+  <?php echo Form::select('quality-analyst', $quality_analyst, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-qa">Add</span>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('design', 'Design Team'); ?>
+
+  <?php echo Form::select('design', $design_team, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-design" class="add-style">Add</span>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('estimated-time', 'Estimated Time'); ?>
+
+  <?php echo Form::text('estimated-time', Input::old('estimated-time'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('estimated-time', '<div>:message</div>'); ?>
+
+</div>
+
+<?php echo Form::submit('Add'); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

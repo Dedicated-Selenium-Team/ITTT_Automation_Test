@@ -1,0 +1,31 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="wrap-content cf">
+
+<a href="/activity-management" title="Back" class="back">Back</a>
+
+<h1>Create Activity</h1>
+
+<?php echo Form::open(array('url' => 'store-activity', 'id' => 'create-activity')); ?>
+
+
+<div class="form-group cf">
+  <?php echo Form::label('activity-name', 'Activity Name'); ?>
+
+  <?php echo Form::text('activity-name', Input::old('activity-name'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('activity-name', '<div>:message</div>'); ?>
+
+</div>
+
+<?php echo Form::submit('Add'); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

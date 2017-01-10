@@ -1,0 +1,26 @@
+
+
+<?php $__env->startSection('content'); ?>
+
+  <div class="project-list">
+    <div class="project_name">
+      <?php $count = 1;?>
+      <?php foreach($projects as $key): ?>
+        <li class=""><a href="/project-designation/<?php echo e($key->project_id); ?>"><?php echo e($count); ?>. <?php echo e($key->project_name); ?></a></li>
+        <?php $count += 1;?>
+      <?php endforeach; ?>
+    </div>
+  <nav>
+    <ul>
+      <li class="myproject cf">
+        <a href="/myself" title="add myself to project">Add Myself to Project</a>
+      </li>
+      <!-- <li class="myproject">
+        <a href="/addproject" title="add project">Add Project</a>
+      </li> -->
+    </ul>
+  </nav>
+  </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

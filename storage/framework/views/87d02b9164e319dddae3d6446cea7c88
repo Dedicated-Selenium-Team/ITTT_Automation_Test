@@ -1,0 +1,155 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="wrap-content cf">
+
+<a href="/project-management" title="Back" class="back">Back</a>
+
+<h1>Edit Project</h1>
+
+<?php echo Form::open(array('url' => array('update-project', $project->project_id), 'id' => 'edit-project')); ?>
+
+
+<div class="form-group cf">
+  <?php echo Form::label('project-name', 'Project Name'); ?>
+
+  <?php echo Form::text('project-name', $project->project_name, array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('project-name', '<div>:message</div>'); ?>
+
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('client', 'Client'); ?>
+
+  <?php echo Form::select('client', $client); ?>
+
+  <?php echo Form::hidden('client-id', $project->client_id, array('id' => 'client-id')); ?>
+
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('project-manager', 'Project Manager'); ?>
+
+
+  <?php echo Form::select('project-manager', $project_manager, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-pm">Add</span>
+
+  <div class="existing-names-main-wrapper">
+    <?php foreach($project->ProjectResources as $resource): ?>
+      <?php if($resource->designation_id == 3): ?>
+        <div class="existing-pm-name-wrapper">
+          <?php foreach($project_manager as $key => $value): ?>
+            <?php if($key == $resource->user_id): ?>
+              <span class="pm-name"><?php echo e($value); ?></span>
+            <?php endif; ?>
+          <?php endforeach; ?>
+          <input type="text" class="move" name="existing-resource-hours[]" value=<?php echo e($resource->hours); ?>>
+          <a href="/delete-project-resource/<?php echo e($resource->project_id); ?>/<?php echo e($resource->user_id); ?>">Remove</a>
+          <input type="hidden" class="user-id" name="existing-resource-id[]" value=<?php echo e($resource->user_id); ?>>
+          <input type="hidden" name="existing-designation-id[]" value="3">
+        </div>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  </div>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('developer', 'Developers'); ?>
+
+  <?php echo Form::select('developer', $developer, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-developer">Add</span>
+  <div class="existing-names-main-wrapper">
+    <?php foreach($project->ProjectResources as $resource): ?>
+      <?php if($resource->designation_id == 1): ?>
+        <div class="existing-dev-name-wrapper">
+          <?php foreach($developer as $key => $value): ?>
+            <?php if($key == $resource->user_id): ?>
+              <span class="dev-name"><?php echo e($value); ?></span>
+            <?php endif; ?>
+          <?php endforeach; ?>
+          <input type="text" class="move" name="existing-resource-hours[]" value=<?php echo e($resource->hours); ?>>
+          <a href="/delete-project-resource/<?php echo e($resource->project_id); ?>/<?php echo e($resource->user_id); ?>">Remove</a>
+          <input type="hidden" class="user-id" name="existing-resource-id[]" value=<?php echo e($resource->user_id); ?>>
+          <input type="hidden" name="existing-designation-id[]" value="1">
+        </div>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  </div>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('quality-analyst', 'Quality Analyst'); ?>
+
+  <?php echo Form::select('quality-analyst', $quality_analyst, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-qa">Add</span>
+  <div class="existing-names-main-wrapper">
+    <?php foreach($project->ProjectResources as $resource): ?>
+      <?php if($resource->designation_id == 2): ?>
+        <div class="existing-qa-name-wrapper">
+          <?php foreach($quality_analyst as $key => $value): ?>
+            <?php if($key == $resource->user_id): ?>
+              <span class="qa-name"><?php echo e($value); ?></span>
+            <?php endif; ?>
+          <?php endforeach; ?>
+          <input type="text" class="move" name="existing-resource-hours[]" value=<?php echo e($resource->hours); ?>>
+          <a href="/delete-project-resource/<?php echo e($resource->project_id); ?>/<?php echo e($resource->user_id); ?>">Remove</a>
+          <input type="hidden" class="user-id" name="existing-resource-id[]" value=<?php echo e($resource->user_id); ?>>
+          <input type="hidden" name="existing-designation-id[]" value="2">
+        </div>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  </div>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('design', 'Design Team'); ?>
+
+  <?php echo Form::select('design', $design_team, null, array('multiple'=>'multiple')); ?>
+
+  <span id="add-design">Add</span>
+  <div class="existing-names-main-wrapper">
+    <?php foreach($project->ProjectResources as $resource): ?>
+      <?php if($resource->designation_id == 4): ?>
+        <div class="existing-design-name-wrapper">
+          <?php foreach($design_team as $key => $value): ?>
+            <?php if($key == $resource->user_id): ?>
+              <span class="design-name"><?php echo e($value); ?></span>
+            <?php endif; ?>
+          <?php endforeach; ?>
+          <input type="text" class="move" name="existing-resource-hours[]" value=<?php echo e($resource->hours); ?>>
+          <a href="/delete-project-resource/<?php echo e($resource->project_id); ?>/<?php echo e($resource->user_id); ?>">Remove</a>
+          <input type="hidden" class="user-id" name="existing-resource-id[]" value=<?php echo e($resource->user_id); ?>>
+          <input type="hidden" name="existing-designation-id[]" value="4">
+        </div>
+      <?php endif; ?>
+    <?php endforeach; ?>
+  </div>
+  <div class="names-main-wrapper"></div>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('estimated-time', 'Estimated Time'); ?>
+
+  <?php echo Form::text('estimated-time', $project->estimated_time, array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('estimated-time', '<div>:message</div>'); ?>
+
+</div>
+
+<?php echo Form::submit('Update'); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

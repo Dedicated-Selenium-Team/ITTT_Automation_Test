@@ -1,0 +1,156 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="hlrs-main-wrapper hlrs-detail-view">
+
+	<?php foreach($projects as $project): ?>
+
+	<div class="project-details-wrapper">
+		<p>
+		  <span class="project-name"><?php echo e($project->project_name); ?></span>
+		  <span class="project-status">- <?php echo e($project->project_status); ?></span>
+		  <a href="/edit-project/<?php echo e($project->project_id); ?>" title="Edit" class="edit-project">Edit</a>
+		</p>
+		<div class="project-details">
+			<p>Client:
+				  <?php foreach($clients as $key => $value): ?>
+					  <?php if($project->client_id == $key): ?>
+					    <?php echo e($value); ?>
+
+					  <?php endif; ?>
+				  <?php endforeach; ?>
+			</p>
+			<p>Priority: <?php echo e($project->priority); ?></p>
+			<p>Start Date: <?php echo e($project->start_date); ?></p>
+			<p>End Date: <?php echo e($project->end_date); ?></p>
+			<p>Hours Tracker Link:
+			  <?php echo Html::link($project->hours_tracker_link); ?>
+
+			</p>
+			<p>Developer Completion (%): <?php echo e($project->dev_completion_status); ?></p>
+			<p>QA Completion (%): <?php echo e($project->qa_completion_status); ?></p>
+			<p>Design Completion (%): <?php echo e($project->design_completion_status); ?></p>
+			<p>PM Completion (%): <?php echo e($project->pm_completion_status); ?></p>
+			<p>Dev/Live URL:
+			  <?php echo Html::link($project->dev_live_url); ?>
+
+			</p>
+			<p>Asana/Git URL:
+			  <?php echo Html::link($project->asana_git_url); ?>
+
+			</p>
+			<p>SOW:
+			  <?php echo Html::link($project->sow); ?>
+
+			</p>
+			<p>Q&A Doc Reference:
+			  <?php echo Html::link($project->q_and_a_doc); ?>
+
+			</p>
+			<p>PRDXN ticket Reference:
+			  <?php echo Html::link($project->prdxn_ticket_ref); ?>
+
+			</p>
+			<p>Estimated Time: <?php echo e($project->estimated_time); ?></p>
+			<div class="project-team">
+				<p>Developer:
+				  <?php $i = 0; ?>
+					<?php foreach($project->ProjectResources as $resource): ?>
+					  <?php if($resource->designation_id == 1): ?>
+					    <?php foreach($users as $key => $value): ?>
+								<?php if($key == $resource->user_id): ?>
+									<span class="resource-name"><?php echo e($value); ?></span><?php $i++; ?><?php if($i): ?>, <?php endif; ?>
+								<?php endif; ?>
+				      <?php endforeach; ?>
+				    <?php endif; ?>
+				  <?php endforeach; ?>
+				</p>
+				<p>QA:
+					<?php foreach($project->ProjectResources as $resource): ?>
+					  <?php if($resource->designation_id == 2): ?>
+					    <?php foreach($users as $key => $value): ?>
+								<?php if($key == $resource->user_id): ?>
+									<span class="resource-name"><?php echo e($value); ?></span>
+								<?php endif; ?>
+				      <?php endforeach; ?>
+				    <?php endif; ?>
+				  <?php endforeach; ?>
+				</p>
+				<p>Design:
+					<?php foreach($project->ProjectResources as $resource): ?>
+					  <?php if($resource->designation_id == 4): ?>
+					    <?php foreach($users as $key => $value): ?>
+								<?php if($key == $resource->user_id): ?>
+									<span class="resource-name"><?php echo e($value); ?></span>
+								<?php endif; ?>
+				      <?php endforeach; ?>
+				    <?php endif; ?>
+				  <?php endforeach; ?>
+				</p>
+				<p>PM:
+					<?php foreach($project->ProjectResources as $resource): ?>
+					  <?php if($resource->designation_id == 3): ?>
+					    <?php foreach($users as $key => $value): ?>
+								<?php if($key == $resource->user_id): ?>
+									<span class="resource-name"><?php echo e($value); ?></span>
+								<?php endif; ?>
+				      <?php endforeach; ?>
+				    <?php endif; ?>
+				  <?php endforeach; ?>
+				</p>
+				<div class="hlrs-comments">
+					<?php foreach($comments as $comment): ?>
+					  <div class="comment-wrapper">
+						  <?php foreach($users as $key => $value): ?>
+								<?php if($key == $comment->user_id): ?>
+									<p><?php echo e($value); ?>
+
+										<?php if($comment->user_id == $user_id): ?>
+											<span class="edit">Edit</span>
+											<?php echo Form::open(array('url' => array('delete-comment', $project->project_id, $user_id, $comment->comment_id))); ?>
+
+
+											<?php echo Form::submit('Delete'); ?>
+
+
+											<?php echo Form::close(); ?>
+
+										<?php endif; ?>
+									</p>
+								<?php endif; ?>
+					    <?php endforeach; ?>
+						  <p><?php echo $comment->comments; ?></p>
+						  <?php echo Form::open(array('url' => array('update-comment', $project->project_id, $user_id, $comment->comment_id))); ?>
+
+
+							<?php echo Form::textarea('comment', $comment->comments, ['class' => 'comment-field']); ?>
+
+
+							<?php echo Form::submit('Save'); ?>
+
+							<?php echo Form::close(); ?>
+
+						</div>
+					<?php endforeach; ?>
+				</div>
+				<?php echo Form::open(array('url' => array('save-comment', $project->project_id, $user_id))); ?>
+
+
+				<?php echo Form::textarea('comment', null, ['class' => 'comment-field']); ?>
+
+
+				<?php echo Form::submit('Add'); ?>
+
+				<?php echo Form::close(); ?>
+
+			</div>
+		</div>
+	</div>
+
+	<?php endforeach; ?>
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

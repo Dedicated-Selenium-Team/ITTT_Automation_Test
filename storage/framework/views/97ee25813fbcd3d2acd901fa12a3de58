@@ -1,0 +1,428 @@
+
+
+<?php $__env->startSection('content'); ?>
+<?php
+$role_id = Session::get('user')[0]['role_id'];
+$user_id = Session::get('user')[0]['user_id'];
+// if (!isset($hrs)) {
+//   $hrs = " ";
+// }
+// else {
+//   $hrs = data.hrs;
+// }
+?>
+<div class="add-my-self-to-project">
+  <a href="/my-projects/<?php echo e($user_id); ?>" title="back" class="back">Back</a>
+  <div class="content-wrap cf">
+    <?php echo Form::open(array('url' => 'myself/project-details', 'id' => 'assign-project')); ?>
+
+    <div class="content-wrap-data">
+      <div class="form-group cf">
+        <?php echo Form::label('select_project', 'Select Project: '); ?>
+
+        <?php echo Form::Select('select_project',$list_name,'null',array('class' => 'form-control', 'id' => 'project-name'));; ?>
+
+      </div>
+
+      <div class="form-group cf">
+        <?php echo Form::label('select_designation', 'Select Designation: '); ?>
+
+        <?php echo Form::Select('select_designation',$designation,'null',array('class' => 'form-control', 'id' => 'designation')); ?>
+
+      </div>
+
+      <div class="form-group cf">
+        <?php echo Form::submit('Submit',array('class' => 'submit-btn')); ?>
+
+      </div>
+    </div>
+    <?php echo Form::close(); ?>
+
+  </div>
+  <span>
+    Total Hours Related to this Designation:
+  </span>
+  <div class="designation-hour">
+    <div class="content-wrap cf add-my-self-form-view">
+      <?php echo Form::open(array('url' => 'addself/project-details', 'id' => 'project_hrs')); ?>
+
+      <div class="form-group cf display">
+        <?php echo Form::label('p_name', 'Project:'); ?>
+
+        <?php echo Form::text('p_name',' ',array('class' => 'project_name')); ?>
+
+      </div>
+      <div class="form-group cf display">
+        <?php echo Form::label('designation', 'Designation:'); ?>
+
+        <?php echo Form::text('designation',' ',array('class' => 'designation_id')); ?>
+
+      </div>
+      <div class="form-group cf">
+        <?php echo Form::label('client Hours', 'Client Approved Estimate (Hrs):'); ?>
+
+        <?php echo Form::text('client Hours',' ',array('class' => 'appHours', 'disabled')); ?>
+
+      </div>
+      <div class="form-group cf">
+        <?php echo Form::label('Post Estimation', 'Post Requirements Estimate (Hrs):'); ?>
+
+        <?php echo Form::text('Post Estimation','',array('class' => 'PostAppHours', 'disabled')); ?>
+
+      </div>
+      <div class="form-group cf">
+        <?php echo Form::label('Actuals ', 'Actuals (Hrs): '); ?>
+
+        <?php echo Form::text('Actuals ','',array('class' => 'actualAppHours', 'disabled')); ?>
+
+      </div>
+      <div class="form-group cf">
+        <?php echo Form::label('hours', 'Hours You Need:'); ?>
+
+        <?php echo Form::text('hours',' ',array('class' => 'hoursNeed')); ?>
+
+      </div>
+      <div class="form-group cf">
+        <?php echo Form::label('percent', '% Of Hours You Need:'); ?>
+
+        <?php echo Form::text('percent',' ',array('class' => 'percentHoursNeed')); ?>
+
+      </div>
+      <div class="center form-group cf">
+        <?php echo Form::submit('Check',array('class' => 'submit-btn')); ?>
+
+      </div>
+    <?php echo Form::close(); ?>
+
+    </div>
+  </div>
+<div class="before-assignment">
+  <p>
+    Before Self-Assignment
+  </p>
+  <table class="table-body">
+    <thead>
+      <tr>
+        <th>
+          Others Working Within Same Designation
+        </th>
+        <th>
+          % Self Assigned
+        </th>
+        <th>
+          % Adjusted
+        </th>
+        <th>
+          % Adjusted *Estimated (Hrs)
+        </th>
+        <th>
+          % Adjusted *Planning (Hrs)
+        </th>
+        <th>
+          Actuals To-Date
+        </th>
+        <th>
+          % of Actuals (Hours, Total)
+        </th>
+        <th>
+          Actuals / Estimate Ratio
+        </th>
+        <th>
+          Actuals / Planning Ratio
+        </th>
+      </tr>
+      <tr>
+        <td>
+          Total
+        </td>
+        <td>
+          <span class="pre-self-total"></span>
+          <span>%</span>
+        </td>
+        <td>
+          <span class="pre-adjusted-total"></span>
+        </td>
+        <td>
+          <span class="pre-estimate-total"></span>
+        </td>
+        <td>
+          <span class="pre-planig-total"></span>
+        </td>
+        <td>
+          <span class="pre-actual-total"></span>
+        </td>
+        <td>
+          <span class="pre-actual-percent-total"></span>
+        </td>
+        <td>
+          <span class="pre-estimate-ratio-total"></span>
+        </td>
+        <td>
+          <span class="pre-planning-ratio-total"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Remaining
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+      </tr>
+    </thead>
+  </table>
+</div>
+<div class="post-assignment">
+  <p>
+    Post Self-Assignment
+  </p>
+  <table class="post-table-body">
+    <thead>
+      <tr>
+        <th>
+          Others Working Within Same Designation
+        </th>
+        <th>
+          % Self Assigned
+        </th>
+        <th>
+          % Adjusted
+        </th>
+        <th>
+          % Adjusted *Estimated (Hrs)
+        </th>
+        <th>
+          % Adjusted *Planning (Hrs)
+        </th>
+        <th>
+          Actuals To-Date
+        </th>
+        <th>
+          % of Actuals (Hours, Total)
+        </th>
+        <th>
+          Actuals / Estimate Ratio
+        </th>
+        <th>
+          Actuals / Planning Ratio
+        </th>
+      </tr>
+      <tr>
+        <td>
+          Total
+        </td>
+        <td>
+          <span class="post-self-total"></span>
+        </td>
+        <td>
+          <span class="post-adjusted-total"></span>
+        </td>
+        <td>
+          <span class="post-estimate-total"></span>
+        </td>
+        <td>
+          <span class="post-planig-total"></span>
+        </td>
+        <td>
+          <span class="post-actual-total"></span>
+        </td>
+        <td>
+          <span class="post-actual-percent-total"></span>
+        </td>
+        <td>
+          <span class="post-estimate-ratio-total"></span>
+        </td>
+        <td>
+          <span class="post-planning-ratio-total"></span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Remaining
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+      </tr>
+    </thead>
+  </table>
+</div>
+<?php echo Form::open(array('url' => array('/store-self-project', $user_id), 'id' => 'my-project')); ?>
+
+<div class="form-group cf display">
+  <?php echo Form::label('project_name', 'Project Name :'); ?>
+
+  <?php echo Form::text('project_name',' ',array('class' => 'project_name')); ?>
+
+</div>
+<div class="form-group cf display">
+  <?php echo Form::label('designation_id', 'Designation :'); ?>
+
+  <?php echo Form::text('designation_id',' ',array('class' => 'designation_id')); ?>
+
+</div>
+<div class="form-group cf display">
+  <?php echo Form::label('req_hrs', 'Required Hrs :'); ?>
+
+  <?php echo Form::text('req_hrs',' ',array('class' => 'req_hrs')); ?>
+
+</div>
+<div class="center form-group cf">
+  <?php echo Form::submit('Submit',array('class' => 'submit-btn')); ?>
+
+</div>
+<?php echo Form::close(); ?>
+
+
+</div>
+<script type="text/javascript">
+
+$.ajaxSetup({
+  headers : {
+    'X-CSRF-TOKEN' : $('meta[name = "_token"]').attr('contents')
+  }
+});
+
+$('#assign-project').on('submit', function(e) {
+  e.preventDefault();
+  var objProjectCalculation = new myProjectCalculation();
+  $('.table-body').find('.employee').remove();
+  var value = $('#project-name :selected').text();
+  var value1 = $('#designation').val();
+  var url = $('#assign-project').attr('action') + '/' + value + '/' + value1;
+  $.ajax({
+    type : 'get',
+    url : url,
+    data : {
+      'name':value,
+      'id':value1,
+      "_token": "<?php echo e(csrf_token()); ?>"
+    },
+    success: function(data) {
+      // var getData = myProjectCalculation(data);
+      // var test = objProjectCalculation.init(data);
+      var addition = objProjectCalculation.add(data);
+      $('.pre-self-total').text(addition);
+
+      $('.appHours').val(data.hrs);
+      $('.PostAppHours').val(data.plan_hrs);
+
+      for (var i = 0; i < data.name.length; i++) {
+        var adjusted = objProjectCalculation.adjust(addition,data.projects[i]);
+        console.log('adjusted ' , adjusted);
+        var abc = objProjectCalculation.adjustTotal(adjusted);
+        console.log('abc ' , abc);
+        $('.pre-adjusted-total').text(abc);
+        var row = '<tr class="employee">'+
+        '<td>'+ data.name[i] +'</td>'+
+        '<td>'+ data.projects[i].required_hrs +'%'+'</td>'+
+        '<td><span class=adjusted'+i+'>'+adjusted+'</span></td>'+
+        '<td></td>'+
+        '<td></td>'+
+        '<td></td>'+
+        '<td></td>'+
+        '<td></td>'+
+        '<td></td>'
+        '</tr>';
+        $('.table-body tr').eq(-2).before(row);
+      }
+      $('.project_name').val(value);
+      $('.designation_id').val(value1);
+    }
+  });
+});
+$('#project_hrs').on('submit', function(e) {
+  e.preventDefault();
+  $('.post-table-body').find('.employee').remove();
+  var value = $('.project_name').val();
+  var value1 = $('.designation_id').val();
+  var url = $('#project_hrs').attr('action') + '/' + value + '/' + value1;
+  var hrs = $('.percentHoursNeed').val();
+  $.ajax({
+    type : 'get',
+    url : url,
+    data : {
+      'name':value,
+      'id':value1,
+      'hrs':hrs,
+      "_token": "<?php echo e(csrf_token()); ?>"
+    },
+    success:function(data){
+      myProjectCalculation(data);
+      for (var i = 0; i < data.name.length; i++) {
+        var row = '<tr class="employee">'+
+        '<td>'+ data.name[i] +'</td>'+
+        '<td>'+ data.projects[i].required_hrs +'</td>'+
+        '<td></td>'+
+        '<td></td>'+
+        '<td></td>'+
+        '<td></td>'+
+        '<td></td>'+
+        '<td></td>'+
+        '<td></td>'
+        '</tr>';
+        $('.post-table-body tr').eq(-2).before(row);
+      }
+      var row = '<tr class="employee">'+
+      '<td>'+ data.names +'</td>'+
+      '<td>'+ hrs +'</td>'+
+      '<td></td>'+
+      '<td></td>'+
+      '<td></td>'+
+      '<td></td>'+
+      '<td></td>'+
+      '<td></td>'+
+      '<td></td>'
+      '</tr>';
+      $('.post-table-body tr').eq(-2).before(row);
+      $('.req_hrs').val($('.percentHoursNeed').val());
+    }
+  });
+});
+
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

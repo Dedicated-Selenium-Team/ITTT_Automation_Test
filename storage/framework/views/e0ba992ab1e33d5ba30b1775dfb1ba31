@@ -1,0 +1,49 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="my-projects-main-wrapper">
+	<?php foreach($project_info as $project): ?>
+	  <?php $total_project_hours = 0;
+	  if(!empty($user_projects_hours[$project->project_id])) { ?>
+		  <?php foreach($user_projects_hours[$project->project_id] as $project_hour): ?>
+		  <?php
+		    $total_project_hours += $project_hour;
+		  ?>
+		  <?php endforeach; ?>
+		<?php } ?>
+	  <?php foreach($project->ProjectResources as $resource): ?>
+	    <?php if($user_info[0]->user_id == $resource->user_id): ?>
+	      <div class="my-projects-wrapper">
+		      <div class="project-info">
+		        <p class="project-name"><?php echo e($project->project_name); ?></p>
+		        <p>Allocated hours: <span class="bold"><?php echo e($resource->hours); ?></span></p>
+		        <p>utilized hours: <span class="bold"><?php echo e($total_project_hours); ?></span></p>
+		      </div>
+		      <?php echo Form::open(array('url' => array('allocate-hours', $project->project_id, $user_info[0]->user_id, $resource->hours), 'class' => 'allocate-hours')); ?>
+
+			      <div class="form-group">
+						  <?php echo Form::label('resource', 'Select Resource'); ?>
+
+						  <?php echo Form::select('', $users, null, array('multiple'=>'multiple', 'class'=>'resource')); ?>
+
+						  <?php echo Form::hidden('resource-id', '', array('id' => 'client-id')); ?>
+
+						  <span class="add-resource">Add</span>
+			  			<div class="resource-names-main-wrapper cf">
+			  			</div>
+						</div>
+						<input type="hidden" value="<?php echo e($project->project_id); ?>">
+						<div class="save-project">
+						<?php echo Form::submit('Save'); ?>
+
+						</div>
+					<?php echo Form::close(); ?>
+
+				</div>
+	    <?php endif; ?>
+	  <?php endforeach; ?>
+	<?php endforeach; ?>
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

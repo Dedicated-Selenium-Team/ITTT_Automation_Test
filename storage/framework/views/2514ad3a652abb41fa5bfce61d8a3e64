@@ -1,0 +1,38 @@
+<html>
+	<head>
+		<title>ITTT</title>
+		<!-- Bootstrap CSS -->
+		<link href="/vendor/bootstrap/css/bootstrap.css" rel="stylesheet"/>
+
+		<link href="/css/style.css" rel="stylesheet" />
+
+		<!-- jQuery JS -->
+		<script src="/vendor/jquery-2.1.1.min.js"></script>
+
+		<!-- Privious JS by Atul -->
+		<script src="/js/script.js"></script>
+
+		<!-- Current JS -->
+		<script src="/js/object.js"></script>
+		<script src="/js/retrive.js"></script>
+
+		<!-- Bootstrap JS -->
+		<script type="text/javascript" src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+		<meta name="_token" content="<?php echo csrf_token(); ?>" />
+	</head>
+	<body>
+		<header class="cf">
+		  <div class="wrapper">
+			  <?php echo $__env->make('templates/header', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+			</div>
+		</header>
+		<div class="content">
+		  <div class="wrapper">
+			  <?php echo $__env->yieldContent('content'); ?>
+			 </div>
+		</div>
+		<footer>
+
+		</footer>
+	</body>
+</html>

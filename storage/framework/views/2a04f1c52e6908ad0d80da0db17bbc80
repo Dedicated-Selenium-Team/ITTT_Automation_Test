@@ -1,0 +1,62 @@
+<?php $__env->startSection('content'); ?>
+
+<div class="wrap-content cf">
+
+<a href="/client-management" title="Back" class="back">Back</a>
+
+<h1>Create Client</h1>
+
+<?php echo Form::open(array('url' => 'store-client', 'id' => 'create-client')); ?>
+
+
+<div class="form-group cf">
+  <?php echo Form::label('client-name', 'Client Name'); ?>
+
+  <?php echo Form::text('client-name', Input::old('client-name'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('client-name', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('client-location', 'Client Location'); ?>
+
+  <?php echo Form::text('client-location', Input::old('client-location'), array('class' => 'form-control')); ?>
+
+  <?php echo $errors->first('client-location', '<div>:message</div>'); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('volume', 'Volume'); ?>
+
+  <?php echo Form::select('volume', array('' => 'Please Select', 'Low' => 'Low', 'Medium' => 'Medium', 'High' => 'High')); ?>
+
+  <?php echo Form::hidden('volume-level', '', array('id' => 'volume-level')); ?>
+
+  <p class="error"></p>
+</div>
+
+<div class="form-group cf">
+  <?php echo Form::label('priority', 'Priority'); ?>
+
+  <?php echo Form::select('priority', array('' => 'Please Select', 'Low' => 'Low', 'Medium' => 'Medium', 'High' => 'High')); ?>
+
+  <?php echo Form::hidden('priority-level', '', array('id' => 'priority-level')); ?>
+
+  <p class="error"></p>
+</div>
+
+<?php echo Form::submit('Add', array('class' => 'add-client-btn')); ?>
+
+
+<?php echo Form::close(); ?>
+
+
+</div>
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

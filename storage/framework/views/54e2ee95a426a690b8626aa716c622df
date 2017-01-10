@@ -1,0 +1,60 @@
+<?php $__env->startSection('content'); ?>
+
+<?php echo Form::open(array('url' => array('store-timesheet', $user_id, $timesheet_date), 'id' => 'create-timesheet')); ?>
+
+
+<div class="wrap-content create-timesheet-wrapper">
+
+<a href="/time-management" title="Back" class="back">Back</a>
+
+<h1 class="timesheet">Create Timesheet</h1>
+
+<div class="form-group">
+  <?php echo Form::label('project', 'Project'); ?>
+
+  <?php echo Form::select('project', $projects, null, array('multiple'=>'multiple')); ?>
+
+  <span class="add-project">Add</span>
+</div>
+
+<div class="form-group">
+  <?php echo Form::label('activity', 'Activity'); ?>
+
+  <?php echo Form::select('activity', $activities, null, array('multiple'=>'multiple')); ?>
+
+  <span class="add-activity">Add</span>
+</div>
+</div>
+<table class="project-data create-timesheet">
+	<thead>
+		<tr>
+			<th>Project Name</th>
+			<th>Hours Utilised</th>
+		</tr>
+	</thead>
+	<tbody>
+
+	</tbody>
+</table>
+
+<table class="activity-data create-timesheet">
+	<thead>
+		<tr>
+			<th>Activity Name</th>
+			<th>Hours Utilised</th>
+		</tr>
+	</thead>
+	<tbody>
+
+	</tbody>
+</table>
+<div class="save">
+<?php echo Form::submit('Save'); ?>
+
+</div>
+<?php echo Form::close(); ?>
+
+
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

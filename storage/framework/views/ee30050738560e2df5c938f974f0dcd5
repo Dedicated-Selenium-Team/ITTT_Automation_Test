@@ -1,0 +1,528 @@
+<title>ITTT | Add Myself To A Project</title>
+
+<?php $__env->startSection('content'); ?>
+<?php
+$role_id   = Session::get('user')[0]['role_id'];
+$user_id   = Session::get('user')[0]['user_id'];
+$user_name = Auth::user()->first_name;
+?>
+
+<div class="bread-crumb">
+  <div>
+    <a href="/store_project">Projects</a>
+    <?php 
+    $prev_page = $_SERVER['HTTP_REFERER'];
+    if(strpos($prev_page, 'project-designation') !== false){
+      ?>
+      <a href="<?php echo e(URL::previous()); ?>">Project Designation</a>
+      <a class="current-page">Add Myself To A Project</a>
+    </span>
+    <?php } else { ?>
+      <a class="current-page">Add Myself To A Project</a>
+    </span>
+    <?php } ?>
+  </div>
+</div>
+
+<!-- container heading for addmyself starts here -->
+
+<?php echo Form::open(array('url' => 'myself/project-details', 'id' => 'assign-project')); ?>
+
+<div class="container-heading cf">
+  <div class="designation-CTA cf">
+    <div class="back">
+      <a href="<?php echo e(URL::previous()); ?>" title="Back">Back</a>
+    </div>
+  </div>
+  <div class="designation cf">
+    <div class="select-proj">
+      <?php echo Html::decode(Form::label('select_project','Project<span class="required">*</span>:')); ?>
+
+      <select class="form-control" name="select_project" id="project_name">
+       <option value="0">Please Select Project</option>
+       <?php for($i=0;$i<count($project_id);$i++): ?>
+       <option value="<?php echo e($project_id[$i]); ?>"><?php echo e($project_list[$i]->project_name); ?></option>
+       <?php endfor; ?>
+     </select>
+     <p class="error"></p>
+   </div>
+   <div class="select-designation">
+    <?php echo Html::decode(Form::label('select_designation','Designation<span class="required">*</span>:')); ?>
+
+    <?php echo Form::Select('select_designation',$designation,'null',array('class' => 'form-control', 'id' => 'designation')); ?>
+
+    <p class="error"></p>
+  </div>
+  <div class="submit cf">
+    <?php echo Form::submit('Submit',array('class' => 'submit-btn','title' => 'Submit')); ?>
+
+  </div>
+</div>
+</div>
+<?php echo Form::close(); ?>
+
+<!-- container heading for addmyself Ends here -->
+
+<div class="designation-detail">
+  <div class="container-heading">
+    <span class="table-heading camle-case">
+      Total Hours Related to this Designation:
+    </span>
+  </div>
+  <div class="designation-detail-data designation-table numericValidation cf">
+    <div class="design-wrap-container">
+      <?php echo Form::open(array('url' => 'addself/project-details', 'id' => 'project_hrs')); ?>
+
+      <!-- This code is commented because this code is nessesary for backend perspective starts here -->
+      <!-- start's here -->
+      <div class="form-group cf display">
+        <?php echo Form::label('p_name', 'Project:'); ?>
+
+        <?php echo Form::text('p_name',' ',array('class' => 'project_name')); ?>
+
+      </div>
+      <div class="form-group cf display">
+        <?php echo Form::label('designation', 'Designation:'); ?>
+
+        <?php echo Form::text('designation',' ',array('class' => 'designation_id')); ?>
+
+      </div>
+      <!-- Ends's here -->
+      <!-- This code is commented because this code is nessesary for backend perspective Ends here-->
+      <table class="tableData cell-middle desig-table">
+       <tr class="head-row">
+         <th>
+           Estimation (Hrs):
+         </th>
+         <th>
+           Planning (Hrs):
+         </th>
+         <th>
+           Actuals (Hrs)
+         </th>
+         <th>
+           Hours You need
+         </th>
+         <th>
+           % Of Hours You Need
+         </th>
+       </tr>
+       <tr>
+        <td>
+          <?php echo Form::text('client Hours',' ',array('class' => 'appHours input-read', 'disabled')); ?>
+
+        </td>
+        <td>
+          <?php echo Form::text('Post Estimation','',array('class' => 'PostAppHours input-read', 'disabled')); ?>
+
+        </td>
+        <td>
+          <?php echo Form::text('Actuals ','',array('class' => 'actualAppHours input-read', 'disabled')); ?>
+
+        </td>
+        <td>
+          <?php echo Form::text('hours',' ',array('class' => 'hoursNeed','placeholder' => 'Your hrs')); ?>
+
+        </td>
+        <td>
+          <?php echo Form::text('percent',' ',array('class' => 'percentHoursNeed','disabled')); ?>
+
+        </td>
+      </tr>
+    </table>
+    <p class="error"></p>
+    <?php echo Form::submit('Check',array('class' => 'submit-btn','title' => 'Check')); ?>
+
+    <?php echo Form::close(); ?>
+
+  </div>
+</div>
+</div>
+
+<!-- Before Assistment start here -->
+<div class="designation-detail">
+  <div class="container-heading">
+    <span class="table-heading">
+      Before self-assignment:
+    </span>
+  </div>
+  <div class="designation-detail-data designation-table before-assign cf">
+    <table class="table-body tableData pre-table-body">
+      <thead>
+       <tr class="head-row">
+        <th>
+          Others Working Within Same Designation
+        </th>
+        <th title="Hours you need in percent">
+          % Self Assigned
+        </th>
+        <th title="% Self Assigned / Total of % Self Assigned * 100">
+          % Adjusted
+        </th>
+        <th title="% Adjusted * Estimated Hours">
+          % Adjusted *Estimated (Hrs)
+        </th>
+        <th title="% Adjusted * Planning  Hours">
+          % Adjusted *Planning (Hrs)
+        </th>
+        <th title="Total hours logged in timesheet for this designation">
+          Actuals To-Date
+        </th>
+        <th title="Actuals To-Date / Total of Actuals To-Date * 100">
+          % of Actuals (Hours, Total)
+        </th>
+        <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">
+          Actuals / Estimate Ratio
+        </th>
+        <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planniing Hours)">
+          Actuals / Planning Ratio
+        </th>
+      </tr>
+        <tr class="bold">
+          <td>
+            Total
+          </td>
+          <td>
+            <span class="pre-self-total"></span>
+          </td>
+          <td>
+            <span class="pre-adjusted-total"></span>
+          </td>
+          <td>
+            <span class="pre-estimate-total"></span>
+          </td>
+          <td>
+            <span class="pre-planig-total"></span>
+          </td>
+          <td>
+            <span class="pre-actual-total"></span>
+          </td>
+          <td>
+            <span class="pre-actual-percent-total"></span>
+          </td>
+          <td>
+            <span class="pre-estimate-ratio-total"></span>
+          </td>
+          <td>
+            <span class="pre-planning-ratio-total"></span>
+          </td>
+        </tr>
+        <tr class="italic">
+          <td>
+            Remaining
+          </td>
+          <td>
+            <span class="pre-remaining-assign-total"></span>
+          </td>
+          <td>
+          </td>
+          <td>
+            <span class="pre-remaining-estimation-total"></span>
+          </td>
+          <td>
+            <span class="pre-remaining-planning-total"></span>
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+<!-- Before Assistment ends here -->
+
+<!-- After assistment starts here -->
+<div class="designation-detail after-self-assign">
+  <div class="container-heading">
+    <span class="table-heading">
+      Post self-assignment:
+    </span>
+  </div>
+  <div class="designation-detail-data designation-table before-assign cf">
+   <table class="post-table-body tableData">
+    <thead>
+     <tr class="head-row">
+        <th>
+          Others Working Within Same Designation
+        </th>
+        <th title="Hours you need in percent">
+          % Self Assigned
+        </th>
+        <th title="% Self Assigned / Total of % Self Assigned * 100">
+          % Adjusted
+        </th>
+        <th title="% Adjusted * Estimated Hours">
+          % Adjusted *Estimated (Hrs)
+        </th>
+        <th title="% Adjusted * Planning  Hours">
+          % Adjusted *Planning (Hrs)
+        </th>
+        <th title="Total hours logged in timesheet for this designation">
+          Actuals To-Date
+        </th>
+        <th title="Actuals To-Date / Total of Actuals To-Date * 100">
+          % of Actuals (Hours, Total)
+        </th>
+        <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">
+          Actuals / Estimate Ratio
+        </th>
+        <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planniing Hours)">
+          Actuals / Planning Ratio
+        </th>
+      </tr>
+      <tr class="bold">
+        <td>
+          Total
+        </td>
+        <td>
+          <span class="post-self-total"></span>
+        </td>
+        <td>
+          <span class="post-adjusted-total"></span>
+        </td>
+        <td>
+          <span class="post-estimate-total"></span>
+        </td>
+        <td>
+          <span class="post-planig-total"></span>
+        </td>
+        <td>
+          <span class="post-actual-total"></span>
+        </td>
+        <td>
+          <span class="post-actual-percent-total"></span>
+        </td>
+        <td>
+          <span class="post-estimate-ratio-total"></span>
+        </td>
+        <td>
+          <span class="post-planning-ratio-total"></span>
+        </td>
+      </tr>
+      <tr class="italic">
+        <td>
+          Remaining
+        </td>
+        <td>
+          <span class="post-remaining-assign-total"></span>
+        </td>
+        <td>
+        </td>
+        <td>
+          <span class="post-remaining-estimation-total"></span>
+        </td>
+        <td>
+          <span class="post-remaining-planning-total"></span>
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+        <td>
+
+        </td>
+      </tr>
+    </thead>
+  </table>
+  <?php echo Form::open(array('url' => array('/store-self-project', $user_id), 'id' => 'my-project')); ?>
+
+  <div class="form-group cf display">
+    <?php echo Form::label('project_name', 'Project Name :'); ?>
+
+    <?php echo Form::text('project_name',' ',array('class' => 'project_name')); ?>
+
+  </div>
+  <div class="form-group cf display">
+    <?php echo Form::label('designation_id', 'Designation :'); ?>
+
+    <?php echo Form::text('designation_id',' ',array('class' => 'designation_id')); ?>
+
+  </div>
+  <div class="form-group cf display">
+    <?php echo Form::label('req_hrs', 'Required Hrs :'); ?>
+
+    <?php echo Form::text('req_hrs',' ',array('class' => 'req_hrs')); ?>
+
+  </div>
+  <div class="center form-group cf">
+    <?php echo Form::submit('Submit',array('class' => 'submit-btn','title' => 'Submit')); ?>
+
+  </div>
+  <?php echo Form::close(); ?>
+
+
+</div>
+</div>
+<!-- After assistment end's here -->
+</div>
+<script type="text/javascript">
+  $.ajaxSetup({
+    headers : {
+      'X-CSRF-TOKEN' : $('meta[name = "_token"]').attr('contents')
+    }
+  });
+  // Assign project functionality starts here
+  $('#assign-project').on('submit', function(e) {
+    e.preventDefault();
+    var desig_index = $('#designation')[0].selectedIndex;
+    var project_index = $('#project_name option:selected').val();
+    if(desig_index !=0 && project_index != 0) {
+      $('html, body').animate({
+        scrollTop: $(this).next().offset().top }, 1000);
+    }
+
+    var clickValue = $(this).attr('id');
+    var testObj  = new addOnProject(clickValue);
+
+    $('.table-body').find('.employee').remove();
+    var getProjectName = $('#project_name option:selected').val();
+    var value1 = $('#designation').val();
+    var url = $('#assign-project').attr('action') + '/' + project_index + '/' + value1;
+    $.ajax({
+      type : 'post',
+      url : url,
+      data : {
+        'name':getProjectName,
+        'id':value1,
+        "_token": "<?php echo e(csrf_token()); ?>"
+      },
+      success: function(data) {
+        $('table').find('.employee').remove();
+        $('.post-table-body span').empty();
+        console.log('data before Check ---->', data);
+        var testing  = testObj.init(data);
+        for (var i = 0; i < data.name.length; i++) {
+          var row = '<tr class="employee">'+
+          '<td>'+ data.name[i] +'</td>'+
+          '<td>'+ data.projects[i].required_hrs +'%'+'</td>'+
+          '<td>'+testing.Adjusted[i]+"%"+'</td>'+
+          '<td>'+testing.adjustedEstimation[i]+'</td>'+
+          '<td>'+testing.adjustedPlanning[i]+'</td>'+
+          '<td>'+data.timesheet_hrs[i].timesheet_hrs+'</td>'+
+          '<td>'+testing.actualHours[i]+"%"+'</td>'+
+          '<td>'+testing.actualEstimationRatio[i]+"%"+'</td>'+
+          '<td>'+testing.actualPlanningRatio[i]+"%"+'</td>'
+          '</tr>';
+          $('.table-body tr').eq(-2).before(row);
+        }
+        $('.appHours').val(data.hrs);
+        $('.PostAppHours').val(data.plan_hrs);
+        $('.pre-self-total').text((testing.sum).toFixed(2) + "%");
+        $('.pre-adjusted-total').text(testing.gettotAdjusted.toFixed(1) + "%");
+        $('.pre-estimate-total').text(testing.gettotEstimation.toFixed(2));
+        $('.pre-planig-total').text(testing.gettotPlanning.toFixed(2));
+        $('.pre-actual-total').text(testing.gettotAcualToDate);
+        $('.pre-actual-percent-total').text(testing.getactualTotalHours.toFixed(2) + "%");
+        $('.pre-planning-ratio-total').text(testing.getactualPlanningRatio + "%");
+        $('.project_name').val(getProjectName);
+        $('.designation_id').val(value1);
+
+        $('.pre-estimate-ratio-total').text(testing.getactualEstimaionRatio + "%");
+      // Remaing row calculation Printing //
+
+      $('.pre-remaining-assign-total').text(testing.remainingSelfAssignedTotal + "%");
+      $('.pre-remaining-estimation-total').text(testing.remainingEstimationTotal);
+      $('.pre-remaining-planning-total').text(testing.remainingPlanningTotal);
+    }
+  });
+
+});
+// Assign project functionality Ends here
+
+// project_hrs functionality starts here
+$('#project_hrs').on('submit', function(e) {
+  e.preventDefault();
+  var hours=Number($(".hoursNeed").val());
+  var planninghrs=Number($(".PostAppHours").val());
+  var estimationhrs=Number($(".appHours").val());
+  if(hours<=0 || planninghrs==0 || estimationhrs==0)
+  {
+    alert("Please fill the Estimation and Planning hours.");
+  }
+  else
+  {
+    $('.post-table-body').find('.employee').remove();
+    var clickValue = $(this).attr('id');
+    var object = new addOnProjectAfterAssistment();
+    var userName = " <?php echo $user_name?>";
+    var getProjectName = $('#project_name').val();
+
+    var value1 = $('#designation').val();
+    var hrs = $('.percentHoursNeed').val();
+    $('.req_hrs').val(hrs);
+    var url = $('#project_hrs').attr('action') + '/' + getProjectName + '/' + value1 + '/' + hrs;
+
+    $.ajax({
+      type : 'get',
+      url : url,
+      data : {
+        'name':getProjectName,
+        'id':value1,
+        'hrs':hrs,
+        'user_name':userName,
+        "_token": "<?php echo e(csrf_token()); ?>"
+      },
+      success:function(data){
+        console.log('after check', data);
+        var currentName;
+        var getNewUserData = object.init(data);
+      // console.log("getNewUserData ---> ",getNewUserData);
+
+      for (var i = 0; i < data.name.length; i++) {
+        var row = '<tr class="employee">'+
+        '<td>'+ data.name[i] +'</td>'+
+        '<td>'+ data.projects[i].required_hrs +'%'+'</td>'+
+        '<td>'+object.Adjusted[i]+"%"+'</td>'+
+        '<td>'+object.adjustedEstimation[i]+'</td>'+
+        '<td>'+object.adjustedPlanning[i]+'</td>'+
+        '<td>'+data.timesheet_hrs[i].timesheet_hrs+'</td>'+
+        '<td>'+object.actualHours[i]+"%"+'</td>'+
+        '<td>'+object.actualEstimationRatio[i]+"%"+'</td>'+
+        '<td>'+object.actualPlanningRatio[i]+"%"+'</td>'
+        '</tr>';
+        $('.post-table-body tr').eq(-2).before(row);
+      }
+      $('.post-self-total').text(object.sum.toFixed(2) + "%");
+      $('.post-adjusted-total').text(object.gettotAdjusted.toFixed(1) + "%");
+      $('.post-estimate-total').text(object.gettotEstimation.toFixed(2));
+      $('.post-planig-total').text(object.gettotPlanning.toFixed(2));
+      $('.post-actual-total').text(object.gettotAcualToDate);
+      $('.post-actual-percent-total').text(object.getactualTotalHours + "%");
+      $('.post-estimate-ratio-total').text(object.getactualEstimaionRatio + "%");
+      $('.post-planning-ratio-total').text(object.getactualPlanningRatio + "%");
+
+      $('.post-remaining-assign-total').text(object.remainingSelfAssignedTotal + "%");
+      $('.post-remaining-estimation-total').text(object.remainingEstimationTotal);
+      $('.post-remaining-planning-total').text(object.remainingPlanningTotal.toFixed(2));
+    }
+  });
+
+var hoursNeed_index = $('.hoursNeed').val();
+var appHours_index = $('.appHours').val();
+if(hoursNeed_index != ' ' && appHours_index != ' ') {
+  $('html, body').animate({
+    scrollTop: $('.after-self-assign').offset().top }, 1000);
+}
+}
+
+});
+// project_hrs functionality Ends here
+</script>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('master', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

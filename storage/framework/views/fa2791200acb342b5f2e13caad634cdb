@@ -544,8 +544,8 @@ $("#project").on('change',function(){
             project_name = data.project_name[i].project_name;
             hrs_locked = data.project_name[i].hrs_locked;
             comments = data.project_name[i].comments;
-          var cmnt_replace = comments.replace(/\</g, '&lt;');
-          var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');
+            var cmnt_replace = comments.replace(/\</g, '&lt;');
+            var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');
             p_id = data.project_name[i].id;
             d_name=data.project_name[i].d_name;
           }
@@ -558,14 +558,14 @@ $("#project").on('change',function(){
           '</tr>';
           $('.head-row').eq(0).after(row);
           var hours = dayTotalHrs(2,'.day-table');
-          $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']+" hrs");
-          $('.day-table ~ .time-details .free-time').text(hours['free_time']+" hrs");
+          $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']);
+          $('.day-table ~ .time-details .free-time').text(hours['free_time']);
         }
       }
       else {
         $('#project-day-time #project_desig[disabled]').siblings('.error').text('');
         var comment_text = data.comments;
-	var cmnt_replace = comment_text.replace(/\</g, '&lt;');
+        var cmnt_replace = comment_text.replace(/\</g, '&lt;');
         var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
 
         var row1 = '<tr id="time' + data.id + '">'+
@@ -577,8 +577,8 @@ $("#project").on('change',function(){
         '</tr>';
         $('#time' + data.id).replaceWith(row1);
         var hours = dayTotalHrs(2,'.day-table');
-        $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']+" hrs");
-        $('.day-table ~ .time-details .free-time').text(hours['free_time']+" hrs");
+        $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']);
+        $('.day-table ~ .time-details .free-time').text(hours['free_time']);
       }
     }
   });
@@ -643,8 +643,8 @@ $('tbody').delegate('.btn-delete', 'click', function(){
           $("#confirm-delete").modal('hide');
 
           var hours = dayTotalHrs(2,'.day-table');
-          $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']+" hrs");
-          $('.day-table ~ .time-details .free-time').text(hours['free_time']+" hrs");
+          $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']);
+          $('.day-table ~ .time-details .free-time').text(hours['free_time']);
 
            var rowCount = $('.day-table tr').length;//if 1 then empty
 

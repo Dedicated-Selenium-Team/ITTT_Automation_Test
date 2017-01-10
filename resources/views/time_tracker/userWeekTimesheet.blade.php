@@ -252,7 +252,7 @@ $today = date('Y-m-d');
           </tbody>
         </table>
         <div class="time-details">
-          <p><span class="free-time-title">Free Hours - </span> <span class="free-time">{{getminutes($free_time)}} hrs</span></p>
+          <p><span class="free-time-title">Free Hours - </span> <span class="free-time">{{getminutes($free_time)}}</span></p>
         </div>
         <!-- Day View Table Ends here -->
 

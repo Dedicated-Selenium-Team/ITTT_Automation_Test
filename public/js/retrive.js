@@ -1079,14 +1079,14 @@ $(document).mouseup(function (e)
   });
 
 // to display download pdf section
-$(document).click(function(event) {
-  var target = $(event.target);
+// $(document).click(function(event) {
+//   var target = $(event.target);
 
-  if (target.parent().attr('class').match(/^dt-buttons/)) {
-    $('.dt-buttons a').css('display','block');
-  }
-  else {
-    $('.dt-buttons a').css('display','none');
-  }
-});
+//   if (target.parent().attr('class').match(/^dt-buttons/)) {
+//     $('.dt-buttons a').css('display','block');
+//   }
+//   else {
+//     $('.dt-buttons a').css('display','none');
+//   }
+// });
 

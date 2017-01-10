@@ -15,6 +15,7 @@ use Input;
 use Redirect;
 use Response;
 use Session;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller {
 
@@ -227,8 +228,8 @@ class ProjectController extends Controller {
 				if (count($new_key)>0) {
 					$value->designation_name=$myassigned_project[$new_key[0]]->designation_name;
 					$value->is_myproject = 'Yes';
-array_push($my_project, $value);
-array_push($my_project_key, $key);
+					array_push($my_project, $value);
+					array_push($my_project_key, $key);
 				} else {
 
 					$value->is_myproject = 'No';
@@ -260,7 +261,7 @@ array_push($my_project_key, $key);
 					$value->designation_name=$myassigned_project[$new_key[0]]->designation_name;
 					$value->is_myproject = 'Yes';
 					array_push($my_project, $value);
-array_push($my_project_key, $key);
+					array_push($my_project_key, $key);
 				} else {
 
 					$value->is_myproject = 'No';
@@ -291,7 +292,7 @@ array_push($my_project_key, $key);
 					$value->designation_name=$myassigned_project[$new_key[0]]->designation_name;
 					$value->is_myproject = 'Yes';
 					array_push($my_project, $value);
-array_push($my_project_key, $key);
+					array_push($my_project_key, $key);
 				} else {
 
 					$value->is_myproject = 'No';
@@ -299,7 +300,7 @@ array_push($my_project_key, $key);
 				}
 			}
 			
-foreach($my_project_key as $value)
+			foreach($my_project_key as $value)
 				unset($live_ongoing_project[$value]);
 			foreach ($my_project as $key => $value) {
 				$live_ongoing_project->prepend($value);
@@ -323,14 +324,14 @@ foreach($my_project_key as $value)
 					$value->designation_name=$myassigned_project[$new_key[0]]->designation_name;
 					$value->is_myproject = 'Yes';
 					array_push($my_project, $value);
-array_push($my_project_key, $key);
+					array_push($my_project_key, $key);
 				} else {
 
 					$value->is_myproject = 'No';
 
 				}
 			}
-foreach($my_project_key as $value)
+			foreach($my_project_key as $value)
 				unset($completed_project[$value]);
 			foreach ($my_project as $key => $value) {
 				$completed_project->prepend($value);
@@ -401,4 +402,97 @@ foreach($my_project_key as $value)
 		}
 	}
 
+	public function deleteProject(Request $request,$id)
+	{
+		$session = Session::get('user')[0]['role_id'];
+		$success=0;
+		if ($session == 1) 
+		{
+			if($request->ajax())
+			{
+				$project_detail=AddProject::where('project_id',$id)->get();
+				$delete_project= AddProject::where('project_id',$id)->update([
+					'is_deleted'=>1]);
+				$user_name=Session::get('user')[0]['first_name']." ".Session::get('user')[0]['last_name'];
+
+				if($delete_project)
+				{
+					$success=1;
+					$project_member=DB::table('self_projects')->join('users','self_projects.user_id','=','users.user_id')->select('username')->where('project_id',$id)->distinct()->get();
+					$user_email=array();
+					foreach($project_member as $key=>$value)
+						array_push($user_email, $value->username);
+					array_push($user_email,'projectmanagement@prdxn.com');
+					$projectowner_email=DB::table('users')->
+					join('add_projects','users.user_id','=','add_projects.created_by')->
+					select('users.username')->where('add_projects.project_id',$id)->get();
+					if(!in_array($projectowner_email[0]->username,$user_email))
+						array_push($user_email,$projectowner_email[0]->username);
+
+
+					Mail::send('notification/deleteNotification', ['project_detail'=>$project_detail,'user_name'=>$user_name], function ($message) use ($user_email)
+					{
+
+						$message->from('nilesh.vidhate.prdxn@gmail.com', "ITTT Admin");
+
+						$message->to($user_email);
+
+						$message->subject("PROJECT DELETE NOTIFICATION");
+						/* $message->replyTo($_POST['timesheetdata']['key'], $name = $_POST['timesheetdata'][0]["name"]);*/
+					});
+				}
+			}
+		}
+		return response()->json([
+			'success'=>$success            
+			]);
+	}
+
+
+	public function archiveProject(Request $request,$id)
+	{
+		$session = Session::get('user')[0]['role_id'];
+		$success=0;
+		if ($session == 1 || $session == 2) 
+		{
+			if($request->ajax())
+			{
+				$project_detail=AddProject::where('project_id',$id)->get();
+				$delete_project= AddProject::where('project_id',$id)->update([
+					'is_archived'=>1]);
+				$user_name=Session::get('user')[0]['first_name']." ".Session::get('user')[0]['last_name'];
+
+				if($delete_project)
+				{
+					$success=1;
+					$project_member=DB::table('self_projects')->join('users','self_projects.user_id','=','users.user_id')->select('username')->where('project_id',$id)->distinct()->get();
+					$user_email=array();
+					foreach($project_member as $key=>$value)
+						array_push($user_email, $value->username);
+
+					array_push($user_email,'projectmanagement@prdxn.com');
+					$projectowner_email=DB::table('users')->
+					join('add_projects','users.user_id','=','add_projects.created_by')->
+					select('users.username')->where('add_projects.project_id',$id)->get();
+					if(!in_array($projectowner_email[0]->username,$user_email))
+						array_push($user_email,$projectowner_email[0]->username);
+
+					Mail::send('notification/archiveNotification', ['project_detail'=>$project_detail,'user_name'=>$user_name], function ($message) use ($user_email)
+					{
+
+						$message->from('nilesh.vidhate.prdxn@gmail.com', "ITTT Admin");
+
+						$message->to($user_email);
+						$message->subject("PROJECT ARCHIVE NOTIFICATION");
+						/* $message->replyTo($_POST['timesheetdata']['key'], $name = $_POST['timesheetdata'][0]["name"]);*/
+
+					});
+				}
+			}
+		}
+		return response()->json([
+			'success'=>$success            
+			]);
+	}
 }
+

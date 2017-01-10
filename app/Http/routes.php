@@ -75,8 +75,8 @@ Route::post('/time-management/getmyself_project_designation/{project_id}','TimeT
 /**
  * Admin can see Users timesheet routes
  */
+Route::get('/time-management/{date}/{id}/{project_id?}', ['as' => 'day-time', 'uses' => 'TimeTrackerController@getUserTimesheet']);
 
 Route::get('/time-management/week/{date}/{id}/{project_id?}','TimeTrackerController@getUserWeekTimesheet');
-Route::get('/time-management/{date}/{id}/{project_id?}', ['as' => 'day-time', 'uses' => 'TimeTrackerController@getUserTimesheet']);
 
 ?>

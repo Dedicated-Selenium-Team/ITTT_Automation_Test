@@ -9,22 +9,22 @@ header("Pragma: no-cache");
 	<!--<link rel="shortcut icon" href="favicon.ico" />-->
 	<!-- Bootstrap CSS -->
 
-	<link href="{{ asset('public/vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
+	<link href="{{ asset('vendor/bootstrap/css/bootstrap.css') }}" rel="stylesheet"/>
 
 	<!-- Jquery UI stylesheet  -->
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
 	<link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
 	<!-- ITTT stylesheet  -->
-	<link href="{{ asset('public/css/stylesheet.css') }}" rel="stylesheet" />
+	<link href="{{ asset('css/stylesheet.css') }}" rel="stylesheet" />
 	<!-- <link href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" rel="stylesheet" /> -->
 
 	<script src="https://apis.google.com/js/api:client.js"></script>
 
 	<!-- jQuery JS -->
-	<script src="{{ asset('public/vendor/jquery-2.1.1.min.js') }}"></script>
+	<script src="{{ asset('vendor/jquery-2.1.1.min.js') }}"></script>
 
 	<!-- Jquery-UI JS -->
-	<script src="{{ asset('public/js/jqueryUI.js') }}"></script>
+	<script src="{{ asset('js/jqueryUI.js') }}"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.13/features/searchHighlight/dataTables.searchHighlight.min.js">
     </script>
@@ -33,12 +33,12 @@ header("Pragma: no-cache");
     <link href="//cdn.datatables.net/plug-ins/1.10.13/features/searchHighlight/dataTables.searchHighlight.css" rel="stylesheet" />
 
 	<!-- Current JS -->
-	<script src="{{ asset('public/js/object.js') }}"></script>
-	<script src="{{ asset('public/js/retrive.js') }}"></script>
+	<script src="{{ asset('js/object.js') }}"></script>
+	<script src="{{ asset('js/retrive.js') }}"></script>
 
 
 	<!-- Bootstrap JS -->
-	<script type="text/javascript" src="{{ asset('public/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.8.0/fullcalendar.min.js" charset="utf-8"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.8.0/fullcalendar.min.css" charset="utf-8"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.8.0/fullcalendar.print.css" charset="utf-8"></script> -->

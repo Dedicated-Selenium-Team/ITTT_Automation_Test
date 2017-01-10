@@ -9,13 +9,13 @@ use App\ProjectDesignation;
 use App\ProjectDetail;
 use App\SelfProject;
 use DB;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Http\Request as RequestHttp;
 use Input;
 use Redirect;
 use Response;
 use Session;
-use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller {
 
@@ -94,6 +94,7 @@ class ProjectController extends Controller {
 			$store_project->project_name = strtoupper(Input::get('project_name'));
 			$store_project->client_name   = strtoupper(Input::get('client_name'));
 			$store_project->status_id = 1;
+			$store_project->created_by=Session::get('user')[0]['user_id'];
 			$store_project->save();
 
 			$projects  = $store_project->select('project_id', 'project_name')->orderBy('project_id', 'desc')->get();
@@ -115,7 +116,7 @@ class ProjectController extends Controller {
 
 			$user_id        = Session::get('user')[0]['user_id'];
 			$pname          = AddProject::select('project_name')->first();
-			$projects       = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->get();
+			$projects       = AddProject::select('project_id', 'project_name', 'client_name','status_id')->where('is_deleted',0)->where('is_archived',0)->orderBy('project_id', 'desc')->get();
 			foreach($projects as $key=>$value)
 			{
 				$set_plan = PlanProjectDetail::where('project_id', $value->project_id)->get();
@@ -206,10 +207,12 @@ class ProjectController extends Controller {
 			completed=4
 
 			 **********************************/
-			$estimates_project    = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '1')->get();
-			$live_project         = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '2')->get();
-			$live_ongoing_project = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '3')->get();
-			$completed_project    = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '4')->get();
+			$estimates_project    = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '1')->where('is_deleted',0)->where('is_archived',0)->get();
+			$live_project         = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '2')->where('is_deleted',0)->where('is_archived',0)->get();
+			$live_ongoing_project = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '3')->where('is_deleted',0)->where('is_archived',0)->get();
+			$completed_project    = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '4')->where('is_deleted',0)->where('is_archived',0)->get();
+
+			$archive_project    = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('is_archived', '1')->where('is_deleted','0')->get();
 			
 			$my_project=array();
 			$my_project_key=array();
@@ -336,10 +339,37 @@ class ProjectController extends Controller {
 			foreach ($my_project as $key => $value) {
 				$completed_project->prepend($value);
 			}
-			
-			//$estimates_project=(array)($estimates_project);
-			//array_push($estimates_project,'5');
-			
+
+			$my_project=array();
+			$my_project_key=array();
+			foreach ($archive_project as $key => $value) {
+				$set_plan = PlanProjectDetail::where('project_id', $value->project_id)->get();
+				$set_estimate = ProjectDetail::where('project_id', $value->project_id)->get();
+				if(count($set_plan)==0)
+					$value->planning_status=0;
+				else
+					$value->planning_status=1;
+				if(count($set_estimate)==0)
+					$value->estimation_status=0;
+				else
+					$value->estimation_status=1;
+				$new_key = array_keys($myassigned_project_id,$value->project_id);
+				if (count($new_key)>0) {
+					$value->designation_name=$myassigned_project[$new_key[0]]->designation_name;
+					$value->is_myproject = 'Yes';
+					array_push($my_project, $value);
+					array_push($my_project_key, $key);
+				} else {
+
+					$value->is_myproject = 'No';
+
+				}
+			}
+			foreach($my_project_key as $value)
+				unset($archive_project[$value]);
+			foreach ($my_project as $key => $value) {
+				$archive_project->prepend($value);
+			}
 
 			return view('project/projectDetail')->with(['myproject' => $myassigned_project, 'projects' => $projects, 'estimates_project' => $estimates_project, 'live_project' => $live_project, 'live_ongoing_project' => $live_ongoing_project, 'completed_project' => $completed_project]);
 
@@ -401,7 +431,10 @@ class ProjectController extends Controller {
 			return Redirect::to('/');
 		}
 	}
-
+	/**
+	 *
+	 *
+	*/
 	public function deleteProject(Request $request,$id)
 	{
 		$session = Session::get('user')[0]['role_id'];
@@ -436,7 +469,7 @@ class ProjectController extends Controller {
 						$message->from('nilesh.vidhate.prdxn@gmail.com', "ITTT Admin");
 
 						$message->to($user_email);
-
+						
 						$message->subject("PROJECT DELETE NOTIFICATION");
 						/* $message->replyTo($_POST['timesheetdata']['key'], $name = $_POST['timesheetdata'][0]["name"]);*/
 					});
@@ -495,4 +528,3 @@ class ProjectController extends Controller {
 			]);
 	}
 }
-

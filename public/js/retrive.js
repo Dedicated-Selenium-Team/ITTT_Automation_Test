@@ -194,8 +194,8 @@ $( "#tabs" ).tabs();
     }
   });   
   var hours = dayTotalHrs(2,'.day-table');
-  $('.table-timesheet .time-details .tot-hours').text(hours['total_hrs']+" hrs");
-  $('.table-timesheet .time-details .free-time').text(hours['free_time']+" hrs");
+  $('.table-timesheet .time-details .tot-hours').text(hours['total_hrs']);
+  $('.table-timesheet .time-details .free-time').text(hours['free_time']);
 
   $( ".count_name" ).hover(
     function() {

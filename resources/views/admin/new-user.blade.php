@@ -1,5 +1,5 @@
 <!-- Add New User Modal Starts Here-->
-<div class="modal fade modal-error-off" id="user" role="dialog">
+<div class="modal fade modal-error-off edit-modal" id="user" role="dialog">
   <div class="modal-dialog" id="ping">
 
     <!-- Modal content Starts Here-->

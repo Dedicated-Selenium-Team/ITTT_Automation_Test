@@ -1719,12 +1719,12 @@ table thead th {
 
 .admin .modal-open .modal { overflow: hidden; }
 
-.admin .modal-content {
+.admin .edit-modal .modal-content {
   height: 89.8vh;
   overflow: auto;
 }
 
-.admin .modal-dialog { margin-top: calc(50vh - 44.7vh); }
+.admin .edit-modal .modal-dialog { margin-top: calc(50vh - 44.7vh); }
 
 
 /**************************************************************************/

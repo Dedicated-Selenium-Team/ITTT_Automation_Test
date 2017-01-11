@@ -95,10 +95,6 @@ class TimeTrackerController extends Controller {
     $time    = new DayTime;
     $user_id = Session::get('user')[0]['user_id'];
 
-    //$check_designation=$time->where('project_name',Input::get('project_id'))->where('user_id',$user_id)->where('date',Input::get('date'))->where('d_id',Input::get('project_desig'))->get();
-    //$success=0;
-    //if(count($check_designation)==0)
-    //{
     $success=1;
     // store the timesheet values into databse
     $time->user_id      = $user_id;
@@ -125,15 +121,6 @@ class TimeTrackerController extends Controller {
       'success'=>$success
 
       ]);
-    //}
-    //else
-    //{
-    //  return response()->json([
-    //    'success'=>$success
-
-    //    ]);
-    //}
-
   }
 
   /**

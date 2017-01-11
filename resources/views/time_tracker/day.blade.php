@@ -522,7 +522,7 @@ $("#project").on('change',function(){
             d_name=data.project_name[i].d_name;
           }
           var row = '<tr id="time' + p_id + '">'+
-          '<td>'+ '<h3><span class="project_name">' + project_name + '</span> - <span class="project_designation">'+d_name+'</span></h3>' +
+          '<td class="break-words">'+ '<h3><span class="project_name">' + project_name + '</span> - <span class="project_designation">'+d_name+'</span></h3>' +
           '<p>' + cmnt_replace1 + '</p>' +'</td>'+
           '<td>' + total_hrs +'</td>'+
           '<td>' + '<button type="button" class="btn btn-edit edit" id="edit-day-time"data-id="' + p_id + '">Edit User</button>' + '</td>' +
@@ -530,8 +530,8 @@ $("#project").on('change',function(){
           '</tr>';
           $('.head-row').eq(0).after(row);
           var hours = dayTotalHrs(2,'.day-table');
-          $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']+" hrs");
-          $('.day-table ~ .time-details .free-time').text(hours['free_time']+" hrs");
+          $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']);
+          $('.day-table ~ .time-details .free-time').text(hours['free_time']);
         }
       }
       else {
@@ -541,7 +541,7 @@ $("#project").on('change',function(){
         var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
 
         var row1 = '<tr id="time' + data.id + '">'+
-        '<td>'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
+        '<td class="break-words">'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
         '<p>' + cmnt_replace1 + '</p>' +'</td>'+
         '<td>' + total_hrs +'</td>'+
         '<td>' + '<button type="button" class="btn btn-edit edit" id="edit-day-time"data-id="' + data.id + '">Edit User</button>' + '</td>' +
@@ -549,8 +549,8 @@ $("#project").on('change',function(){
         '</tr>';
         $('#time' + data.id).replaceWith(row1);
         var hours = dayTotalHrs(2,'.day-table');
-        $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']+" hrs");
-        $('.day-table ~ .time-details .free-time').text(hours['free_time']+" hrs");
+        $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']);
+        $('.day-table ~ .time-details .free-time').text(hours['free_time']);
       }
     }
   });
@@ -615,8 +615,8 @@ $('tbody').delegate('.btn-delete', 'click', function(){
           $("#confirm-delete").modal('hide');
 
           var hours = dayTotalHrs(2,'.day-table');
-          $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']+" hrs");
-          $('.day-table ~ .time-details .free-time').text(hours['free_time']+" hrs");
+          $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']);
+          $('.day-table ~ .time-details .free-time').text(hours['free_time']);
 
            var rowCount = $('.day-table tr').length;//if 1 then empty
 

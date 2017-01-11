@@ -5,7 +5,7 @@ function getminutes($date_array)
   foreach($date_array as $new_date)
   {
 
-   
+
     $new_date = number_format((float)$new_date,2);
     $time->add(new DateInterval("PT".str_replace(".","H",$new_date."M")));  
   }
@@ -78,7 +78,7 @@ $today = date('Y-m-d');
    {
      foreach($projects as $project_key=>$project_value)
      {
-       
+
       foreach($project_value->project_details as $key=>$value)
       {
         if(count($value)>0)
@@ -245,7 +245,7 @@ $today = date('Y-m-d');
       </tbody>
     </table>
     <div class="time-details">
-      <p><span class="free-time-title">Free Hours - </span> <span class="free-time"><?php echo e(getminutes($free_time)); ?> hrs</span></p>
+      <p><span class="free-time-title">Free Hours - </span> <span class="free-time"><?php echo e(getminutes($free_time)); ?></span></p>
     </div>
     <!-- Day View Table Ends here -->
 

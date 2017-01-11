@@ -93,7 +93,6 @@ class ProjectController extends Controller {
 			$store_project->project_name = strtoupper(Input::get('project_name'));
 			$store_project->client_name   = strtoupper(Input::get('client_name'));
 			$store_project->status_id=Input::get('status_id');
-			$store_project->status_id = 1;
 			$store_project->save();
 
 			$projects  = $store_project->select('project_id', 'project_name')->orderBy('project_id', 'desc')->get();
@@ -228,8 +227,8 @@ class ProjectController extends Controller {
 				if (count($new_key)>0) {
 					$value->designation_name=$myassigned_project[$new_key[0]]->designation_name;
 					$value->is_myproject = 'Yes';
-array_push($my_project, $value);
-array_push($my_project_key, $key);
+					array_push($my_project, $value);
+					array_push($my_project_key, $key);
 				} else {
 
 					$value->is_myproject = 'No';
@@ -261,7 +260,7 @@ array_push($my_project_key, $key);
 					$value->designation_name=$myassigned_project[$new_key[0]]->designation_name;
 					$value->is_myproject = 'Yes';
 					array_push($my_project, $value);
-array_push($my_project_key, $key);
+					array_push($my_project_key, $key);
 				} else {
 
 					$value->is_myproject = 'No';
@@ -292,7 +291,7 @@ array_push($my_project_key, $key);
 					$value->designation_name=$myassigned_project[$new_key[0]]->designation_name;
 					$value->is_myproject = 'Yes';
 					array_push($my_project, $value);
-array_push($my_project_key, $key);
+					array_push($my_project_key, $key);
 				} else {
 
 					$value->is_myproject = 'No';
@@ -300,7 +299,7 @@ array_push($my_project_key, $key);
 				}
 			}
 			
-foreach($my_project_key as $value)
+			foreach($my_project_key as $value)
 				unset($live_ongoing_project[$value]);
 			foreach ($my_project as $key => $value) {
 				$live_ongoing_project->prepend($value);
@@ -324,14 +323,14 @@ foreach($my_project_key as $value)
 					$value->designation_name=$myassigned_project[$new_key[0]]->designation_name;
 					$value->is_myproject = 'Yes';
 					array_push($my_project, $value);
-array_push($my_project_key, $key);
+					array_push($my_project_key, $key);
 				} else {
 
 					$value->is_myproject = 'No';
 
 				}
 			}
-foreach($my_project_key as $value)
+			foreach($my_project_key as $value)
 				unset($completed_project[$value]);
 			foreach ($my_project as $key => $value) {
 				$completed_project->prepend($value);

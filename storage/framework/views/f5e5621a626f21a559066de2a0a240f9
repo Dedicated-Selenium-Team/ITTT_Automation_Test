@@ -36,6 +36,9 @@
     <!-- Modal content Starts Here-->
     <div class="modal-content">
 
+      <?php echo Form::open(array('id' => 'add-project', 'method' => 'post')); ?>
+
+
       <!-- Modal Header Starts Here -->
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -45,9 +48,6 @@
 
       <!-- Modal Body Starts Here -->
       <div class="modal-body">
-
-        <?php echo Form::open(array('id' => 'add-project', 'method' => 'post')); ?>
-
 
         <div class="form-group cf">
           <?php echo Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')); ?>
@@ -73,26 +73,36 @@
           <p class="error"></p>
         </div>
 
+        <div class="form-group cf">
+         <?php echo Html::decode(Form::label('status_id','Project Status:')); ?>
+
+         <select class="status_id" name="status_id" >
+           <option value="1">Estimates</option>
+           <option value="2">Live-Projects</option>
+           <option value="3">Live-Ongoing</option>
+         </select>
+       </div>
+
+     </div>
+     <!-- Modal Body Ends Here -->
+
+     <!-- Modal Footer Starts Here -->
+     <div class="modal-footer">
+      <div class="save-project">
+        <?php echo Form::submit('Submit'); ?>
+
+        <?php /* <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> */ ?>
       </div>
-      <!-- Modal Body Ends Here -->
-
-      <!-- Modal Footer Starts Here -->
-      <div class="modal-footer">
-        <div class="save-project">
-          <?php echo Form::submit('Submit'); ?>
-
-          <?php /* <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> */ ?>
-        </div>
-      </div>
-      <!-- Modal Footer Ends Here -->
-
     </div>
-    <!-- Modal content Starts Here-->
-
-    <?php echo Form::close(); ?>
-
+    <!-- Modal Footer Ends Here -->
 
   </div>
+  <!-- Modal content Starts Here-->
+
+  <?php echo Form::close(); ?>
+
+
+</div>
 </div>
 <!-- Add New Project Modal Ends Here-->
 
@@ -516,13 +526,30 @@
         <p>Are you sure you want to remove this Project?</p>
         <p class="debug-url"></p>
       </div>
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
-        <a class="btn btn-danger btn-ok" id="btnYes">Delete</a>
+
+    </div>
+  </div>
+  <!-- All Projects list ends here -->
+  <!-- Modal for Delete start here -->
+  <div class="modal fade delete-modal" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+        </div>
+        <div class="modal-body">
+          <h5>Confirm Delete</h5>
+          <p>Are you sure you want to remove this Project?</p>
+          <p class="debug-url"></p>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
+          <a class="btn btn-danger btn-ok" id="btnYes">Delete</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 <!-- Modal for delete ends here -->
 
@@ -554,7 +581,7 @@
   }
 });
 
- $(window).load(function() {
+/* $(window).load(function() {
    var grid = $('.grid').isotope({});
    $("#search_project").keyup(function(){
     var searchstring=$("#search_project").val().toUpperCase();
@@ -565,9 +592,9 @@
       }
     });
   });
- });
+});*/
 
- $(".proj_status").change(function(){
+$(".proj_status").change(function(){
   var status=($(this).val()).split("_");
   var project_status=status[0];
   var project_id=status[1];
@@ -696,7 +723,6 @@
                     }
                   });
                 });
-
 
               </script>
             </div>

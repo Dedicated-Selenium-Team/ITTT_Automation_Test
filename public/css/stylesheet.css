@@ -1830,7 +1830,7 @@ table thead th {
 .create-new-project .modal-body .form-group:not(:last-of-type),
 .edit-project .modal-body .form-group:not(:last-of-type) { margin-bottom: 40px; }
 
-.create-new-project .modal-dialog { margin-top: calc(50vh - 231px); }
+.create-new-project .modal-dialog { margin-top: calc(50vh - 289px); }
 
 .edit-project .modal-dialog { margin-top: calc(50vh - 178px); }
 

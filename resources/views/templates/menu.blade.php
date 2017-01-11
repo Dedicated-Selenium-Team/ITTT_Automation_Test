@@ -4,16 +4,16 @@ $user_id = Session::get('user')[0]['user_id'];
 ?>
 <!-- nav starts here -->
 <nav class="nav-hamber cf">
-	<a href="#FIXME" title="Menu" class="hamb">
+	<a href="" title="Menu" class="hamb">
 	</a>
-	<a href="#FIXME" title="Close Menu" class="hamb-cross">
+	<a href="" title="Close Menu" class="hamb-cross">
 	</a>
 </nav>
 <!-- nav ends here -->
 
 <!-- main menu list starts here -->
 <ul class="navigation-menu">
-<?php if ($role_id == 1 || $role_id == 2) {?>
+	<?php if ($role_id == 1 || $role_id == 2) {?>
 	<!-- <li class="all-projects">
 			<a href="/store_project" title="Projects">Projects</a>
 		</li> -->
@@ -27,10 +27,10 @@ $user_id = Session::get('user')[0]['user_id'];
 	<!--  <ul class="sub-admin-nav"> -->
 
 	<li class="time-management time-sheet">
-	<?php
-	$date = Carbon\Carbon::now()->format('Y-m-d');
-	?>
-	<a href="/time-management/{{$date}}" title="Timesheet">
+		<?php
+		$date = Carbon\Carbon::now()->format('Y-m-d');
+		?>
+		<a href="/time-management/{{$date}}" title="Timesheet">
 			Timesheet
 		</a>
 	</li>
@@ -45,10 +45,10 @@ $user_id = Session::get('user')[0]['user_id'];
 										<!-- </ul> -->
 										<!-- admin sub menu Ends here -->
 										<!-- </li> -->
-	<?php }if ($role_id == 1) {?>
-	<li>
-											<a href="/admin" class="admin-menu user" title="Users">users</a>
-										</li>
+										<?php }if ($role_id == 1) {?>
+											<li>
+												<a href="/admin" class="admin-menu user" title="Users">users</a>
+											</li>
 											<!-- <li class="my-projects my-projects-i">
 												<a href="/my-projects/{{$user_id}}" title="My Projects">
 													My Projects
@@ -59,6 +59,6 @@ $user_id = Session::get('user')[0]['user_id'];
 													Project Designation
 												</a>
 											</li> -->
-	<?php }?>
-</ul>
-									<!-- main menu ends here -->
+											<?php }?>
+										</ul>
+										<!-- main menu ends here -->

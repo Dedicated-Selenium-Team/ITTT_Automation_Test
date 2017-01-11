@@ -181,7 +181,7 @@ $today = date('Y-m-d');
             @foreach($projects as $project)
             <?php $week_total_hrs = 0; ?>
             <tr>
-             <th>
+             <th class="break-words">
                {{$project->project_name}} 
              </th>
              <?php $total_hrs = array();?>

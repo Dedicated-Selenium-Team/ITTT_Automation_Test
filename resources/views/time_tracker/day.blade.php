@@ -141,7 +141,7 @@
 
      @foreach($daily_project as $today_project)
      <tr id="time{{$today_project->id}}">
-      <td>
+       <td class="break-words">
         <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
 
         <p>{{$today_project->comments}}</p>
@@ -350,14 +350,6 @@ $("#project").on('change',function(){
          }
          i++;
        });
-        $("#project_desig option").each(function () {
-         var proj_desg=$(this).text();
-         if($.inArray(proj_desg,get_project_designation)>=0)
-         {
-          var value=($(this).val());
-          $("#project_desig option[value='"+value+"'").attr("disabled",true);
-        }
-      });
 
       }
 
@@ -524,8 +516,8 @@ $("#project").on('change',function(){
             project_name = data.project_name[i].project_name;
             hrs_locked = data.project_name[i].hrs_locked;
             comments = data.project_name[i].comments;
-          var cmnt_replace = comments.replace(/\</g, '&lt;');
-          var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');
+            var cmnt_replace = comments.replace(/\</g, '&lt;');
+            var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');
             p_id = data.project_name[i].id;
             d_name=data.project_name[i].d_name;
           }
@@ -545,7 +537,7 @@ $("#project").on('change',function(){
       else {
         $('#project-day-time #project_desig[disabled]').siblings('.error').text('');
         var comment_text = data.comments;
-	var cmnt_replace = comment_text.replace(/\</g, '&lt;');
+        var cmnt_replace = comment_text.replace(/\</g, '&lt;');
         var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
 
         var row1 = '<tr id="time' + data.id + '">'+

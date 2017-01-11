@@ -37,6 +37,8 @@
     <!-- Modal content Starts Here-->
     <div class="modal-content">
 
+      {!! Form::open(array('id' => 'add-project', 'method' => 'post')) !!}
+
       <!-- Modal Header Starts Here -->
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -46,8 +48,6 @@
 
       <!-- Modal Body Starts Here -->
       <div class="modal-body">
-
-        {!! Form::open(array('id' => 'add-project', 'method' => 'post')) !!}
 
         <div class="form-group cf">
           {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
@@ -67,24 +67,35 @@
           <p class="error"></p>
         </div>
 
-      </div>
-      <!-- Modal Body Ends Here -->
+        <div class="form-group cf">
+         {!! Html::decode(Form::label('status_id','Project Status:')) !!}
+         <select class="status_id" name="status_id" >
+           <option value="1">Estimates</option>
+           <option value="2">Live-Projects</option>
+           <option value="3">Live-Ongoing</option>
+         </select>
+       </div>
 
-      <!-- Modal Footer Starts Here -->
-      <div class="modal-footer">
-        <div class="save-project">
-          {!! Form::submit('Submit')!!}
-          {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
-        </div>
+     </div>
+     <!-- Modal Body Ends Here -->
+
+     <!-- Modal Footer Starts Here -->
+     <div class="modal-footer">
+      <div class="save-project">
+        {!! Form::submit('Submit')!!}
+        {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
       </div>
       <!-- Modal Footer Ends Here -->
 
     </div>
-    <!-- Modal content Starts Here-->
-
-    {!! Form::close() !!}
+    <!-- Modal Footer Ends Here -->
 
   </div>
+  <!-- Modal content Starts Here-->
+
+  {!! Form::close() !!}
+
+</div>
 </div>
 <!-- Add New Project Modal Ends Here-->
 
@@ -507,7 +518,6 @@
     </div>
   </div>
 </div>
-</div>
 <!-- Modal for delete ends here -->
 
 <!-- Modal for Archive Delete start here -->
@@ -538,7 +548,8 @@
   }
 });
 
- $(window).load(function() {
+
+/* $(window).load(function() {
    var grid = $('.grid').isotope({});
    $("#search_project").keyup(function(){
     var searchstring=$("#search_project").val().toUpperCase();
@@ -549,9 +560,9 @@
       }
     });
   });
- });
+});*/
 
- $(".proj_status").change(function(){
+$(".proj_status").change(function(){
   var status=($(this).val()).split("_");
   var project_status=status[0];
   var project_id=status[1];
@@ -680,7 +691,6 @@
                     }
                   });
                 });
-
 
               </script>
             </div>

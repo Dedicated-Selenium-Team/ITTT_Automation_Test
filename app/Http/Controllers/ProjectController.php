@@ -93,6 +93,7 @@ class ProjectController extends Controller {
 			$store_project->project_name = strtoupper(Input::get('project_name'));
 			$store_project->client_name   = strtoupper(Input::get('client_name'));
 			$store_project->status_id=Input::get('status_id');
+			$store_project->created_by=Session::get('user')[0]['user_id'];
 			$store_project->save();
 
 			$projects  = $store_project->select('project_id', 'project_name')->orderBy('project_id', 'desc')->get();

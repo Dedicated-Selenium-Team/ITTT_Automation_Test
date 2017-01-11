@@ -306,9 +306,9 @@ $( document ).ready(function() {
     , 'dropdown': 0
     // , 'regex': /^[^?<>*]*$/
   }
-  // , 'comments': {
-  //   'regX': /^[^?<>*]*$/
-  // }
+  , 'comments': {
+    'maxlen':1000
+  }
   , 'select_project': {
     'required': true
     , 'dropdown': 0
@@ -395,9 +395,9 @@ var errorMessage = {
     'required': 'Please select project designation'
     , 'dropdown': 'Please select project designation'
   }
- //  , 'comments': {
- //   'regX': 'Please enter valid comment'
- // }
+  , 'comments': {
+   'maxlen': 'Task should not contain more than 1000 characters'
+ }
  , 'select_project': {
   'required': 'Please select project name'
   , 'dropdown': 'Please select project name'

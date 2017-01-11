@@ -16726,6 +16726,7 @@ Stack trace:
 #61 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #62 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/server.php(21): require_once('/var/www/html/V...')
 #63 {main}  
+<<<<<<< HEAD
 [2017-01-10 11:22:13] production.ERROR: exception 'BadMethodCallException' with message 'Method [deleteProject] does not exist.' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Controller.php:283
 Stack trace:
 #0 [internal function]: Illuminate\Routing\Controller->__call('deleteProject', Array)
@@ -16733,11 +16734,21 @@ Stack trace:
 #2 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(256): call_user_func_array(Array, Array)
 #3 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(164): Illuminate\Routing\Controller->callAction('deleteProject', Array)
 #4 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(112): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\ProjectController), Object(Illuminate\Routing\Route), 'deleteProject')
+=======
+[2017-01-11 10:23:03] production.ERROR: exception 'ErrorException' with message 'Creating default object from empty value' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php:181
+Stack trace:
+#0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php(181): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'Creating defaul...', '/var/www/html/V...', 181, Array)
+#1 [internal function]: App\Http\Controllers\TimeTrackerController->updateTime(Object(Illuminate\Http\Request), '39', '39')
+#2 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(256): call_user_func_array(Array, Array)
+#3 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(164): Illuminate\Routing\Controller->callAction('updateTime', Array)
+#4 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(112): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\TimeTrackerController), Object(Illuminate\Routing\Route), 'updateTime')
+>>>>>>> textarea-maxlength-#103
 #5 [internal function]: Illuminate\Routing\ControllerDispatcher->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
 #6 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
 #7 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
 #8 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
 #9 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(114): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+<<<<<<< HEAD
 #10 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(69): Illuminate\Routing\ControllerDispatcher->callWithinStack(Object(App\Http\Controllers\ProjectController), Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'deleteProject')
 #11 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(203): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'App\Http\Contro...', 'deleteProject')
 #12 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(134): Illuminate\Routing\Route->runWithCustomDispatcher(Object(Illuminate\Http\Request))
@@ -17483,6 +17494,10 @@ Stack trace:
 #9 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(114): Illuminate\Pipeline\Pipeline->then(Object(Closure))
 #10 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(69): Illuminate\Routing\ControllerDispatcher->callWithinStack(Object(App\Http\Controllers\ProjectController), Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'deleteProject')
 #11 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(203): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'App\Http\Contro...', 'deleteProject')
+=======
+#10 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(69): Illuminate\Routing\ControllerDispatcher->callWithinStack(Object(App\Http\Controllers\TimeTrackerController), Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'updateTime')
+#11 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(203): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'App\Http\Contro...', 'updateTime')
+>>>>>>> textarea-maxlength-#103
 #12 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(134): Illuminate\Routing\Route->runWithCustomDispatcher(Object(Illuminate\Http\Request))
 #13 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(708): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
 #14 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))

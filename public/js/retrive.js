@@ -61,7 +61,8 @@ $( "#tabs" ).tabs();
 
   // On Hamburger open Menu functionality starts here
   $('.hamb-cross').hide();
-  $('.hamb').on('click',function(){
+  $('.hamb').on('click',function(e){
+    e.preventDefault();
     $('.navigation-menu').addClass("displayBlock");
     $('.navigation-menu').removeClass("display");
     $('.hamb-cross').show();
@@ -71,7 +72,8 @@ $( "#tabs" ).tabs();
   // On Hamburger open Menu functionality Ends here
   
   // On Cross Button Hide Menu functionality starts here
-  $('.hamb-cross').on('click',function(){
+  $('.hamb-cross').on('click',function(e){
+    e.preventDefault();
     $('hamb-cross').hide();
     $('.navigation-menu').addClass("display");
     $('.navigation-menu').removeClass("displayBlock");
@@ -194,8 +196,8 @@ $( "#tabs" ).tabs();
     }
   });   
   var hours = dayTotalHrs(2,'.day-table');
-  $('.table-timesheet .time-details .tot-hours').text(hours['total_hrs']+" hrs");
-  $('.table-timesheet .time-details .free-time').text(hours['free_time']+" hrs");
+  $('.table-timesheet .time-details .tot-hours').text(hours['total_hrs']);
+  $('.table-timesheet .time-details .free-time').text(hours['free_time']);
 
   $( ".count_name" ).hover(
     function() {

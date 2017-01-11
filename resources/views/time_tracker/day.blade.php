@@ -141,7 +141,7 @@
 
      @foreach($daily_project as $today_project)
      <tr id="time{{$today_project->id}}">
-      <td>
+       <td class="break-words">
         <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
 
         <p>{{$today_project->comments}}</p>
@@ -350,14 +350,6 @@ $("#project").on('change',function(){
          }
          i++;
        });
-        $("#project_desig option").each(function () {
-         var proj_desg=$(this).text();
-         if($.inArray(proj_desg,get_project_designation)>=0)
-         {
-          var value=($(this).val());
-          $("#project_desig option[value='"+value+"'").attr("disabled",true);
-        }
-      });
 
       }
 
@@ -530,7 +522,7 @@ $("#project").on('change',function(){
             d_name=data.project_name[i].d_name;
           }
           var row = '<tr id="time' + p_id + '">'+
-          '<td>'+ '<h3><span class="project_name">' + project_name + '</span> - <span class="project_designation">'+d_name+'</span></h3>' +
+          '<td class="break-words">'+ '<h3><span class="project_name">' + project_name + '</span> - <span class="project_designation">'+d_name+'</span></h3>' +
           '<p>' + cmnt_replace1 + '</p>' +'</td>'+
           '<td>' + total_hrs +'</td>'+
           '<td>' + '<button type="button" class="btn btn-edit edit" id="edit-day-time"data-id="' + p_id + '">Edit User</button>' + '</td>' +
@@ -549,7 +541,7 @@ $("#project").on('change',function(){
         var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
 
         var row1 = '<tr id="time' + data.id + '">'+
-        '<td>'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
+        '<td class="break-words">'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
         '<p>' + cmnt_replace1 + '</p>' +'</td>'+
         '<td>' + total_hrs +'</td>'+
         '<td>' + '<button type="button" class="btn btn-edit edit" id="edit-day-time"data-id="' + data.id + '">Edit User</button>' + '</td>' +

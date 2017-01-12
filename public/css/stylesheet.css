@@ -1548,7 +1548,10 @@ table thead th {
 
 .hrs-locked ~ .note { top: -16px; }
 
-.hrs-locked ~ .note:before { top: calc(50% - 8px); }
+.hrs-locked ~ .note:before,
+.comment ~ .note:before { top: calc(50% - 8px); }
+
+.comment ~ .note { top: 4px; }
 
 .proj-date div:nth-of-type(3n) { margin-right: 0;}
 

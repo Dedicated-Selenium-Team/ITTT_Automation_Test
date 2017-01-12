@@ -116,7 +116,7 @@ class ProjectController extends Controller {
 
 			$user_id        = Session::get('user')[0]['user_id'];
 			$pname          = AddProject::select('project_name')->first();
-			$projects       = AddProject::select('project_id', 'project_name', 'client_name','status_id')->where('is_deleted',0)->where('is_archived',0)->orderBy('project_id', 'desc')->get();
+			$projects       = AddProject::select('project_id', 'project_name', 'client_name','status_id')->where('is_deleted','0')->where('is_archived','0')->orderBy('project_id', 'desc')->get();
 			foreach($projects as $key=>$value)
 			{
 				$set_plan = PlanProjectDetail::where('project_id', $value->project_id)->get();
@@ -134,7 +134,7 @@ class ProjectController extends Controller {
 			
 			$myselfproject  = DB::table('self_projects')->
 			join('add_projects','add_projects.project_id','=','self_projects.project_id')->
-			distinct('add_projects.project_id')->select('add_projects.project_id','add_projects.status_id')->where('self_projects.user_id', $user_id)->get();
+			distinct('add_projects.project_id')->select('add_projects.project_id','add_projects.status_id')->where('self_projects.user_id', $user_id)->where('add_projects.is_deleted','0')->where('add_projects.is_archived','0')->get();
 			$my_project     = array();
 			$my_designation = array();
 

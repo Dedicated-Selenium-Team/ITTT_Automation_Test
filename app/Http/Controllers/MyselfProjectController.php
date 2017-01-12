@@ -36,11 +36,11 @@ class MyselfProjectController extends Controller {
 			// Extract all the details of the projects whose estimation is done.
 			$getData         = $project_detail->get();
 			
-			$project_id      = $add_project->lists('project_id')->toArray();
+			$project_id      = $add_project->where('is_archived','0')->where('is_deleted','0')->lists('project_id')->toArray();
 			$project_list    = array();
 			$remove_project=array();
-
 			foreach ($project_id as $key => $value) {
+
 				$add_project_name = $add_project->select('project_name')->where('project_id', $value)->get()->first();
 				/*$add_project_id   = $add_project->select('project_id')->where('project_id', $value)->get()->first()->toArray();
 				echo json_encode($add_project_id);
@@ -68,7 +68,6 @@ class MyselfProjectController extends Controller {
 */
 			$users_info  = $add_project->with('ProjectDetail')->get();
 			$designation = array('' => 'Choose your Designation/Role on this Project...')+ProjectDesignation::lists('d_name', 'd_id')->toArray();
-			
 			return view('project/self', compact('designation', 'list_name',  'project_id', 'project_list'));
 			//	return $designation;
 		} else {

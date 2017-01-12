@@ -607,8 +607,8 @@ var addOnProject = function(value) {
       estimationRatio_Array.push(calculation);
       obj.actualEstimationRatio = estimationRatio_Array;
       obj.getactualEstimaionRatio = (Number((obj.gettotAcualToDate-obj.gettotEstimation)/obj.gettotEstimation)*100).toFixed(2);
-    if(obj.getactualEstimaionRatio=='undefined' || isNaN(obj.getactualEstimaionRatio))
-      obj.getactualEstimaionRatio=0.00;
+      if(obj.getactualEstimaionRatio=='undefined' || isNaN(obj.getactualEstimaionRatio))
+        obj.getactualEstimaionRatio=0.00;
     }
 
     return obj.getactualEstimaionRatio;
@@ -894,9 +894,9 @@ function dayTotalHrs(n,classname){
   var element = $(classname+' tr td:nth-of-type('+n+')');
   var total = 0;
   var date = '01-01-1970 00:00:00';
-  var new_date=new Date(date);
+  var new_date=new Date(1970,01,01,0,0,0);
   for(var i=0;i<element.length;i++){
-    var hours_and_minutes=(element[i].outerText).split(":");
+    var hours_and_minutes=(element[i].text()).split(":");
     var hours=Number(hours_and_minutes[0]);
     var minutes=Number(hours_and_minutes[1]);
     new_date.setHours(new_date.getHours()+hours);

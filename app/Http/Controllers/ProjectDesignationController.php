@@ -35,7 +35,7 @@ class ProjectDesignationController extends Controller {
 			$new_instance = new AddProject;
 
 			$getData         = ProjectDetail::all();
-			$project_id      = $new_instance->lists('project_id')->toArray();
+			$project_id      = $new_instance->where('is_archived','0')->where('is_deleted','0')->lists('project_id')->toArray();
 			$project_list    = array();
 			$project_id_list = array();
 			foreach ($project_id as $key => $value) {
@@ -53,6 +53,7 @@ class ProjectDesignationController extends Controller {
 					array_push($list_name, $value1);
 				}
 			}
+			
 			// fetch all the designations from database and dispal them into dropdown menu
 			$designation = array('' => 'Choose your Designation/Role on this Project...')+ProjectDesignation::lists('d_name', 'd_id')->toArray();
 			// echo json_encode($project_id);

@@ -1907,15 +1907,16 @@ table thead th {
   vertical-align: top;
 }
 
-.wrap-project .actions .edit-action { background: url(../images/edit.png) no-repeat center; }
-
 .wrap-project .actions div select {
   border: none;
-  background: url(../images/move.png) no-repeat center;
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none; 
 }
+
+.wrap-project .actions .proj_status {  background: url(../images/move.png) no-repeat center; }
+
+.wrap-project .actions .edit-action-arrow { background: url(../images/edit-project.png) no-repeat center; }
 
 .shadow-hover { 
   box-shadow: 0 0 9.5px 2px #ccc9c9; 

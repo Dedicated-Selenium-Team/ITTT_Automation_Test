@@ -68,7 +68,7 @@ class TimeTrackerController extends Controller {
         $project_id[$i] = $project_info[$i]->project_id;
         $current        = $project_info[$i]->project_id;
         //->where('is_deleted','0')->where('is_archived','0')
-        $project_name   = AddProject::select('project_name')->where('project_id', $current)->get()->first();
+        $project_name   = AddProject::select('project_name')->where('project_id', $current)->where('is_deleted','0')->where('is_archived','0')->get()->first();
         if ($project_name) {
           $temp                 = array();
           $temp['project_id']   = $project_id[$i];

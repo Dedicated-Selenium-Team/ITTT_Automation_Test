@@ -21,7 +21,7 @@
 </div>
 
 {{-- This will check the User session and if admin then edit the planning and if not admin then only view Starts here--}}
-        {!! Form::open(array('route' => ['submitPlan', 'id' => $unique_id])) !!}
+{!! Form::open(array('route' => ['submitPlan', 'id' => $unique_id])) !!}
 <?php
 $role_id = Session::get('user')[0]['role_id'];
 if ($role_id == 2) {?>
@@ -29,9 +29,9 @@ if ($role_id == 2) {?>
    <?php }
    else
     echo "<div>";?>
-   {{-- This will check the User session and if admin then edit the planning and if not admin then only view Ends here--}}
-   {{-- Project palning starts here --}}
-   <div class="">
+  {{-- This will check the User session and if admin then edit the planning and if not admin then only view Ends here--}}
+  {{-- Project palning starts here --}}
+  <div class="">
     <div class="estimation-form edit-estimation-form">
       {{-- project phase starts here --}}
       <div class="project-phase">
@@ -70,7 +70,7 @@ if ($role_id == 2) {?>
           </div> -->
           <div class="proj-date-snipet numericValidation">
             {!! Form::label('Warrenty-days', 'Warranty days:') !!}
-            {!! Form::text('Warrenty-days',$set_plan[0]['warranty_days'],['class' => 'warranty-days phaseCalculation form-control']) !!}
+            {!! Form::text('Warrenty-days',$set_plan[0]['warranty_days'],['class' => 'warranty-days phaseCalculation form-control helper']) !!}
             <p class="note">Warranty days should not exceed more than 100 days.</p>
           </div>
           <div class="proj-date-snipet">
@@ -79,7 +79,7 @@ if ($role_id == 2) {?>
           </div>
           <div class="proj-date-snipet numericValidation">
             {!! Form::label('Warrenty-period-holiday', 'Holiday:') !!}
-            {!! Form::text('Warrenty-period-holiday',$set_plan[0]['holidays'],['class' => ' holiday phaseCalculation form-control']) !!}
+            {!! Form::text('Warrenty-period-holiday',$set_plan[0]['holidays'],['class' => ' holiday phaseCalculation form-control helper']) !!}
             <p class="note">This field will affect the warranty date with the effective number of holidays. It should not exceed more than 15 days.</p>
           </div>
         </div>
@@ -111,7 +111,7 @@ if ($role_id == 2) {?>
         <div class="proj-date-snipet resource-field numericValidation">
           {!! Form::label('resources', 'How many resources you want to "play with"?')!!}
           <div class="res">
-            {!! Form::text('resources',$set_plan[0]['expected_resources'],['class' => 'resources calculated phaseCalculation form-control'])!!}
+            {!! Form::text('resources',$set_plan[0]['expected_resources'],['class' => 'resources calculated phaseCalculation form-control helper'])!!}
             <p class="note">Number of resources should not exceed more than 15.</p>
           </div>
         </div>
@@ -148,104 +148,104 @@ if ($role_id == 2) {?>
                        </tr>
                      </thead>
                      <tbody data-group="p">
-                                 <?php
-                    $total_phases=count($data['phase']);
-                    $count=1;
-                    foreach($data['phase'] as $key=>$value)
-                    {
-                      $phase_name=$key;
-                      $phase_id=$value['phase_id'];
-                      $spent_days= $value['spent_days'];
-                      $name_to_display=$value['display_name'];
-                      $tmp=$total_phases-$count;
-                      if($tmp<'1')
-                      {
-                        echo "<tr class='light-green'>
-                        <th>
-                         Timeline to LIVE (calc):
-                       </th>
-                       <td>
-                         <span class='t2live_timeline_days'></span>
+                       <?php
+                       $total_phases=count($data['phase']);
+                       $count=1;
+                       foreach($data['phase'] as $key=>$value)
+                       {
+                        $phase_name=$key;
+                        $phase_id=$value['phase_id'];
+                        $spent_days= $value['spent_days'];
+                        $name_to_display=$value['display_name'];
+                        $tmp=$total_phases-$count;
+                        if($tmp<'1')
+                        {
+                          echo "<tr class='light-green'>
+                          <th>
+                           Timeline to LIVE (calc):
+                         </th>
+                         <td>
+                           <span class='t2live_timeline_days'></span>
+                         </td>
+                         <td>
+                          <span class='t2live_timeline_months'></span>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                         TOTALS &gt;&gt;
                        </td>
                        <td>
-                        <span class='t2live_timeline_months'></span>
-                      </td>
-                      <td>
-                      </td>
-                      <td>
-                      </td>
-                      <td>
-                      </td>
-                      <td>
-                       TOTALS &gt;&gt;
+                         <span class='t2live_effective_days_utilezed'></span>
+                       </td>
+                       <td>
+                         <span class='t2live_hrs_cal'></span>
+                       </td>
+                       <td></td>
+                     </tr>";
+
+                     echo "<tr class='light-green'>
+                     <td>
+                       Backwards working:
                      </td>
                      <td>
-                       <span class='t2live_effective_days_utilezed'></span>
+                       <span class='backword_timeline_days'></span>
                      </td>
                      <td>
-                       <span class='t2live_hrs_cal'></span>
+
                      </td>
-                     <td></td>
+                     <td>
+
+                     </td>
+                     <td>
+
+                     </td>
+                     <td>
+
+                     </td>
+                     <td class='left-align'>
+                       effective resources over project until LIVE - NOT incl. of warranty period:
+                     </td>
+                     <td>
+                       <span class='backword_effective_days_utilezed'></span>
+                     </td>
+                     <td>
+
+                     </td>
+                     <td>
+
+                     </td>
                    </tr>";
 
-                   echo "<tr class='light-green'>
-                   <td>
-                     Backwards working:
-                   </td>
-                   <td>
-                     <span class='backword_timeline_days'></span>
-                   </td>
-                   <td>
-
-                   </td>
-                   <td>
-
-                   </td>
-                   <td>
-
-                   </td>
-                   <td>
-
-                   </td>
-                   <td class='left-align'>
-                     effective resources over project until LIVE - NOT incl. of warranty period:
-                   </td>
-                   <td>
-                     <span class='backword_effective_days_utilezed'></span>
-                   </td>
-                   <td>
-
-                   </td>
-                   <td>
-
-                   </td>
-                 </tr>";
-
-               }
-               
-               echo "<tr class='light-orange'>
-               <th data-phase-id='$phase_id'>$name_to_display
-                <input type='hidden' name='phase[$name_to_display][phase_id]' value='$phase_id'></th>";
-                if($tmp<'1')
-                echo "<td><input type='text' value='$spent_days' class='$key  wtot triggerWarranty' name='phase[$name_to_display][spent_days]'></td>";
-              else
-                echo "<td><input type='text' value='$spent_days' class='$key timelineDays' name='phase[$name_to_display][spent_days]'></td>";
-                echo "<td><span class='".$key."_month timelineMonths'></span></td>
-                <td></td><td></td><td></td><td><span class='".$key."_effective_resources eResources'></span></td>";
-          if($tmp<'1')
-          {
-            echo " <td><span class='".$key."_effective_days_utilezed eWDays'></span></td>
-                <td><span class='".$key."_hrs_cal'></span></td>
-                <td></td></tr>";
-          }
-          else
-          {
-             echo "<td><span class='".$key."_effective_days_utilezed eDays'></span></td>
-                <td><span class='".$key."_hrs_cal phaseHourCal'></span></td>
-                <td></td></tr>";
-          }
-               
-                foreach($value as $phase_detail_key=>$phase_detail_value)
+                 }
+                 
+                 echo "<tr class='light-orange'>
+                 <th data-phase-id='$phase_id'>$name_to_display
+                  <input type='hidden' name='phase[$name_to_display][phase_id]' value='$phase_id'></th>";
+                  if($tmp<'1')
+                    echo "<td><input type='text' value='$spent_days' class='$key  wtot triggerWarranty' name='phase[$name_to_display][spent_days]'></td>";
+                  else
+                    echo "<td><input type='text' value='$spent_days' class='$key timelineDays' name='phase[$name_to_display][spent_days]'></td>";
+                  echo "<td><span class='".$key."_month timelineMonths'></span></td>
+                  <td></td><td></td><td></td><td><span class='".$key."_effective_resources eResources'></span></td>";
+                  if($tmp<'1')
+                  {
+                    echo " <td><span class='".$key."_effective_days_utilezed eWDays'></span></td>
+                    <td><span class='".$key."_hrs_cal'></span></td>
+                    <td></td></tr>";
+                  }
+                  else
+                  {
+                   echo "<td><span class='".$key."_effective_days_utilezed eDays'></span></td>
+                   <td><span class='".$key."_hrs_cal phaseHourCal'></span></td>
+                   <td></td></tr>";
+                 }
+                 
+                 foreach($value as $phase_detail_key=>$phase_detail_value)
                   if(is_array($phase_detail_value))
                   {
                     foreach($phase_detail_value  as $designation=>$designation_info)
@@ -271,131 +271,131 @@ if ($role_id == 2) {?>
                       
                     }
                     
-        
-            
-          }
-        }
-      }
-      
+                    
+                    
+                  }
+                }
+              }
+              
 
     //print_r($phase_detail_value);
-      $count++;
-    }
-    echo '<tr class="light-green">
-    <th>
-     Timeline to Warranty End (calc):
-   </th>
-   <td>
-     <span class="t2live_warranty_timeline_days"></span>
-   </td>
-   <td>
-     <span class="t2live_warranty_timeline_months"></span>
-   </td>
-   <td>
+              $count++;
+            }
+            echo '<tr class="light-green">
+            <th>
+             Timeline to Warranty End (calc):
+           </th>
+           <td>
+             <span class="t2live_warranty_timeline_days"></span>
+           </td>
+           <td>
+             <span class="t2live_warranty_timeline_months"></span>
+           </td>
+           <td>
 
-   </td>
-   <td>
+           </td>
+           <td>
 
-   </td>
-   <td>
+           </td>
+           <td>
 
-   </td>
-   <td>
-     TOTALS &gt;&gt;
-   </td>
-   <td>
-     <!-- <input name="t2live_effective_days_utilezed" type="text">
-   -->
-   <span class="t2live_warranty_effective_days_utilezed"></span>
- </td>
- <td>
-   <!-- <input name="t2live_hrs_cal" type="text"> -->
-   <span class="t2livewarranty_hrs_cal"></span>
- </td>
- <td>
-   <!-- <textarea name="t2live_note" cols="50" rows="10"></textarea> -->
- </td>
-</tr>';
-echo '<tr class="light-green">
-<td>
- Backwards working:
-</td>
-<td>
- <!-- <input name="backword_timeline_days" type="text"> -->
- <span class="warranty_backword_timeline_days"></span>
-</td>
-<td>
+           </td>
+           <td>
+             TOTALS &gt;&gt;
+           </td>
+           <td>
+             <!-- <input name="t2live_effective_days_utilezed" type="text">
+           -->
+           <span class="t2live_warranty_effective_days_utilezed"></span>
+         </td>
+         <td>
+           <!-- <input name="t2live_hrs_cal" type="text"> -->
+           <span class="t2livewarranty_hrs_cal"></span>
+         </td>
+         <td>
+           <!-- <textarea name="t2live_note" cols="50" rows="10"></textarea> -->
+         </td>
+       </tr>';
+       echo '<tr class="light-green">
+       <td>
+         Backwards working:
+       </td>
+       <td>
+         <!-- <input name="backword_timeline_days" type="text"> -->
+         <span class="warranty_backword_timeline_days"></span>
+       </td>
+       <td>
 
-</td>
-<td>
+       </td>
+       <td>
 
-</td>
-<td>
+       </td>
+       <td>
 
-</td>
-<td>
+       </td>
+       <td>
 
-</td>
-<td class="left-align">
- effective resources over ENTIRE project - incl. warranty period:
-</td>
-<td>
- <!-- <input name="backword_effective_days_utilezed" type="text"> -->
- <span class="warranty_backword_effective_days_utilezed"></span>
-</td>
-<td>
+       </td>
+       <td class="left-align">
+         effective resources over ENTIRE project - incl. warranty period:
+       </td>
+       <td>
+         <!-- <input name="backword_effective_days_utilezed" type="text"> -->
+         <span class="warranty_backword_effective_days_utilezed"></span>
+       </td>
+       <td>
 
-</td>
-<td>
+       </td>
+       <td>
 
-</td>
-</tr>';
+       </td>
+     </tr>';
 
-?>
-                </tbody>
-              </table>
-            </div>
-            <div class="estimation-designation-report">
-             <label ><input type="checkbox" value="" checked id="chkWarranty" class="warranty-text">With Warranty Period</label>
-             <table class="tableData">
-               <tr class="head-row">
-                 <th>PM</th>
-                 <th>Senior/tech lead</th>
-                 <th>Designer</th>
-                 <th>Front-end dev</th>
-                 <th>Back-end dev</th>
-                 <th>Testing</th>
-                 <th>Total</th>
-               </tr>
-               <tr>
-                 <td><span class="tot-pm totDesignationHrs">0</span></td>
-                 <td><span class="tot-tech-lead totDesignationHrs">0</span></td>
-                 <td><span class="tot-designer totDesignationHrs">0</span></td>
-                 <td><span class="tot-fed totDesignationHrs">0</span></td>
-                 <td><span class="tot-bed totDesignationHrs">0</span></td>
-                 <td><span class="tot-testing totDesignationHrs">0</span></td>
-                 <td><span class="tot-desig-hours">0</span></td>
-               </tr>
-             </table>
-           </div>
+     ?>
+   </tbody>
+ </table>
+</div>
+<div class="estimation-designation-report">
+ <label ><input type="checkbox" value="" checked id="chkWarranty" class="warranty-text">With Warranty Period</label>
+ <table class="tableData">
+   <tr class="head-row">
+     <th>PM</th>
+     <th>Senior/tech lead</th>
+     <th>Designer</th>
+     <th>Front-end dev</th>
+     <th>Back-end dev</th>
+     <th>Testing</th>
+     <th>Total</th>
+   </tr>
+   <tr>
+     <td><span class="tot-pm totDesignationHrs">0</span></td>
+     <td><span class="tot-tech-lead totDesignationHrs">0</span></td>
+     <td><span class="tot-designer totDesignationHrs">0</span></td>
+     <td><span class="tot-fed totDesignationHrs">0</span></td>
+     <td><span class="tot-bed totDesignationHrs">0</span></td>
+     <td><span class="tot-testing totDesignationHrs">0</span></td>
+     <td><span class="tot-desig-hours">0</span></td>
+   </tr>
+ </table>
+</div>
 
 
-           <?php
-           $role_id = Session::get('user')[0]['role_id'];
-           if ($role_id == 1) {?>
-             {!! Form::submit('Submit',array('class' => 'submit-btn')) !!}
-             <?php }if ($role_id == 1 || $role_id == 2) {?> <?php }?>
-            
+<?php
+$role_id = Session::get('user')[0]['role_id'];
+if ($role_id == 1) {?>
+ {!! Form::submit('Submit',array('class' => 'submit-btn')) !!}
+ <?php }if ($role_id == 1 || $role_id == 2) {?> <?php }?>
+ 
 
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
-   {{-- project timeline ends here --}}
- </div>
- {{--  Planning ends here--}}
-  
+</div>
+</div>
+</div>
+</div>
+</div>
+{{-- project timeline ends here --}}
+</div>
+{{--  Planning ends here--}}
+
 
 </div>
 
@@ -406,13 +406,13 @@ echo '<tr class="light-green">
     "bSort":false,
     "orderable": false,
     "paging": false,
-      "scrollY": "500px",
-  "scrollCollapse": true,
+    "scrollY": "500px",
+    "scrollCollapse": true,
   });
   var th_width=[];
   $("#editplan th").each(function(){
     var width=$(this).width();
-  th_width.push(width);
+    th_width.push(width);
   });
 
 </script>

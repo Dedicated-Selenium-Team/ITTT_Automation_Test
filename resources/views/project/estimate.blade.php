@@ -794,7 +794,6 @@ if ($role_id == 2) {?>
                            {!! Form::submit('Submit',array('class' => 'submit-btn')) !!}
                            <?php }if ($role_id == 1 || $role_id == 2) {?> <?php }?>
 
-
                          </div>
                        </div>
                      </div>

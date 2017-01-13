@@ -461,7 +461,7 @@ $user_name = Session::get('user')[0]['first_name'];
         "_token": "{{ csrf_token() }}"
       },
       success: function(data) {
-        
+
         $('table').find('.employee').remove();
         $('.post-table-body span').empty();
         var testing  = testObj.init(data);
@@ -470,13 +470,13 @@ $user_name = Session::get('user')[0]['first_name'];
           var row = '<tr class="employee">'+
           '<td>'+ data.name[i] +'</td>'+
           '<td>'+ data.projects[i].required_hrs +'%'+'</td>'+
-          '<td>'+testing.Adjusted[i]+"%"+'</td>'+
+          '<td>'+Number(testing.Adjusted[i]).toFixed(2)+"%"+'</td>'+
           '<td>'+testing.adjustedEstimation[i]+'</td>'+
           '<td>'+testing.adjustedPlanning[i]+'</td>'+
           '<td>'+Number(data.timesheet_hrs[i].timesheet_hrs).toFixed(2)+'</td>'+
-          '<td>'+testing.actualHours[i]+"%"+'</td>'+
+          '<td>'+Number(testing.actualHours[i]).toFixed(2)+"%"+'</td>'+
           '<td>'+Number(testing.actualEstimationRatio[i]).toFixed(2)+"%"+'</td>'+
-          '<td>'+testing.actualPlanningRatio[i]+"%"+'</td>'
+          '<td>'+Number(testing.actualPlanningRatio[i]).toFixed(2)+"%"+'</td>'
           '</tr>';
           $('.table-body tr').eq(-2).before(row);
         }
@@ -546,7 +546,7 @@ $('#project_hrs').on('submit', function(e) {
         var row = '<tr class="employee">'+
         '<td>'+ data.name[i] +'</td>'+
         '<td>'+ data.projects[i].required_hrs +'%'+'</td>'+
-        '<td>'+object.Adjusted[i]+"%"+'</td>'+
+        '<td>'+Number(object.Adjusted[i]).toFixed(2)+"%"+'</td>'+
         '<td>'+object.adjustedEstimation[i]+'</td>'+
         '<td>'+object.adjustedPlanning[i]+'</td>'+
         '<td>'+Number(data.timesheet_hrs[i].timesheet_hrs).toFixed(2)+'</td>'+

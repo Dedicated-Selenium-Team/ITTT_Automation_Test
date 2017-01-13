@@ -182,8 +182,8 @@
                    </select>
                  </div>
                </div>
-               <?php } ?>
-               <?php if ($role_id == 2) {?>
+               <?php } 
+                if ($role_id == 2) {?>
                 <div class="actions cf">
 
                   <!--<span>Action</span> -->
@@ -241,8 +241,8 @@
                             </select>
                           </div>
                         </div>
-                        <?php }?>
-                        <?php if ($role_id == 2) {
+                        <?php }
+                         if ($role_id == 2) {
                           ?>
                           <div class="actions cf">
                             <!--<span>Action</span> -->
@@ -312,7 +312,18 @@
                                         </select>
                                       </div>
                                     </div>
-                                    <?php } ?>
+                                    <?php }
+                                     if ($role_id == 2) {?>
+                                    <div class="actions cf">
+                                      <!--<span>Action</span> -->
+                                      <div>
+                                        <select id="project_action" class="edit-action-arrow">
+                                          <option value = "1">Please Select</option>
+                                          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <?php }?>
                                     <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
                                       <!-- <div class="all-project-details"> -->
                                       <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
@@ -371,7 +382,19 @@
                                                     </select>
                                                   </div>
                                                 </div>
-                                                <?php } ?>
+                                                <?php }
+ if ($role_id == 2) {?>
+                                    <div class="actions cf">
+                                      <!--<span>Action</span> -->
+                                      <div>
+                                        <select id="project_action" class="edit-action-arrow">
+                                          <option value = "1">Please Select</option>
+                                          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <?php }?>
+
                                                 <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
                                                   <!-- <div class="all-project-details"> -->
                                                   <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
@@ -428,7 +451,18 @@
                                                               </select>
                                                             </div>
                                                           </div>
-                                                          <?php } ?>
+                                                          <?php } 
+                                                           if ($role_id == 2) {?>
+                                    <div class="actions cf">
+                                      <!--<span>Action</span> -->
+                                      <div>
+                                        <select id="project_action" class="edit-action-arrow">
+                                          <option value = "1">Please Select</option>
+                                          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <?php }?>
                                                           <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
                                                             <!-- <div class="all-project-details"> -->
                                                             <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
@@ -480,7 +514,19 @@
                                                                         </select>
                                                                       </div>
                                                                     </div>
-                                                                    <?php } ?>
+                                                                    <?php } 
+                                                                     if ($role_id == 2) {?>
+                                    <div class="actions cf">
+                                      <!--<span>Action</span> -->
+                                      <div>
+                                        <select id="project_action" class="edit-action-arrow">
+                                          <option value = "1">Please Select</option>
+                                          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                        </select>
+                                    </div>
+                                    </div>
+                                    <?php }?>
+
                                                                     <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
                                                                       <!-- <div class="all-project-details"> -->
                                                                       <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>

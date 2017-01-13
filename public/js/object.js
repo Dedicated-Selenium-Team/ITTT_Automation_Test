@@ -506,6 +506,8 @@ var addOnProject = function(value) {
       if (key === 'projects') {
         data[key].forEach(function(element,index) {
           calculation = (Number(((element.required_hrs) / getTotal)*100)).toFixed(2);
+          if(isNaN(calculation))
+            calculation=0.00;
           getCalculation.push(calculation);
           obj.Adjusted = getCalculation;
         });
@@ -604,6 +606,10 @@ var addOnProject = function(value) {
     estimationRatio_Array = [];
     for (var i = 0; i < timesheet.length; i++) {
       calculation = (Number(((timesheet[i].timesheet_hrs)- adjustedData[i])/adjustedData[i])*100).toFixed(2);
+      if(calculation=='undefined' || isNaN(calculation) || calculation =='Infinity')
+      {
+        calculation=0.00;
+      }
       estimationRatio_Array.push(calculation);
       obj.actualEstimationRatio = estimationRatio_Array;
       obj.getactualEstimaionRatio = (Number((obj.gettotAcualToDate-obj.gettotEstimation)/obj.gettotEstimation)*100).toFixed(2);
@@ -622,9 +628,17 @@ var addOnProject = function(value) {
 
     for( var i = 0 ; i < timesheet.length; i++ ) {
       calculation = (Number(((timesheet[i].timesheet_hrs)- adjustedPlanningData[i])/adjustedPlanningData[i])*100).toFixed(2);
+      if(calculation=='undefined' || isNaN(calculation) || calculation =='Infinity')
+      {
+        calculation=0.00;
+      }
       planningRatio_Array.push(calculation);
       obj.actualPlanningRatio = planningRatio_Array;
       obj.getactualPlanningRatio = (Number((obj.gettotAcualToDate-obj.gettotPlanning)/obj.gettotPlanning)*100).toFixed(2);
+      if(obj.getactualPlanningRatio=='undefined' || isNaN(obj.getactualPlanningRatio) || obj.getactualPlanningRatio == 'Infinity')
+      {
+        obj.getactualPlanningRatio=0.00;
+      }
     }
     return obj.getactualPlanningRatio;
   }

@@ -613,7 +613,7 @@ var addOnProject = function(value) {
       estimationRatio_Array.push(calculation);
       obj.actualEstimationRatio = estimationRatio_Array;
       obj.getactualEstimaionRatio = (Number((obj.gettotAcualToDate-obj.gettotEstimation)/obj.gettotEstimation)*100).toFixed(2);
-      if(obj.getactualEstimaionRatio=='undefined' || isNaN(obj.getactualEstimaionRatio))
+      if(obj.getactualEstimaionRatio=='undefined' || isNaN(obj.getactualEstimaionRatio) || obj.getactualEstimaionRatio == 'Infinity')
         obj.getactualEstimaionRatio=0.00;
     }
 

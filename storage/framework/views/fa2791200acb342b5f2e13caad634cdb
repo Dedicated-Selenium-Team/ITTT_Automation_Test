@@ -86,9 +86,10 @@
 
        <div class="form-group cf">
          <!-- <?php echo Form::label('comments', 'Enter Task For The Day: '); ?> -->
-         <?php echo Form::textarea('comments', '', array('class' => 'comment', 'size' => '26x5', 'placeholder' => 'Enter Task For The Day')); ?>
+         <?php echo Form::textarea('comments', '', array('class' => 'comment helper', 'size' => '26x5', 'placeholder' => 'Enter Task For The Day')); ?>
 
          <p class="error"></p>
+         <p class="note">The maximum limit to enter the task for a day is 1000 characters</p>
        </div>
 
        <div class="form-group cf">

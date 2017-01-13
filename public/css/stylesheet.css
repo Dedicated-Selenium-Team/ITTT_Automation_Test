@@ -1127,6 +1127,8 @@ table thead th {
 
 .week-table .total { background-color: #f2fceb; }
 
+.break-words { word-break: break-word; }
+
 /**************************************************************************/
 /************************* Timesheet Week View Ends's here ****************/
 /**************************************************************************/
@@ -1831,7 +1833,7 @@ table thead th {
 .create-new-project .modal-body .form-group:not(:last-of-type),
 .edit-project .modal-body .form-group:not(:last-of-type) { margin-bottom: 40px; }
 
-.create-new-project .modal-dialog { margin-top: calc(50vh - 231px); }
+.create-new-project .modal-dialog { margin-top: calc(50vh - 289px); }
 
 .edit-project .modal-dialog { margin-top: calc(50vh - 178px); }
 
@@ -1908,15 +1910,16 @@ table thead th {
   vertical-align: top;
 }
 
-.wrap-project .actions .edit-action { background: url(../images/edit.png) no-repeat center; }
-
 .wrap-project .actions div select {
   border: none;
-  background: url(../images/move.png) no-repeat center;
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none; 
 }
+
+.wrap-project .actions .proj_status {  background: url(../images/move.png) no-repeat center; }
+
+.wrap-project .actions .edit-action-arrow { background: url(../images/edit-project.png) no-repeat center; }
 
 .shadow-hover { 
   box-shadow: 0 0 9.5px 2px #ccc9c9; 

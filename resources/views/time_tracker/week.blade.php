@@ -5,7 +5,7 @@ function getminutes($date_array)
   foreach($date_array as $new_date)
   {
 
-   
+
     $new_date = number_format((float)$new_date,2);
     $time->add(new DateInterval("PT".str_replace(".","H",$new_date."M")));  
   }
@@ -78,7 +78,7 @@ $today = date('Y-m-d');
    {
      foreach($projects as $project_key=>$project_value)
      {
-       
+
       foreach($project_value->project_details as $key=>$value)
       {
         if(count($value)>0)
@@ -171,7 +171,7 @@ $today = date('Y-m-d');
         @foreach($projects as $project)
         <?php $week_total_hrs = 0; ?>
         <tr>
-         <th>
+         <th class="break-words">
            {{$project->project_name}} 
          </th>
          <?php $total_hrs = array();?>

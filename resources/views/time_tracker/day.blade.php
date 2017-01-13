@@ -142,7 +142,7 @@
 
      @foreach($daily_project as $today_project)
      <tr id="time{{$today_project->id}}">
-      <td>
+       <td class="break-words">
         <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
 
         <p>{{$today_project->comments}}</p>
@@ -191,54 +191,63 @@
     <!-- Modal content Starts Here-->
     <div class="modal-content">
 
-      <!-- Modal Header Starts Here -->
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h1 class="modal-title">Create New Project</h1>
-      </div>
-      <!-- Modal Header Ends Here -->
+     {!! Form::open(array('id' => 'add-project', 'method' => 'post', 'url' => 'store_project')) !!}
 
-      <!-- Modal Body Starts Here -->
-      <div class="modal-body">
-
-        {!! Form::open(array('id' => 'add-project', 'method' => 'post', 'url' => 'store_project')) !!}
-
-        <div class="form-group cf">
-          {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
-          {!! Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
-          <p class="error"></p>
-        </div>
-
-        <div class="form-group cf">
-          {!! Html::decode(Form::label('project_code','Project Code:')) !!}
-          {!! Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')) !!}
-          <p class="error"></p>
-        </div>
-
-        <div class="form-group cf">
-          {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
-          {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
-          <p class="error"></p>
-        </div>
-
-      </div>
-      <!-- Modal Body Ends Here -->
-
-      <!-- Modal Footer Starts Here -->
-      <div class="modal-footer">
-        <div class="save-project">
-          {!! Form::submit('Submit')!!}
-          {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
-        </div>
-      </div>
-      <!-- Modal Footer Ends Here -->
-
+     <!-- Modal Header Starts Here -->
+     <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h1 class="modal-title">Create New Project</h1>
     </div>
-    <!-- Modal content Starts Here-->
+    <!-- Modal Header Ends Here -->
 
-    {!! Form::close() !!}
+    <!-- Modal Body Starts Here -->
+    <div class="modal-body">
 
+      <div class="form-group cf">
+        {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
+        {!! Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
+        <p class="error"></p>
+      </div>
+
+      <div class="form-group cf">
+        {!! Html::decode(Form::label('project_code','Project Code:')) !!}
+        {!! Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')) !!}
+        <p class="error"></p>
+      </div>
+
+      <div class="form-group cf">
+        {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
+        {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
+        <p class="error"></p>
+      </div>
+
+      <div class="form-group cf">
+       {!! Html::decode(Form::label('status_id','Project Status:')) !!}
+       <select class="status_id" name="status_id" >
+         <option value="1">Estimates</option>
+         <option value="2">Live-Projects</option>
+         <option value="3">Live-Ongoing</option>
+       </select>
+     </div>
+
+   </div>
+   <!-- Modal Body Ends Here -->
+
+   <!-- Modal Footer Starts Here -->
+   <div class="modal-footer">
+    <div class="save-project">
+      {!! Form::submit('Submit')!!}
+      {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+    </div>
   </div>
+  <!-- Modal Footer Ends Here -->
+
+</div>
+<!-- Modal content Starts Here-->
+
+{!! Form::close() !!}
+
+</div>
 </div>
 <!-- Add New Project Modal Ends Here-->
 
@@ -351,14 +360,6 @@ $("#project").on('change',function(){
          }
          i++;
        });
-        $("#project_desig option").each(function () {
-         var proj_desg=$(this).text();
-         if($.inArray(proj_desg,get_project_designation)>=0)
-         {
-          var value=($(this).val());
-          $("#project_desig option[value='"+value+"'").attr("disabled",true);
-        }
-      });
 
       }
 
@@ -531,7 +532,7 @@ $("#project").on('change',function(){
             d_name=data.project_name[i].d_name;
           }
           var row = '<tr id="time' + p_id + '">'+
-          '<td>'+ '<h3><span class="project_name">' + project_name + '</span> - <span class="project_designation">'+d_name+'</span></h3>' +
+          '<td class="break-words">'+ '<h3><span class="project_name">' + project_name + '</span> - <span class="project_designation">'+d_name+'</span></h3>' +
           '<p>' + cmnt_replace1 + '</p>' +'</td>'+
           '<td>' + total_hrs +'</td>'+
           '<td>' + '<button type="button" class="btn btn-edit edit" id="edit-day-time"data-id="' + p_id + '">Edit User</button>' + '</td>' +
@@ -550,7 +551,7 @@ $("#project").on('change',function(){
         var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
 
         var row1 = '<tr id="time' + data.id + '">'+
-        '<td>'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
+        '<td class="break-words">'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
         '<p>' + cmnt_replace1 + '</p>' +'</td>'+
         '<td>' + total_hrs +'</td>'+
         '<td>' + '<button type="button" class="btn btn-edit edit" id="edit-day-time"data-id="' + data.id + '">Edit User</button>' + '</td>' +

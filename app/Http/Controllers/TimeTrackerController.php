@@ -68,7 +68,7 @@ class TimeTrackerController extends Controller {
         $project_id[$i] = $project_info[$i]->project_id;
         $current        = $project_info[$i]->project_id;
         //->where('is_deleted','0')->where('is_archived','0')
-        $project_name   = AddProject::select('project_name')->where('project_id', $current)->get()->first();
+        $project_name   = AddProject::select('project_name')->where('project_id', $current)->where('is_deleted','0')->where('is_archived','0')->get()->first();
         if ($project_name) {
           $temp                 = array();
           $temp['project_id']   = $project_id[$i];
@@ -95,44 +95,32 @@ class TimeTrackerController extends Controller {
     $time    = new DayTime;
     $user_id = Session::get('user')[0]['user_id'];
 
-    //$check_designation=$time->where('project_name',Input::get('project_id'))->where('user_id',$user_id)->where('date',Input::get('date'))->where('d_id',Input::get('project_desig'))->get();
-    //$success=0;
-    //if(count($check_designation)==0)
-    //{
-      $success=1;
+    $success=1;
     // store the timesheet values into databse
-      $time->user_id      = $user_id;
-      $time->project_name = Input::get('project_id');
-      $time->date         = Input::get('date');
-      $time->comments     = Input::get('comments');
-      $time->hrs_locked   = Input::get('hidden_Hrs');
-      $time->d_id         = Input::get('project_desig');
-      $time->save();
+    $time->user_id      = $user_id;
+    $time->project_name = Input::get('project_id');
+    $time->date         = Input::get('date');
+    $time->comments     = Input::get('comments');
+    $time->hrs_locked   = Input::get('hidden_Hrs');
+    $time->d_id         = Input::get('project_desig');
+    $time->save();
 
-      $date = Input::get('date');
+    $date = Input::get('date');
 
-      $project_name = DB::table('add_projects')
-      ->join('day_times', 'day_times.project_name', '=', 'add_projects.project_id')
-      ->join('project_designations', 'day_times.d_id', '=', 'project_designations.d_id')
-      ->where('day_times.user_id', $user_id)  ->where('day_times.date', $date)
-      ->where('day_times.d_id', $time->d_id)
-      ->where('day_times.project_name', $time->project_name)
-      ->select('day_times.*', 'add_projects.project_name', 'project_designations.d_name') ->get();
+    $project_name = DB::table('add_projects')
+    ->join('day_times', 'day_times.project_name', '=', 'add_projects.project_id')
+    ->join('project_designations', 'day_times.d_id', '=', 'project_designations.d_id')
+    ->where('day_times.user_id', $user_id)  ->where('day_times.date', $date)
+    ->where('day_times.d_id', $time->d_id)
+    ->where('day_times.project_name', $time->project_name)
+    ->select('day_times.*', 'add_projects.project_name', 'project_designations.d_name') ->get();
 
     //$project_name=$time;
-      return response()->json([
-        'project_name' => $project_name,
-        'success'=>$success
+    return response()->json([
+      'project_name' => $project_name,
+      'success'=>$success
 
-        ]);
-    //}
-    //else
-    //{
-    //  return response()->json([
-    //    'success'=>$success
-
-    //    ]);
-    //}
+      ]);
 
   }
 

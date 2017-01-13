@@ -512,9 +512,10 @@ $(document).on('focus', dynamicElements, function() {
 
 $(document).on('blur change', dynamicElements, function() {
   var regX = /^[0-9]{0,2}([:.][0-9]{1,2})?$/;
+
   var $this = $(this);
   var $err = $this.siblings('.error');
-  var val = $this.val();
+  var val = $this.val().trim();
   var isError = false;
   if(!val || (val > 16) || (val == 0)) {
     $err.text('Please enter hours to complete a task and it should be less than 16').show();

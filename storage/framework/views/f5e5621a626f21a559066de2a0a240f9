@@ -35,7 +35,6 @@
 
     <!-- Modal content Starts Here-->
     <div class="modal-content">
-<<<<<<< HEAD
 
      <?php echo Form::open(array('id' => 'add-project', 'method' => 'post')); ?>
 
@@ -93,71 +92,10 @@
       <?php echo Form::submit('Submit'); ?>
 
       <?php /* <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> */ ?>
-=======
-
-      <?php echo Form::open(array('id' => 'add-project', 'method' => 'post')); ?>
-
-
-      <!-- Modal Header Starts Here -->
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h1 class="modal-title">Create New Project</h1>
-      </div>
-      <!-- Modal Header Ends Here -->
-
-      <!-- Modal Body Starts Here -->
-      <div class="modal-body">
-
-        <div class="form-group cf">
-          <?php echo Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')); ?>
-
-          <?php echo Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')); ?>
-
-          <p class="error"></p>
-        </div>
-
-        <div class="form-group cf">
-          <?php echo Html::decode(Form::label('project_code','Project Code:')); ?>
-
-          <?php echo Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')); ?>
-
-          <p class="error"></p>
-        </div>
-
-        <div class="form-group cf">
-          <?php echo Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')); ?>
-
-          <?php echo Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')); ?>
-
-          <p class="error"></p>
-        </div>
-
-        <div class="form-group cf">
-         <?php echo Html::decode(Form::label('status_id','Project Status:')); ?>
-
-         <select class="status_id" name="status_id" >
-           <option value="1">Estimates</option>
-           <option value="2">Live-Projects</option>
-           <option value="3">Live-Ongoing</option>
-         </select>
-       </div>
-
-     </div>
-     <!-- Modal Body Ends Here -->
-
-     <!-- Modal Footer Starts Here -->
-     <div class="modal-footer">
-      <div class="save-project">
-        <?php echo Form::submit('Submit'); ?>
-
-        <?php /* <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> */ ?>
-      </div>
->>>>>>> softDelete-#2
     </div>
     <!-- Modal Footer Ends Here -->
 
   </div>
-<<<<<<< HEAD
   <!-- Modal Footer Ends Here -->
 
 </div>
@@ -166,13 +104,6 @@
 <?php echo Form::close(); ?>
 
 
-=======
-  <!-- Modal content Starts Here-->
-
-  <?php echo Form::close(); ?>
-
-
->>>>>>> softDelete-#2
 </div>
 </div>
 <!-- Add New Project Modal Ends Here-->
@@ -210,15 +141,9 @@
 
         <div class="form-group cf">
           <?php echo Html::decode(Form::label('edit_client_name','Client Name<span class="required">*</span>:')); ?>
-<<<<<<< HEAD
 
           <?php echo Form::text('edit_client_name','', array('placeholder' =>'Client name')); ?>
 
-=======
-
-          <?php echo Form::text('edit_client_name','', array('placeholder' =>'Client name')); ?>
-
->>>>>>> softDelete-#2
           <p class="error"></p>
         </div>
 
@@ -285,43 +210,9 @@
            </select>
          </div>
        </div>
-<<<<<<< HEAD
-       <?php } ?>
-       <a href="/project-designation/<?php echo e($my_allproject->project_id); ?>" class="count_name">
-        <!-- <div class="all-project-details"> -->
-        <span class="pro_name" title="Project Name: <?php echo e($my_allproject->project_name); ?>"><?php echo e($my_allproject->project_name); ?></span>
-        <span class="pro_client" title="Client Name: <?php echo e($my_allproject->client_name); ?>"><?php echo e($my_allproject->client_name); ?></span>
-        <span class="pro_code" title="Project ID: <?php echo e($my_allproject->project_id); ?>">ID: <?php echo e($my_allproject->project_id); ?></span>
-        <span class="pro_desig" title="Designation: <?php echo e($my_allproject->designation_name); ?>"><?php echo e($my_allproject->designation_name); ?></span>
-        <!-- </div> -->
-      </a>
-      <div class="estimate-plan">
-        <span class="estimate-span">
-          <?php if($my_allproject->estimation_status == 0) { ?>
-          <a href="/store_project/estimate/<?php echo e($my_allproject->project_id); ?>" title="Estimation" class="detail-plan not-filled">Estimation</a>
-          <?php } else { ?>
-          <a href="/store_project/estimate/<?php echo e($my_allproject->project_id); ?>" title="Estimation" class="detail-plan">Estimation</a>
-          <?php }?>
-
-        </span>
-        <span class="planning-span">
-          <?php if($my_allproject->planning_status == 0) { ?>
-          <a href="/store_project/planning/<?php echo e($my_allproject->project_id); ?>" title="Planning" class="detail-plan not-filled">Planning</a>
-          <?php } else { ?>
-          <a href="/store_project/planning/<?php echo e($my_allproject->project_id); ?>" title="Planning" class="detail-plan">Planning</a>
-          <?php }?>
-        </span>
-      </div>
-    </div>
-
-    <?php endforeach; ?>
-
-    <?php foreach( $projects as $project_detail ): ?>
-=======
        <?php } 
        if ($role_id == 2) {?>
        <div class="actions cf">
->>>>>>> softDelete-#2
 
         <!--<span>Action</span> -->
         <div>
@@ -842,17 +733,6 @@
                   } 
 
                   if (getProjectValue === '3') {
-<<<<<<< HEAD
-                    $('#confirm-delete').modal('show');
-                    $('#confirm-delete .btn-ok').attr('data-id' , project_id);
-                  }
-                  if (getProjectValue === '4') {
-                    $('#archive-delete').modal('show');
-                    $('#archive-delete .btn-ok').attr('data-id' , project_id);
-                  }
-                  $(this).prop('selectedIndex',0);
-                });
-=======
                    $('#confirm-delete').modal('show');
                    $('#confirm-delete .btn-ok').attr('data-id' , project_id);
                  }
@@ -862,7 +742,6 @@
                 }
                 $(this).prop('selectedIndex',0);
               });
->>>>>>> softDelete-#2
 
                 $('#confirm-delete').delegate('#btnYes', 'click', function(e){
                   var value = $(this).attr("data-id");
@@ -886,24 +765,13 @@
                   var value = $(this).attr("data-id");
                   $('#archive-delete').modal('hide');
                   url = 'archive-project/'+value;
-<<<<<<< HEAD
-                  console.log("url",url);
-=======
->>>>>>> softDelete-#2
                   $.ajax({
                     type : 'post',
                     url : url,
                     data : {'id':value},
                     headers: {'id': value},
                     success : function(data) {
-<<<<<<< HEAD
-                      console.log('data', data);
-                      location.reload();
-                    }
-                  });
-                });
 
-=======
                      console.log('data', data);
                      location.reload();
                    }
@@ -926,7 +794,6 @@
                    }
                  });
                 });
->>>>>>> softDelete-#2
 
               </script>
             </div>

@@ -429,7 +429,7 @@ $("#project").on('change',function(){
 
         var prjName = $('#project-day-time #project').val();
         var prjDesig = $('#project_desig').val();
-        var hrs = $('#project-day-time #hrs_locked').val();
+        var hrs = $('#project-day-time #hrs_locked').val().trim();
         var regX = /^[0-9]{0,2}([:.][0-9]{1,2})?$/;
 
         if(prjName == 0) {

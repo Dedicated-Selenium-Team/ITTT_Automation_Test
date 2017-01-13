@@ -21,8 +21,8 @@
 </div>
 
 {{-- This will check the User session and if admin then edit the planning and if not admin then only view Starts here--}}
-        
-        {!! Form::open(array('route' => ['submitPlan', 'id' => $unique_id])) !!}
+
+{!! Form::open(array('route' => ['submitPlan', 'id' => $unique_id])) !!}
 <?php
 $role_id = Session::get('user')[0]['role_id'];
 if ($role_id == 2) {?>
@@ -69,7 +69,7 @@ if ($role_id == 2) {?>
           </div> -->
           <div class="proj-date-snipet numericValidation">
             {!! Form::label('Warrenty-days', 'Warranty days:') !!}
-            {!! Form::text('Warrenty-days','0',['class' => 'warranty-days phaseCalculation form-control']) !!}
+            {!! Form::text('Warrenty-days','0',['class' => 'warranty-days phaseCalculation form-control helper']) !!}
             <p class="note">Warranty days should not exceed more than 100 days.</p>
           </div>
           <div class="proj-date-snipet">
@@ -79,7 +79,7 @@ if ($role_id == 2) {?>
           </div>
           <div class="proj-date-snipet numericValidation">
             {!! Form::label('Warrenty-period-holiday', 'Holiday:') !!}
-            {!! Form::text('Warrenty-period-holiday','0',['class' => ' holiday phaseCalculation form-control']) !!}
+            {!! Form::text('Warrenty-period-holiday','0',['class' => ' holiday phaseCalculation form-control helper']) !!}
             <p class="note">This field will affect the warranty date with the effective number of holidays. It should not exceed more than 15 days.</p>
           </div>
         </div>
@@ -110,7 +110,7 @@ if ($role_id == 2) {?>
         <div class="proj-date-snipet resource-field numericValidation">
           {!! Form::label('resources', 'How many resources you want to "play with"?')!!}
           <div class="res">
-            {!! Form::text('resources','1',['class' => 'resources calculated phaseCalculation form-control'])!!}
+            {!! Form::text('resources','1',['class' => 'resources calculated phaseCalculation form-control helper'])!!}
             <p class="note">Number of resources should not exceed more than 15.</p>
           </div>
         </div>
@@ -146,170 +146,170 @@ if ($role_id == 2) {?>
                          <th class="display">Phase/resource notes</th>
                        </tr>
                      </thead>
-<tbody data-group="p">
-           <tr class="light-orange">
-            <th data-phase-id="1">Requirements Gathering/Conversations
-             <input type="hidden" name="phase[Requirements Gathering/Conversations][phase_id]" value="1">
-           </th>
-           <td><input type="text" value="" class="require_gather timelineDays" name="phase[Requirements Gathering/Conversations][spent_days]"></td>
-           <td><span class="require_gather_month timelineMonths"></span></td>
+                     <tbody data-group="p">
+                       <tr class="light-orange">
+                        <th data-phase-id="1">Requirements Gathering/Conversations
+                         <input type="hidden" name="phase[Requirements Gathering/Conversations][phase_id]" value="1">
+                       </th>
+                       <td><input type="text" value="" class="require_gather timelineDays" name="phase[Requirements Gathering/Conversations][spent_days]"></td>
+                       <td><span class="require_gather_month timelineMonths"></span></td>
+                       <td></td>
+                       <td></td>
+                       <td></td>
+                       <td><span class="require_gather_effective_resources eResources"></span></td>
+                       <td><span class="require_gather_effective_days_utilezed eDays"></span></td>
+                       <td><span class="require_gather_hrs_cal phaseHourCal"></span></td>
+                       <td></td>
+                     </tr>
+                     <tr>
+                      <td>PM
+                       <input type="hidden" value="" name="phase[Requirements Gathering/Conversations][designations][0][PM][row_id]">
+                       <input type="hidden" value="1" name="phase[Requirements Gathering/Conversations][designations][0][PM][d_id]">
+                     </td>
+                     <td></td>
+                     <td></td>
+                     <td></td>
+                     <td><input type="text" class="require_gather hrsLimit pm-hrs" value="" name="phase[Requirements Gathering/Conversations][designations][0][PM][per_day_hours]"></td>
+                     <td><span class="pm_work_per_day"></span></td>
+                     <td></td>
+                     <td></td>
+                     <td><span class="pm-calc-hrs"></span></td>
+                     <td></td>
+                   </tr>
+                   <tr>
+                    <td>Tech Lead
+                     <input type="hidden" value="" name="phase[Requirements Gathering/Conversations][designations][1][Tech Lead][row_id]">
+                     <input type="hidden" value="6" name="phase[Requirements Gathering/Conversations][designations][1][Tech Lead][d_id]">
+                   </td>
+                   <td></td>
+                   <td></td>
+                   <td></td>
+                   <td><input type="text" class="require_gather hrsLimit tech lead-hrs" value="" name="phase[Requirements Gathering/Conversations][designations][1][Tech Lead][per_day_hours]"></td>
+                   <td><span class="tech lead_work_per_day"></span></td>
+                   <td></td>
+                   <td></td>
+                   <td><span class="tech lead-calc-hrs"></span></td>
+                   <td></td>
+                 </tr>
+                 <tr class="light-orange">
+                  <th data-phase-id="2">Design/UX
+                   <input type="hidden" name="phase[Design/UX][phase_id]" value="2">
+                 </th>
+                 <td><input type="text" value="" class="design timelineDays" name="phase[Design/UX][spent_days]"></td>
+                 <td><span class="design_month timelineMonths"></span></td>
+                 <td></td>
+                 <td></td>
+                 <td></td>
+                 <td><span class="design_effective_resources eResources"></span></td>
+                 <td><span class="design_effective_days_utilezed eDays"></span></td>
+                 <td><span class="design_hrs_cal phaseHourCal"></span></td>
+                 <td></td>
+               </tr>
+               <tr>
+                <td>PM
+                 <input type="hidden" value="" name="phase[Design/UX][designations][0][PM][row_id]">
+                 <input type="hidden" value="1" name="phase[Design/UX][designations][0][PM][d_id]">
+               </td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td><input type="text" class="design hrsLimit pm-hrs" value="" name="phase[Design/UX][designations][0][PM][per_day_hours]"></td>
+               <td><span class="pm_work_per_day"></span></td>
+               <td></td>
+               <td></td>
+               <td><span class="pm-calc-hrs"></span></td>
+               <td></td>
+             </tr>
+             <tr>
+              <td>Designer
+               <input type="hidden" value="" name="phase[Design/UX][designations][1][Designer][row_id]">
+               <input type="hidden" value="2" name="phase[Design/UX][designations][1][Designer][d_id]">
+             </td>
+             <td></td>
+             <td></td>
+             <td></td>
+             <td><input type="text" class="design hrsLimit designer-hrs" value="" name="phase[Design/UX][designations][1][Designer][per_day_hours]"></td>
+             <td><span class="designer_work_per_day">0%</span></td>
+             <td></td>
+             <td></td>
+             <td><span class="designer-calc-hrs">0.00</span></td>
+             <td></td>
+           </tr>
+           <tr>
+            <td>Designer
+             <input type="hidden" value="" name="phase[Design/UX][designations][2][Designer][row_id]">
+             <input type="hidden" value="2" name="phase[Design/UX][designations][2][Designer][d_id]">
+           </td>
            <td></td>
            <td></td>
            <td></td>
-           <td><span class="require_gather_effective_resources eResources"></span></td>
-           <td><span class="require_gather_effective_days_utilezed eDays"></span></td>
-           <td><span class="require_gather_hrs_cal phaseHourCal"></span></td>
+           <td><input type="text" class="design hrsLimit designer-hrs" value="" name="phase[Design/UX][designations][2][Designer][per_day_hours]"></td>
+           <td><span class="designer_work_per_day"></span></td>
+           <td></td>
+           <td></td>
+           <td><span class="designer-calc-hrs"></span></td>
            <td></td>
          </tr>
-         <tr>
-          <td>PM
-           <input type="hidden" value="" name="phase[Requirements Gathering/Conversations][designations][0][PM][row_id]">
-           <input type="hidden" value="1" name="phase[Requirements Gathering/Conversations][designations][0][PM][d_id]">
-         </td>
+         <tr class="light-orange">
+          <th data-phase-id="3">Development Back-End ONLY
+           <input type="hidden" name="phase[Development Back-End ONLY][phase_id]" value="3">
+         </th>
+         <td><input type="text" value="" class="backend_development timelineDays" name="phase[Development Back-End ONLY][spent_days]"></td>
+         <td><span class="backend_development_month timelineMonths"></span></td>
          <td></td>
          <td></td>
          <td></td>
-         <td><input type="text" class="require_gather hrsLimit pm-hrs" value="" name="phase[Requirements Gathering/Conversations][designations][0][PM][per_day_hours]"></td>
-         <td><span class="pm_work_per_day"></span></td>
-         <td></td>
-         <td></td>
-         <td><span class="pm-calc-hrs"></span></td>
+         <td><span class="backend_development_effective_resources eResources"></span></td>
+         <td><span class="backend_development_effective_days_utilezed eDays"></span></td>
+         <td><span class="backend_development_hrs_cal phaseHourCal"></span></td>
          <td></td>
        </tr>
        <tr>
-        <td>Tech Lead
-         <input type="hidden" value="" name="phase[Requirements Gathering/Conversations][designations][1][Tech Lead][row_id]">
-         <input type="hidden" value="6" name="phase[Requirements Gathering/Conversations][designations][1][Tech Lead][d_id]">
+        <td>PM
+         <input type="hidden" value="" name="phase[Development Back-End ONLY][designations][0][PM][row_id]">
+         <input type="hidden" value="1" name="phase[Development Back-End ONLY][designations][0][PM][d_id]">
        </td>
        <td></td>
        <td></td>
        <td></td>
-       <td><input type="text" class="require_gather hrsLimit tech lead-hrs" value="" name="phase[Requirements Gathering/Conversations][designations][1][Tech Lead][per_day_hours]"></td>
-       <td><span class="tech lead_work_per_day"></span></td>
+       <td><input type="text" class="backend_development hrsLimit pm-hrs" value="" name="phase[Development Back-End ONLY][designations][0][PM][per_day_hours]"></td>
+       <td><span class="pm_work_per_day"></span></td>
        <td></td>
        <td></td>
-       <td><span class="tech lead-calc-hrs"></span></td>
+       <td><span class="pm-calc-hrs"></span></td>
        <td></td>
      </tr>
-     <tr class="light-orange">
-      <th data-phase-id="2">Design/UX
-       <input type="hidden" name="phase[Design/UX][phase_id]" value="2">
-     </th>
-     <td><input type="text" value="" class="design timelineDays" name="phase[Design/UX][spent_days]"></td>
-     <td><span class="design_month timelineMonths"></span></td>
+     <tr>
+      <td>BE_Developer
+       <input type="hidden" value="" name="phase[Development Back-End ONLY][designations][1][BE_Developer][row_id]">
+       <input type="hidden" value="4" name="phase[Development Back-End ONLY][designations][1][BE_Developer][d_id]">
+     </td>
      <td></td>
      <td></td>
      <td></td>
-     <td><span class="design_effective_resources eResources"></span></td>
-     <td><span class="design_effective_days_utilezed eDays"></span></td>
-     <td><span class="design_hrs_cal phaseHourCal"></span></td>
+     <td><input type="text" class="backend_development hrsLimit be_developer-hrs" value="" name="phase[Development Back-End ONLY][designations][1][BE_Developer][per_day_hours]"></td>
+     <td><span class="be_developer_work_per_day"></span></td>
+     <td></td>
+     <td></td>
+     <td><span class="be_developer-calc-hrs"></span></td>
      <td></td>
    </tr>
    <tr>
-    <td>PM
-     <input type="hidden" value="" name="phase[Design/UX][designations][0][PM][row_id]">
-     <input type="hidden" value="1" name="phase[Design/UX][designations][0][PM][d_id]">
+    <td>BE_Developer
+     <input type="hidden" value="" name="phase[Development Back-End ONLY][designations][2][BE_Developer][row_id]">
+     <input type="hidden" value="4" name="phase[Development Back-End ONLY][designations][2][BE_Developer][d_id]">
    </td>
    <td></td>
    <td></td>
    <td></td>
-   <td><input type="text" class="design hrsLimit pm-hrs" value="" name="phase[Design/UX][designations][0][PM][per_day_hours]"></td>
-   <td><span class="pm_work_per_day"></span></td>
+   <td><input type="text" class="backend_development hrsLimit be_developer-hrs" value="" name="phase[Development Back-End ONLY][designations][2][BE_Developer][per_day_hours]"></td>
+   <td><span class="be_developer_work_per_day"></span></td>
    <td></td>
    <td></td>
-   <td><span class="pm-calc-hrs"></span></td>
-   <td></td>
- </tr>
-<tr>
-    <td>Designer
-     <input type="hidden" value="" name="phase[Design/UX][designations][1][Designer][row_id]">
-     <input type="hidden" value="2" name="phase[Design/UX][designations][1][Designer][d_id]">
-   </td>
-   <td></td>
-   <td></td>
-   <td></td>
-   <td><input type="text" class="design hrsLimit designer-hrs" value="" name="phase[Design/UX][designations][1][Designer][per_day_hours]"></td>
-   <td><span class="designer_work_per_day">0%</span></td>
-   <td></td>
-   <td></td>
-   <td><span class="designer-calc-hrs">0.00</span></td>
+   <td><span class="be_developer-calc-hrs"></span></td>
    <td></td>
  </tr>
-<tr>
-  <td>Designer
-   <input type="hidden" value="" name="phase[Design/UX][designations][2][Designer][row_id]">
-   <input type="hidden" value="2" name="phase[Design/UX][designations][2][Designer][d_id]">
- </td>
- <td></td>
- <td></td>
- <td></td>
- <td><input type="text" class="design hrsLimit designer-hrs" value="" name="phase[Design/UX][designations][2][Designer][per_day_hours]"></td>
- <td><span class="designer_work_per_day"></span></td>
- <td></td>
- <td></td>
- <td><span class="designer-calc-hrs"></span></td>
- <td></td>
-</tr>
-<tr class="light-orange">
-  <th data-phase-id="3">Development Back-End ONLY
-   <input type="hidden" name="phase[Development Back-End ONLY][phase_id]" value="3">
- </th>
- <td><input type="text" value="" class="backend_development timelineDays" name="phase[Development Back-End ONLY][spent_days]"></td>
- <td><span class="backend_development_month timelineMonths"></span></td>
- <td></td>
- <td></td>
- <td></td>
- <td><span class="backend_development_effective_resources eResources"></span></td>
- <td><span class="backend_development_effective_days_utilezed eDays"></span></td>
- <td><span class="backend_development_hrs_cal phaseHourCal"></span></td>
- <td></td>
-</tr>
-<tr>
-  <td>PM
-   <input type="hidden" value="" name="phase[Development Back-End ONLY][designations][0][PM][row_id]">
-   <input type="hidden" value="1" name="phase[Development Back-End ONLY][designations][0][PM][d_id]">
- </td>
- <td></td>
- <td></td>
- <td></td>
- <td><input type="text" class="backend_development hrsLimit pm-hrs" value="" name="phase[Development Back-End ONLY][designations][0][PM][per_day_hours]"></td>
- <td><span class="pm_work_per_day"></span></td>
- <td></td>
- <td></td>
- <td><span class="pm-calc-hrs"></span></td>
- <td></td>
-</tr>
-<tr>
-  <td>BE_Developer
-   <input type="hidden" value="" name="phase[Development Back-End ONLY][designations][1][BE_Developer][row_id]">
-   <input type="hidden" value="4" name="phase[Development Back-End ONLY][designations][1][BE_Developer][d_id]">
- </td>
- <td></td>
- <td></td>
- <td></td>
- <td><input type="text" class="backend_development hrsLimit be_developer-hrs" value="" name="phase[Development Back-End ONLY][designations][1][BE_Developer][per_day_hours]"></td>
- <td><span class="be_developer_work_per_day"></span></td>
- <td></td>
- <td></td>
- <td><span class="be_developer-calc-hrs"></span></td>
- <td></td>
-</tr>
-<tr>
-  <td>BE_Developer
-   <input type="hidden" value="" name="phase[Development Back-End ONLY][designations][2][BE_Developer][row_id]">
-   <input type="hidden" value="4" name="phase[Development Back-End ONLY][designations][2][BE_Developer][d_id]">
- </td>
- <td></td>
- <td></td>
- <td></td>
- <td><input type="text" class="backend_development hrsLimit be_developer-hrs" value="" name="phase[Development Back-End ONLY][designations][2][BE_Developer][per_day_hours]"></td>
- <td><span class="be_developer_work_per_day"></span></td>
- <td></td>
- <td></td>
- <td><span class="be_developer-calc-hrs"></span></td>
- <td></td>
-</tr>
-<tr class="light-orange">
+ <tr class="light-orange">
   <th data-phase-id="4">Development Front-End ONLY
    <input type="hidden" name="phase[Development Front-End ONLY][phase_id]" value="4">
  </th>
@@ -763,63 +763,63 @@ if ($role_id == 2) {?>
                                <!--  -->
                                <!--  -->
                              </tbody>
-              </table>
-            </div>
-            <div class="estimation-designation-report">
-             <label ><input type="checkbox" value="" checked id="chkWarranty" class="warranty-text">With Warranty Period</label>
-             <table class="tableData">
-               <tr class="head-row">
-                 <th>PM</th>
-                 <th>Senior/tech lead</th>
-                 <th>Designer</th>
-                 <th>Front-end dev</th>
-                 <th>Back-end dev</th>
-                 <th>Testing</th>
-                 <th>Total</th>
-               </tr>
-               <tr>
-                 <td><span class="tot-pm totDesignationHrs">0</span></td>
-                 <td><span class="tot-tech-lead totDesignationHrs">0</span></td>
-                 <td><span class="tot-designer totDesignationHrs">0</span></td>
-                 <td><span class="tot-fed totDesignationHrs">0</span></td>
-                 <td><span class="tot-bed totDesignationHrs">0</span></td>
-                 <td><span class="tot-testing totDesignationHrs">0</span></td>
-                 <td><span class="tot-desig-hours">0</span></td>
-               </tr>
-             </table>
+                           </table>
+                         </div>
+                         <div class="estimation-designation-report">
+                           <label ><input type="checkbox" value="" checked id="chkWarranty" class="warranty-text">With Warranty Period</label>
+                           <table class="tableData">
+                             <tr class="head-row">
+                               <th>PM</th>
+                               <th>Senior/tech lead</th>
+                               <th>Designer</th>
+                               <th>Front-end dev</th>
+                               <th>Back-end dev</th>
+                               <th>Testing</th>
+                               <th>Total</th>
+                             </tr>
+                             <tr>
+                               <td><span class="tot-pm totDesignationHrs">0</span></td>
+                               <td><span class="tot-tech-lead totDesignationHrs">0</span></td>
+                               <td><span class="tot-designer totDesignationHrs">0</span></td>
+                               <td><span class="tot-fed totDesignationHrs">0</span></td>
+                               <td><span class="tot-bed totDesignationHrs">0</span></td>
+                               <td><span class="tot-testing totDesignationHrs">0</span></td>
+                               <td><span class="tot-desig-hours">0</span></td>
+                             </tr>
+                           </table>
+                         </div>
+
+                         <?php
+                         $role_id = Session::get('user')[0]['role_id'];
+                         if ($role_id == 1) {?>
+                           {!! Form::submit('Submit',array('class' => 'submit-btn')) !!}
+                           <?php }if ($role_id == 1 || $role_id == 2) {?> <?php }?>
+                           {!! Form::close() !!}
+
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
+                 {{-- project timeline ends here --}}
+               </div>
+               {{--  Planning ends here--}}
+             </div>
+
            </div>
+           <script>
+            $("#newplan").DataTable({
+              "bSort":false,
+              "orderable": false,
+              "paging": false,
+              "scrollY": "500px",
+              "scrollCollapse": true,
+            });
+            var th_width=[];
+            $("#newplan th").each(function(){
+              var width=$(this).width();
+              th_width.push(width);
+            });
 
-           <?php
-           $role_id = Session::get('user')[0]['role_id'];
-           if ($role_id == 1) {?>
-             {!! Form::submit('Submit',array('class' => 'submit-btn')) !!}
-             <?php }if ($role_id == 1 || $role_id == 2) {?> <?php }?>
-             {!! Form::close() !!}
-
-           </div>
-         </div>
-       </div>
-     </div>
-   </div>
-   {{-- project timeline ends here --}}
- </div>
- {{--  Planning ends here--}}
-</div>
-
-</div>
-<script>
-  $("#newplan").DataTable({
-    "bSort":false,
-    "orderable": false,
-    "paging": false,
-      "scrollY": "500px",
-  "scrollCollapse": true,
-  });
-  var th_width=[];
-  $("#newplan th").each(function(){
-    var width=$(this).width();
-  th_width.push(width);
-  });
-
-</script>
-@stop
+          </script>
+          @stop

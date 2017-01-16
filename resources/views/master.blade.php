@@ -112,10 +112,5 @@ header("Pragma: no-cache");
 
 		</body>
 		<!-- body ends here -->
-		<!-- body ends here -->
-		<!-- body ends here -->
-		<!-- body ends here -->
-		<!-- body ends here -->
-		<!-- body ends here -->
 
 		</html>

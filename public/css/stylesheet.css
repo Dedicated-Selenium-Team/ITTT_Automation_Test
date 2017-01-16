@@ -670,6 +670,7 @@ table thead th {
   padding: 0;
   border: none;
   margin-left: -2px;
+  display: inline-block;
   background-color: #fff;
   color: #1b1b1b;
   /*-webkit-text-fill-color: #1b1b1b;*/
@@ -1912,6 +1913,7 @@ table thead th {
 
 .wrap-project .actions div select {
   border: none;
+  border-radius: 0;
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none; 
@@ -2190,10 +2192,13 @@ table thead th {
   .timesheet-content .table-timesheet { width: 70%; }
 
   .timesheet-content .table-timesheet-week { width: 100%; }
+
+  .week-table .head-row th a { padding: 14px 10% 13px }
+
+  .total-hrs .design-wrap-container { width: 80%; }
 }
 
 @media screen and (max-width: 961px) {
-  .total-hrs .design-wrap-container { width: 100%; }
 
   .total-hrs .tableData th { white-space: normal; }
 
@@ -2214,4 +2219,3 @@ table thead th {
   .before-assign td { padding: 1%; }
 
 }
-

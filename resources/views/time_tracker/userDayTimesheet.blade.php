@@ -26,7 +26,8 @@
         ?>
         {!! Form::hidden('', $id, array('id' => 'user_id')) !!}
 
-        <input type=" text" name="date" value="{{date('l, F j, Y', strtotime($date))}}" class="border-style input-read-only" disabled="true">
+        <input type="hidden" name="date" value="{{date('l, F j, Y', strtotime($date))}}" class="border-style input-read-only" disabled="true">
+        <span class="border-style input-read-only">{{date('l, F j, Y', strtotime($date))}}</span>
 
         <div class="timesheet-header-right">
           <a href="/time-management/{{$today}}/{{$id}}/{{$unique_project_id}}" class="today"  title="Today">Today</a>

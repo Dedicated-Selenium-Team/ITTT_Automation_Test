@@ -6,34 +6,27 @@
 <body>
 Hi All,
 <?php
-if(count($activity)>0)
+if(count($user_data)>0)
 {
-if(count($activity['todays_activity'])>0)
+if(count($user_data['todays_activity'])>0)
 {
-	echo "<p>Today, I have made progress on the following activities:
-<br>";
-foreach($activity['todays_activity'] as $key=>$value)
-{
+	echo "<br><br>
+Activities logged in ITTT: Today's Date: ".date('d-m-Y').".<br><br>
+Time-sheet last saved on: $user_data[last_updated]
 
-	$tmp=$key+1;
-	echo $tmp.".$value[project_name] - $value[description] [$value[hrs_locked]]<br>";
+​Total hours tracked today: $user_data[total_hrs_today] hours (out of 8.5 hours)";
+foreach ($user_data['todays_activity'] as $key => $value) {
+
+echo "<p>PROJECT NAME:​ $value[project_name]<br>
+My designation:​ $value[designation]<br>
+Estimated hours for my designation:​ $value[total_estimated_hrs] hours​<br>
+<b>Time tracked today</b>: $value[hrs_locked] hours<br>
+<b>Today's task description</b>: $value[description]<br>
+Time tracked to-date: $value[total_hrs_to_date] hours<br></p>";
+
 }
 }
-else
-	echo "<p>Today, no activities were performed.";
-}
-?></p>
-<?php
-if(count($activity['tomorrows_activity'])>0)
-{
-	echo "<p>Tomorrow, I will be continuing with the following activities:<br>";
-	foreach($activity['tomorrows_activity'] as $key=>$value)
-	{
-		$tmp=$key+1;
-		echo $tmp."$value[project_name] - $value[description] [$value[hrs_locked]]<br>";
-	}
 }
 ?>
-</p>
 </body>
 </html>

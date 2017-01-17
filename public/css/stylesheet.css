@@ -666,7 +666,7 @@ table thead th {
 .day-timesheet .container-heading { box-shadow: none; }
 
 .input-read-only {
-  width: 45%;
+  width: 49%;
   padding: 0;
   border: none;
   margin-left: -2px;
@@ -2172,9 +2172,9 @@ table thead th {
 @media screen and (max-width: 1162px) {
   .wrap-project .estimate-plan .detail-plan { font-size: 10px; }
 
-  .wrap-project .estimate-plan .estimate-span { padding-right: 1.8% }
+  .wrap-project .estimate-plan .estimate-span { padding-right: 0% }
 
-  .wrap-project .estimate-plan .planning-span { padding-left: 1.6% }
+  .wrap-project .estimate-plan .planning-span { padding-left: 0% }
 
   .estimation-designation-report .tableData th { white-space: normal; }
 
@@ -2185,6 +2185,8 @@ table thead th {
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .wrap-project .estimate-plan .estimate-span { padding-right: 0; }
 
+  .wrap-project .estimate-plan .detail-plan { font-size: 9px; }
+
   .wrap-project .estimate-plan .planning-span { padding-left: 0; }
 
   .select-proj .error { left: 23%; }
@@ -2193,9 +2195,22 @@ table thead th {
 
   .timesheet-content .table-timesheet-week { width: 100%; }
 
-  .week-table .head-row th a { padding: 14px 10% 13px }
+  .week-table .head-row th a { padding: 14px 12% 13px }
 
   .total-hrs .design-wrap-container { width: 80%; }
+
+}
+
+@media screen and (orientation: portrait)  and (min-width: 768px) and (max-width: 1024px) {
+  .wrap-project .estimate-plan .detail-plan { font-size: 12px; }
+
+  .wrap-project .estimate-plan .estimate-span {
+    border-right: 0;  
+    margin-bottom: 2px; 
+  }
+
+  .wrap-project .estimate-plan span { display: block; }
+
 }
 
 @media screen and (max-width: 961px) {

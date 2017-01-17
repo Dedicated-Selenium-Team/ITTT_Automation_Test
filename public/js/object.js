@@ -910,7 +910,7 @@ function dayTotalHrs(n,classname){
   var date = '01-01-1970 00:00:00';
   var new_date=new Date(1970,01,01,0,0,0);
   for(var i=0;i<element.length;i++){
-    var hours_and_minutes=(element[i].outerText).split(":");
+    var hours_and_minutes=($(element[i]).text()).split(":");
     var hours=Number(hours_and_minutes[0]);
     var minutes=Number(hours_and_minutes[1]);
     new_date.setHours(new_date.getHours()+hours);

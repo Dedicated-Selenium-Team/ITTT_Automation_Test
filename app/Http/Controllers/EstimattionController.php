@@ -490,7 +490,12 @@ unlink($target_dir."//".$target_file_name);
 
 	public function test()
 	{
+		
+
 	$todays_date=date('Y-m-d');
+	  $timesheet_for_today=DB::table('users')->count();
+	  echo ($timesheet_for_today);
+	  exit();
        $users=DB::table('users')->join('self_projects','users.user_id','=','self_projects.user_id')->distinct('user_id')->select('users.user_id','users.username')->get();
        if(count($users)>0)
        {

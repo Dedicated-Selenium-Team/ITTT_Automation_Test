@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\Inspire::class,
         \App\Console\Commands\DailyUpdate::class,
+        \App\Console\Commands\escalation::class,
     ];
 
     /**
@@ -29,5 +30,8 @@ class Kernel extends ConsoleKernel
                  ->hourly();
         $schedule->command('command:crone')
                  ->everyMinute();
+                 $schedule->command('command:escalation')
+                 ->everyMinute();
+
     }
 }

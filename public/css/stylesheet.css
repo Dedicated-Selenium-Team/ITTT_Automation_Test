@@ -689,7 +689,7 @@ table thead th {
 
 .timesheet-header-right > * {
   float: left;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);
+  /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);*/
 }
 
 .timesheet-header-right .today { 
@@ -722,7 +722,7 @@ table thead th {
 .arrow { 
  margin-left: 19px;
  position: relative;
- box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);
+ /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);*/
 }
 
 .arrow a { 
@@ -2155,6 +2155,12 @@ table thead th {
 .scroll:hover, .scroll:focus { color: #fff; }
 
 .login-form-page .scroll { display: none; }
+
+@media screen and (min-width: 1370px) { 
+  .wrap-project .estimate-plan .estimate-span { padding-right: 9.8% }
+
+  .wrap-project .estimate-plan .planning-span { padding-left: 9.6% }
+}
 
 @media screen and (max-width: 1270px) {
   .select-proj select,

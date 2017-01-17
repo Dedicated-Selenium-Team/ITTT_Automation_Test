@@ -114,8 +114,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -199,8 +199,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -283,8 +283,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -367,8 +367,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -452,8 +452,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -537,8 +537,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>

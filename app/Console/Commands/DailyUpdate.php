@@ -109,7 +109,7 @@ $user_data['last_updated']=$last_updated->updated_at;
            
             $message->from('nilesh.vidhate.prdxn@gmail.com', $_POST['timesheetdata']["name"]);
 
-            $message->to('chetan.kadam.prdxn@gmail.com');
+            $message->to('vrushali.shelar.prdxn@gmail.com');
             $message->subject( $_POST['timesheetdata']['name']." | Daily Update (ITTT Report)");
             $message->replyTo($_POST['timesheetdata']['user_email'], $name = $_POST['timesheetdata']["name"]);
             

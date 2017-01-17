@@ -506,6 +506,8 @@ var addOnProject = function(value) {
       if (key === 'projects') {
         data[key].forEach(function(element,index) {
           calculation = (Number(((element.required_hrs) / getTotal)*100)).toFixed(2);
+          if(isNaN(calculation))
+            calculation=0.00;
           getCalculation.push(calculation);
           obj.Adjusted = getCalculation;
         });
@@ -604,10 +606,14 @@ var addOnProject = function(value) {
     estimationRatio_Array = [];
     for (var i = 0; i < timesheet.length; i++) {
       calculation = (Number(((timesheet[i].timesheet_hrs)- adjustedData[i])/adjustedData[i])*100).toFixed(2);
+      if(calculation=='undefined' || isNaN(calculation) || calculation =='Infinity')
+      {
+        calculation=0.00;
+      }
       estimationRatio_Array.push(calculation);
       obj.actualEstimationRatio = estimationRatio_Array;
       obj.getactualEstimaionRatio = (Number((obj.gettotAcualToDate-obj.gettotEstimation)/obj.gettotEstimation)*100).toFixed(2);
-      if(obj.getactualEstimaionRatio=='undefined' || isNaN(obj.getactualEstimaionRatio))
+      if(obj.getactualEstimaionRatio=='undefined' || isNaN(obj.getactualEstimaionRatio) || obj.getactualEstimaionRatio == 'Infinity')
         obj.getactualEstimaionRatio=0.00;
     }
 
@@ -622,9 +628,17 @@ var addOnProject = function(value) {
 
     for( var i = 0 ; i < timesheet.length; i++ ) {
       calculation = (Number(((timesheet[i].timesheet_hrs)- adjustedPlanningData[i])/adjustedPlanningData[i])*100).toFixed(2);
+      if(calculation=='undefined' || isNaN(calculation) || calculation =='Infinity')
+      {
+        calculation=0.00;
+      }
       planningRatio_Array.push(calculation);
       obj.actualPlanningRatio = planningRatio_Array;
       obj.getactualPlanningRatio = (Number((obj.gettotAcualToDate-obj.gettotPlanning)/obj.gettotPlanning)*100).toFixed(2);
+      if(obj.getactualPlanningRatio=='undefined' || isNaN(obj.getactualPlanningRatio) || obj.getactualPlanningRatio == 'Infinity')
+      {
+        obj.getactualPlanningRatio=0.00;
+      }
     }
     return obj.getactualPlanningRatio;
   }
@@ -896,7 +910,7 @@ function dayTotalHrs(n,classname){
   var date = '01-01-1970 00:00:00';
   var new_date=new Date(1970,01,01,0,0,0);
   for(var i=0;i<element.length;i++){
-    var hours_and_minutes=(element[i].text()).split(":");
+    var hours_and_minutes=($(element[i]).text()).split(":");
     var hours=Number(hours_and_minutes[0]);
     var minutes=Number(hours_and_minutes[1]);
     new_date.setHours(new_date.getHours()+hours);

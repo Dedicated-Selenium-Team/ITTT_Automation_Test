@@ -306,9 +306,9 @@ $( document ).ready(function() {
     , 'dropdown': 0
     // , 'regex': /^[^?<>*]*$/
   }
-  // , 'comments': {
-  //   'regX': /^[^?<>*]*$/
-  // }
+  , 'comments': {
+    'maxlen':1000
+  }
   , 'select_project': {
     'required': true
     , 'dropdown': 0
@@ -395,9 +395,9 @@ var errorMessage = {
     'required': 'Please select project designation'
     , 'dropdown': 'Please select project designation'
   }
- //  , 'comments': {
- //   'regX': 'Please enter valid comment'
- // }
+  , 'comments': {
+   'maxlen': 'Task should not contain more than 1000 characters'
+ }
  , 'select_project': {
   'required': 'Please select project name'
   , 'dropdown': 'Please select project name'
@@ -512,9 +512,10 @@ $(document).on('focus', dynamicElements, function() {
 
 $(document).on('blur change', dynamicElements, function() {
   var regX = /^[0-9]{0,2}([:.][0-9]{1,2})?$/;
+
   var $this = $(this);
   var $err = $this.siblings('.error');
-  var val = $this.val();
+  var val = $this.val().trim();
   var isError = false;
   if(!val || (val > 16) || (val == 0)) {
     $err.text('Please enter hours to complete a task and it should be less than 16').show();

@@ -4,16 +4,29 @@
 	<title></title>
 </head>
 <body>
-Hi all,
-<p>Today, I have made progress on the following activities:
+Hi All,
 <?php
-echo "<br>";
-foreach($user_timesheet as $key=>$value)
+if(count($user_data)>0)
 {
-	$tmp=$key+1;
-	echo $tmp.". Wroked on $value[description] [$value[hrs_locked]hrs] [$value[project_name]]<br>";
+if(count($user_data['todays_activity'])>0)
+{
+	echo "<br><br>
+Activities logged in ITTT: Today's Date: ".date('d-m-Y').".<br><br>
+Time-sheet last saved on: $user_data[last_updated]<br><br>
+
+​Total hours tracked today: $user_data[total_hrs_today] hours (out of 8.5 hours)";
+foreach ($user_data['todays_activity'] as $key => $value) {
+
+echo "<p>PROJECT NAME:​ $value[project_name]<br>
+My designation:​ $value[designation]<br>
+Estimated hours for my designation:​ $value[total_estimated_hrs] hours​<br>
+<b>Time tracked today</b>: $value[hrs_locked] hours<br>
+<b>Today's task description</b>: $value[description]<br>
+Time tracked to-date: $value[total_hrs_to_date] hours<br></p>";
+
 }
-?></p>
-Tomorrow, I will be continuing After discussing with my team.
+}
+}
+?>
 </body>
 </html>

@@ -84,6 +84,10 @@ $todays_date=date('Y-m-d');
                  if($this->getminutes( $project_total_hrs)>$this->getminutes( $project_estimated_hrs))
                     $escalation_report['beyond_estimate']++;
         }
+$escalation_report['timesheet_not_submitted'] = DB::table('users')
+            ->leftJoin('day_times', 'day_times.date', '=', 'users.user_id')->select('users.first_name','users.last_name')
+            ->whereNull('day_times.user_id')->get();
+        
 
 
         Mail::send('cron/escalation', ['escalation_report'=>$escalation_report], function ($message)
@@ -91,7 +95,7 @@ $todays_date=date('Y-m-d');
            
             $message->from('nilesh.vidhate.prdxn@gmail.com', 'ITTT Admin');
 
-            $message->to('vrushali.shelar.prdxn@gmail.com');
+            $message->to('chetan.kadam.prdxn@gmail.com');
             $message->subject( "ITTT Daily Escalation report");
            
 

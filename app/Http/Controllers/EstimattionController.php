@@ -490,8 +490,27 @@ unlink($target_dir."//".$target_file_name);
 	}
 	public function test()
 	{
-
 		$todays_date=date('Y-m-d');
+
+$timesheetuser_for_today= DB::table('day_times')->distinct('user_id')->where('date',$todays_date)->select('user_id')->get();
+        $user_array=array();
+        foreach($timesheetuser_for_today as $key=>$value)
+            array_push($user_array,$value->user_id);
+
+        //echo json_encode($user_array);
+$escalation_report['timesheet_not_submitted'] = DB::table('users')->
+whereNotIn('user_id', $user_array)->select('first_name','last_name')->get();
+echo json_encode($escalation_report['timesheet_not_submitted']);
+exit();
+		$escalation_report['timesheet_not_submitted'] = DB::table('day_times')->distinct('user_id')->where('date',$todays_date)->select('user_id')->get();
+		echo json_encode($escalation_report['timesheet_not_submitted']);
+		exit();
+$timesheet_not_submitted = DB::table('users')
+            ->leftJoin('day_times', 'day_times.date', '=', 'users.user_id')->select('users.first_name','users.last_name')
+            ->whereNull('day_times.user_id')->get();
+            echo json_encode($timesheet_not_submitted);
+            exit();
+		
 		$users=DB::table('users')->join('self_projects','users.user_id','=','self_projects.user_id')->distinct('user_id')->select('users.user_id','users.username')->get();
 		if(count($users)>0)
 		{

@@ -21,7 +21,15 @@ echo "<p>PROJECT NAME:​ $value[project_name]<br>
 My designation:​ $value[designation]<br>
 Estimated hours for my designation:​ $value[total_estimated_hrs] hours​<br>
 <b>Time tracked today</b>: $value[hrs_locked] hours<br>
-<b>Today's task description</b>:<span style='display:block;margin-left:15px;'>$value[description]</span>
+<b>Today's task description</b>:";
+if(strlen($value['description'])>1)
+{
+	echo "<span style='display:block;margin-left:15px;'>$value[description]</span>";
+}
+else
+{
+	echo "<span style='display:block;margin-left:15px;'>Task not described</span>";
+}
 Time tracked to-date: $value[total_hrs_to_date] hours<br></p>";
 
 }

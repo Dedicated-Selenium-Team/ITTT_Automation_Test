@@ -84,6 +84,10 @@ $todays_date=date('Y-m-d');
                  if($this->getminutes( $project_total_hrs)>$this->getminutes( $project_estimated_hrs))
                     $escalation_report['beyond_estimate']++;
         }
+$escalation_report['timesheet_not_submitted'] = DB::table('users')
+            ->leftJoin('day_times', 'users.user_id', '=', 'day_times.user_id')
+            ->where('day_times.user_id',NULL)->select('users.first_name','users.last_name')->get();
+        
 
 
         Mail::send('cron/escalation', ['escalation_report'=>$escalation_report], function ($message)

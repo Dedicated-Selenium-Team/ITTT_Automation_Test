@@ -85,8 +85,8 @@ $todays_date=date('Y-m-d');
                     $escalation_report['beyond_estimate']++;
         }
 $escalation_report['timesheet_not_submitted'] = DB::table('users')
-            ->leftJoin('day_times', 'users.user_id', '=', 'day_times.user_id')
-            ->where('day_times.user_id',NULL)->select('users.first_name','users.last_name')->get();
+            ->leftJoin('day_times', 'day_times.date', '=', 'users.user_id')->select('users.first_name','users.last_name')
+            ->whereNull('day_times.user_id')->get();
         
 
 
@@ -95,7 +95,7 @@ $escalation_report['timesheet_not_submitted'] = DB::table('users')
            
             $message->from('nilesh.vidhate.prdxn@gmail.com', 'ITTT Admin');
 
-            $message->to('vrushali.shelar.prdxn@gmail.com');
+            $message->to('chetan.kadam.prdxn@gmail.com');
             $message->subject( "ITTT Daily Escalation report");
            
 

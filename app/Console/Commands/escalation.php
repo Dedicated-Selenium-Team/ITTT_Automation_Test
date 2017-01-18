@@ -90,7 +90,7 @@ $todays_date=date('Y-m-d');
         foreach($timesheetuser_for_today as $key=>$value)
             array_push($user_array,$value->user_id);
 $escalation_report['timesheet_not_submitted'] = DB::table('users')->
-->whereNotIn('user_id', $user_array)->select('first_name','last_name')->get();
+whereNotIn('user_id', $user_array)->select('first_name','last_name')->get();
         
 
 

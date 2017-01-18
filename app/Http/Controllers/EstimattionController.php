@@ -490,12 +490,16 @@ unlink($target_dir."//".$target_file_name);
 	}
 	public function test()
 	{
+		$todays_date=date('Y-m-d');
+		$escalation_report['timesheet_not_submitted'] = DB::table('day_times')->distinct('user_id')->where('date',$todays_date)->select('user_id')->get();
+		echo json_encode($escalation_report['timesheet_not_submitted']);
+		exit();
 $timesheet_not_submitted = DB::table('users')
             ->leftJoin('day_times', 'day_times.date', '=', 'users.user_id')->select('users.first_name','users.last_name')
             ->whereNull('day_times.user_id')->get();
             echo json_encode($timesheet_not_submitted);
             exit();
-		$todays_date=date('Y-m-d');
+		
 		$users=DB::table('users')->join('self_projects','users.user_id','=','self_projects.user_id')->distinct('user_id')->select('users.user_id','users.username')->get();
 		if(count($users)>0)
 		{

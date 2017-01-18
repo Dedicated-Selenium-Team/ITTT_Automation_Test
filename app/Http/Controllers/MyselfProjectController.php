@@ -242,7 +242,8 @@ class MyselfProjectController extends Controller {
 			$estimate_hrs = PhaseIndividualResource::select('actual_hrs')->where('project_id', $name)->where('d_id', $id)->where('ph_id', '<', 8)->get();
 			$planning_hrs = PlanPhaseResource::select('actual_hrs')->where('project_id', $name)->where('d_id', $id)->where('ph_id', '<', 8)->get();
 			$actual_hrs	=DayTime::select(DB::raw('SUM(hrs_locked) as actual_hrs'))
-			->where('project_name',$name)->get();
+			->where('project_name',$name)->where('d_id',$id)->get();
+
 			if($actual_hrs[0]->actual_hrs==null)
 				$actual_hrs=0;
 			else
@@ -296,6 +297,7 @@ class MyselfProjectController extends Controller {
 			return response()->json([
 				'hrs'           => $estimate_add,
 				'plan_hrs'      => $planning_add,
+				'actual_hrs'      => $actual_hrs,
 				'projects'      => $projects,
 				'name'          => $name_array,
 				'timesheet_hrs' => $timesheet_hrs,

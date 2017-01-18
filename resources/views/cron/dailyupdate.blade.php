@@ -11,7 +11,7 @@ if(count($user_data)>0)
 if(count($user_data['todays_activity'])>0)
 {
 	echo "<br><br>
-Activities logged in ITTT: Today's Date: ".date('d-m-Y').".<br><br>
+Activities logged in ITTT: Today's Date: ".date('d-m-Y')."<br><br>
 Time-sheet last saved on: $user_data[last_updated]<br><br>
 
 ​Total hours tracked today: $user_data[total_hrs_today] hours (out of 8.5 hours)";
@@ -30,7 +30,7 @@ else
 {
 	echo "<span style='display:block;margin-left:15px;'>Task not described</span>";
 }
-Time tracked to-date: $value[total_hrs_to_date] hours<br></p>";
+echo "Time tracked to-date: $value[total_hrs_to_date] hours<br></p>";
 
 }
 }

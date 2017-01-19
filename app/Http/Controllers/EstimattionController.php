@@ -478,7 +478,7 @@ unlink($target_dir."//".$target_file_name);
 		$all_pm_user_id=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->where('self_projects.designation_id','1')->
 		where('add_projects.status_id','<>','4')->select('self_projects.user_id')->distinct('self_projects.user_id')->get();
 		$todays_date=date('Y-m-d');
-		echo json_encode($all_pm_user_id);
+		
 		foreach($all_pm_user_id as $key=>$value)
 		{
 			$pm_data=array();

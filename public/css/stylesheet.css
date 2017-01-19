@@ -1180,13 +1180,22 @@ table thead th {
   font: 400 15px / 19px 'Open Sans';
 }
 
-.login-form-page .form-group .message,
+.login-form-page .message,
 .login-form-page .error {
   position: absolute;
   bottom: -14px;
   color: #da4143;
   font: 400 11px / 11px 'Open Sans';
 }
+
+.login-form-page .login-error,
+.login-form-page .google-login-error{
+  width: calc(100% - 100px);
+  bottom: 93%;
+  text-align: center;
+  font-size: 14px;
+  /* pointer-events: none;*/
+} 
 
 .login-form-page .submit-btn,
 .login-form-page .google-login {

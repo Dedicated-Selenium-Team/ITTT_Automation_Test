@@ -482,8 +482,7 @@ unlink($target_dir."//".$target_file_name);
 		foreach($all_pm_user_id as $key=>$value)
 		{
 			$pm_data=array();
-			$my_projects=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->
-			join('users','self_projects.user_id','=','users.user_id')->where('self_projects.user_id',$value->user_id)
+			$my_projects=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->join('users','self_projects.user_id','=','users.user_id')->where('self_projects.user_id',$value->user_id)->
 			where('self_projects.designation_id','1')->select('users.first_name','users.last_name','add_projects.project_name','add_projects.project_id')->distinct('users.user_id','')->get();
 
 			if(count($my_projects)>0)

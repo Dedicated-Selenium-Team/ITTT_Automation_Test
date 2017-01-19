@@ -55,6 +55,8 @@ class escalation extends Command
     public function handle()
     {
 $todays_date=date('Y-m-d');
+ if(date('N')== 0 || date('N')== 6)
+        exit();
         $escalation_report=array();
         $escalation_report['timesheet_for_today']=DB::table('day_times')->where('date',$todays_date)->distinct('user_id')->count('user_id');
         $escalation_report['total_user']=DB::table('users')->count();

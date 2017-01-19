@@ -20,6 +20,7 @@ Route::get('/login',[
 Route::post('/gmaillogin','Login@gmaillogin');
 Route::get('/logout', 'Login@logout');
 Route::post('/change','Login@change_password');
+Route::get('test','EstimattionController@test');
 /*Route::post('test','EstimattionController@test');
 Route::get('test',function(){
 	return view('test');

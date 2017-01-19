@@ -298,7 +298,7 @@ class EstimattionController extends Controller {
 			$project_detail->save();
 
 			$add_project=AddProject::where('project_id',$request->id)->update(['status_id' => 1]);
-/************************Populate planning data**********************/
+			/************************Populate planning data**********************/
 
 
 			$phase               = new Phases;
@@ -307,95 +307,95 @@ class EstimattionController extends Controller {
 			/*echo json_encode($data['phase']);
 			exit();*/
 			$editvar  = PlanProjectDetail::where('project_id', $request->id)->get();
-		$editvar1 = PlanPhaseTime::where('project_id', $request->id)->get();
-		$editvar2 = PlanPhaseResource::where('project_id', $request->id)->get();
-		$phase      = new Phases;
-		$phase_time = new PlanPhaseTime;
-		$phase_individual_resource=new PlanPhaseResource;
-		$total_estimated_hrs=new TotalPlanHrs;
-		if (!(count($editvar) && count($editvar1) && count($editvar2)))
-		{
-			if(isset($data['phase']))
+			$editvar1 = PlanPhaseTime::where('project_id', $request->id)->get();
+			$editvar2 = PlanPhaseResource::where('project_id', $request->id)->get();
+			$phase      = new Phases;
+			$phase_time = new PlanPhaseTime;
+			$phase_individual_resource=new PlanPhaseResource;
+			$total_estimated_hrs=new TotalPlanHrs;
+			if (!(count($editvar) && count($editvar1) && count($editvar2)))
 			{
+				if(isset($data['phase']))
+				{
 
-				foreach ($data['phase'] as $key => $phase_data) {
+					foreach ($data['phase'] as $key => $phase_data) {
 
-					$total_designation_hrs=[];
-					$phase_id       = $phase_data['phase_id'];
-					if($phase_data['spent_days']=='')
-						$phase_data['spent_days']=0;
+						$total_designation_hrs=[];
+						$phase_id       = $phase_data['phase_id'];
+						if($phase_data['spent_days']=='')
+							$phase_data['spent_days']=0;
 
-					$spent_days		=$phase_data['spent_days'];
-					$insert_phase_days=DB::table('plan_phase_times')->insert(
-						['project_id' => $request->id,
-						'ph_id' => $phase_id,
-						'spent_days'=>$spent_days
-						]
-						);
+						$spent_days		=$phase_data['spent_days'];
+						$insert_phase_days=DB::table('plan_phase_times')->insert(
+							['project_id' => $request->id,
+							'ph_id' => $phase_id,
+							'spent_days'=>$spent_days
+							]
+							);
 						
 
-					foreach($phase_data as $phase_key => $phase_value)
-					{
-						if(is_array($phase_value))
+						foreach($phase_data as $phase_key => $phase_value)
 						{
-
-							foreach($phase_value as $phase_detail_key => $phase_detail_value)
+							if(is_array($phase_value))
 							{
-								foreach ($phase_detail_value as $designation => $designation_info) {
-									
-									if(is_array($designation_info))
-									{
-										$row_id=$designation_info['row_id'];
-										$d_id=$designation_info['d_id'];
-										$hours=$designation_info['per_day_hours'];
-										if($d_id=='')
-											$d_id=0;
-										if($hours=='')
-											$hours=0;
-										$actual_hrs=$hours * $spent_days;
-										if(array_key_exists ( $d_id, $total_designation_hrs ))
-											$total_designation_hrs[$d_id]+=$hours;
-										else
-											$total_designation_hrs[$d_id]=$hours;
-										
 
-										$get_row_id = $individual_resource->insertGetId(
-											['project_id' => $request->id,
-											'ph_id' => $phase_id,
-											'd_id' => $d_id,
-											'spent_hrs' => $hours,
-											'actual_hrs' => $actual_hrs]
-											);
-										
-										
+								foreach($phase_value as $phase_detail_key => $phase_detail_value)
+								{
+									foreach ($phase_detail_value as $designation => $designation_info) {
+
+										if(is_array($designation_info))
+										{
+											$row_id=$designation_info['row_id'];
+											$d_id=$designation_info['d_id'];
+											$hours=$designation_info['per_day_hours'];
+											if($d_id=='')
+												$d_id=0;
+											if($hours=='')
+												$hours=0;
+											$actual_hrs=$hours * $spent_days;
+											if(array_key_exists ( $d_id, $total_designation_hrs ))
+												$total_designation_hrs[$d_id]+=$hours;
+											else
+												$total_designation_hrs[$d_id]=$hours;
+
+
+											$get_row_id = $individual_resource->insertGetId(
+												['project_id' => $request->id,
+												'ph_id' => $phase_id,
+												'd_id' => $d_id,
+												'spent_hrs' => $hours,
+												'actual_hrs' => $actual_hrs]
+												);
+
+
+										}
 									}
 								}
 							}
 						}
-					}
-					foreach ($total_designation_hrs as $d_id => $total_hrs) {
+						foreach ($total_designation_hrs as $d_id => $total_hrs) {
 
-						$total_estimated_hrs->p_id=$request->id;
-						$total_estimated_hrs->d_id=$d_id;
-						$total_estimated_hrs->hrs=$total_hrs;
+							$total_estimated_hrs->p_id=$request->id;
+							$total_estimated_hrs->d_id=$d_id;
+							$total_estimated_hrs->hrs=$total_hrs;
+						}
 					}
 				}
+
+				$project_detail                  = new PlanProjectDetail;
+				$project_detail->project_id      = $request->id;
+				$project_detail->start_date      = $start_date;
+				$project_detail->p_I_live        = $phase1_end_date;
+				$project_detail->p_II_live       = $phase2_end_date;
+				$project_detail->warrenty_period = $Warrenty_period_end_date;
+			//$date                               = Input::get('Warrenty-period-end');
+				$project_detail->expected_resources = Input::get('resources');
+				$project_detail->warranty_days      = Input::get('Warrenty-days');
+				$project_detail->holidays           = Input::get('Warrenty-period-holiday');
+				$project_detail->save();
 			}
 
-			$project_detail                  = new PlanProjectDetail;
-			$project_detail->project_id      = $request->id;
-			$project_detail->start_date      = $start_date;
-			$project_detail->p_I_live        = $phase1_end_date;
-			$project_detail->p_II_live       = $phase2_end_date;
-			$project_detail->warrenty_period = $Warrenty_period_end_date;
-			//$date                               = Input::get('Warrenty-period-end');
-			$project_detail->expected_resources = Input::get('resources');
-			$project_detail->warranty_days      = Input::get('Warrenty-days');
-			$project_detail->holidays           = Input::get('Warrenty-period-holiday');
-			$project_detail->save();
-		}
-
-/********Ends here*************/
+			/********Ends here*************/
 
 		}
 		return redirect()->route('store-project');
@@ -473,6 +473,62 @@ unlink($target_dir."//".$target_file_name);
 
 	}
 	*/
+	public function test()
+	{
+		$all_pm_user_id=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->where('self_projects.designation_id','1')->
+		where('add_projects.status_id','<>','4')->select('self_projects.user_id')->distinct('self_projects.user_id')->get();
+		$todays_date=date('Y-m-d');
+		
+		foreach($all_pm_user_id as $key=>$value)
+		{
+			$pm_data=array();
+			$my_projects=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->
+			join('users','self_projects.user_id','=','users.user_id')->where('self_projects.user_id',$value->user_id)->select('users.first_name','users.last_name','add_projects.project_name','add_projects.project_id')->distinct('users.user_id','')->get();
 
+			if(count($my_projects)>0)
+			{
+				$pm_data['pm_name']=$my_projects[0]->first_name." ".$my_projects[0]->last_name;
+	
+	foreach($my_projects as $project_key=>$project_value)
+	{
+		
+		$pm_data["$project_value->project_name"]=array();
+		
+		$users_for_project=DB::table('users')->join('day_times','users.user_id','=','day_times.user_id')->where('day_times.project_name',$project_value->project_id)->where('date',$todays_date)
+		->select('users.first_name','users.last_name')->distinct('self_projects.user_id')->get();
+		echo json_encode($users_for_project)."<br>";
+		echo "************<br>";
+		if(count($users_for_project)>0)
+		{
+			foreach($users_for_project as $users_for_project_key=>$users_for_project_value)
+			{
+				$user_name=$users_for_project_value->first_name." ".$users_for_project_value->last_name;
+				array_push($pm_data[$project_value->$project_name],$user_name);
+			}
+		}
+		else
+		{
+			array_push($pm_data["$project_value->$project_name"], "No user filled timesheet today");
+		}
+		
+		
+	}
+
+}
+}
+exit();
+
+/*Hi [Project Manager],
+
+The following time was logged for projects that you're assigned to as Project Manager.
+
+Project Name: xxx
+Team-members that logged time today against this project: [List names]
+Total time logged TODAY ONLY (all designations) for this project (actuals): x hours
+Total time logged to-date (all designations) for this project (actuals): x hours
+Total estimate (all designations) for this project (not incl. warranty): x hours
+*/
+
+}
 }
 

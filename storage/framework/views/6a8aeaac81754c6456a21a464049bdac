@@ -98,7 +98,7 @@ header("Pragma: no-cache");
 						</div>
 					</div>
 					<!-- wrapper ends here -->
-					<a href="https://goo.gl/i3Reb2" class="scroll" title=" Feedback" target="_blank">Feedback</a>
+					<a href="https://groups.google.com/forum/#!forum/ittt-forum" class="scroll" title="ITTT Forum" target="_blank">ITTT Forum</a>
 				</div>
 				<!-- main Content ends here -->
 			</main>

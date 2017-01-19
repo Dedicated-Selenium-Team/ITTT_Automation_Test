@@ -56,6 +56,8 @@ class DailyUpdate extends Command
     {
         
        $todays_date=date('Y-m-d');
+       if(date('N')== 0 || date('N')== 6)
+        exit();
        $users=DB::table('users')->join('self_projects','users.user_id','=','self_projects.user_id')->distinct('user_id')->select('users.user_id','users.username')->get();
        if(count($users)>0)
        {

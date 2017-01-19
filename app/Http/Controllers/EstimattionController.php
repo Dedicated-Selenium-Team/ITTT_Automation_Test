@@ -478,7 +478,7 @@ unlink($target_dir."//".$target_file_name);
 		$all_pm_user_id=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->where('self_projects.designation_id','1')->
 		where('add_projects.status_id','<>','4')->select('self_projects.user_id')->distinct('self_projects.user_id')->get();
 		$todays_date=date('Y-m-d');
-		
+		echo json_encode($all_pm_user_id);
 		foreach($all_pm_user_id as $key=>$value)
 		{
 			$pm_data=array();
@@ -496,26 +496,29 @@ unlink($target_dir."//".$target_file_name);
 		
 		$users_for_project=DB::table('users')->join('day_times','users.user_id','=','day_times.user_id')->where('day_times.project_name',$project_value->project_id)->where('date',$todays_date)
 		->select('users.first_name','users.last_name')->distinct('self_projects.user_id')->get();
-		echo json_encode($users_for_project)."<br>";
-		echo "************<br>";
 		if(count($users_for_project)>0)
 		{
 			foreach($users_for_project as $users_for_project_key=>$users_for_project_value)
 			{
 				$user_name=$users_for_project_value->first_name." ".$users_for_project_value->last_name;
-				array_push($pm_data[$project_value->$project_name],$user_name);
+				array_push($pm_data[$project_value->project_name],$user_name);
 			}
 		}
 		else
 		{
-			array_push($pm_data["$project_value->$project_name"], "No user filled timesheet today");
+			$empty_data="No user filled timesheet today";
+			array_push($pm_data["$project_value->project_name"],$empty_data);
 		}
+		/*echo json_encode($pm_data["$project_value->project_name"]);*/
 		
 		
 	}
 
 }
+echo json_encode($pm_data);
+echo "<br>***************<br>";
 }
+
 exit();
 
 /*Hi [Project Manager],

@@ -391,7 +391,7 @@ $("#project").on('change',function(){
       /********** Add and update functionality************/
       var obj = new phases();
       $(document).on('change','#hrs_locked',function(){
-        var getData = $(this).val();
+        var getData = $(this).val().trim();
         if(getData.indexOf(":") > -1) {
           var flag = 1 ;
           var separator = getData.split(":"),

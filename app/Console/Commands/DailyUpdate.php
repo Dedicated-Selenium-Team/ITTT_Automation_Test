@@ -108,7 +108,7 @@ $user_data['last_updated']=$last_updated->updated_at;
             $_POST['timesheetdata']=$user_data;
             $_POST['timesheetdata']['todays_date']=$todays_date;
             $_POST['timesheetdata']['user_email']=$user_data['user_email'];
-             echo "hit";
+           
          Mail::send('cron/dailyupdate', ['user_data'=>$user_data], function ($message)
         {
            

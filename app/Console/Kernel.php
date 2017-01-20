@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\Inspire::class,
         \App\Console\Commands\DailyUpdate::class,
         \App\Console\Commands\escalation::class,
+         \App\Console\Commands\PmReport::class,
     ];
 
     /**
@@ -32,6 +33,7 @@ class Kernel extends ConsoleKernel
                  ->everyMinute();
                  $schedule->command('command:escalation')
                  ->everyMinute();
-
+        $schedule->command('command:PmReport')
+                 ->everyMinute();
     }
 }

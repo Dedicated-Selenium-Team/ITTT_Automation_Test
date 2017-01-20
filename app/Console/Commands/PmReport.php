@@ -4,7 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Foundation\Inspiring;
-
+use DB;
+use Illuminate\Support\Facades\Mail;
 class PmReport extends Command
 {
     /**
@@ -21,6 +22,20 @@ class PmReport extends Command
      */
     protected $description = 'Show Report For Project Manager';
 
+function getminutes($date_array)
+{
+  $time = new \DateTime('00:00');
+  foreach($date_array as $new_date)
+  {
+
+
+    $new_date = number_format((float)$new_date,2);
+    $time->add(new \DateInterval("PT".str_replace(".","H",$new_date."M")));  
+  }
+  $interval = $time->diff(new \DateTime('00:00'));
+  $dates=$interval->d;
+  return ($dates*24)+$interval->h.':'.sprintf("%'.02d\n",$interval->i);
+}
     /**
      * Execute the console command.
      *
@@ -28,17 +43,8 @@ class PmReport extends Command
      */
     public function handle()
     {
-      
-/*Hi [Project Manager],
-
-The following time was logged for projects that you're assigned to as Project Manager.
-
-Project Name: xxx
-Team-members that logged time today against this project: [List names]
-Total time logged TODAY ONLY (all designations) for this project (actuals): x hours
-Total time logged to-date (all designations) for this project (actuals): x hours
-Total estimate (all designations) for this project (not incl. warranty): x hours
-*/
+      if(date('N')== 0 || date('N')== 6)
+        exit();
 $all_pm_user_id=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->where('self_projects.designation_id','1')->
         where('add_projects.status_id','<>','4')->
         where('add_projects.is_deleted','0')->
@@ -48,14 +54,15 @@ $all_pm_user_id=DB::table('self_projects')->join('add_projects','self_projects.p
         foreach($all_pm_user_id as $key=>$value)
         {
             $pm_data=array();
-            $my_projects=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->join('users','self_projects.user_id','=','users.user_id')->where('self_projects.user_id',$value->user_id)->
+           $my_projects=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->join('users','self_projects.user_id','=','users.user_id')->where('self_projects.user_id',$value->user_id)->
             where('self_projects.designation_id','1')->
             where('add_projects.is_deleted','0')->
-            where('add_projects.is_archived','0')->select('users.first_name','users.last_name','add_projects.project_name','add_projects.project_id')->distinct('users.user_id','')->get();
+            where('add_projects.is_archived','0')->select('users.first_name','users.last_name','add_projects.project_name','users.username','add_projects.project_id')->distinct('users.user_id','')->get();
 
             if(count($my_projects)>0)
             {
                 $pm_data['pm_name']=$my_projects[0]->first_name." ".$my_projects[0]->last_name;
+                $pm_data['pm_email']=$my_projects[0]->username;
     
     foreach($my_projects as $project_key=>$project_value)
     {
@@ -110,7 +117,21 @@ $pm_data["$project_value->project_name"]["project_estimated_hrs"]=$this->getminu
     }
 
 }
+if(count($pm_data)==0)
+{}
+else
+{
+$_POST['email']=$pm_data['pm_email'];
+$_POST['pm_name']=$pm_data['pm_name'];
+  Mail::send('cron/Pm_report', ['pm_data'=>$pm_data], function ($message)
+        {
+           
+            $message->from('nilesh.vidhate.prdxn@gmail.com', 'ITTT Admin');
 
+            $message->to($_POST['email']);
+            $message->subject("Project Manager: $_POST[pm_name] | Daily ITTT Project Report");
+            });
+}
 
 }
     }

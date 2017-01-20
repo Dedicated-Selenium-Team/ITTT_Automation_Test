@@ -502,11 +502,12 @@ function getminutes($date_array)
 			$my_projects=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->join('users','self_projects.user_id','=','users.user_id')->where('self_projects.user_id',$value->user_id)->
 			where('self_projects.designation_id','1')->
 			where('add_projects.is_deleted','0')->
-			where('add_projects.is_archived','0')->select('users.first_name','users.last_name','add_projects.project_name','add_projects.project_id')->distinct('users.user_id','')->get();
+			where('add_projects.is_archived','0')->select('users.first_name','users.last_name','add_projects.project_name','users.username','add_projects.project_id')->distinct('users.user_id','')->get();
 
 			if(count($my_projects)>0)
 			{
 				$pm_data['pm_name']=$my_projects[0]->first_name." ".$my_projects[0]->last_name;
+				$pm_data['pm_email']=$my_projects[0]->username;
 	
 	foreach($my_projects as $project_key=>$project_value)
 	{
@@ -561,12 +562,36 @@ $pm_data["$project_value->project_name"]["project_estimated_hrs"]=$this->getminu
 	}
 
 }
-echo "<pre>";
-print_r($pm_data);
-echo "</pre>";
-echo "<br>***************</br>";
+foreach($pm_data as $key=>$value)
+{
+	
+if($key=='pm_name' || $key=='pm_email')
+{	
+}
+else
+{
+	echo "Project Name: $key<br>";
+	echo "Team-members that logged time today against this project: ";
+	if(count($value['users'])>0)
+	{
+		foreach($value['users'] as $user_key=>$user_value)
+		{
+			echo "$user_value<br>";
+		}
+	}
+	else
+		echo "No Team-members logged time today against this project<br>";
+
+echo "Total time logged TODAY ONLY (all designations) for this project (actuals): $value[hrs_locked] hours<br>"; 
+echo "Total time logged to-date (all designations) for this project (actuals): $value[hrs_locked_to_date] hours<br>";
+echo "Total estimate (all designations) for this project (not incl. warranty): $value[project_estimated_hrs] hours<br><br>";
 
 }
+}
+
+}
+//echo json_encode($pm_data);
+
 /*Hi [Project Manager],
 
 The following time was logged for projects that you're assigned to as Project Manager.

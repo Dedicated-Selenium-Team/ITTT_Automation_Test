@@ -491,6 +491,8 @@ function getminutes($date_array)
 }
 	public function test()
 	{
+
+		
 		
 		$all_pm_user_id=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->where('self_projects.designation_id','1')->
 		where('add_projects.status_id','<>','4')->
@@ -505,7 +507,6 @@ function getminutes($date_array)
 			where('self_projects.designation_id','1')->
 			where('add_projects.is_deleted','0')->
 			where('add_projects.is_archived','0')->select('users.first_name','users.last_name','add_projects.project_name','users.username','add_projects.project_id')->distinct('users.user_id','')->get();
-
 			if(count($my_projects)>0)
 			{
 				$pm_data['pm_name']=$my_projects[0]->first_name." ".$my_projects[0]->last_name;

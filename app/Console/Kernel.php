@@ -30,10 +30,10 @@ class Kernel extends ConsoleKernel
         $schedule->command('inspire')
                  ->hourly();
         $schedule->command('command:crone')
-                 ->everyMinute();
-                 $schedule->command('command:escalation')
-                 ->everyMinute();
+                 ->dailyAt('19:30');
+        $schedule->command('command:escalation')
+                ->dailyAt('19:30');
         $schedule->command('command:PmReport')
-                 ->everyMinute();
+                 ->dailyAt('19:30');
     }
 }

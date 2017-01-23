@@ -97,7 +97,7 @@ function attachSignin(element) {
        {
 
          if(data.success==1)
-           location.href='http://ittt.prdxnstaging2.com';
+           location.href = '/';
          else
            // alert("You are not authorized user");
          $(".google-login-error").text("You are unauthorized user");

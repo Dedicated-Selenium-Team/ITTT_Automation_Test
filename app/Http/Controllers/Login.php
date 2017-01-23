@@ -62,7 +62,6 @@ public function index($error = null)
        'password' => Input::get('password')
        );
 
-
      if (Auth::attempt($userdata)) {
       $remember = Input::get('remember');
 
@@ -98,12 +97,18 @@ public function index($error = null)
  }
 else {
 
-  $error = "Username or Password does not match";
+  $user_name =  User::select('username')->where('username', $userdata['username'])->get();
+  if(count($user_name)>0){
+    $error = "Username or Password does not match";
+  } 
+  else {
+    $error = "You are unauthorized user";
+  }
   return view('login/index', compact('error'));
-
 }
 
 }
+
 else {
  return Redirect::to('/');
 }

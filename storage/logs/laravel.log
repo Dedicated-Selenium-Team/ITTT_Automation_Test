@@ -18312,3 +18312,12 @@ Stack trace:
 Stack trace:
 #0 {main}  
 >>>>>>> 2a8562f23d624eb06e728c82091948bf874cc078
+[2017-01-23 06:58:45] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION)' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/Login.php:112
+Stack trace:
+#0 {main}  
+[2017-01-23 06:59:22] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION)' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/Login.php:113
+Stack trace:
+#0 {main}  
+[2017-01-23 06:59:27] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION)' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/Login.php:113
+Stack trace:
+#0 {main}  

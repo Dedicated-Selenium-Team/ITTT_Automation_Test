@@ -35,5 +35,7 @@ class Kernel extends ConsoleKernel
                 ->dailyAt('19:30');
         $schedule->command('command:PmReport')
                  ->dailyAt('19:30');
+        $schedule->command('command:slack_notification')
+                 ->daily();
     }
 }

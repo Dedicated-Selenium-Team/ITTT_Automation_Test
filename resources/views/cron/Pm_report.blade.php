@@ -24,10 +24,12 @@ echo "Hi $pm_data[pm_name],
 							echo "Team-members that logged time today: ";
 							if(count($value['users'])>0)
 							{
+								echo "<span style='display:block;margin-left:15px;'>";
 								foreach($value['users'] as $user_key=>$user_value)
 								{
 									echo "$user_value<br>";
 								}
+								echo "</span>";
 							}
 							else
 								echo "No Team-members logged time today against this project<br>";
@@ -36,8 +38,10 @@ echo "Hi $pm_data[pm_name],
 							if($value["user_not_filled_timesheet"]>0)
 							{
 								echo "Time-sheets missing (for today):";
+								echo "<span style='display:block;margin-left:15px;'>";
 								foreach($value["user_not_filled_timesheet"] as $timesheet_value)
-									echo "$timesheet_value<br>";	
+									echo "$timesheet_value<br>";
+									echo "</span>";	
 							} 
 							echo "Estimated hours (all designations):​ $value[project_estimated_hrs] hours<br>";
 							echo "Time tracked to-date (all designations): $value[hrs_locked_to_date] hours<br>";

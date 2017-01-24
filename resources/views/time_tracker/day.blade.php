@@ -191,61 +191,61 @@
     <!-- Modal content Starts Here-->
     <div class="modal-content">
 
-     {!! Form::open(array('id' => 'add-project', 'method' => 'post', 'url' => 'store_project')) !!}
+      {!! Form::open(array('id' => 'add-project', 'method' => 'post')) !!}
 
-     <!-- Modal Header Starts Here -->
-     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h1 class="modal-title">Create New Project</h1>
-    </div>
-    <!-- Modal Header Ends Here -->
-
-    <!-- Modal Body Starts Here -->
-    <div class="modal-body">
-
-      <div class="form-group cf">
-        {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
-        {!! Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
-        <p class="error"></p>
+      <!-- Modal Header Starts Here -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">Create New Project</h1>
       </div>
+      <!-- Modal Header Ends Here -->
 
-      <div class="form-group cf">
-        {!! Html::decode(Form::label('project_code','Project Code:')) !!}
-        {!! Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')) !!}
-        <p class="error"></p>
-      </div>
+      <!-- Modal Body Starts Here -->
+      <div class="modal-body">
 
-      <div class="form-group cf">
-        {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
-        {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
-        <p class="error"></p>
-      </div>
+        <div class="form-group cf">
+          {!! Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')) !!}
+          {!! Form::text('project_name1', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
+          <p class="error"></p>
+        </div>
 
-      <div class="form-group cf">
-       {!! Html::decode(Form::label('status_id','Project Status:')) !!}
-       <select class="status_id" name="status_id" >
-         <option value="1">Estimates</option>
-         <option value="2">Live-Projects</option>
-         <option value="3">Live-Ongoing</option>
-       </select>
+        <div class="form-group cf">
+          {!! Html::decode(Form::label('project_code','Project Code:')) !!}
+          {!! Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')) !!}
+          <p class="error"></p>
+        </div>
+
+        <div class="form-group cf">
+          {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
+          {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
+          <p class="error"></p>
+        </div>
+
+        <div class="form-group cf">
+         {!! Html::decode(Form::label('status_id','Project Status:')) !!}
+         <select class="status_id" name="status_id" >
+           <option value="1">Estimates</option>
+           <option value="2">Live-Projects</option>
+           <option value="3">Live-Ongoing</option>
+         </select>
+       </div>
+
      </div>
+     <!-- Modal Body Ends Here -->
 
-   </div>
-   <!-- Modal Body Ends Here -->
-
-   <!-- Modal Footer Starts Here -->
-   <div class="modal-footer">
-    <div class="save-project">
-      {!! Form::submit('Submit')!!}
-      {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+     <!-- Modal Footer Starts Here -->
+     <div class="modal-footer">
+      <div class="save-project">
+        {!! Form::submit('Submit')!!}
+        {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+      </div>
     </div>
+    <!-- Modal Footer Ends Here -->
+
   </div>
-  <!-- Modal Footer Ends Here -->
+  <!-- Modal content Starts Here-->
 
-</div>
-<!-- Modal content Starts Here-->
-
-{!! Form::close() !!}
+  {!! Form::close() !!}
 
 </div>
 </div>
@@ -639,6 +639,29 @@ $('tbody').delegate('.btn-delete', 'click', function(){
       }
     });
 
+  });
+});
+
+$('#add-project').on('submit',function(e) {
+  e.preventDefault();
+  var project_name=$("#project_name1").val();
+  var project_code=$("#project_code").val();
+  var client_name=$("#client_name").val();
+  var project_status=$(".status_id").val();
+  $.ajax({
+    type:'post',
+    url:'/project_info',
+    data:{'project_name':project_name,'project_code':project_code,'client_name':client_name,'status_id':project_status},
+    success:function(data)
+    { 
+      if(data.duplicate_project_status==1){
+        $('#project_name1').siblings('.error').text('Entered project name is already exist');
+        $('#project_name1').siblings('.error').show();
+      }
+      else {
+        location.href='/store_project';
+      }
+    }
   });
 });
 

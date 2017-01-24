@@ -99,7 +99,7 @@ else {
 
   $user_name =  User::select('username')->where('username', $userdata['username'])->get();
   if(count($user_name)>0){
-    $error = "Username or Password does not match";
+    $error = "Email id or password does not match";
   } 
   else {
     $error = "You are unauthorized user";

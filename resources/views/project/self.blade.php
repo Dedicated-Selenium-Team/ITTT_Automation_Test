@@ -70,7 +70,7 @@ $user_name = Session::get('user')[0]['first_name'];
     <!-- Modal content Starts Here-->
     <div class="modal-content">
 
-      {!! Form::open(array('url' => 'store_project','id' => 'add-project', 'method' => 'post')) !!}
+      {!! Form::open(array('id' => 'add-project', 'method' => 'post')) !!}
 
       <!-- Modal Header Starts Here -->
       <div class="modal-header">
@@ -83,8 +83,8 @@ $user_name = Session::get('user')[0]['first_name'];
       <div class="modal-body">
 
         <div class="form-group cf">
-          {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
-          {!! Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
+          {!! Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')) !!}
+          {!! Form::text('project_name1', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
           <p class="error"></p>
         </div>
 
@@ -588,6 +588,29 @@ $(document).on("click", '#project_name', function () {
   }
 });
 // project_hrs functionality Ends here
+
+$('#add-project').on('submit',function(e) {
+  e.preventDefault();
+  var project_name=$("#project_name1").val();
+  var project_code=$("#project_code").val();
+  var client_name=$("#client_name").val();
+  var project_status=$(".status_id").val();
+  $.ajax({
+    type:'post',
+    url:'/project_info',
+    data:{'project_name':project_name,'project_code':project_code,'client_name':client_name,'status_id':project_status},
+    success:function(data)
+    { 
+      if(data.duplicate_project_status==1){
+        $('#project_name1').siblings('.error').text('Entered project name is already exist');
+        $('#project_name1').siblings('.error').show();
+      }
+      else {
+        location.href='/store_project';
+      }
+    }
+  });
+});
 </script>
 @stop
 

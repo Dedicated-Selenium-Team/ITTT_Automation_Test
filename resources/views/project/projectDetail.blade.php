@@ -48,10 +48,9 @@
 
     <!-- Modal Body Starts Here -->
     <div class="modal-body">
-
       <div class="form-group cf">
-        {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
-        {!! Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
+        {!! Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')) !!}
+        {!! Form::text('project_name1', Input::old('project_name'), array('placeholder' =>'Project name')) !!}
         <p class="error"></p>
       </div>
 
@@ -665,6 +664,29 @@
                 //   $('.save-project input[type="submit"]').val('Submit');
                 //   $('#project-day-time select').removeClass('noValue');
                 // });
+                
+                $('#add-project').on('submit',function(e) {
+                  e.preventDefault();
+                  var project_name=$("#project_name1").val();
+                  var project_code=$("#project_code").val();
+                  var client_name=$("#client_name").val();
+                  var project_status=$(".status_id").val();
+                  $.ajax({
+                    type:'post',
+                    url:'/project_info',
+                    data:{'project_name':project_name,'project_code':project_code,'client_name':client_name,'status_id':project_status},
+                    success:function(data)
+                    { 
+                      if(data.duplicate_project_status==1){
+                        $('#project_name1').siblings('.error').text('Entered project name is already exist');
+                        $('#project_name1').siblings('.error').show();
+                      }
+                      else {
+                        location.reload();
+                      }
+                    }
+                  });
+                });
 
                 $('#edit-project').on('submit',function(e) {
                   e.preventDefault();

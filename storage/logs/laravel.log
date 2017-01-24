@@ -20238,3 +20238,20 @@ Stack trace:
 #23 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
 #24 {main}  
 >>>>>>> pm_report
+[2017-01-24 18:36:55] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to undefined method App\Console\Commands\PmReport::getminutes()' in /var/www/html/github-ittt/prdxn-ittt/app/Console/Commands/PmReport.php:87
+Stack trace:
+#0 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Container/Container.php(507): App\Console\Commands\PmReport->handle()
+#4 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Container/Container.php(507): call_user_func_array()
+#5 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Console/Command.php(150): Illuminate\Container\Container->call()
+#6 /var/www/html/github-ittt/prdxn-ittt/vendor/symfony/console/Command/Command.php(261): Illuminate\Console\Command->execute()
+#7 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Console/Command.php(136): Symfony\Component\Console\Command\Command->run()
+#8 /var/www/html/github-ittt/prdxn-ittt/vendor/symfony/console/Application.php(843): Illuminate\Console\Command->run()
+#9 /var/www/html/github-ittt/prdxn-ittt/vendor/symfony/console/Application.php(188): Symfony\Component\Console\Application->doRunCommand()
+#10 /var/www/html/github-ittt/prdxn-ittt/vendor/symfony/console/Application.php(119): Symfony\Component\Console\Application->doRun()
+#11 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(107): Symfony\Component\Console\Application->run()
+#12 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle()
+#13 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
+#14 {main}  

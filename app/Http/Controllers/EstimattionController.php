@@ -474,20 +474,12 @@ unlink($target_dir."//".$target_file_name);
 
 	}
 	*/
-<<<<<<< HEAD
 
-function getminutes($date_array)
-{
-  $time = new \DateTime('00:00');
-  foreach($date_array as $new_date)
-  {
-=======
 	function getminutes($date_array)
 	{
 		$time = new \DateTime('00:00');
 		foreach($date_array as $new_date)
 		{
->>>>>>> pm_report
 
 
 			$new_date = number_format((float)$new_date,2);
@@ -498,10 +490,7 @@ function getminutes($date_array)
 		return ($dates*24)+$interval->h.':'.sprintf("%'.02d\n",$interval->i);
 	}
 	public function test()
-	{
-
-		
-		
+	{		
 		if(date('N')== 0 || date('N')== 6)
 			exit();
 		$all_pm_user_id=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->where('self_projects.designation_id','1')->

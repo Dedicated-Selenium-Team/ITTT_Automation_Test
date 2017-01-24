@@ -46,20 +46,12 @@
     </div>
     <!-- Modal Header Ends Here -->
 
-<<<<<<< HEAD
     <!-- Modal Body Starts Here -->
     <div class="modal-body">
-
       <div class="form-group cf">
-        <?php echo Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')); ?>
-=======
-        <div class="form-group cf">
-          <?php echo Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')); ?>
+        <?php echo Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')); ?>
 
-          <?php echo Form::text('project_name1', Input::old('project_name'), array('placeholder' =>'Project name')); ?>
->>>>>>> duplicate-project-#116
-
-        <?php echo Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')); ?>
+        <?php echo Form::text('project_name1', Input::old('project_name'), array('placeholder' =>'Project name')); ?>
 
         <p class="error"></p>
       </div>

@@ -491,127 +491,57 @@ unlink($target_dir."//".$target_file_name);
 	public function test()
 	{
 		$todays_date=date('Y-m-d');
-
-$timesheetuser_for_today= DB::table('day_times')->distinct('user_id')->where('date',$todays_date)->select('user_id')->get();
-        $user_array=array();
-        foreach($timesheetuser_for_today as $key=>$value)
-            array_push($user_array,$value->user_id);
-
-        //echo json_encode($user_array);
-$escalation_report['timesheet_not_submitted'] = DB::table('users')->
-whereNotIn('user_id', $user_array)->select('first_name','last_name')->get();
-echo json_encode($escalation_report['timesheet_not_submitted']);
-exit();
-		$escalation_report['timesheet_not_submitted'] = DB::table('day_times')->distinct('user_id')->where('date',$todays_date)->select('user_id')->get();
-		echo json_encode($escalation_report['timesheet_not_submitted']);
-		exit();
-$timesheet_not_submitted = DB::table('users')
-            ->leftJoin('day_times', 'day_times.date', '=', 'users.user_id')->select('users.first_name','users.last_name')
-            ->whereNull('day_times.user_id')->get();
-            echo json_encode($timesheet_not_submitted);
-            exit();
-		
-		$users=DB::table('users')->join('self_projects','users.user_id','=','self_projects.user_id')->distinct('user_id')->select('users.user_id','users.username')->get();
-		if(count($users)>0)
+		if(date('N')== 0 || date('N')== 6)
+			exit();
+		$escalation_report=array();
+		$escalation_report['timesheet_for_today']=DB::table('day_times')->where('date',$todays_date)->distinct('user_id')->count('user_id');
+		$escalation_report['total_user']=DB::table('users')->count();
+		$escalation_report['efficient_user_count']=0;
+		$escalation_report['beyond_estimate']=0;
+		$escalation_report['beyond_estimate_project_list']=array();
+		if($escalation_report['timesheet_for_today']>0)
 		{
-			foreach($users as $key=>$value)
+			$todays_timesheet_user=DB::table('day_times')->where('date',$todays_date)->groupBy('user_id')->select('user_id')->get();
+			foreach($todays_timesheet_user as $key=>$value)
 			{
-				$user_data=array();
-				$get_timesheet_data=DB::table('users')->join('day_times','users.user_id','=','day_times.user_id')->join('add_projects','day_times.project_name','=','add_projects.project_id')->join('project_designations','project_designations.d_id','=','day_times.d_id')->select('users.username','users.first_name','users.last_name','add_projects.project_name','day_times.comments','day_times.d_id','day_times.hrs_locked','add_projects.project_id','project_designations.d_name')->where('day_times.date',$todays_date)->where('day_times.user_id',$value->user_id)->get();
-				if(count($get_timesheet_data)>0)
-				{
-					$name=$get_timesheet_data[0]->first_name." ".$get_timesheet_data[0]->last_name;
-					$user_data['name']=$name;
-					$total_hrs_today=DB::table('day_times')->where('user_id',$value->user_id)
-					->where('date',$todays_date)->lists('hrs_locked');
-					$total_hrs_today=(json_decode(json_encode($total_hrs_today), true));
-					$user_data['total_hrs_today']=$this->getminutes($total_hrs_today); 
-					$last_updated=DB::table('day_times')->where('user_id',$value->user_id)
-					->where('date',$todays_date)->select('updated_at')->latest()->first();
-					$user_data['last_updated']=$last_updated->updated_at;
-					$activity=array();
-					$user_data['user_email']=$value->username;
-					$user_data['todays_activity']=array();
-					foreach($get_timesheet_data as $data=>$data_value)
-					{
+				$total_hrs_today=DB::table('day_times')->where('user_id',$value->user_id)
+				->where('date',$todays_date)->lists('hrs_locked');
+				$total_hrs_today=(json_decode(json_encode($total_hrs_today), true));
+				if($this->getminutes($total_hrs_today)>6)
+					$escalation_report['efficient_user_count']++;
 
-						$tmp=array();
-						$project_id=$data_value->project_id;
-						$designation_id=$data_value->d_id;
-
-						$total_estimated_hrs=DB::table('phase_individual_resources')->where('project_id',$project_id)->where('d_id',$designation_id)->SUM('actual_hrs');
-						$total_hrs_to_date=DB::table('day_times')->where('user_id',$value->user_id)
-						->where('project_name',$project_id)->where('d_id',$designation_id)->lists('hrs_locked');
-
-						$total_hrs_to_date=(json_decode(json_encode($total_hrs_to_date), true));
-						$total_hrs_to_date=$this->getminutes($total_hrs_to_date);
-
-						$tmp['project_name']=$data_value->project_name;
-						$tmp['description']=$data_value->comments;
-						$tmp['hrs_locked']=$data_value->hrs_locked;
-						$tmp['total_estimated_hrs']=$total_estimated_hrs;
-						$tmp['total_hrs_to_date']=$total_hrs_to_date;
-						$tmp['designation']=$data_value->d_name;
-
-                 //$todays_activity=array();
-						array_push($user_data['todays_activity'],$tmp);
-					}
-					$_POST['timesheetdata']['name']= $user_data['name'];
-					$_POST['timesheetdata']=$user_data;
-					$_POST['timesheetdata']['todays_date']=$todays_date;
-					$_POST['timesheetdata']['user_email']=$user_data['user_email'];
-					$repeated_task=array();
-					foreach($user_data['todays_activity'] as $key=>$value)
-					{
-						if(!array_key_exists($value['project_name']."_".$value['designation'],$repeated_task))
-						{
-							$repeated_task[$value['project_name']."_".$value['designation']]=array();
-						}
-						array_push($repeated_task[$value['project_name']."_".$value['designation']],$key);
-					}
-
-					foreach($repeated_task as $key=>$value)
-					{
-
-						foreach($value as $data_key=>$key_value)
-						{
-							
-							$user_data['todays_activity'][$value[0]]['description']=json_encode($user_data['todays_activity'][$value[0]]['description']);
-							$user_data['todays_activity'][$value[0]]['description']=str_replace('\r\n', '<br>', $user_data['todays_activity'][$value[0]]['description']);
-							exit();
-							if($data_key>0)
-							{
-								$task_key=$value[0];
-								$user_data['todays_activity'][$task_key]['description']
-								=$user_data['todays_activity'][$task_key]['description']."  ".$user_data['todays_activity'][$key_value]['description'];
-								$user_data['todays_activity'][$task_key]['hrs_locked']=$this->getminutes(array($user_data['todays_activity'][$task_key]['hrs_locked'],$user_data['todays_activity'][$key_value]['hrs_locked']));
-								unset($user_data['todays_activity'][$key_value]);
-
-							}
-
-
-						}
-
-
-					}
-
-
-					Mail::send('cron/dailyupdate', ['user_data'=>$user_data], function ($message)
-					{
-
-						$message->from('nilesh.vidhate.prdxn@gmail.com', $_POST['timesheetdata']["name"]);
-
-						$message->to('chetan.kadam.prdxn@gmail.com');
-						$message->subject( $_POST['timesheetdata']['name']." | Daily Update (ITTT Report)");
-						$message->replyTo($_POST['timesheetdata']['user_email'], $name = $_POST['timesheetdata']["name"]);
-
-
-
-					});
-				}
 			}
-
+			
 		}
+		$total_projects=DB::table('add_projects')->where('status_id','<>','4')->where('is_deleted','0')->where('is_archived','0')->get();
+		foreach($total_projects as $key=>$value)
+		{
+			$project_name=DB::table('add_projects')->where('project_id',$value->project_id)->get();
+			$project_name=$project_name[0]->project_name;
+			$project_total_hrs=DB::table('day_times')->where('project_name',$value->project_id)->lists('hrs_locked');
+			$project_estimated_hrs=DB::table('phase_individual_resources')->where('project_id',$value->project_id)->lists('actual_hrs');
+			$project_total_hrs=(json_decode(json_encode( $project_total_hrs), true));
+			$project_estimated_hrs=(json_decode(json_encode( $project_estimated_hrs), true));
+			if($this->getminutes( $project_total_hrs)>$this->getminutes( $project_estimated_hrs))
+			{
+				$escalation_report['beyond_estimate']++;
+				array_push($escalation_report['beyond_estimate_project_list'],$project_name);
+
+			}
+			
+		}
+
+		$timesheetuser_for_today= DB::table('day_times')->distinct('user_id')->where('date',$todays_date)->select('user_id')->get();
+		$user_array=array();
+		foreach($timesheetuser_for_today as $key=>$value)
+			array_push($user_array,$value->user_id);
+		$escalation_report['timesheet_not_submitted'] = DB::table('users')->
+		whereNotIn('user_id', $user_array)->select('first_name','last_name')->get();
+		
+
+
+		echo json_encode($escalation_report);
+
 
 	}
 

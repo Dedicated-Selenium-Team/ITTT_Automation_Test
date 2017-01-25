@@ -99,7 +99,8 @@ class TimeTrackerController extends Controller {
     // store the timesheet values into databse
     $time->user_id      = $user_id;
     $time->project_name = Input::get('project_id');
-    $time->date         = Input::get('date');
+    $time->date         = date('Y-m-d');
+    //Input::get('date');
     $time->comments     = Input::get('comments');
     $time->hrs_locked   = Input::get('hidden_Hrs');
     $time->d_id         = Input::get('project_desig');

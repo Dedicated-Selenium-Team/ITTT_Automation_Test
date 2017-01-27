@@ -490,165 +490,78 @@ unlink($target_dir."//".$target_file_name);
 		return ($dates*24)+$interval->h.':'.sprintf("%'.02d\n",$interval->i);
 	}
 	public function test()
-	{		
+	{
+    	$todays_date=date('Y-m-d');
 		if(date('N')== 0 || date('N')== 6)
 			exit();
-		$all_pm_user_id=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->where('self_projects.designation_id','1')->
-		where('add_projects.status_id','<>','4')->
-		where('add_projects.is_deleted','0')->
-		where('add_projects.is_archived','0')->select('self_projects.user_id')->distinct('self_projects.user_id')->get();
-		$todays_date=date('Y-m-d');
-
-		foreach($all_pm_user_id as $key=>$value)
+		$escalation_report=array();
+		$escalation_report['timesheet_for_today']=DB::table('day_times')->where('date',$todays_date)->distinct('user_id')->count('user_id');
+		$escalation_report['total_user']=DB::table('users')->count();
+		$escalation_report['efficient_user_count']=0;
+		$escalation_report['beyond_estimate']=0;
+		$escalation_report['beyond_estimate_project_list']=array();
+		if($escalation_report['timesheet_for_today']>0)
 		{
-			$pm_data=array();
-			$my_projects=DB::table('self_projects')->join('add_projects','self_projects.project_id','=','add_projects.project_id')->join('users','self_projects.user_id','=','users.user_id')->where('self_projects.user_id',$value->user_id)->
-			where('self_projects.designation_id','1')->
-			where('add_projects.is_deleted','0')->
-			where('add_projects.is_archived','0')->select('users.first_name','users.last_name','add_projects.project_name','users.username','add_projects.project_id')->distinct('users.user_id','')->get();
-			if(count($my_projects)>0)
+			$todays_timesheet_user=DB::table('day_times')->where('date',$todays_date)->groupBy('user_id')->select('user_id')->get();
+			foreach($todays_timesheet_user as $key=>$value)
 			{
-				$pm_data['pm_name']=$my_projects[0]->first_name." ".$my_projects[0]->last_name;
-				$pm_data['pm_email']=$my_projects[0]->username;
-
-				foreach($my_projects as $project_key=>$project_value)
-				{
-
-					$pm_data["$project_value->project_name"]["users"]=array();
-
-					$users_for_project=DB::table('users')->join('day_times','users.user_id','=','day_times.user_id')->where('day_times.project_name',$project_value->project_id)->where('date',$todays_date)
-					->select('users.first_name','users.last_name')->distinct('self_projects.user_id')->get();
-					if(count($users_for_project)>0)
-					{
-						foreach($users_for_project as $users_for_project_key=>$users_for_project_value)
-						{
-							$user_name=$users_for_project_value->first_name." ".$users_for_project_value->last_name;
-							array_push($pm_data[$project_value->project_name]["users"],$user_name);
-						}
-					}
-					$pm_data[$project_value->project_name]["all_users"]=array();
-					$all_users_for_project=DB::table('users')->join('self_projects','users.user_id','=','self_projects.user_id')->where('self_projects.project_id',$project_value->project_id)
-					->select('users.first_name','users.last_name')->distinct('self_projects.user_id')->get();
-					if(count($all_users_for_project)>0)
-					{
-						foreach($all_users_for_project as $all_users_for_project_key=>$all_users_for_project_value)
-						{
-							$user_name=$all_users_for_project_value->first_name." ".$all_users_for_project_value->last_name;
-							array_push($pm_data[$project_value->project_name]["all_users"],$user_name);
-						}
-					}
-					$pm_data[$project_value->project_name]["user_not_filled_timesheet"]=array_diff($pm_data[$project_value->project_name]["all_users"],$pm_data[$project_value->project_name]["users"]);
-
-					$project_timesheet=DB::table('day_times')->
-					where('project_name',$project_value->project_id)->
-					where('date',$todays_date)->lists('hrs_locked');
-					if(count($project_timesheet)>0)
-					{
-						$pm_data["$project_value->project_name"]["hrs_locked"]=$this->getminutes($project_timesheet);
-					}
-					else
-					{
-						$pm_data["$project_value->project_name"]["hrs_locked"]="0:00";
-					}
-
-					$project_timesheet_to_date=DB::table('day_times')->
-					where('project_name',$project_value->project_id)->
-					lists('hrs_locked');
-					if(count($project_timesheet_to_date)>0)
-					{
-						$pm_data["$project_value->project_name"]["hrs_locked_to_date"]=$this->getminutes($project_timesheet_to_date);
-					}
-					else
-					{
-						$pm_data["$project_value->project_name"]["hrs_locked_to_date"]="0:00";
-					}
-					$project_estimated_hrs=DB::table('phase_individual_resources')->where('project_id',$project_value->project_id)->where('ph_id','<>','8')->lists('actual_hrs');
-					$pm_data["$project_value->project_name"]["project_id"]=$project_value->project_id;
-					if(count($project_estimated_hrs)>0)
-					{
-						$pm_data["$project_value->project_name"]["project_estimated_hrs"]=$this->getminutes($project_estimated_hrs);
-					}
-					else
-					{
-						$pm_data["$project_value->project_name"]["project_estimated_hrs"]="0:00";
-					}
-					$project_end_date=DB::table('project_details')->where('project_id',$project_value->project_id)->select("p_II_live")->get();
-					$pm_data["$project_value->project_name"]["project_end_date"]=$project_end_date[0]->p_II_live;
-					$hrs_difference=str_replace(":", ".", $pm_data["$project_value->project_name"]["project_estimated_hrs"])-str_replace(":", ".", $pm_data["$project_value->project_name"]["hrs_locked_to_date"]);
-					if($hrs_difference<0)
-						$pm_data["$project_value->project_name"]["hrs_difference"]=1;
-					else
-						$pm_data["$project_value->project_name"]["hrs_difference"]=0;
-					$current_date=strtotime(date('Y-m-d'));
-					$project_end_date=strtotime($pm_data["$project_value->project_name"]["project_end_date"]);
-					if($current_date>$project_end_date)
-						$pm_data["$project_value->project_name"]["is_expired"]=1;
-					else
-						$pm_data["$project_value->project_name"]["is_expired"]=0;
-
-
-
-				}
+				$total_hrs_today=DB::table('day_times')->where('user_id',$value->user_id)
+				->where('date',$todays_date)->lists('hrs_locked');
+				$total_hrs_today=(json_decode(json_encode($total_hrs_today), true));
+				if($this->getminutes($total_hrs_today)>6)
+					$escalation_report['efficient_user_count']++;
 
 			}
-			/*echo json_encode($pm_data);
-			exit();*/
-			if(count($pm_data)>0)
-			{
-
-				echo "Hi $pm_data[pm_name],
-				<p>You are listed in ITTT as the Project Manager for the following projects:</p>
-				<p>It’s expected that you will review the below in detail and:<br>
-					a) Ensure that it matches up with your understanding of what these individuals are working on.<br>
-					b) Escalate and attend to any !Alerts below.<br></p>";
-					echo "<p>TODAY’S DATE: ".date('Y/m/d')."<br>
-					This email was sent at: ".date('H:i:s')."</p>";
-					foreach($pm_data as $key=>$value)
-					{
-						
-						if($key=='pm_name' || $key=='pm_email')
-						{	
-						}
-						else
-						{
-							echo "Project Name: $key<br>";
-							echo "Team-members that logged time today: ";
-							if(count($value['users'])>0)
-							{
-								foreach($value['users'] as $user_key=>$user_value)
-								{
-									echo "$user_value<br>";
-								}
-							}
-							else
-								echo "No Team-members logged time today against this project<br>";
-
-							echo "Total time logged TODAY(all designations): $value[hrs_locked] hours<br>";
-							if($value["user_not_filled_timesheet"]>0)
-							{
-								echo "Time-sheets missing (for today):";
-								foreach($value["user_not_filled_timesheet"] as $timesheet_value)
-									echo "$timesheet_value<br>";	
-							} 
-							echo "Estimated hours (all designations):​ $value[project_estimated_hrs] hours<br>";
-							echo "Time tracked to-date (all designations): $value[hrs_locked_to_date] hours<br>";
-							echo "Estimated project end-date: $value[project_end_date]<br>";
-							echo "<font color='red'>";
-							if($value["hrs_difference"]==1)
-								echo "!Alert: Time tracked to-date is higher than estimate!<br>";
-							if($value["is_expired"]==1)
-								echo "!Alert: Estimated project end-date has passed!<br>";
-
-							echo "</font><br><br>";
-						}
-
-					}
-					echo "Note: Estimated hours represented above do NOT incl. warranty period.";
-					echo "</p>";
-
-				}
-			}
+			
 		}
+		$total_projects=DB::table('add_projects')->where('status_id','<>','4')->where('is_deleted','0')->where('is_archived','0')->get();
+		foreach($total_projects as $key=>$value)
+		{
+			$project_name=DB::table('add_projects')->where('project_id',$value->project_id)->get();
+			$project_name=$project_name[0]->project_name;
+			$project_total_hrs=DB::table('day_times')->where('project_name',$value->project_id)->lists('hrs_locked');
+			$project_estimated_hrs=DB::table('phase_individual_resources')->where('project_id',$value->project_id)->lists('actual_hrs');
+			$project_total_hrs=(json_decode(json_encode( $project_total_hrs), true));
+			$project_estimated_hrs=(json_decode(json_encode( $project_estimated_hrs), true));
+			if($this->getminutes( $project_total_hrs)>$this->getminutes( $project_estimated_hrs))
+			{
+				$escalation_report['beyond_estimate']++;
+				array_push($escalation_report['beyond_estimate_project_list'],$project_name);
+
+			}
+			
+		}
+
+		$timesheetuser_for_today= DB::table('day_times')->distinct('user_id')->where('date',$todays_date)->select('user_id')->get();
+		$user_array=array();
+		foreach($timesheetuser_for_today as $key=>$value)
+			array_push($user_array,$value->user_id);
+		$escalation_report['timesheet_not_submitted'] = DB::table('users')->
+		whereNotIn('user_id', $user_array)->select('first_name','last_name')->get();
+
+echo "Today's date: ".date('d-m-Y')."<br><br>";
+echo "Total timesheets submitted, today: ".$escalation_report["timesheet_for_today"]."<br><br>";
+echo "How many total users on the platform: ".$escalation_report["total_user"]."<br><br>";
+echo "How many users submitted Timesheets for 6+ hours: ".$escalation_report["efficient_user_count"]."<br><br>";
+echo 'Number of projects whereby actuals have exceeded the estimate: '.$escalation_report["beyond_estimate"]."<br>";
+if($escalation_report["beyond_estimate"]>0)
+{
+	echo "Project names:<span style='display:block;margin-left:15px;'>";
+	foreach($escalation_report["beyond_estimate_project_list"] as $key=>$value)
+	{
+		$numbering=$key+1;
+ 	echo "$numbering. $value<br>";
+	}
+	echo "</span><br><br>";
+}
+
+echo "Who did NOT submit a Timesheet:<span style='display:block;margin-left:15px;'>";
+ foreach($escalation_report['timesheet_not_submitted'] as $key=>$value)
+ {
+ 	$numbering=$key+1;
+ 	echo "$numbering. $value->first_name $value->last_name<br>";
+ }
+echo "</span><b>Total: ".count($escalation_report['timesheet_not_submitted'])."<b>";
 	}
 
 

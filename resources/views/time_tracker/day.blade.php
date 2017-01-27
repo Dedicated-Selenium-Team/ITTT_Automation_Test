@@ -381,11 +381,11 @@ $("#project").on('change',function(){
       /****  Create functionality ****/
       $("#daily-add").on('click',function(e){
 
-        $("#project-day-time")[0].reset();
+        // $("#project-day-time")[0].reset();
         $('#save').val('Save Entry');
         $("#project_desig").prop('disabled',false);
         $("#project").prop('disabled',false);
-        $('#project-day-time select').removeClass('noValue');
+        // $('#project-day-time select').removeClass('noValue');
       });
 
       /********** Add and update functionality************/
@@ -564,6 +564,8 @@ $("#project").on('change',function(){
       }
     }
   });
+    $("#project-day-time")[0].reset();
+    $('#project-day-time select').removeClass('noValue');
     $('#create-project').modal('hide');
 
   }

@@ -401,7 +401,11 @@ $("#project").on('change',function(){
 
       /****  Create functionality ****/
       $("#daily-add").on('click',function(e){
-
+        if($('#create-project').hasClass('reset-form')){
+          $("#project-day-time")[0].reset();
+          $('#project-day-time select').removeClass('noValue');
+        }
+        $('#create-project').removeClass('reset-form');
         // $("#project-day-time")[0].reset();
         $('#save').val('Save Entry');
         $("#project_desig").prop('disabled',false);
@@ -588,7 +592,6 @@ $("#project").on('change',function(){
     $("#project-day-time")[0].reset();
     $('#project-day-time select').removeClass('noValue');
     $('#create-project').modal('hide');
-
   }
 });
 
@@ -624,6 +627,7 @@ $('tbody').delegate('.btn-edit', 'click', function(){
      $('#project_id').val(data.id);
      $('#save').val('Update Entry');
      $('#create-project').modal('show');
+     $('#create-project').addClass('reset-form');
    }
  });
 });

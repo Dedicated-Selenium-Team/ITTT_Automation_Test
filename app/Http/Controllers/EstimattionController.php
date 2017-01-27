@@ -18,6 +18,7 @@ use App\PlanPhaseResource;
 use App\PlanPhaseTime;
 use App\PlanProjectDetail;
 use App\TotalPlanHrs;
+use Illuminate\Support\Facades\Mail;
 
 
 use Illuminate\Http\Request;
@@ -490,110 +491,132 @@ unlink($target_dir."//".$target_file_name);
 	}
 	public function test()
 	{
-
 		$todays_date=date('Y-m-d');
-		$users=DB::table('users')->join('self_projects','users.user_id','=','self_projects.user_id')->distinct('user_id')->select('users.user_id','users.username')->get();
-		if(count($users)>0)
+		if(date('N')== 0 || date('N')== 6)
+			exit();
+		$get_all_manager=DB::table('users')->select('manager_id')->where('manager_id','>','0')->groupBy('manager_id')->lists('manager_id');
+		if(count($get_all_manager)>0)
 		{
-			foreach($users as $key=>$value)
+			
+			foreach($get_all_manager as $key=>$value)
 			{
-				$user_data=array();
-				$get_timesheet_data=DB::table('users')->join('day_times','users.user_id','=','day_times.user_id')->join('add_projects','day_times.project_name','=','add_projects.project_id')->join('project_designations','project_designations.d_id','=','day_times.d_id')->select('users.username','users.first_name','users.last_name','add_projects.project_name','day_times.comments','day_times.d_id','day_times.hrs_locked','add_projects.project_id','project_designations.d_name')->where('day_times.date',$todays_date)->where('day_times.user_id',$value->user_id)->get();
-				if(count($get_timesheet_data)>0)
+				$manager_data=array();
+				
+				$manager_detail=DB::table('users')->where('user_id',$value)->get();
+				$manager_name=$manager_detail[0]->first_name." ".$manager_detail[0]->last_name;
+				$manager_data["$manager_name"]=array();
+				$get_all_dr=DB::table('users')->select('user_id')->where('manager_id',$value)->lists('user_id');
+				$dr_names=array();
+				foreach($get_all_dr as $all_dr_key=>$all_dr_value)
 				{
-					$name=$get_timesheet_data[0]->first_name." ".$get_timesheet_data[0]->last_name;
-					$user_data['name']=$name;
-					$total_hrs_today=DB::table('day_times')->where('user_id',$value->user_id)
-					->where('date',$todays_date)->lists('hrs_locked');
-					$total_hrs_today=(json_decode(json_encode($total_hrs_today), true));
-					$user_data['total_hrs_today']=$this->getminutes($total_hrs_today); 
-					$last_updated=DB::table('day_times')->where('user_id',$value->user_id)
-					->where('date',$todays_date)->select('updated_at')->latest()->first();
-					$user_data['last_updated']=$last_updated->updated_at;
-					$activity=array();
-					$user_data['user_email']=$value->username;
-					$user_data['todays_activity']=array();
-					foreach($get_timesheet_data as $data=>$data_value)
+					$user_data=array();
+					$dr_detail=DB::table('users')->where('user_id',$all_dr_value)->get();
+					$get_timesheet_data=DB::table('users')->join('day_times','users.user_id','=','day_times.user_id')->join('add_projects','day_times.project_name','=','add_projects.project_id')->join('project_designations','project_designations.d_id','=','day_times.d_id')->select('users.username','users.first_name','users.last_name','add_projects.project_name','day_times.comments','day_times.d_id','day_times.hrs_locked','add_projects.project_id','project_designations.d_name')->where('day_times.date',$todays_date)->where('day_times.user_id',$all_dr_value)->get();
+					if(count($get_timesheet_data)>=0)
 					{
 
-						$tmp=array();
-						$project_id=$data_value->project_id;
-						$designation_id=$data_value->d_id;
+						$name=$dr_detail[0]->first_name." ".$dr_detail[0]->last_name;
+						$user_data['name']=$name;
+						array_push($dr_names, $name);
+						$total_hrs_today=DB::table('day_times')->where('user_id',$all_dr_value)
+						->where('date',$todays_date)->lists('hrs_locked');
+						$total_hrs_today=(json_decode(json_encode($total_hrs_today), true));
+						$user_data['total_hrs_today']=$this->getminutes($total_hrs_today); 
+						$last_updated=DB::table('day_times')->where('user_id',$all_dr_value)
+						->where('date',$todays_date)->select('updated_at')->latest()->first();
+						if(count($last_updated)==0)
+							$user_data['last_updated']="Not updated today";
+						else
+							$user_data['last_updated']=$last_updated->updated_at;
+						$activity=array();
+						$user_data['user_email']=$dr_detail[0]->username;
+						$user_data['todays_activity']=array();
+						foreach($get_timesheet_data as $data=>$data_value)
+						{
 
-						$total_estimated_hrs=DB::table('phase_individual_resources')->where('project_id',$project_id)->where('d_id',$designation_id)->SUM('actual_hrs');
-						$total_hrs_to_date=DB::table('day_times')->where('user_id',$value->user_id)
-						->where('project_name',$project_id)->where('d_id',$designation_id)->lists('hrs_locked');
+							$tmp=array();
+							$project_id=$data_value->project_id;
+							$designation_id=$data_value->d_id;
 
-						$total_hrs_to_date=(json_decode(json_encode($total_hrs_to_date), true));
-						$total_hrs_to_date=$this->getminutes($total_hrs_to_date);
+							$total_estimated_hrs=DB::table('phase_individual_resources')->where('project_id',$project_id)->where('d_id',$designation_id)->SUM('actual_hrs');
+							$total_hrs_to_date=DB::table('day_times')->where('user_id',$all_dr_value)
+							->where('project_name',$project_id)->where('d_id',$designation_id)->lists('hrs_locked');
 
-						$tmp['project_name']=$data_value->project_name;
-						$tmp['description']=$data_value->comments;
-						$tmp['hrs_locked']=$data_value->hrs_locked;
-						$tmp['total_estimated_hrs']=$total_estimated_hrs;
-						$tmp['total_hrs_to_date']=$total_hrs_to_date;
-						$tmp['designation']=$data_value->d_name;
+							$total_hrs_to_date=(json_decode(json_encode($total_hrs_to_date), true));
+							$total_hrs_to_date=$this->getminutes($total_hrs_to_date);
+							$project_end_date=DB::table('project_details')->where('project_id',$project_id)->select('p_II_live')->get();
+							if(count($project_end_date)>0)
+								$tmp['project_end_date']=$project_end_date[0]->p_II_live;
+							else
+								$tmp['project_end_date']="not specified";
+							$tmp['project_name']=$data_value->project_name;
+							$tmp['description']=$data_value->comments;
+							$tmp['hrs_locked']=$data_value->hrs_locked;
+							$tmp['total_estimated_hrs']=$total_estimated_hrs;
+							$tmp['total_hrs_to_date']=$total_hrs_to_date;
+							$tmp['designation']=$data_value->d_name;
                  //$todays_activity=array();
-						array_push($user_data['todays_activity'],$tmp);
-					}
-					$_POST['timesheetdata']['name']= $user_data['name'];
-					$_POST['timesheetdata']=$user_data;
-					$_POST['timesheetdata']['todays_date']=$todays_date;
-					$_POST['timesheetdata']['user_email']=$user_data['user_email'];
-					$repeated_task=array();
-					foreach($user_data['todays_activity'] as $key=>$value)
-					{
-						if(!array_key_exists($value['project_name']."_".$value['designation'],$repeated_task))
-						{
-							$repeated_task[$value['project_name']."_".$value['designation']]=array();
-						}
-						array_push($repeated_task[$value['project_name']."_".$value['designation']],$key);
-					}
-
-					foreach($repeated_task as $key=>$value)
-					{
-
-						foreach($value as $data_key=>$key_value)
-						{
-							
-							$user_data['todays_activity'][$value[0]]['description']=json_encode($user_data['todays_activity'][$value[0]]['description']);
-							$user_data['todays_activity'][$value[0]]['description']=str_replace('\r\n', '<br>', $user_data['todays_activity'][$value[0]]['description']);
-							exit();
-							if($data_key>0)
-							{
-								$task_key=$value[0];
-								$user_data['todays_activity'][$task_key]['description']
-								=$user_data['todays_activity'][$task_key]['description']."  ".$user_data['todays_activity'][$key_value]['description'];
-								$user_data['todays_activity'][$task_key]['hrs_locked']=$this->getminutes(array($user_data['todays_activity'][$task_key]['hrs_locked'],$user_data['todays_activity'][$key_value]['hrs_locked']));
-								unset($user_data['todays_activity'][$key_value]);
-
-							}
-
-
+							array_push($user_data['todays_activity'],$tmp);
 						}
 
 
 					}
+					array_push($manager_data["$manager_name"], $user_data);
 
-
-					Mail::send('cron/dailyupdate', ['user_data'=>$user_data], function ($message)
-					{
-
-						$message->from('nilesh.vidhate.prdxn@gmail.com', $_POST['timesheetdata']["name"]);
-
-						$message->to('chetan.kadam.prdxn@gmail.com');
-						$message->subject( $_POST['timesheetdata']['name']." | Daily Update (ITTT Report)");
-						$message->replyTo($_POST['timesheetdata']['user_email'], $name = $_POST['timesheetdata']["name"]);
-
-
-
-					});
 				}
-			}
+                //foreach()
+				$_POST['timesheetdata']["name"]= $manager_detail[0]->first_name." ".$manager_detail[0]->last_name;
+                //$_POST['timesheetdata']=$manager_data["$value"];
+				$_POST['timesheetdata']['todays_date']=$todays_date;
+				$_POST['timesheetdata']['user_email']=$manager_detail[0]->username;
+				/*echo json_encode($manager_data);
+				exit();*/
+				foreach ($manager_data as $manager_key => $manager_value) {
+					echo "<br>**********<br><br>";
+	echo "Hi $manager_key,<br>";
+	echo "Your are listed in the PRDXN Org Chart as Manager for the following people:<br>";
+	
+	foreach($dr_names as $dr_names_key=>$dr_names_value)
+		echo "$dr_names_value<br>";
+}
+echo "It’s expected that you will review the below in detail and:<br>
+a) Ensure that it matches up with your understanding of what these individuals are working on.<br>
+b) Escalate and attend to any !Alerts below.<br><br>";
+echo "TODAY’S DATE: ".date('m/d/Y')."<br>
+This email was sent at: ".date('H:i:s');
+foreach($manager_value as $manager_value_key=>$manager_value_value)
+{
 
-		}
+	echo "Name: ".$manager_value_value["name"];
+	if(count($manager_value_value["todays_activity"])>0)
+		echo "<br>Designation:".$manager_value_value["todays_activity"][0]["designation"];
+	echo "<br>Most recent timesheet entry:".$manager_value_value["last_updated"];
+	echo "<br>Total hours tracked in today’s time-sheet: $manager_value_value[total_hrs_today] hours (out of 8.5 hours)<br><br>";
+	if(count($manager_value_value["todays_activity"])>0)
+	{
+	foreach ($manager_value_value["todays_activity"] as $manager_value_value_key => $manager_value_value_value) {
+		//echo json_encode($manager_value_value_value);
+		echo "PROJECT NAME: ".$manager_value_value_value["project_name"]."<br>";
+		echo "Time tracked today: $manager_value_value_value[hrs_locked] hours<br>";
+		echo "Today's task description: $manager_value_value_value[description]<br>";
+		echo "Estimated hours for this designation:​ $manager_value_value_value[total_estimated_hrs] hours<br>";
+		echo "Time tracked to-date (individual only): $manager_value_value_value[total_hrs_to_date] hours<br>";
+		echo "Estimated project end-date:".$manager_value_value_value['project_end_date']."<br>";	
+if($manager_value_value_value['total_hrs_to_date']>$manager_value_value_value['total_estimated_hrs'])
+	echo "<font color='red'>!Alert: Time tracked to-date is higher than estimate!</font><br>";
 
-	}
+		
+/*"todays_activity":[{"project_name":"SNAPAMEAL","description":"iklfsghbdfsvgziulh","hrs_locked":"5.00","total_estimated_hrs":"100","total_hrs_to_date":"11:00\n","designation":"FE_Developer"}]}
+*/
+}
+echo "Timesheet not filled<br>";
+}
 
 }
+}
+}
+}
+}
+
+
 

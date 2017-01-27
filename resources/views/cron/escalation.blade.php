@@ -6,10 +6,9 @@
 <body>
 ITTT Escalation Report<br><br>
 <?php
-echo "Today's date: ".date('d-m-Y')."<br><br>";
+echo "Today's date: ".date('m/d/Y')."<br><br>";
 echo "Total timesheets submitted, today: ".$escalation_report["timesheet_for_today"]."<br><br>";
 echo "How many total users on the platform: ".$escalation_report["total_user"]."<br><br>";
-echo "How many users submitted Timesheets for 6+ hours: ".$escalation_report["efficient_user_count"]."<br><br>";
 echo 'Number of projects whereby actuals have exceeded the estimate: '.$escalation_report["beyond_estimate"]."<br>";
 if($escalation_report["beyond_estimate"]>0)
 {

@@ -573,7 +573,7 @@ main .wrapper  {
   opacity: 0;
 }
 
-.has-children > ul { padding: 4% 7.25%; }
+.has-children > ul { padding: 4% 7%; }
 
 .has-children .Lead { margin-bottom: 0 ; }
 
@@ -585,9 +585,17 @@ main .wrapper  {
   width: 0;
 }
 
-.has-children ul table th:nth-of-type(3) { width: 11%; }
+.has-children ul table th:nth-of-type(3),
+.pre-table-body th:nth-of-type(3),
+.post-table-body th:nth-of-type(3) { width: 10%; }
 
-.has-children ul table th:nth-of-type(2) { width: 10%; }
+.has-children ul table th:nth-of-type(6),
+.pre-table-body th:nth-of-type(6),
+.post-table-body th:nth-of-type(6) { width: 9%; }
+
+.has-children ul table th:nth-of-type(2),
+.pre-table-body th:nth-of-type(2),
+.post-table-body th:nth-of-type(2) { width: 10%; }
 
 /******Code for toggle in project designation End's here *********/
 
@@ -1276,7 +1284,7 @@ table thead th {
 .table-body thead,
 .post-table-body thead { background-color: #fff; }
 
-.designation-detail .before-assign { width: 83%; }
+.designation-detail .before-assign { width: 86%; }
 
 @-moz-document url-prefix() { 
   .designation-detail .before-assign { width: 75%; }
@@ -2210,7 +2218,15 @@ table thead th {
 
   .timesheet-content .table-timesheet-week { width: 100%; }
 
-  .week-table .head-row th a { padding: 14px 12% 13px }
+  .week-table .head-row th:not(:first-of-type) { width: 10%; }
+
+  .week-table .head-row th:first-of-type { width: 20%; }
+
+  .week-table .head-row th:nth-of-type(4) { width: 13%; }
+
+  .week-table .head-row th a { padding: 14px 14% 13px; }
+
+  .week-table .head-row th:last-of-type { padding: 1%; }
 
   .total-hrs .design-wrap-container { width: 80%; }
 

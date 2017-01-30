@@ -18315,6 +18315,7 @@ Stack trace:
 #0 {main}  
 >>>>>>> 2a8562f23d624eb06e728c82091948bf874cc078
 <<<<<<< HEAD
+<<<<<<< HEAD
 [2017-01-23 06:58:45] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION)' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/Login.php:112
 Stack trace:
 #0 {main}  
@@ -18322,6 +18323,9 @@ Stack trace:
 Stack trace:
 #0 {main}  
 [2017-01-23 06:59:27] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION)' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/Login.php:113
+=======
+[2017-01-16 08:27:55] production.ERROR: exception 'ErrorException' with message 'Creating default object from empty value' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php:283
+>>>>>>> structure-check-#101
 Stack trace:
 #0 {main}  
 <<<<<<< HEAD
@@ -19400,6 +19404,7 @@ Stack trace:
 #45 {main}  
 [2017-01-24 06:32:29] production.ERROR: exception 'ErrorException' with message 'Undefined offset: 0' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php:35
 Stack trace:
+<<<<<<< HEAD
 #0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php(35): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined offse...', '/var/www/html/V...', 35, Array)
 #1 [internal function]: App\Http\Controllers\TimeTrackerController->index('project_info')
 #2 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(256): call_user_func_array(Array, Array)
@@ -24895,3 +24900,7 @@ Stack trace:
 #16 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #17 {main}  
 >>>>>>> dailyupdate
+=======
+#0 {main}  
+>>>>>>> 6640f164e4428e03c4e0c6d4fc9698fb3ae707b9
+>>>>>>> structure-check-#101

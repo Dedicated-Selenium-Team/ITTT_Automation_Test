@@ -403,6 +403,9 @@ $("#project").on('change',function(){
       $("#daily-add").on('click',function(e){
         if($('#create-project').hasClass('reset-form')){
           $("#project-day-time")[0].reset();
+          $("#project_desig option").remove();
+          var options='<option value="0">Please Select Designation</option><option value="1">PM</option><option value="2">Designer</option><option value="3">FE_Developer</option><option value="4">BE_Developer</option><option value="5">Tester</option><option value="6">Tech Lead</option>';
+          $("#project_desig").append(options);
           $('#project-day-time select').removeClass('noValue');
         }
         $('#create-project').removeClass('reset-form');

@@ -6,6 +6,7 @@ use Illuminate\Console\Command;
 use DB;
 use Illuminate\Support\Facades\Mail;
 use Log;
+use App\timesheet_not_filled;
 
 class DailyUpdate extends Command
 {
@@ -55,18 +56,22 @@ class DailyUpdate extends Command
     public function handle()
     {
         $todays_date=date('Y-m-d');
-        if(date('N')== 0 || date('N')== 6)
+        if(date('N')== 7 || date('N')== 6)
             exit();
         $get_all_manager=DB::table('users')->select('manager_id')->where('manager_id','>','0')->groupBy('manager_id')->lists('manager_id');
         if(count($get_all_manager)>0)
         {
-            $manager_data=array();
+
             foreach($get_all_manager as $key=>$value)
             {
-                $manager_data["$value"]=array();
+                $manager_data=array();
+                
                 $manager_detail=DB::table('users')->where('user_id',$value)->get();
-                $get_all_dr=DB::table('users')->select('user_id')->where('manager_id',$value)->lists('user_id');
+                $manager_name=$manager_detail[0]->first_name." ".$manager_detail[0]->last_name;
 
+                $manager_data["$manager_name"]=array();
+                $get_all_dr=DB::table('users')->select('user_id')->where('manager_id',$value)->lists('user_id');
+                $dr_names=array();
                 foreach($get_all_dr as $all_dr_key=>$all_dr_value)
                 {
                     $user_data=array();
@@ -74,9 +79,27 @@ class DailyUpdate extends Command
                     $get_timesheet_data=DB::table('users')->join('day_times','users.user_id','=','day_times.user_id')->join('add_projects','day_times.project_name','=','add_projects.project_id')->join('project_designations','project_designations.d_id','=','day_times.d_id')->select('users.username','users.first_name','users.last_name','add_projects.project_name','day_times.comments','day_times.d_id','day_times.hrs_locked','add_projects.project_id','project_designations.d_name')->where('day_times.date',$todays_date)->where('day_times.user_id',$all_dr_value)->get();
                     if(count($get_timesheet_data)>=0)
                     {
+                        if(count($get_timesheet_data)==0)
+                        {
+                            $check_timesheet_not_filled=DB::table('timesheet_not_filled')->where('user_id',$all_dr_value)->get();
+                            $timesheet_not_filled=new timesheet_not_filled;
+                            if(count($check_timesheet_not_filled)>0)
+                            {
+                                $timesheet_not_filled->where('user_id', $all_dr_value)->increment('count');
+                                
+                                
+                            }
+                            else
+                            {
+                                $timesheet_not_filled->user_id=$all_dr_value;
+                                $timesheet_not_filled->count=1;
+                                $timesheet_not_filled->save();
+                            }
+                        }
 
                         $name=$dr_detail[0]->first_name." ".$dr_detail[0]->last_name;
                         $user_data['name']=$name;
+                        array_push($dr_names, $name);
                         $total_hrs_today=DB::table('day_times')->where('user_id',$all_dr_value)
                         ->where('date',$todays_date)->lists('hrs_locked');
                         $total_hrs_today=(json_decode(json_encode($total_hrs_today), true));
@@ -103,7 +126,11 @@ class DailyUpdate extends Command
 
                             $total_hrs_to_date=(json_decode(json_encode($total_hrs_to_date), true));
                             $total_hrs_to_date=$this->getminutes($total_hrs_to_date);
-
+                            $project_end_date=DB::table('project_details')->where('project_id',$project_id)->select('p_II_live')->get();
+                            if(count($project_end_date)>0)
+                                $tmp['project_end_date']=$project_end_date[0]->p_II_live;
+                            else
+                                $tmp['project_end_date']="not specified";
                             $tmp['project_name']=$data_value->project_name;
                             $tmp['description']=$data_value->comments;
                             $tmp['hrs_locked']=$data_value->hrs_locked;
@@ -113,40 +140,40 @@ class DailyUpdate extends Command
                  //$todays_activity=array();
                             array_push($user_data['todays_activity'],$tmp);
                         }
-                        $_POST['timesheetdata']['name']= $user_data['name'];
-                        $_POST['timesheetdata']=$user_data;
-                        $_POST['timesheetdata']['todays_date']=$todays_date;
-                        $_POST['timesheetdata']['user_email']=$user_data['user_email'];
 
 
                     }
-                    array_push($manager_data["$value"], $user_data);
+
+                    array_push($manager_data["$manager_name"], $user_data);
 
                 }
                 //foreach()
-                $_POST['timesheetdata']['name']= $manager_detail[0]->first_name." ".$manager_detail[0]->last_name;
-                $_POST['timesheetdata']=$manager_data["$value"];
+                $_POST['timesheetdata']["name"]= $manager_data["$manager_name"];
+                
+                $_POST['timesheetdata']['name']=$manager_name;
                 $_POST['timesheetdata']['todays_date']=$todays_date;
-                $_POST['timesheetdata']['user_email']=$manager_detail[0]->username;
+                $_POST['timesheetdata']['user_email']=  $manager_detail[0]->username;
 
-                Mail::send('cron/dailyupdate', ['user_data'=>$manager_data["$value"]], function ($message)
+                Mail::send('cron/dailyupdate', ['manager_data'=>$manager_data,"dr_names"=>$dr_names], function ($message)
                 {
 
                     $message->from('nilesh.vidhate.prdxn@gmail.com', $_POST['timesheetdata']["name"]);
 
                     $message->to('vrushali.shelar.prdxn@gmail.com');
-                    $message->subject( $_POST['timesheetdata']['name']." | Daily Update (ITTT Report)");
-                    $message->replyTo($_POST['timesheetdata']['user_email'], $name = $_POST['timesheetdata']["name"]);
-
-
+                    $message->subject("Direct Report Activities Update for Manager (".$_POST['timesheetdata']['name']." )-ITTT");
+                   
 
                 });
+                
+
             }
-        }
-        
-    }
 
 }
+
+
+        }
+
+    }
 
 
 

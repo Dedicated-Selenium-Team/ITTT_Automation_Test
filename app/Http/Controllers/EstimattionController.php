@@ -12,7 +12,7 @@ use App\PhaseTime;
 use App\ProjectDesignation;
 use App\ProjectDetail;
 use App\TotalEstimateHrs;
-
+use App\timesheet_not_filled;
 
 use App\PlanPhaseResource;
 use App\PlanPhaseTime;
@@ -492,18 +492,19 @@ unlink($target_dir."//".$target_file_name);
 	public function test()
 	{
 		$todays_date=date('Y-m-d');
-		if(date('N')== 0 || date('N')== 6)
+		if(date('N')== 7 || date('N')== 6)
 			exit();
 		$get_all_manager=DB::table('users')->select('manager_id')->where('manager_id','>','0')->groupBy('manager_id')->lists('manager_id');
 		if(count($get_all_manager)>0)
 		{
-			
+
 			foreach($get_all_manager as $key=>$value)
 			{
 				$manager_data=array();
-				
+
 				$manager_detail=DB::table('users')->where('user_id',$value)->get();
 				$manager_name=$manager_detail[0]->first_name." ".$manager_detail[0]->last_name;
+
 				$manager_data["$manager_name"]=array();
 				$get_all_dr=DB::table('users')->select('user_id')->where('manager_id',$value)->lists('user_id');
 				$dr_names=array();
@@ -514,6 +515,23 @@ unlink($target_dir."//".$target_file_name);
 					$get_timesheet_data=DB::table('users')->join('day_times','users.user_id','=','day_times.user_id')->join('add_projects','day_times.project_name','=','add_projects.project_id')->join('project_designations','project_designations.d_id','=','day_times.d_id')->select('users.username','users.first_name','users.last_name','add_projects.project_name','day_times.comments','day_times.d_id','day_times.hrs_locked','add_projects.project_id','project_designations.d_name')->where('day_times.date',$todays_date)->where('day_times.user_id',$all_dr_value)->get();
 					if(count($get_timesheet_data)>=0)
 					{
+						if(count($get_timesheet_data)==0)
+						{
+							$check_timesheet_not_filled=DB::table('timesheet_not_filled')->where('user_id',$all_dr_value)->get();
+							$timesheet_not_filled=new timesheet_not_filled;
+							if(count($check_timesheet_not_filled)>0)
+							{
+								$timesheet_not_filled->where('user_id', $all_dr_value)->increment('count');
+
+
+							}
+							else
+							{
+								$timesheet_not_filled->user_id=$all_dr_value;
+								$timesheet_not_filled->count=1;
+								$timesheet_not_filled->save();
+							}
+						}
 
 						$name=$dr_detail[0]->first_name." ".$dr_detail[0]->last_name;
 						$user_data['name']=$name;
@@ -561,62 +579,15 @@ unlink($target_dir."//".$target_file_name);
 
 
 					}
+
 					array_push($manager_data["$manager_name"], $user_data);
 
 				}
                 //foreach()
-				$_POST['timesheetdata']["name"]= $manager_detail[0]->first_name." ".$manager_detail[0]->last_name;
-                //$_POST['timesheetdata']=$manager_data["$value"];
-				$_POST['timesheetdata']['todays_date']=$todays_date;
-				$_POST['timesheetdata']['user_email']=$manager_detail[0]->username;
-				/*echo json_encode($manager_data);
-				exit();*/
-				foreach ($manager_data as $manager_key => $manager_value) {
-					echo "<br>**********<br><br>";
-	echo "Hi $manager_key,<br>";
-	echo "Your are listed in the PRDXN Org Chart as Manager for the following people:<br>";
-	
-	foreach($dr_names as $dr_names_key=>$dr_names_value)
-		echo "$dr_names_value<br>";
-}
-echo "It’s expected that you will review the below in detail and:<br>
-a) Ensure that it matches up with your understanding of what these individuals are working on.<br>
-b) Escalate and attend to any !Alerts below.<br><br>";
-echo "TODAY’S DATE: ".date('m/d/Y')."<br>
-This email was sent at: ".date('H:i:s');
-foreach($manager_value as $manager_value_key=>$manager_value_value)
-{
-
-	echo "Name: ".$manager_value_value["name"];
-	if(count($manager_value_value["todays_activity"])>0)
-		echo "<br>Designation:".$manager_value_value["todays_activity"][0]["designation"];
-	echo "<br>Most recent timesheet entry:".$manager_value_value["last_updated"];
-	echo "<br>Total hours tracked in today’s time-sheet: $manager_value_value[total_hrs_today] hours (out of 8.5 hours)<br><br>";
-	if(count($manager_value_value["todays_activity"])>0)
-	{
-	foreach ($manager_value_value["todays_activity"] as $manager_value_value_key => $manager_value_value_value) {
-		//echo json_encode($manager_value_value_value);
-		echo "PROJECT NAME: ".$manager_value_value_value["project_name"]."<br>";
-		echo "Time tracked today: $manager_value_value_value[hrs_locked] hours<br>";
-		echo "Today's task description: $manager_value_value_value[description]<br>";
-		echo "Estimated hours for this designation:​ $manager_value_value_value[total_estimated_hrs] hours<br>";
-		echo "Time tracked to-date (individual only): $manager_value_value_value[total_hrs_to_date] hours<br>";
-		echo "Estimated project end-date:".$manager_value_value_value['project_end_date']."<br>";	
-if($manager_value_value_value['total_hrs_to_date']>$manager_value_value_value['total_estimated_hrs'])
-	echo "<font color='red'>!Alert: Time tracked to-date is higher than estimate!</font><br>";
-
-		
-/*"todays_activity":[{"project_name":"SNAPAMEAL","description":"iklfsghbdfsvgziulh","hrs_locked":"5.00","total_estimated_hrs":"100","total_hrs_to_date":"11:00\n","designation":"FE_Developer"}]}
-*/
-}
-echo "Timesheet not filled<br>";
-}
+			
+			}
+		}
+	}
 
 }
-}
-}
-}
-}
-
-
 

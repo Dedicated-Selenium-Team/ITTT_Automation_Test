@@ -594,6 +594,9 @@ $("#project").on('change',function(){
   });
     $("#project-day-time")[0].reset();
     $('#project-day-time select').removeClass('noValue');
+    $("#project_desig option").remove();
+    var options='<option value="0">Please Select Designation</option><option value="1">PM</option><option value="2">Designer</option><option value="3">FE_Developer</option><option value="4">BE_Developer</option><option value="5">Tester</option><option value="6">Tech Lead</option>';
+    $("#project_desig").append(options);
     $('#create-project').modal('hide');
   }
 });

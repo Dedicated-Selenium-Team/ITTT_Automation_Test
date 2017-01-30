@@ -12,12 +12,13 @@ use App\PhaseTime;
 use App\ProjectDesignation;
 use App\ProjectDetail;
 use App\TotalEstimateHrs;
-
+use App\timesheet_not_filled;
 
 use App\PlanPhaseResource;
 use App\PlanPhaseTime;
 use App\PlanProjectDetail;
 use App\TotalPlanHrs;
+use Illuminate\Support\Facades\Mail;
 
 
 use Illuminate\Http\Request;
@@ -491,100 +492,100 @@ unlink($target_dir."//".$target_file_name);
 	}
 	public function test()
 	{
-    	$todays_date=date('Y-m-d');
-		if(date('N')== 0 || date('N')== 6)
+		$todays_date=date('Y-m-d');
+		if(date('N')== 7 || date('N')== 6)
 			exit();
-		$escalation_report=array();
-		$escalation_report['timesheet_for_today']=DB::table('day_times')->where('date',$todays_date)->distinct('user_id')->count('user_id');
-		$escalation_report['total_user']=DB::table('users')->count();
-		$escalation_report['efficient_user_count']=0;
-		$escalation_report['beyond_estimate']=0;
-		$escalation_report['beyond_estimate_project_list']=array();
-		if($escalation_report['timesheet_for_today']>0)
+		$get_all_manager=DB::table('users')->select('manager_id')->where('manager_id','>','0')->groupBy('manager_id')->lists('manager_id');
+		if(count($get_all_manager)>0)
 		{
-			$todays_timesheet_user=DB::table('day_times')->where('date',$todays_date)->groupBy('user_id')->select('user_id')->get();
-			foreach($todays_timesheet_user as $key=>$value)
+
+			foreach($get_all_manager as $key=>$value)
 			{
-				$total_hrs_today=DB::table('day_times')->where('user_id',$value->user_id)
-				->where('date',$todays_date)->lists('hrs_locked');
-				$total_hrs_today=(json_decode(json_encode($total_hrs_today), true));
-				if($this->getminutes($total_hrs_today)>6)
-					$escalation_report['efficient_user_count']++;
+				$manager_data=array();
 
-			}
+				$manager_detail=DB::table('users')->where('user_id',$value)->get();
+				$manager_name=$manager_detail[0]->first_name." ".$manager_detail[0]->last_name;
+
+				$manager_data["$manager_name"]=array();
+				$get_all_dr=DB::table('users')->select('user_id')->where('manager_id',$value)->lists('user_id');
+				$dr_names=array();
+				foreach($get_all_dr as $all_dr_key=>$all_dr_value)
+				{
+					$user_data=array();
+					$dr_detail=DB::table('users')->where('user_id',$all_dr_value)->get();
+					$get_timesheet_data=DB::table('users')->join('day_times','users.user_id','=','day_times.user_id')->join('add_projects','day_times.project_name','=','add_projects.project_id')->join('project_designations','project_designations.d_id','=','day_times.d_id')->select('users.username','users.first_name','users.last_name','add_projects.project_name','day_times.comments','day_times.d_id','day_times.hrs_locked','add_projects.project_id','project_designations.d_name')->where('day_times.date',$todays_date)->where('day_times.user_id',$all_dr_value)->get();
+					if(count($get_timesheet_data)>=0)
+					{
+						if(count($get_timesheet_data)==0)
+						{
+							$check_timesheet_not_filled=DB::table('timesheet_not_filled')->where('user_id',$all_dr_value)->get();
+							$timesheet_not_filled=new timesheet_not_filled;
+							if(count($check_timesheet_not_filled)>0)
+							{
+								$timesheet_not_filled->where('user_id', $all_dr_value)->increment('count');
+
+
+							}
+							else
+							{
+								$timesheet_not_filled->user_id=$all_dr_value;
+								$timesheet_not_filled->count=1;
+								$timesheet_not_filled->save();
+							}
+						}
+
+						$name=$dr_detail[0]->first_name." ".$dr_detail[0]->last_name;
+						$user_data['name']=$name;
+						array_push($dr_names, $name);
+						$total_hrs_today=DB::table('day_times')->where('user_id',$all_dr_value)
+						->where('date',$todays_date)->lists('hrs_locked');
+						$total_hrs_today=(json_decode(json_encode($total_hrs_today), true));
+						$user_data['total_hrs_today']=$this->getminutes($total_hrs_today); 
+						$last_updated=DB::table('day_times')->where('user_id',$all_dr_value)
+						->where('date',$todays_date)->select('updated_at')->latest()->first();
+						if(count($last_updated)==0)
+							$user_data['last_updated']="Not updated today";
+						else
+							$user_data['last_updated']=$last_updated->updated_at;
+						$activity=array();
+						$user_data['user_email']=$dr_detail[0]->username;
+						$user_data['todays_activity']=array();
+						foreach($get_timesheet_data as $data=>$data_value)
+						{
+
+							$tmp=array();
+							$project_id=$data_value->project_id;
+							$designation_id=$data_value->d_id;
+
+							$total_estimated_hrs=DB::table('phase_individual_resources')->where('project_id',$project_id)->where('d_id',$designation_id)->SUM('actual_hrs');
+							$total_hrs_to_date=DB::table('day_times')->where('user_id',$all_dr_value)
+							->where('project_name',$project_id)->where('d_id',$designation_id)->lists('hrs_locked');
+
+							$total_hrs_to_date=(json_decode(json_encode($total_hrs_to_date), true));
+							$total_hrs_to_date=$this->getminutes($total_hrs_to_date);
+							$project_end_date=DB::table('project_details')->where('project_id',$project_id)->select('p_II_live')->get();
+							if(count($project_end_date)>0)
+								$tmp['project_end_date']=$project_end_date[0]->p_II_live;
+							else
+								$tmp['project_end_date']="not specified";
+							$tmp['project_name']=$data_value->project_name;
+							$tmp['description']=$data_value->comments;
+							$tmp['hrs_locked']=$data_value->hrs_locked;
+							$tmp['total_estimated_hrs']=$total_estimated_hrs;
+							$tmp['total_hrs_to_date']=$total_hrs_to_date;
+							$tmp['designation']=$data_value->d_name;
+                 //$todays_activity=array();
+							array_push($user_data['todays_activity'],$tmp);
+						}
+
+
+					}
+
+					array_push($manager_data["$manager_name"], $user_data);
+
+				}
+                //foreach()
 			
-		}
-		$total_projects=DB::table('add_projects')->where('status_id','<>','4')->where('is_deleted','0')->where('is_archived','0')->get();
-		foreach($total_projects as $key=>$value)
-		{
-			$project_name=DB::table('add_projects')->where('project_id',$value->project_id)->get();
-			$project_name=$project_name[0]->project_name;
-			$project_total_hrs=DB::table('day_times')->where('project_name',$value->project_id)->lists('hrs_locked');
-			$project_estimated_hrs=DB::table('phase_individual_resources')->where('project_id',$value->project_id)->lists('actual_hrs');
-			$project_total_hrs=(json_decode(json_encode( $project_total_hrs), true));
-			$project_estimated_hrs=(json_decode(json_encode( $project_estimated_hrs), true));
-			if($this->getminutes( $project_total_hrs)>$this->getminutes( $project_estimated_hrs))
-			{
-				$escalation_report['beyond_estimate']++;
-				array_push($escalation_report['beyond_estimate_project_list'],$project_name);
-
 			}
-			
 		}
-
-		$timesheetuser_for_today= DB::table('day_times')->distinct('user_id')->where('date',$todays_date)->select('user_id')->get();
-		$user_array=array();
-		foreach($timesheetuser_for_today as $key=>$value)
-			array_push($user_array,$value->user_id);
-		$escalation_report['timesheet_not_submitted'] = DB::table('users')->
-		whereNotIn('user_id', $user_array)->select('first_name','last_name')->get();
-
-echo "Today's date: ".date('d-m-Y')."<br><br>";
-echo "Total timesheets submitted, today: ".$escalation_report["timesheet_for_today"]."<br><br>";
-echo "How many total users on the platform: ".$escalation_report["total_user"]."<br><br>";
-echo "How many users submitted Timesheets for 6+ hours: ".$escalation_report["efficient_user_count"]."<br><br>";
-echo 'Number of projects whereby actuals have exceeded the estimate: '.$escalation_report["beyond_estimate"]."<br>";
-if($escalation_report["beyond_estimate"]>0)
-{
-	echo "Project names:<span style='display:block;margin-left:15px;'>";
-	foreach($escalation_report["beyond_estimate_project_list"] as $key=>$value)
-	{
-		$numbering=$key+1;
- 	echo "$numbering. $value<br>";
 	}
-	echo "</span><br><br>";
-}
-
-echo "Who did NOT submit a Timesheet:<span style='display:block;margin-left:15px;'>";
- foreach($escalation_report['timesheet_not_submitted'] as $key=>$value)
- {
- 	$numbering=$key+1;
- 	echo "$numbering. $value->first_name $value->last_name<br>";
- }
-echo "</span><b>Total: ".count($escalation_report['timesheet_not_submitted'])."<b>";
-	}
-
-
-/*It’s expected that you will review the below in detail and:
-a) Ensure that it matches up with your understanding of what these individuals are working on.
-b) Escalate and attend to any !Alerts below.
-
-TODAY’S DATE: xx/xx/xx
-This email was sent at: Time
-
-Project Name: xxx
-Team-members that logged time today: [List names]
-Total time logged today (all designations): x hours
-Time-sheets missing (for today): [List names]
-Estimated hours (all designations):​ x hours​
-Time tracked to-date (all designations): x hours
-Estimated project end-date: Date
-!Alert: Time tracked to-date is higher than estimate!
-!Alert: Estimated project end-date has passed!
-!Alert: Your estimated project end-date is within 10-15 working days from today (at min. 80 working hours for 1 resource). Please review your estimated hours (all designations) vs. time tracked to-date (all designations) in consideration of the timeline remaining/activities still pending on this project.!
-
-(Repeat same format as above for all other projects being managed by this PM)
-
-Note: Estimated hours represented above do NOT incl. warranty period.
-
-*/

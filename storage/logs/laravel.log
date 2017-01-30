@@ -18324,6 +18324,7 @@ Stack trace:
 [2017-01-23 06:59:27] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION)' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/Login.php:113
 Stack trace:
 #0 {main}  
+<<<<<<< HEAD
 >>>>>>> error-message-#91
 =======
 [2017-01-23 11:28:24] production.ERROR: exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'status_id' cannot be null' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php:390
@@ -18346,13 +18347,40 @@ Stack trace:
 #15 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(256): call_user_func_array(Array, Array)
 #16 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(164): Illuminate\Routing\Controller->callAction('storeProject', Array)
 #17 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(112): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\ProjectController), Object(Illuminate\Routing\Route), 'storeProject')
+=======
+[2017-01-27 13:04:17] production.ERROR: exception 'PDOException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'd_id' cannot be null' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php:390
+Stack trace:
+#0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php(390): PDOStatement->execute(Array)
+#1 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php(655): Illuminate\Database\Connection->Illuminate\Database\{closure}(Object(Illuminate\Database\MySqlConnection), 'insert into `da...', Array)
+#2 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php(618): Illuminate\Database\Connection->runQueryCallback('insert into `da...', Array, Object(Closure))
+#3 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php(391): Illuminate\Database\Connection->run('insert into `da...', Array, Object(Closure))
+#4 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php(347): Illuminate\Database\Connection->statement('insert into `da...', Array)
+#5 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/Processor.php(32): Illuminate\Database\Connection->insert('insert into `da...', Array)
+#6 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(1843): Illuminate\Database\Query\Processors\Processor->processInsertGetId(Object(Illuminate\Database\Query\Builder), 'insert into `da...', Array, 'id')
+#7 [internal function]: Illuminate\Database\Query\Builder->insertGetId(Array, 'id')
+#8 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(1015): call_user_func_array(Array, Array)
+#9 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1592): Illuminate\Database\Eloquent\Builder->__call('insertGetId', Array)
+#10 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1592): Illuminate\Database\Eloquent\Builder->insertGetId(Array, 'id')
+#11 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1561): Illuminate\Database\Eloquent\Model->insertAndSetId(Object(Illuminate\Database\Eloquent\Builder), Array)
+#12 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1452): Illuminate\Database\Eloquent\Model->performInsert(Object(Illuminate\Database\Eloquent\Builder), Array)
+#13 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php(106): Illuminate\Database\Eloquent\Model->save()
+#14 [internal function]: App\Http\Controllers\TimeTrackerController->storeTime(Object(Illuminate\Http\Request))
+#15 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(256): call_user_func_array(Array, Array)
+#16 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(164): Illuminate\Routing\Controller->callAction('storeTime', Array)
+#17 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(112): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\TimeTrackerController), Object(Illuminate\Routing\Route), 'storeTime')
+>>>>>>> timesheet-form-caching
 #18 [internal function]: Illuminate\Routing\ControllerDispatcher->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
 #19 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
 #20 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
 #21 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
 #22 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(114): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+<<<<<<< HEAD
 #23 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(69): Illuminate\Routing\ControllerDispatcher->callWithinStack(Object(App\Http\Controllers\ProjectController), Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'storeProject')
 #24 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(203): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'App\Http\Contro...', 'storeProject')
+=======
+#23 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(69): Illuminate\Routing\ControllerDispatcher->callWithinStack(Object(App\Http\Controllers\TimeTrackerController), Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'storeTime')
+#24 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(203): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'App\Http\Contro...', 'storeTime')
+>>>>>>> timesheet-form-caching
 #25 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(134): Illuminate\Routing\Route->runWithCustomDispatcher(Object(Illuminate\Http\Request))
 #26 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(708): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
 #27 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
@@ -18388,6 +18416,7 @@ Stack trace:
 #57 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/server.php(21): require_once('/var/www/html/V...')
 #58 {main}
 
+<<<<<<< HEAD
 Next exception 'Illuminate\Database\QueryException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'status_id' cannot be null (SQL: insert into `add_projects` (`project_name`, `client_name`, `status_id`, `created_by`, `updated_at`, `created_at`) values (DUPLICATE, DD, , 166, 2017-01-23 11:28:23, 2017-01-23 11:28:23))' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php:662
 Stack trace:
 #0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php(618): Illuminate\Database\Connection->runQueryCallback('insert into `ad...', Array, Object(Closure))
@@ -19059,13 +19088,38 @@ Stack trace:
 #13 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(256): call_user_func_array(Array, Array)
 #14 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(164): Illuminate\Routing\Controller->callAction('storeProject', Array)
 #15 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(112): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\ProjectController), Object(Illuminate\Routing\Route), 'storeProject')
+=======
+Next exception 'Illuminate\Database\QueryException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'd_id' cannot be null (SQL: insert into `day_times` (`user_id`, `project_name`, `date`, `comments`, `hrs_locked`, `d_id`, `updated_at`, `created_at`) values (166, 5, 2017-01-27, , 1.07, , 2017-01-27 13:04:17, 2017-01-27 13:04:17))' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php:662
+Stack trace:
+#0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php(618): Illuminate\Database\Connection->runQueryCallback('insert into `da...', Array, Object(Closure))
+#1 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php(391): Illuminate\Database\Connection->run('insert into `da...', Array, Object(Closure))
+#2 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Connection.php(347): Illuminate\Database\Connection->statement('insert into `da...', Array)
+#3 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Query/Processors/Processor.php(32): Illuminate\Database\Connection->insert('insert into `da...', Array)
+#4 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Query/Builder.php(1843): Illuminate\Database\Query\Processors\Processor->processInsertGetId(Object(Illuminate\Database\Query\Builder), 'insert into `da...', Array, 'id')
+#5 [internal function]: Illuminate\Database\Query\Builder->insertGetId(Array, 'id')
+#6 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Builder.php(1015): call_user_func_array(Array, Array)
+#7 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1592): Illuminate\Database\Eloquent\Builder->__call('insertGetId', Array)
+#8 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1592): Illuminate\Database\Eloquent\Builder->insertGetId(Array, 'id')
+#9 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1561): Illuminate\Database\Eloquent\Model->insertAndSetId(Object(Illuminate\Database\Eloquent\Builder), Array)
+#10 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php(1452): Illuminate\Database\Eloquent\Model->performInsert(Object(Illuminate\Database\Eloquent\Builder), Array)
+#11 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php(106): Illuminate\Database\Eloquent\Model->save()
+#12 [internal function]: App\Http\Controllers\TimeTrackerController->storeTime(Object(Illuminate\Http\Request))
+#13 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(256): call_user_func_array(Array, Array)
+#14 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(164): Illuminate\Routing\Controller->callAction('storeTime', Array)
+#15 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(112): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\TimeTrackerController), Object(Illuminate\Routing\Route), 'storeTime')
+>>>>>>> timesheet-form-caching
 #16 [internal function]: Illuminate\Routing\ControllerDispatcher->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
 #17 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(139): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
 #18 [internal function]: Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}(Object(Illuminate\Http\Request))
 #19 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(103): call_user_func(Object(Closure), Object(Illuminate\Http\Request))
 #20 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(114): Illuminate\Pipeline\Pipeline->then(Object(Closure))
+<<<<<<< HEAD
 #21 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(69): Illuminate\Routing\ControllerDispatcher->callWithinStack(Object(App\Http\Controllers\ProjectController), Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'storeProject')
 #22 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(203): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'App\Http\Contro...', 'storeProject')
+=======
+#21 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(69): Illuminate\Routing\ControllerDispatcher->callWithinStack(Object(App\Http\Controllers\TimeTrackerController), Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'storeTime')
+#22 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(203): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'App\Http\Contro...', 'storeTime')
+>>>>>>> timesheet-form-caching
 #23 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Route.php(134): Illuminate\Routing\Route->runWithCustomDispatcher(Object(Illuminate\Http\Request))
 #24 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Router.php(708): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
 #25 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}(Object(Illuminate\Http\Request))
@@ -19100,6 +19154,7 @@ Stack trace:
 #54 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #55 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/server.php(21): require_once('/var/www/html/V...')
 #56 {main}  
+<<<<<<< HEAD
 [2017-01-24 05:59:15] production.ERROR: exception 'ErrorException' with message 'Undefined variable: store_project' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/ProjectController.php:98
 Stack trace:
 #0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/ProjectController.php(98): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined varia...', '/var/www/html/V...', 98, Array)
@@ -20771,3 +20826,5 @@ Stack trace:
 #12 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
 #13 {main}  
 >>>>>>> escalation
+=======
+>>>>>>> timesheet-form-caching

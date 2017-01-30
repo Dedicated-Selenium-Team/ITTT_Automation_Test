@@ -402,12 +402,19 @@ $("#project").on('change',function(){
 
       /****  Create functionality ****/
       $("#daily-add").on('click',function(e){
-
-        $("#project-day-time")[0].reset();
+        if($('#create-project').hasClass('reset-form')){
+          $("#project-day-time")[0].reset();
+          $("#project_desig option").remove();
+          var options='<option value="0">Please Select Designation</option><option value="1">PM</option><option value="2">Designer</option><option value="3">FE_Developer</option><option value="4">BE_Developer</option><option value="5">Tester</option><option value="6">Tech Lead</option>';
+          $("#project_desig").append(options);
+          $('#project-day-time select').removeClass('noValue');
+        }
+        $('#create-project').removeClass('reset-form');
+        // $("#project-day-time")[0].reset();
         $('#save').val('Save Entry');
         $("#project_desig").prop('disabled',false);
         $("#project").prop('disabled',false);
-        $('#project-day-time select').removeClass('noValue');
+        // $('#project-day-time select').removeClass('noValue');
       });
 
       /********** Add and update functionality************/
@@ -586,8 +593,12 @@ $("#project").on('change',function(){
       }
     }
   });
+    $("#project-day-time")[0].reset();
+    $('#project-day-time select').removeClass('noValue');
+    $("#project_desig option").remove();
+    var options='<option value="0">Please Select Designation</option><option value="1">PM</option><option value="2">Designer</option><option value="3">FE_Developer</option><option value="4">BE_Developer</option><option value="5">Tester</option><option value="6">Tech Lead</option>';
+    $("#project_desig").append(options);
     $('#create-project').modal('hide');
-
   }
 });
 
@@ -623,6 +634,7 @@ $('tbody').delegate('.btn-edit', 'click', function(){
      $('#project_id').val(data.id);
      $('#save').val('Update Entry');
      $('#create-project').modal('show');
+     $('#create-project').addClass('reset-form');
    }
  });
 });

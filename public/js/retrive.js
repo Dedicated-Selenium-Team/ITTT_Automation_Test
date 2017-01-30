@@ -811,8 +811,16 @@ $(document).on('keyup', '.warranty_period', function () {
   $(".t2live_warranty_effective_days_utilezed").text(calwarantyBackwardDays);
   $(".t2livewarranty_hrs_cal").text(calwarantyBackwardHrs);
   $(".t2live_warranty_timeline_months").text(totwarantymonths);
-  $(".warranty_backword_effective_days_utilezed").text(eWResourceOverProject);
-  $(".warranty_backword_timeline_days").text(calWBackwards);
+  if (isNaN(eWResourceOverProject)) {
+    $(".warranty_backword_effective_days_utilezed").text(0);  
+  }else {
+    $(".warranty_backword_effective_days_utilezed").text(eWResourceOverProject);
+  }
+  if (isNaN(calWBackwards)) {
+    $(".warranty_backword_timeline_days").text(0.00);  
+  }else {
+    $(".warranty_backword_timeline_days").text(calWBackwards);
+  }
 });
 
 ///////////////////////////////////////////////////////////////////////////
@@ -847,8 +855,16 @@ $(document).on('keyup', '.timelineDays', function () {
   $(".t2live_timeline_days").text(exceptTester);
   $(".t2live_timeline_months").text(totalMonths);
   $(".t2live_hrs_cal").text(totPhaseHours);
-  $(".backword_effective_days_utilezed").text(eResourceOverProject);
-  $(".backword_timeline_days").text(calBackwards);
+  if (isNaN(eResourceOverProject)) {
+    $(".backword_effective_days_utilezed").text(0);  
+  }else{
+    $(".backword_effective_days_utilezed").text(eResourceOverProject);
+  }
+  if (isNaN(calBackwards)) {
+    $(".backword_timeline_days").text(0.00);  
+  }else {
+    $(".backword_timeline_days").text(calBackwards);
+  }
 });
 
 ///////////////////////////////////////////////////////////////////////////

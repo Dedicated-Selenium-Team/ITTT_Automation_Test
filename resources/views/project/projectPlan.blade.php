@@ -244,10 +244,10 @@ if ($role_id == 2) {?>
            <td></td>
            <td></td>
            <td><input type="text" class="design hrsLimit designer-hrs" value="" name="phase[Design/UX][designations][2][Designer][per_day_hours]"></td>
-           <td><span class="designer_work_per_day"></span></td>
+           <td><span class="designer_work_per_day">0%</span></td>
            <td></td>
            <td></td>
-           <td><span class="designer-calc-hrs"></span></td>
+           <td><span class="designer-calc-hrs">0.00</span></td>
            <td></td>
          </tr>
          <tr class="light-orange">
@@ -780,7 +780,7 @@ if ($role_id == 2) {?>
                              <tr>
                                <td><span class="tot-pm totDesignationHrs">0</span></td>
                                <td><span class="tot-tech-lead totDesignationHrs">0</span></td>
-                               <td><span class="tot-designer totDesignationHrs">0</span></td>
+                               <td><span class="tot-designer totDesignationHrs">0.00</span></td>
                                <td><span class="tot-fed totDesignationHrs">0</span></td>
                                <td><span class="tot-bed totDesignationHrs">0</span></td>
                                <td><span class="tot-testing totDesignationHrs">0</span></td>

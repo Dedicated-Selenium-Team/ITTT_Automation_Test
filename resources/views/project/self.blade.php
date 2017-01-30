@@ -224,10 +224,10 @@ $user_name = Session::get('user')[0]['first_name'];
           <th title="Actuals To-Date / Total of Actuals To-Date * 100">
             % of Actuals (Hours, Total)
           </th>
-          <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">
+          <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">
             Actuals / Estimate Ratio
           </th>
-          <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">
+          <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">
             Actuals / Planning Ratio
           </th>
         </tr>
@@ -326,10 +326,10 @@ $user_name = Session::get('user')[0]['first_name'];
         <th title="Actuals To-Date / Total of Actuals To-Date * 100">
           % of Actuals (Hours, Total)
         </th>
-        <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">
+        <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">
           Actuals / Estimate Ratio
         </th>
-        <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planniing Hours)">
+        <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">
           Actuals / Planning Ratio
         </th>
       </tr>
@@ -461,7 +461,6 @@ $user_name = Session::get('user')[0]['first_name'];
         "_token": "{{ csrf_token() }}"
       },
       success: function(data) {
-
         $('table').find('.employee').remove();
         $('.post-table-body span').empty();
         var testing  = testObj.init(data);
@@ -482,6 +481,7 @@ $user_name = Session::get('user')[0]['first_name'];
         }
         $('.appHours').val(Number(data.hrs).toFixed(2));
         $('.PostAppHours').val(Number(data.plan_hrs).toFixed(2));
+        $('.actualAppHours').val(Number(data.actual_hrs).toFixed(2));
         $('.pre-self-total').text((testing.sum).toFixed(2) + "%");
         $('.pre-adjusted-total').text(Number(testing.gettotAdjusted).toFixed(2) + "%");
         $('.pre-estimate-total').text(testing.gettotEstimation.toFixed(2));

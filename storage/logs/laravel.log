@@ -18312,6 +18312,7 @@ Stack trace:
 Stack trace:
 #0 {main}  
 >>>>>>> 2a8562f23d624eb06e728c82091948bf874cc078
+<<<<<<< HEAD
 [2017-01-16 08:27:55] production.ERROR: exception 'ErrorException' with message 'Creating default object from empty value' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php:283
 Stack trace:
 #0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php(283): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'Creating defaul...', '/var/www/html/V...', 283, Array)
@@ -18600,3 +18601,14 @@ Stack trace:
 #43 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/server.php(21): require_once('/var/www/html/V...')
 #45 {main}  
+=======
+[2017-01-23 06:58:45] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION)' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/Login.php:112
+Stack trace:
+#0 {main}  
+[2017-01-23 06:59:22] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION)' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/Login.php:113
+Stack trace:
+#0 {main}  
+[2017-01-23 06:59:27] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'else' (T_ELSE), expecting function (T_FUNCTION)' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/Login.php:113
+Stack trace:
+#0 {main}  
+>>>>>>> 6640f164e4428e03c4e0c6d4fc9698fb3ae707b9

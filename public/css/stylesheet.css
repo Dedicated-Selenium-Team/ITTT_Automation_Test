@@ -2173,6 +2173,27 @@ table thead th {
 
 .login-form-page .scroll { display: none; }
 
+/* session expired dialog starts here*/
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background-color: rgba(0,0,0,.5);
+}
+
+.overlay p {
+  width: 500px;
+  padding: 50px;
+  background-color: lightblue;
+  margin-top: calc(50vh - 61px);
+  margin-left: calc(50vw - 250px)
+}
+/* session expired dialog ends here*/
+
 @media screen and (min-width: 1370px) { 
   .wrap-project .estimate-plan .estimate-span { padding-right: 9.8% }
 

@@ -96,6 +96,12 @@ header("Pragma: no-cache");
 								<?php echo $__env->yieldContent('content'); ?>
 							</div>
 						</div>
+
+
+						<div class="overlay">
+							<p>!Your session is expired. Please <a href="/logout">Log In</a> again.</p>
+						</div>
+
 					</div>
 					<!-- wrapper ends here -->
 					<a href="https://groups.google.com/forum/#!forum/ittt-forum" class="scroll" title="ITTT Forum" target="_blank">ITTT Forum</a>

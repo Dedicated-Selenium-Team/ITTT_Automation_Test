@@ -50,8 +50,8 @@
       <div class="modal-body">
 
         <div class="form-group cf">
-          {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
-          {!! Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
+          {!! Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')) !!}
+          {!! Form::text('project_name1', Input::old('project_name1'), array('class' => '','placeholder' =>'Project name')) !!}
           <p class="error"></p>
         </div>
 
@@ -772,6 +772,27 @@ $(".proj_status").change(function(){
                      $('#edit-project').modal('show');
                    }
                  });
+                });
+
+                $('#project_name1').on('blur', function(e){
+                  e.preventDefault();
+                  var project_name=$("#project_name1").val();
+                  $.ajax({
+                   type : 'get',
+                   url : '/duplicate_project',
+                   data : {'project_name':project_name},
+                   success : function(data) {
+                     console.log('data', data);
+                     if(data.duplicate_project_status==1){
+                      $('#project_name1').siblings('.error').text('Entered project name is already exist');
+                      $('#project_name1').siblings('.error').show();
+                    }
+                    else{
+                     console.log('no message')
+                   }
+                 }
+               });
+
                 });
 
               </script>

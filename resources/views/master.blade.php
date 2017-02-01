@@ -96,6 +96,16 @@ header("Pragma: no-cache");
 								@yield('content')
 							</div>
 						</div>
+
+
+						<div class="overlay">
+							<div class="session-expired cf">
+								<h4>session expired</h4>
+								<p>Please re-login to renew your session.</p>
+								<a href="/logout">sign in</a>
+							</div>
+						</div>
+
 					</div>
 					<!-- wrapper ends here -->
 					<a href="https://groups.google.com/forum/#!forum/ittt-forum" class="scroll" title="ITTT Forum" target="_blank">ITTT Forum</a>

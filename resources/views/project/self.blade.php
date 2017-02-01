@@ -48,6 +48,7 @@ $user_name = Session::get('user')[0]['first_name'];
          <!-- <a href="#FIXME" title="Add New Project" class="addProject" data-toggle="modal" data-target="#create-project">Add New Project</a -->>
        </select>
        <p class="error"></p>
+       <p class="message"></p>
      </div>
      <div class="select-designation">
       {!! Html::decode(Form::label('designation','Designation<span class="required">*</span>:')) !!}
@@ -444,9 +445,8 @@ $user_name = Session::get('user')[0]['first_name'];
     }
 
     if(project_index=='newProjet'){
-      console.log('error');
-      $('.designation #project_name').siblings('.error').text('Please select project name');
-      $('.designation #project_name').siblings('.error').show();
+      $('.designation #project_name').siblings('.message').text('Please select project name');
+      $('.designation #project_name').siblings('.message').show();
     }
 
     var clickValue = $(this).attr('id');
@@ -512,6 +512,11 @@ $user_name = Session::get('user')[0]['first_name'];
 $("#project_name").on('change',function()
 {
   $('.percentHoursNeed').val("0.00");
+  var project_index = $('#project_name option:selected').val();
+  if(project_index != 'newProjet'){
+    $('.designation #project_name').siblings('.message').text('');
+    $('.designation #project_name').siblings('.message').hide();
+  }
 });
 $('#project_hrs').on('submit', function(e) {
   e.preventDefault();

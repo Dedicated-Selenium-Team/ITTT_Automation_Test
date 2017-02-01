@@ -438,9 +438,15 @@ $user_name = Session::get('user')[0]['first_name'];
     e.preventDefault();
     var desig_index = $('#designation')[0].selectedIndex;
     var project_index = $('#project_name option:selected').val();
-    if(desig_index !=0 && project_index != 0) {
+    if(desig_index !=0 && project_index != 0 && project_index != 'newProjet') {
       $('html, body').animate({
-        scrollTop: $(this).next().offset().top }, 1000);
+        scrollTop: $('.designation-detail').offset().top }, 1000);
+    }
+
+    if(project_index=='newProjet'){
+      console.log('error');
+      $('.designation #project_name').siblings('.error').text('Please select project name');
+      $('.designation #project_name').siblings('.error').show();
     }
 
     var clickValue = $(this).attr('id');
@@ -450,8 +456,6 @@ $user_name = Session::get('user')[0]['first_name'];
     var getProjectName = $('#project_name option:selected').val();
     var value1 = $('#designation').val();
     var url = $('#assign-project').attr('action') + '/' + project_index + '/' + value1;
-    $('html, body').animate({
-      scrollTop: $('.designation-detail').offset().top }, 1000);
     $.ajax({
       type : 'post',
       url : url,

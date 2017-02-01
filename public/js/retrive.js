@@ -1128,7 +1128,7 @@ setup();
 
 function startTimer() {
     // wait 2 seconds before calling goInactive
-    timeoutID = window.setTimeout(goInactive, 10000);
+    timeoutID = window.setTimeout(goInactive, 7200000);
   }
 
   function resetTimer(e) {
@@ -1137,6 +1137,13 @@ function startTimer() {
   }
 
   function goInactive() {
+    $.ajax({
+      type : 'get',
+      url : '/session_timeout',
+      success : function(data) {
+      }
+    });
+
     $('.login-form-page .overlay').remove();
     $('.overlay').show();
   }

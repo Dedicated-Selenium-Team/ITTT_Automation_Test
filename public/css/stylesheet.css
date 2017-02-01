@@ -501,7 +501,8 @@ main .wrapper  {
 
 .empty { text-align: center; }
 
-.select-proj .error { left: 83px; }
+.select-proj .error,
+.select-proj .message { left: 83px; }
 
 .select-designation .error { left: 26%; }
 
@@ -514,7 +515,8 @@ main .wrapper  {
 @-moz-document url-prefix() { 
   .designation .submit { margin: 35px 6px 18px 0; }
   .designation .form-control { width: 74%; }
-  .select-proj .error { left: 85px; }
+  .select-proj .error,
+  .select-proj .message { left: 85px; }
   .select-proj select,
   .select-designation select { margin-left: 13px; }
 }
@@ -1733,7 +1735,8 @@ table thead th {
 
 .modal-body .form-group { position: relative; }
 
-.error {
+.error,
+.message {
   position: absolute;
   bottom: -14px;
   color: #da4143;
@@ -2189,7 +2192,8 @@ table thead th {
 
   .select-designation .error { left: 35%; }
 
-  .select-proj .error { left: 71px; }
+  .select-proj .error,
+  .select-proj .message { left: 71px; }
 }
 
 @media screen and (max-width: 1162px) {
@@ -2212,7 +2216,8 @@ table thead th {
 
   .wrap-project .estimate-plan .planning-span { padding-left: 0; }
 
-  .select-proj .error { left: 23%; }
+  .select-proj .error,
+  .select-proj .message { left: 23%; }
 
   .timesheet-content .table-timesheet { width: 70%; }
 

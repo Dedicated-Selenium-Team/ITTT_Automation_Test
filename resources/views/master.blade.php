@@ -99,7 +99,11 @@ header("Pragma: no-cache");
 
 
 						<div class="overlay">
-							<p>!Your session is expired. Please <a href="/logout">Log In</a> again.</p>
+							<div class="session-expired cf">
+								<h4>session expired</h4>
+								<p>Please re-login to renew your session.</p>
+								<a href="/logout">sign in</a>
+							</div>
 						</div>
 
 					</div>

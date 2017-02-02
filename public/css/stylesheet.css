@@ -717,6 +717,9 @@ table thead th {
 .timesheet-header-right .today-hover,
 .timesheet-header-right .date-pick:hover { opacity: .4; }
 
+.timesheet-header-right .today-hover,
+.views .active-view { cursor: default; }
+
 .timesheet-header-right .date-pick {
   width: 34px;
   height: 34px;

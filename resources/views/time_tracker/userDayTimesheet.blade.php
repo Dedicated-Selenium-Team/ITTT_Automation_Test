@@ -37,7 +37,7 @@
            <a href="/time-management/{{$next_date}}/{{$id}}/{{$unique_project_id}}" class="next" title="Next">Next</a>
          </div>
 
-         <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date">
+         <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date" title="Datepicker">
 
          <div class="views">
            <a href="/time-management/{{$today}}/{{$id}}/{{$unique_project_id}}" title="Day View" class="day active-view">Day</a>

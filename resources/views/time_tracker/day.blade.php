@@ -25,7 +25,7 @@
        <a href="/time-management/{{$next_date}}" class="next" title="Next">Next</a>
      </div>
 
-     <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date">
+     <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date" title="Datepicker">
 
      <div class="views">
        <a href="/time-management/{{$today}}" title="Day View" class="day active-view">Day</a>
@@ -153,10 +153,10 @@
         {{$today_project->hrs_locked}}
       </td>
       <td>
-        <button type="button" class="btn btn-edit edit" id="edit-day-time" data-id= {{$today_project->id}}>Edit User</button>
+        <button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time" data-id= {{$today_project->id}}>Edit User</button>
       </td>
       <td>
-        <button type="button" class="btn btn-delete confirm" id="delete-day-time" data-id= "{{$today_project->id}}" data-target="#confirm-delete">Delete User</button>
+        <button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time" data-id= "{{$today_project->id}}" data-target="#confirm-delete">Delete User</button>
       </td>
     </tr>
     @endforeach
@@ -543,8 +543,8 @@ $("#project").on('change',function(){
           '<td class="break-words">'+ '<h3><span class="project_name">' + project_name + '</span> - <span class="project_designation">'+d_name+'</span></h3>' +
           '<p>' + cmnt_replace1 + '</p>' +'</td>'+
           '<td>' + total_hrs +'</td>'+
-          '<td>' + '<button type="button" class="btn btn-edit edit" id="edit-day-time"data-id="' + p_id + '">Edit User</button>' + '</td>' +
-          '<td>' + '<button type="button" class="btn btn-delete confirm" id="delete-day-time"data-id="' + p_id + '">Delete User</button>' + '</td>' +
+          '<td>' + '<button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time"data-id="' + p_id + '">Edit User</button>' + '</td>' +
+          '<td>' + '<button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time"data-id="' + p_id + '">Delete User</button>' + '</td>' +
           '</tr>';
           $('.head-row').eq(0).after(row);
           var hours = dayTotalHrs(2,'.day-table');
@@ -562,8 +562,8 @@ $("#project").on('change',function(){
         '<td class="break-words">'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
         '<p>' + cmnt_replace1 + '</p>' +'</td>'+
         '<td>' + total_hrs +'</td>'+
-        '<td>' + '<button type="button" class="btn btn-edit edit" id="edit-day-time"data-id="' + data.id + '">Edit User</button>' + '</td>' +
-        '<td>' + '<button type="button" class="btn btn-delete confirm" id="delete-day-time"data-id="' + data.id + '">Delete User</button>' + '</td>' +
+        '<td>' + '<button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time"data-id="' + data.id + '">Edit User</button>' + '</td>' +
+        '<td>' + '<button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time"data-id="' + data.id + '">Delete User</button>' + '</td>' +
         '</tr>';
         $('#time' + data.id).replaceWith(row1);
         var hours = dayTotalHrs(2,'.day-table');

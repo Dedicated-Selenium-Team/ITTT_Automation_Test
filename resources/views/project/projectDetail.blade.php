@@ -181,19 +181,49 @@
         <?php if ($role_id == 1) {?>
         <div class="actions cf">
 
-          <!--<span>Action</span> -->
+          <span>
+            <?php if($my_allproject->status_id == 1){ ?>
+            estimates
+            <?php } else if($my_allproject->status_id == 2){ ?>
+            Live-Projects
+            <?php } else if($my_allproject->status_id == 3){ ?>
+            Live-Ongoing
+            <?php } else { ?>
+            Completed
+            <?php } ?>
+          </span>
           <div>
-           <select id="project_action" class="edit-action-arrow">
+            <select id="project_action" class="edit-action-arrow">
              <option value = "1">Please Select</option>
              <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
              <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
              <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
            </select>
-         </div>
-       </div>
-       <?php } 
-       if ($role_id == 2) {?>
-       <div class="actions cf">
+
+           <?php if($my_allproject->status_id == 1) { ?>
+           <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+            <option value="1">Please Select</option>
+            <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
+            <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
+            <option value="4_{{$my_allproject->project_id }}">Completed</option>
+          </select>
+          <?php } else if($my_allproject->status_id == 2) { ?>
+          <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+            <option value="1">Please Select</option>
+            <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
+            <option value="4_{{$my_allproject->project_id }}">Completed</option>
+          </select>
+          <?php } else if($my_allproject->status_id == 3) { ?>
+          <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+            <option value="1">Please Select</option>
+            <option value="4_{{$my_allproject->project_id }}">Completed</option>
+          </select>
+          <?php } ?> 
+        </div>
+      </div>
+      <?php } 
+      if ($role_id == 2) {?>
+      <div class="actions cf">
 
         <!--<span>Action</span> -->
         <div>
@@ -239,7 +269,17 @@
     <?php if ($role_id == 1) {
     ?>
     <div class="actions cf">
-      <!--<span>Action</span> -->
+      <span>
+        <?php if($project_detail->status_id == 1){ ?>
+        estimates
+        <?php } else if($project_detail->status_id == 2){ ?>
+        Live-Projects
+        <?php } else if($project_detail->status_id == 3){ ?>
+        Live-Ongoing
+        <?php } else { ?>
+        Completed
+        <?php } ?>
+      </span> 
       <div>
         <select id="project_action" class="edit-action-arrow">
           <option value = "1">Please Select</option>
@@ -247,6 +287,27 @@
           <option value="3_{{$project_detail->project_id }}" data-id="{{$project_detail->project_id}}">Delete</option>
           <option value="4_{{$project_detail->project_id }}" data-id="{{$project_detail->project_id}}">Archive</option>
         </select>
+
+        <?php if($project_detail->status_id == 1) { ?>
+        <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+          <option value="1">Please Select</option>
+          <option value="2_{{$project_detail->project_id }}">Live-Projects</option>
+          <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
+          <option value="4_{{$project_detail->project_id }}">Completed</option>
+        </select>
+        <?php } else if($project_detail->status_id == 2) { ?>
+        <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+          <option value="1">Please Select</option>
+          <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
+          <option value="4_{{$project_detail->project_id }}">Completed</option>
+        </select>
+        <?php } else if($project_detail->status_id == 3) { ?>
+        <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+          <option value="1">Please Select</option>
+          <option value="4_{{$project_detail->project_id }}">Completed</option>
+        </select>
+        <?php } ?> 
+
       </div>
     </div>
     <?php }

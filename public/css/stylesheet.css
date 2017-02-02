@@ -1918,7 +1918,10 @@ table thead th {
 
 .wrap-project .actions div { float: right; }
 
-.wrap-project .actions span { color: #3b5998; }
+.wrap-project .actions span { 
+  color: #3b5998; 
+  text-transform: capitalize;
+}
 
 .wrap-project .actions div a,
 .wrap-project .actions div select {

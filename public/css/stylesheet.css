@@ -2178,43 +2178,41 @@ table thead th {
 
 /* session expired dialog starts here*/
 .overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
+  display: none;
+  position: fixed;
   z-index: 1060;
+  top: 0;
+  left: 0;
   background-color: rgba(0,0,0,.7);
 }
 
 .overlay .session-expired {
+  margin-top: calc(50vh - 83px);
+  margin-left: calc(50vw - 199px);
   display: inline-block;
   background-color: #fff;
-  margin-top: calc(50vh - 83px);
-  margin-left: calc(50vw - 160px);
   text-align: center;
 }
 
 .session-expired h4 {
   padding: 28px 16px 9px;
-  color: #000;
   background-color: #ebf1fc;
+  color: #000;
   font-weight: 700;
   text-transform: capitalize;
 }
 
-.session-expired p {
-  padding: 10px 50px 24px;
-}
+.session-expired p { padding: 10px 50px 24px; }
 
 .session-expired a {
-  text-transform: uppercase;
-  background-color: #3b5998;
-  color: #fff;
   padding: 11px 14px;
   margin-bottom: 33px;
+  background-color: #3b5998;
+  color: #fff;
   font: 700 15px / 16px 'Open Sans';
+  text-transform: uppercase;
 }
 /* session expired dialog ends here*/
 

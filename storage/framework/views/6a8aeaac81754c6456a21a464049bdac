@@ -93,16 +93,14 @@ header("Pragma: no-cache");
 						<?php }?>
 						<div class="content-wrapper">
 							<div class="content-inner-wrapper">
+								<div class="overlay">
+									<div class="session-expired cf">
+										<h4>session expired</h4>
+										<p>Please re-login to restart your session.</p>
+										<a href="/logout">sign in</a>
+									</div>
+								</div>
 								<?php echo $__env->yieldContent('content'); ?>
-							</div>
-						</div>
-
-
-						<div class="overlay">
-							<div class="session-expired cf">
-								<h4>session expired</h4>
-								<p>Please re-login to renew your session.</p>
-								<a href="/logout">sign in</a>
 							</div>
 						</div>
 

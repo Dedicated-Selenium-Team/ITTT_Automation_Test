@@ -97,7 +97,7 @@ class ProjectController extends Controller {
 			$get_projectname = strtoupper($request->project_name);
 			$get_clientname = strtoupper($request->client_name);
 
-			$find_project = AddProject::select('project_name')->where('project_name',$get_projectname)->where('client_name',$get_clientname)->where('is_deleted','0')->get();
+			$find_project = AddProject::select('project_name')->where('project_name',$get_projectname)->where('is_deleted','0')->get();
 
 			if(count($find_project)<=0){
 				$duplicate_project_status = 0;
@@ -550,4 +550,35 @@ class ProjectController extends Controller {
 			'success'=>$success            
 			]);
 	}
+
+	public function duplicateProject(Request $request) {
+		$session = Session::get('user')[0]['role_id'];
+		if ($session == 1) {
+			// fetch the data of requested id and display it onto pop-up view
+			if ($request->ajax()) {
+				$get_projectname = strtoupper($request->project_name);
+				$get_clientname = strtoupper($request->client_name);
+
+				$find_project = AddProject::select('project_name')->where('project_name',$get_projectname)->where('is_deleted','0')->get();
+
+				if(count($find_project)<=0){
+					$duplicate_project_status = 0;
+					return response()->json([
+						'duplicate_project_status'=>$duplicate_project_status
+						]);
+				}
+				else{
+					$duplicate_project_status = 1;
+					return response()->json([
+						'duplicate_project_status'=>$duplicate_project_status
+						]);
+
+				}
+
+			}
+		} else {
+			return Redirect::to('/');
+		}
+	}
+
 }

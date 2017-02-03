@@ -1920,11 +1920,15 @@ table thead th {
   padding: 5px 10px;
   background-color: #e9e9e9;
   font: 700 14px 'Open Sans';
+  text-align: left;
 }
 
 .wrap-project .actions div { float: right; }
 
-.wrap-project .actions span { color: #3b5998; }
+.wrap-project .actions span { 
+  color: #3b5998; 
+  text-transform: capitalize;
+}
 
 .wrap-project .actions div a,
 .wrap-project .actions div select {

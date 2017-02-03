@@ -774,7 +774,15 @@ $(".proj_status").change(function(){
                  });
                 });
 
+                var blurHappened = false;
+
                 $('#project_name1').on('blur', function(e){
+                 if (blurHappened)
+                 {
+                  blurHappened = false;
+                }
+                else 
+                {
                   e.preventDefault();
                   var project_name=$("#project_name1").val();
                   $.ajax({
@@ -784,7 +792,7 @@ $(".proj_status").change(function(){
                    success : function(data) {
                      console.log('data', data);
                      if(data.duplicate_project_status==1){
-                      $('#project_name1').siblings('.error').text('---->Entered project name is already exist');
+                      $('#project_name1').siblings('.error').text('Entered project name is already exist');
                       $('#project_name1').siblings('.error').show();
                     }
                     else{
@@ -792,11 +800,13 @@ $(".proj_status").change(function(){
                    }
                  }
                });
+                }
 
-                });
+              });
 
                 $('#add-project').on('submit',function(e) {
                   e.preventDefault();
+                  blurHappened = true;
                   var project_name=$("#project_name1").val();
                   var project_code=$("#project_code").val();
                   var client_name=$("#client_name").val();

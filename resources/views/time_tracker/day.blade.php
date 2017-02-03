@@ -655,7 +655,15 @@ $('tbody').delegate('.btn-delete', 'click', function(){
   });
 });
 
+var blurHappened = false;
+
 $('#project_name1').on('blur', function(e){
+ if (blurHappened)
+ {
+  blurHappened = false;
+}
+else 
+{
   e.preventDefault();
   var project_name=$("#project_name1").val();
   $.ajax({
@@ -673,10 +681,13 @@ $('#project_name1').on('blur', function(e){
    }
  }
 });
+}
+
 });
 
 $('#add-project').on('submit',function(e) {
   e.preventDefault();
+  blurHappened = true;
   var project_name=$("#project_name1").val();
   var project_code=$("#project_code").val();
   var client_name=$("#client_name").val();
@@ -699,4 +710,5 @@ $('#add-project').on('submit',function(e) {
 });
 
 </script>
+</div>
 @stop

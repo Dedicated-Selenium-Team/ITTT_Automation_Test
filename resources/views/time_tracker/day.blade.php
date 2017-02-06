@@ -146,7 +146,7 @@
        <td class="break-words">
         <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
 
-        <p>{{$today_project->comments}}</p>
+        <p><?php echo $today_project->comments; ?></p>
 
       </td>
       <td>
@@ -423,6 +423,7 @@ $("#project").on('change',function(){
         e.preventDefault();
         var update_id = $('#row_id').val();
         var formData = $('#project-day-time').serialize();
+
         var url = $('#project-day-time').attr('action');
 
         var state = $('#save').val();
@@ -506,6 +507,7 @@ $("#project").on('change',function(){
      e.preventDefault();
    }
    else{
+
     var project_id=$("#project").val();
     $.ajax({
       type: type,
@@ -536,6 +538,7 @@ $("#project").on('change',function(){
             comments = data.project_name[i].comments;
             var cmnt_replace = comments.replace(/\</g, '&lt;');
             var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');
+            var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
             p_id = data.project_name[i].id;
             d_name=data.project_name[i].d_name;
           }
@@ -557,7 +560,7 @@ $("#project").on('change',function(){
         var comment_text = data.comments;
         var cmnt_replace = comment_text.replace(/\</g, '&lt;');
         var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
-
+var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
         var row1 = '<tr id="time' + data.id + '">'+
         '<td class="break-words">'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
         '<p>' + cmnt_replace1 + '</p>' +'</td>'+

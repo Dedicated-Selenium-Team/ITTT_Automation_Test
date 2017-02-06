@@ -53,15 +53,18 @@ if ($role_id == 2) {?>
           <div class="proj-date">
             <div class="proj-date-snipet">
               {!! Form::label('project-start-date', 'Project Start Date:') !!}
-              {!! Form::text('project-start-date', \Carbon\Carbon::now()->format('d/m/Y'),array('class' => 'startDate phaseCalculation form-control datepicker' ,'readonly')) !!}
+              {!! Form::text('project-start-date', \Carbon\Carbon::now()->format('d/m/Y'),array('class' => 'startDate phaseCalculation form-control datepicker')) !!}
+              <p class="error"></p>
             </div>
             <div class="proj-date-snipet">
               {!! Form::label('phase-I-end-date', 'Phase 1 End Date:') !!}
-              {!! Form::text('phase-I-end-date','',['class' => 'p1Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy','readonly']) !!}
+              {!! Form::text('phase-I-end-date','',['class' => 'p1Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy']) !!}
+              <p class="error"></p>
             </div>
             <div class="proj-date-snipet">
               {!! Form::label('phase-II-end-date', 'Phase 2 End Date:') !!}
-              {!! Form::text('phase-II-end-date','',['class' => 'p2Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy','readonly']) !!}
+              {!! Form::text('phase-II-end-date','',['class' => 'p2Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy']) !!}
+              <p class="error"></p>
             </div>
           <!-- <div class="proj-date-snipet">
             {!! Form::label('resources', 'Required Resource Number: ')!!}

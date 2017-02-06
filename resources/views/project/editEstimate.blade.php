@@ -59,15 +59,18 @@ if ($role_id == 2)
             <div class="proj-date">
               <div class="proj-date-snipet">
                 {!! Form::label('project-start-date', 'Project Start Date:') !!}
-                {!! Form::text('project-start-date',$set_estimate[0]['start_date'],array('class' => 'startDate phaseCalculation form-control datepicker','readonly')) !!}
+                {!! Form::text('project-start-date',$set_estimate[0]['start_date'],array('class' => 'startDate phaseCalculation form-control datepicker')) !!}
+                <p class="error"></p>
               </div>
               <div class="proj-date-snipet">
                 {!! Form::label('phase-I-end-date', 'Phase 1 End Date:') !!}
-                {!! Form::text('phase-I-end-date', $set_estimate[0]['p_I_live'],['class' => 'p1Date phaseCalculation form-control datepicker','readonly']) !!}
+                {!! Form::text('phase-I-end-date', $set_estimate[0]['p_I_live'],['class' => 'p1Date phaseCalculation form-control datepicker']) !!}
+                <p class="error"></p>
               </div>
               <div class="proj-date-snipet">
                 {!! Form::label('phase-II-end-date', 'Phase 2 End Date:') !!}
-                {!! Form::text('phase-II-end-date', $set_estimate[0]['p_II_live'],['class' => 'p2Date phaseCalculation form-control datepicker','readonly']) !!}
+                {!! Form::text('phase-II-end-date', $set_estimate[0]['p_II_live'],['class' => 'p2Date phaseCalculation form-control datepicker']) !!}
+                <p class="error"></p>
               </div>
               <div class="proj-date-snipet numericValidation">
                 {!! Form::label('Warrenty-days', 'Warranty days:') !!}
@@ -233,16 +236,16 @@ if ($role_id == 2)
                        <span class='backword_timeline_days'></span>
                      </td>
                      <td>
-                      
+
                      </td>
                      <td>
-                      
+
                      </td>
                      <td>
-                      
+
                      </td>
                      <td>
-                      
+
                      </td>
                      <td class='left-align'>
                        effective resources over project until LIVE - NOT incl. of warranty period:
@@ -251,10 +254,10 @@ if ($role_id == 2)
                        <span class='backword_effective_days_utilezed'></span>
                      </td>
                      <td>
-                      
+
                      </td>
                      <td>
-                      
+
                      </td>
                    </tr>";
                    
@@ -265,7 +268,7 @@ if ($role_id == 2)
                   <input type='hidden' name='phase[$name_to_display][phase_id]' value='$phase_id'></th>";
                   if($tmp<'1')
                   {
-                    
+
                     echo "<td><input type='text' value='$spent_days' class='$key  wtot triggerWarranty' name='phase[$name_to_display][spent_days]'></td>
                     <td><span class='".$key."_month ".$key."timelineMonths'></span></td><td></td><td></td><td></td>";
                   }
@@ -340,13 +343,13 @@ if ($role_id == 2)
                               <span class="t2live_warranty_timeline_months"></span>
                             </td>
                             <td>
-                              
+
                             </td>
                             <td>
-                              
+
                             </td>
                             <td>
-                              
+
                             </td>
                             <td>
                               TOTALS &gt;&gt;
@@ -373,16 +376,16 @@ if ($role_id == 2)
                           <span class="warranty_backword_timeline_days"></span>
                         </td>
                         <td>
-                          
+
                         </td>
                         <td>
-                          
+
                         </td>
                         <td>
-                          
+
                         </td>
                         <td>
-                          
+
                         </td>
                         <td class="left-align">
                           effective resources over ENTIRE project - incl. warranty period:
@@ -392,10 +395,10 @@ if ($role_id == 2)
                           <span class="warranty_backword_effective_days_utilezed"></span>
                         </td>
                         <td>
-                          
+
                         </td>
                         <td>
-                          
+
                         </td>
                       </tr>';
                       

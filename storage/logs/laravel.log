@@ -18985,3 +18985,6 @@ Stack trace:
 #43 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/server.php(21): require_once('/var/www/html/V...')
 #45 {main}  
+[2017-02-03 18:56:22] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected '=>' (T_DOUBLE_ARROW)' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/storage/framework/views/22af143cbe5667d075d510a72017caf3:69
+Stack trace:
+#0 {main}  

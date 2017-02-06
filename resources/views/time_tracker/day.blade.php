@@ -146,7 +146,7 @@
        <td class="break-words">
         <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
 
-        <p>{{$today_project->comments}}</p>
+        <p><?php echo $today_project->comments; ?></p>
 
       </td>
       <td>

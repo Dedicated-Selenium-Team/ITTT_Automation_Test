@@ -1,0 +1,242 @@
+[
+  {
+    "id": "Sign-In",
+    "name": "Sign In",
+    "description": "",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "/var/www/html/Sushant/JavaScript/PRDXN-ITTT/features/Sign_In/functionality_signIn_blank_entry.feature",
+    "elements": [
+      {
+        "name": "Verify click functionality of the Login with blank entry",
+        "id": "Sign-In;verify-click-functionality-of-the-login-with-blank-entry",
+        "line": 13,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "Open browser and Start Application \"http://ittt.prdxnstaging2.com/\"",
+            "line": 4,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "I enter blank username and password",
+            "line": 6,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "I Click on sign in button",
+            "line": 7,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "Proper error message must be appeared and prompt to login again",
+            "line": 8,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Sign-In",
+    "name": "Sign In",
+    "description": "",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "/var/www/html/Sushant/JavaScript/PRDXN-ITTT/features/Sign_In/functionality_signIn_invalid_entry.feature",
+    "elements": [
+      {
+        "name": "Verify click functionality of the Login with invalid entry",
+        "id": "Sign-In;verify-click-functionality-of-the-login-with-invalid-entry",
+        "line": 13,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "Open browser and Start Application \"http://ittt.prdxnstaging2.com/\"",
+            "line": 4,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "I enter invalid \"abcd\" and \"abcd\"",
+            "line": 6,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "I Click on sign in button",
+            "line": 7,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "Proper error message must be appeared and prompt to login again",
+            "line": 8,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Sign-In",
+    "name": "Sign In",
+    "description": "",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "/var/www/html/Sushant/JavaScript/PRDXN-ITTT/features/Sign_In/functionality_signIn_valid_entry.feature",
+    "elements": [
+      {
+        "name": "Verify click functionality of the Login with valid entry",
+        "id": "Sign-In;verify-click-functionality-of-the-login-with-valid-entry",
+        "line": 13,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "Open browser and Start Application \"http://ittt.prdxnstaging2.com/\"",
+            "line": 4,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "I enter valid \"admin@prdxn.com\" and \"admin123\"",
+            "line": 6,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "I Click on sign in button",
+            "line": 7,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "User must successfully logged in to the site",
+            "line": 8,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Sign-In",
+    "name": "Sign In",
+    "description": "",
+    "line": 1,
+    "keyword": "Feature",
+    "uri": "/var/www/html/Sushant/JavaScript/PRDXN-ITTT/features/Sign_In/functionality_signOut.feature",
+    "elements": [
+      {
+        "name": "Verify click functionality of the Sign Out",
+        "id": "Sign-In;verify-click-functionality-of-the-sign-out",
+        "line": 17,
+        "keyword": "Scenario",
+        "description": "",
+        "type": "scenario",
+        "steps": [
+          {
+            "name": "Open browser and Start Application \"http://ittt.prdxnstaging2.com/\"",
+            "line": 4,
+            "keyword": "Given ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "I enter valid \"admin@prdxn.com\" and \"admin123\"",
+            "line": 5,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "I Click on sign in button",
+            "line": 6,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "User must successfully logged in to the site",
+            "line": 7,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "I click on sign out button",
+            "line": 9,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "User must successfully logged out \"http://ittt.prdxnstaging2.com/\"",
+            "line": 10,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "I click on back button",
+            "line": 12,
+            "keyword": "When ",
+            "result": {
+              "status": "undefined"
+            }
+          },
+          {
+            "name": "The login page must be redirect \"http://ittt.prdxnstaging2.com/\"",
+            "line": 13,
+            "keyword": "Then ",
+            "result": {
+              "status": "undefined"
+            }
+          }
+        ]
+      }
+    ]
+  }
+]

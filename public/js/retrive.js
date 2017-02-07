@@ -142,7 +142,7 @@ $( "#tabs" ).tabs();
     $(".navigation-menu  li a").removeClass('nav-active');
   };
 
-  $('.nav-active').click(false);
+  // $('.nav-active').click(false);
   // Active state for navigation is ends here //
 
   // Add tooltip to span inside all projects tab ends here// 

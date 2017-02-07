@@ -321,7 +321,7 @@ header .wrapper {
 .nav-active {
   background-color: #3b5998;
   color: #fff;
-  cursor: default;
+  /*cursor: default;*/
 }
 
 .nav-active:focus { color: #fff; }

@@ -83,6 +83,7 @@ class ProjectController extends Controller {
 	 * @return controller function
 	 */
 	public function storeProject(RequestHttp $request) {
+
 		$session = Session::get('user')[0]['role_id'];
 		if ($session == 1 || $session == 2) {
 			$this->validate($request, [
@@ -90,18 +91,40 @@ class ProjectController extends Controller {
 				"client_name"  => "required"
 				]);
 
-			$store_project                = new AddProject;		
-			$store_project->project_name = strtoupper(Input::get('project_name'));
-			$store_project->client_name   = strtoupper(Input::get('client_name'));
-			$store_project->status_id=Input::get('status_id');
-			$store_project->created_by=Session::get('user')[0]['user_id'];
-			$store_project->save();
+			// $get_projectname = strtoupper(Input::get('project_name'));
+			// $get_clientname = strtoupper(Input::get('client_name'));
 
-			$projects  = $store_project->select('project_id', 'project_name')->orderBy('project_id', 'desc')->get();
-			$projectId = $store_project->id;
+			$get_projectname = strtoupper($request->project_name);
+			$get_clientname = strtoupper($request->client_name);
 
-			return redirect()->route('store-project', ['id' => $projectId]);
+			$find_project = AddProject::select('project_name')->where('project_name',$get_projectname)->where('is_deleted','0')->get();
+
+			if(count($find_project)<=0){
+				$duplicate_project_status = 0;
+				$store_project                = new AddProject;	
+				$store_project->project_name = $get_projectname;
+				$store_project->client_name   = $get_clientname;
+				$store_project->status_id=$request->status_id;
+				$store_project->created_by=Session::get('user')[0]['user_id'];
+				$store_project->save();
+
+				$projects  = $store_project->select('project_id', 'project_name')->orderBy('project_id', 'desc')->get();
+				$projectId = $store_project->id;
+
+				//return redirect()->route('store-project', ['id' => $projectId]);
 			// return app('App\Http\Controllers\ProjectController')->backProject()->with('id', $projectId);
+				return response()->json([
+					'duplicate_project_status'=>$duplicate_project_status
+					]);
+			}
+			else{
+				$duplicate_project_status = 1;
+				//return redirect()->route('store-project', ['duplicate_project_status' => $duplicate_project_status]);
+				return response()->json([
+					'duplicate_project_status'=>$duplicate_project_status
+					]);
+
+			}
 		}
 	}
 
@@ -527,4 +550,35 @@ class ProjectController extends Controller {
 			'success'=>$success            
 			]);
 	}
+
+	public function duplicateProject(Request $request) {
+		$session = Session::get('user')[0]['role_id'];
+		if ($session == 1) {
+			// fetch the data of requested id and display it onto pop-up view
+			if ($request->ajax()) {
+				$get_projectname = strtoupper($request->project_name);
+				$get_clientname = strtoupper($request->client_name);
+
+				$find_project = AddProject::select('project_name')->where('project_name',$get_projectname)->where('is_deleted','0')->get();
+
+				if(count($find_project)<=0){
+					$duplicate_project_status = 0;
+					return response()->json([
+						'duplicate_project_status'=>$duplicate_project_status
+						]);
+				}
+				else{
+					$duplicate_project_status = 1;
+					return response()->json([
+						'duplicate_project_status'=>$duplicate_project_status
+						]);
+
+				}
+
+			}
+		} else {
+			return Redirect::to('/');
+		}
+	}
+
 }

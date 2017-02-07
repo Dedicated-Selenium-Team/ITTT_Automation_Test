@@ -947,7 +947,7 @@ $(document).on('keyup', '.resources', function () {
  }
 });
 
-$(document).on("bind keyup change", '.phaseCalculation', function () {
+$(document).on("bind keyup change", '.phaseCalculation', function (e) {
 
   if($('.startDate').siblings('.error').text()=='' && $('.p1Date').siblings('.error').text()=='' && $('.p2Date').siblings('.error').text()==''){
     var startDate = $('.startDate').val(),
@@ -993,15 +993,31 @@ $(document).on("bind keyup change", '.phaseCalculation', function () {
       document.getElementById('Warrenty-period-end').value =warrantyDate ;
       $( "input[name*='Warrenty-period-end']" ).val(warrantyDate);
     }
+    $('.submit-wrapper .error').text('');
   }
   else {
-    // document.getElementById("phase-II-end-date").value = 0;
     document.getElementById("p1-go-live").value = 0;
     document.getElementById("timelineDays").value = 0;
     document.getElementById("timelineMonths").value = 0.00;
     document.getElementById("timelineHours").value = 0.00;
     document.getElementById("timelineTotDays").value = 0.00;
     document.getElementById("timelineTotHours").value = 0.00;
+    // $('.submit-est-plan').addClass('prevent');
+    e.preventDefault();
+  }
+});
+
+var form = $('.submit-est-plan').parent('form');
+
+$(document).on('click','.submit-est-plan',function(e){
+  if($('.startDate').siblings('.error').text()=='' && $('.p1Date').siblings('.error').text()=='' && $('.p2Date').siblings('.error').text()==''){
+    $(form).submit(true);
+    $(this).siblings('.error').text('');
+  }
+  else {
+    $(this).siblings('.error').text('Please check the entered dates');
+    e.preventDefault();
+    return false;
   }
 });
 

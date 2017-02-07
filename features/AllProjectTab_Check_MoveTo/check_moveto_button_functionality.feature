@@ -13,7 +13,11 @@ And tool tip appears on hovering on move to button (Let us check this project "<
 Then I click the Move to button (Let us check this project "<project_number>" and "<Tab>")
 
 Examples: 
+<<<<<<< HEAD
 | url                            | username        | password | Project_Tab | project_number | Tab    |
+=======
+| url                                      | username        | password | Project_Tab | project_number | Tab    |
+>>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-2     | 5              | tabs-2 |
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-3     | 5              | tabs-3 |
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-4     | 5              | tabs-4 |

@@ -11,5 +11,9 @@ When I click on any random Project
 Then I should see the project which I have selected
 
 Examples: 
+<<<<<<< HEAD
 | url                           | username        | password | 
+=======
+| url                                      | username        | password | 
+>>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | 

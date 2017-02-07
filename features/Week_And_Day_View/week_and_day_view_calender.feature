@@ -13,6 +13,10 @@ Then Click on the Calendar icon
 Then Click on the any date between Week (Let say "<date>" "<month>" "<year>")
 
 Examples: 
+<<<<<<< HEAD
 | url                            | username        | password | view   | date | month | year | table       |
+=======
+| url                                      | username        | password | view   | date | month | year | table       |
+>>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | a.day  | 15   | Nov   | 2015 | .day-table  |
 

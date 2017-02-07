@@ -15,5 +15,10 @@ Then I click on save button
 Then New entry "<project>" and "<designation>" should be entered
 
 Examples: 
+<<<<<<< HEAD
 | url                            | user            | pass     | project      | designation | task        | hours |
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ITTT         | PM          | conectivity | 5     |  
+=======
+| url                                      | user            | pass     | project               | designation     | task        | hours |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | TESTZ                 | Tester          | conectivity | 5     |  
+>>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820

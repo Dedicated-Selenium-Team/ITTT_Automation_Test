@@ -12,5 +12,9 @@ Then After I click on the Edit icon pop up should get display
 Then After I click on the update entry button, hrs should get display/ reflected on the page "<hrs>"
 
 Examples: 
+<<<<<<< HEAD
 | url                            | username            | password     | hrs |
+=======
+| url                                      | username            | password     | hrs |
+>>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com     | admin123     | 3   |

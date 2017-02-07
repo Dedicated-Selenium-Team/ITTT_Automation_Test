@@ -13,6 +13,10 @@ Then The same selected month, year and date should reflect in the Phase I End Da
 
 
 Examples: 
+<<<<<<< HEAD
 | url                            | username        | password | Estimates | number | date | month | year | Phase ID          |
+=======
+| url                                      | username        | password | Estimates | number | date | month | year | Phase ID          |
+>>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-1   | 5      | 29   | Dec   | 2016 | phase-I-end-date  |
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-1   | 5      | 29   | Dec   | 2016 | phase-II-end-date |

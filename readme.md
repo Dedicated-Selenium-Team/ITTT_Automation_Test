@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 read
+=======
+>>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 ## Laravel PHP Framework
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)

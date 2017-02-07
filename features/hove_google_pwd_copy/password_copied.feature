@@ -8,5 +8,9 @@ Then I copy the password value
 Then I print it for check in console 
 
 Examples: 
+<<<<<<< HEAD
 | url                           | username        | password |
+=======
+| url                                      | username        | password |
+>>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 |  

@@ -794,8 +794,11 @@ if ($role_id == 2) {?>
                          <?php
                          $role_id = Session::get('user')[0]['role_id'];
                          if ($role_id == 1) {?>
-                         {!! Form::submit('Submit',array('class' => 'submit-btn')) !!}
-                         <?php }if ($role_id == 1 || $role_id == 2) {?> <?php }?>
+                         <div class="submit-wrapper cf">
+                           {!! Form::submit('Submit',array('class' => 'submit-btn submit-est-plan')) !!}
+                           <p class="error"></p>
+                         </div>
+                         <?php } ?>
 
                        </div>
                      </div>

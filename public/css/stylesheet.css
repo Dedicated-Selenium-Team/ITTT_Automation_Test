@@ -1613,7 +1613,7 @@ table thead th {
 
 .table-wrapper {
   width: 100%;
-  overflow-y: auto;
+  /* overflow-y: auto;*/
 }
 
 .estimation {
@@ -2227,6 +2227,15 @@ table thead th {
   text-transform: uppercase;
 }
 /* session expired dialog ends here*/
+
+.submit-wrapper { position: relative; }
+
+.submit-wrapper .error { 
+  right: 0; 
+  text-transform: none;
+}
+
+.proj-date .error { text-transform: none; }
 
 @media screen and (min-width: 1370px) { 
   .wrap-project .estimate-plan .estimate-span { padding-right: 9.8% }

@@ -865,7 +865,7 @@
                    success : function(data) {
                      console.log('data', data);
                      if(data.duplicate_project_status==1){
-                      $('#project_name1').siblings('.error').text('Entered project name is already exist');
+                      $('#project_name1').siblings('.error').text('Entered project name already exist');
                       $('#project_name1').siblings('.error').show();
                     }
                     else{
@@ -891,7 +891,7 @@
                     success:function(data)
                     { 
                       if(data.duplicate_project_status==1){
-                        $('#project_name1').siblings('.error').text('Entered project name is already exist');
+                        $('#project_name1').siblings('.error').text('Entered project name already exist');
                         $('#project_name1').siblings('.error').show();
                       }
                       else {

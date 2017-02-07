@@ -321,6 +321,7 @@ header .wrapper {
 .nav-active {
   background-color: #3b5998;
   color: #fff;
+  /*cursor: default;*/
 }
 
 .nav-active:focus { color: #fff; }
@@ -716,6 +717,9 @@ table thead th {
 .timesheet-header-right .today:hover,
 .timesheet-header-right .today-hover,
 .timesheet-header-right .date-pick:hover { opacity: .4; }
+
+.timesheet-header-right .today-hover,
+.views .active-view { cursor: default; }
 
 .timesheet-header-right .date-pick {
   width: 34px;
@@ -1901,6 +1905,8 @@ table thead th {
   border: 1px solid #3b5998;
   background-color: #3b5998; 
 }
+
+.all-prj .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor { cursor: default; }
 
 .all-prj .ui-tabs-panel { font-size: 0; }
 

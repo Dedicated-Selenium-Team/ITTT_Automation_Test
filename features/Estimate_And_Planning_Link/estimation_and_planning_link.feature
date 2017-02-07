@@ -14,4 +14,3 @@ Then I click on any link of Estimation and Planning "<Links>" project (Let us ch
 Examples: 
 | url                            | username        | password | number | Tab    | Links         |
 | http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | 5      | tabs-1 | estimate-span |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | 5      | tabs-1 | planning-span |

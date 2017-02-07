@@ -15,5 +15,4 @@ Then Click on the any date between Week (Let say "<date>" "<month>" "<year>")
 Examples: 
 | url                            | username        | password | view   | date | month | year | table       |
 | http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | a.day  | 15   | Nov   | 2015 | .day-table  |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | a.week | 15   | Nov   | 2015 | .week-table |
 

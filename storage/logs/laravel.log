@@ -19997,6 +19997,7 @@ Stack trace:
 #7 /var/www/html/github-ittt/prdxn-ittt/server.php(21): require_once('/var/www/html/g...')
 #8 {main}  
 >>>>>>> 2f938ec7b42d8bde77b42a8f8f1f863ccb8f6093
+<<<<<<< HEAD
 [2017-01-31 10:27:12] production.ERROR: exception 'ErrorException' with message 'Undefined offset: 0' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php:35
 Stack trace:
 #0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php(35): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(8, 'Undefined offse...', '/var/www/html/V...', 35, Array)
@@ -20151,6 +20152,12 @@ Stack trace:
 Stack trace:
 #0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/MyselfProjectController.php(237): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'Missing argumen...', '/var/www/html/V...', 237, Array)
 #1 [internal function]: App\Http\Controllers\MyselfProjectController->show('newProjet')
+=======
+[2017-02-01 05:15:51] production.ERROR: exception 'ErrorException' with message 'Missing argument 2 for App\Http\Controllers\MyselfProjectController::show()' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/MyselfProjectController.php:237
+Stack trace:
+#0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/MyselfProjectController.php(237): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'Missing argumen...', '/var/www/html/V...', 237, Array)
+#1 [internal function]: App\Http\Controllers\MyselfProjectController->show('0')
+>>>>>>> 66af2ab0c3983505cf9c32427833767f48d3362a
 #2 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(256): call_user_func_array(Array, Array)
 #3 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(164): Illuminate\Routing\Controller->callAction('show', Array)
 #4 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(112): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\MyselfProjectController), Object(Illuminate\Routing\Route), 'show')

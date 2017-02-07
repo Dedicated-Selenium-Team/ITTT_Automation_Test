@@ -48,6 +48,7 @@ $user_name = Session::get('user')[0]['first_name'];
          <!-- <a href="#FIXME" title="Add New Project" class="addProject" data-toggle="modal" data-target="#create-project">Add New Project</a -->>
        </select>
        <p class="error"></p>
+       <p class="message"></p>
      </div>
      <div class="select-designation">
       {!! Html::decode(Form::label('designation','Designation<span class="required">*</span>:')) !!}
@@ -438,9 +439,14 @@ $user_name = Session::get('user')[0]['first_name'];
     e.preventDefault();
     var desig_index = $('#designation')[0].selectedIndex;
     var project_index = $('#project_name option:selected').val();
-    if(desig_index !=0 && project_index != 0) {
+    if(desig_index !=0 && project_index != 0 && project_index != 'newProjet') {
       $('html, body').animate({
-        scrollTop: $(this).next().offset().top }, 1000);
+        scrollTop: $('.designation-detail').offset().top }, 1000);
+    }
+
+    if(project_index=='newProjet'){
+      $('.designation #project_name').siblings('.message').text('Please select project name');
+      $('.designation #project_name').siblings('.message').show();
     }
 
     var clickValue = $(this).attr('id');
@@ -450,8 +456,6 @@ $user_name = Session::get('user')[0]['first_name'];
     var getProjectName = $('#project_name option:selected').val();
     var value1 = $('#designation').val();
     var url = $('#assign-project').attr('action') + '/' + project_index + '/' + value1;
-    $('html, body').animate({
-      scrollTop: $('.designation-detail').offset().top }, 1000);
     $.ajax({
       type : 'post',
       url : url,
@@ -508,6 +512,11 @@ $user_name = Session::get('user')[0]['first_name'];
 $("#project_name").on('change',function()
 {
   $('.percentHoursNeed').val("0.00");
+  var project_index = $('#project_name option:selected').val();
+  if(project_index != 'newProjet'){
+    $('.designation #project_name').siblings('.message').text('');
+    $('.designation #project_name').siblings('.message').hide();
+  }
 });
 $('#project_hrs').on('submit', function(e) {
   e.preventDefault();

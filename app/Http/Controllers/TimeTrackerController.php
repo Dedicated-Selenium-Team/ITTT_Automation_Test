@@ -357,6 +357,10 @@ $value->comments=str_replace('"','',$value->comments);
           $value1['designation_name'] = $designation_name;
           $value                      = (object) $value1;
           $value->hrs_locked=str_replace('.',':', number_format($value->hrs_locked,2));
+          $value->comments=json_encode($value->comments);
+$value->comments=str_replace('\\r\\n','<br>',$value->comments);
+$value->comments=str_replace('"','',$value->comments);
+
           
           array_push($daily_project, $value);
         }

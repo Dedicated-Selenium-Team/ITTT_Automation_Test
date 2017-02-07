@@ -2229,6 +2229,8 @@ table thead th {
   text-transform: none;
 }
 
+.proj-date .error { text-transform: none; }
+
 @media screen and (min-width: 1370px) { 
   .wrap-project .estimate-plan .estimate-span { padding-right: 9.8% }
 

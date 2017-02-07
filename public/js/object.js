@@ -979,12 +979,12 @@ function validateDate(date,mindate,thisEle){
   var minDate = Date.parse(mindate);
   var valueEntered = Date.parse(currentDate);
   if(!currentDate.match(reg)){
-    thisEle.siblings('.error').text('enter valid date');
+    thisEle.siblings('.error').text('Enter valid date');
     thisEle.siblings('.error').show();
   }
   else if(mindate!=0){
     if(valueEntered < minDate){
-      thisEle.siblings('.error').text('exceed min date');
+      thisEle.siblings('.error').text('Exceed min date');
       thisEle.siblings('.error').show();
     }
   }

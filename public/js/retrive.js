@@ -7,6 +7,9 @@ $(document).ready(function () {
 //   }  
 // }); 
 
+$('.active-view').click(false);
+$('.today-hover').click(false);
+
 $('.dt-buttons').append('<span>Download</span>');
 
 $('#scroll').click(function(){ 
@@ -100,6 +103,7 @@ $( "#tabs" ).tabs();
 
   if(get_date_str == get_today_str){
     $(".timesheet-header-right .today").addClass("today-hover");
+    $('.today-hover').click(false);
   }
 
   // Active state for timesheet today's date is ends here //
@@ -137,6 +141,8 @@ $( "#tabs" ).tabs();
   } else { 
     $(".navigation-menu  li a").removeClass('nav-active');
   };
+
+  // $('.nav-active').click(false);
   // Active state for navigation is ends here //
 
   // Add tooltip to span inside all projects tab ends here// 

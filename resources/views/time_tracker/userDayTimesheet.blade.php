@@ -37,7 +37,7 @@
            <a href="/time-management/{{$next_date}}/{{$id}}/{{$unique_project_id}}" class="next" title="Next">Next</a>
          </div>
 
-         <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date">
+         <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date" title="Datepicker">
 
          <div class="views">
            <a href="/time-management/{{$today}}/{{$id}}/{{$unique_project_id}}" title="Day View" class="day active-view">Day</a>
@@ -162,7 +162,7 @@
      <tr id="time{{$today_project->id}}">
       <td class="break-words">
         <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
-        <p>{{$today_project->comments}}</p>
+        <p><?php echo $today_project->comments;?></p>
       </td>
       <td>
         {{$today_project->hrs_locked}}

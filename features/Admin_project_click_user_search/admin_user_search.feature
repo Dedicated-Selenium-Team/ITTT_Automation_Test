@@ -13,5 +13,5 @@ When I enter some valid "<valid_data>"
 Then I should see the result on top
 
 Examples: 
-| url                           | username        | password | invalid_data | valid_data | 
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | kjjjljd | Pravin |
+| url                                      | username        | password | invalid_data | valid_data | 
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | kjjjljd | Pravin |

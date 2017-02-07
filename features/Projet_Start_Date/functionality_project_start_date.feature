@@ -12,5 +12,5 @@ Then Then select "<date>", "<month>" and "<year>"
 
 
 Examples: 
-| url                            | username        | password | Estimates | number | date | month | year |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | ui-id-1   | 3      | 15   | Nov   | 2016 | 
+| url                                      | username        | password | Estimates | number | date | month | year |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-1   | 3      | 15   | Nov   | 2016 | 

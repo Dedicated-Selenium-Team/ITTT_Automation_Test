@@ -8,6 +8,6 @@ Then Click on sign-in button
 Then Proper error message must be appeared or successfully login
 
 Examples: 
-| url                            | username        | password |
-| http://ittt.prdxnstaging2.com/ |                 |          | 
-| http://ittt.prdxnstaging2.com/ | abcd            | abcd     |
+| url                                      | username        | password |
+| http://timetrackingwip.prdxnstaging.com/ |                 |          | 
+| http://timetrackingwip.prdxnstaging.com/ | abcd            | abcd     |

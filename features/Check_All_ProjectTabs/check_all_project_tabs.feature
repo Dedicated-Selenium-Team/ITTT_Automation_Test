@@ -10,12 +10,12 @@ Then I should see the mouse pointer changes to the hand pointer on hovering on "
 Then "<All projects>" button should be highlighted as I click on it "<Tab>"
 
 Examples: 
-| url                            | username        | password | All projects | Tab    |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | ui-id-1      | tabs-1 |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | ui-id-2      | tabs-2 |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | ui-id-3      | tabs-3 |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | ui-id-4      | tabs-4 |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | ui-id-5      | tabs-5 |
+| url                                      | username        | password | All projects | Tab    |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-1      | tabs-1 |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-2      | tabs-2 |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-3      | tabs-3 |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-4      | tabs-4 |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-5      | tabs-5 |
 
 
 

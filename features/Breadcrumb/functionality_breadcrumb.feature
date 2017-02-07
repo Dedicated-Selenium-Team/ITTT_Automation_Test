@@ -9,5 +9,5 @@ Then Detail Page get display and Breadcrumb also get display
 Then Now clik on the Breadcrumb link Projects
 
 Examples: 
-| url                            | username                       | password  |
-| http://ittt.prdxnstaging2.com/ | sushant.lawate.prdxn@gmail.com | prdxn2016 |
+| url                                      | username                       | password  |
+| http://timetrackingwip.prdxnstaging.com/ | sushant.lawate.prdxn@gmail.com | prdxn2016 |

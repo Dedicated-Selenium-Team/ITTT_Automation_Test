@@ -10,6 +10,6 @@ Then Click on any link of Estimation project (Let us check this project "<number
 Then Enter valid data in the field of holidays or warranty (Let put the the number of "<days>" and "<ID>")
 
 Examples: 
-| url                            | username        | password | number | days | ID                      |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | 3      | 3    | Warrenty-period-holiday |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | 3      | 3    | Warrenty-days           |
+| url                                      | username        | password | number | days | ID                      |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | 3      | 3    | Warrenty-period-holiday |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | 3      | 3    | Warrenty-days           |

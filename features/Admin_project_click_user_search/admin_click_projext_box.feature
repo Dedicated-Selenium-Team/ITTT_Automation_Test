@@ -11,5 +11,5 @@ When I click on any random Project
 Then I should see the project which I have selected
 
 Examples: 
-| url                           | username        | password | 
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | 
+| url                                      | username        | password | 
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | 

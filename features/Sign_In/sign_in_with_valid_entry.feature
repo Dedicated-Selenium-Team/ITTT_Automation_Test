@@ -8,6 +8,6 @@ Then Click sign in button
 Then User must successfully signed in to the site
 
 Examples: 
-| url                            | username        | password |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 |
+| url                                      | username        | password |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 |
 

@@ -16,5 +16,5 @@ When I click on submit button
 Then Project "<project_name>" should be added in project list
 
 Examples: 
-| url                           | username        | password | project_name | designation | project_code | client_name |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | Break Loose    | FE_Developer | 1234         | Test        |    
+| url                                      | username        | password | project_name | designation | project_code | client_name |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | Break Loose    | FE_Developer | 1234         | Test        |    

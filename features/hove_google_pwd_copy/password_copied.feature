@@ -8,5 +8,5 @@ Then I copy the password value
 Then I print it for check in console 
 
 Examples: 
-| url                           | username        | password |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 |  
+| url                                      | username        | password |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 |  

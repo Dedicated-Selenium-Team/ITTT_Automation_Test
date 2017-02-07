@@ -14,5 +14,5 @@ Then Change the date from calender (Let say "<date>" "<month>" "<year>")
 Then Field of Timeline Till Go-Live (days) should again display zero
 
 Examples: 
-| url                            | username        | password | Estimates | number | date | month | year |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | ui-id-1   | 3      | 15   | Dec   | 2016 |
+| url                                      | username        | password | Estimates | number | date | month | year |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-1   | 3      | 15   | Dec   | 2016 |

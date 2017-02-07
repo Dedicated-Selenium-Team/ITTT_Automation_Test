@@ -10,5 +10,5 @@ Then Click on Add new button present on the left top corner, pop-up will get dis
 Then Fill all the fields with invalid data
 
 Examples: 
-| url                            | username        | password |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 |
+| url                                      | username        | password |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 |

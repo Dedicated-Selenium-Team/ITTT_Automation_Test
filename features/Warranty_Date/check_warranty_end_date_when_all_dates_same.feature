@@ -16,5 +16,5 @@ Then Set the same date for Phase II End Date from calender (Let say "<date>" "<m
 Then Warranty end daye should be same as the date set in all the filed
 
 Examples: 
-| url                            | username        | password | Estimates | number | date | month | year |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | ui-id-1   | 5      | 29   | Dec   | 2016 |
+| url                                      | username        | password | Estimates | number | date | month | year |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-1   | 5      | 29   | Dec   | 2016 |

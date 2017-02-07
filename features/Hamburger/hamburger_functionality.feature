@@ -22,5 +22,5 @@ Then Again I click on timesheet option in list "<list_num_second>"
 Then Again I should see Clicked item page open
 
 Examples: 
-| url                           | username        | password | list_num_first | list_num_second |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 | 2              | 1               |
+| url                                      | username        | password | list_num_first | list_num_second |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | 2              | 1               |

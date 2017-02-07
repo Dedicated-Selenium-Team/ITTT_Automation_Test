@@ -13,5 +13,5 @@ When click prev button
 Then I see the previous date on header
 
 Examples: 
-| url                           | username        | password |
-| http://ittt.prdxnstaging2.com/ | admin@prdxn.com | admin123 |  
+| url                                      | username        | password |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 |  

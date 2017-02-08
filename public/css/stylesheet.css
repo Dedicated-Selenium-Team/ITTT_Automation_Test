@@ -321,6 +321,7 @@ header .wrapper {
 .nav-active {
   background-color: #3b5998;
   color: #fff;
+  /*cursor: default;*/
 }
 
 .nav-active:focus { color: #fff; }
@@ -501,7 +502,8 @@ main .wrapper  {
 
 .empty { text-align: center; }
 
-.select-proj .error { left: 83px; }
+.select-proj .error,
+.select-proj .message { left: 83px; }
 
 .select-designation .error { left: 26%; }
 
@@ -514,7 +516,8 @@ main .wrapper  {
 @-moz-document url-prefix() { 
   .designation .submit { margin: 35px 6px 18px 0; }
   .designation .form-control { width: 74%; }
-  .select-proj .error { left: 85px; }
+  .select-proj .error,
+  .select-proj .message { left: 85px; }
   .select-proj select,
   .select-designation select { margin-left: 13px; }
 }
@@ -573,7 +576,7 @@ main .wrapper  {
   opacity: 0;
 }
 
-.has-children > ul { padding: 4% 7.25%; }
+.has-children > ul { padding: 4% 7%; }
 
 .has-children .Lead { margin-bottom: 0 ; }
 
@@ -585,9 +588,17 @@ main .wrapper  {
   width: 0;
 }
 
-.has-children ul table th:nth-of-type(3) { width: 11%; }
+.has-children ul table th:nth-of-type(3),
+.pre-table-body th:nth-of-type(3),
+.post-table-body th:nth-of-type(3) { width: 10%; }
 
-.has-children ul table th:nth-of-type(2) { width: 10%; }
+.has-children ul table th:nth-of-type(6),
+.pre-table-body th:nth-of-type(6),
+.post-table-body th:nth-of-type(6) { width: 9%; }
+
+.has-children ul table th:nth-of-type(2),
+.pre-table-body th:nth-of-type(2),
+.post-table-body th:nth-of-type(2) { width: 10%; }
 
 /******Code for toggle in project designation End's here *********/
 
@@ -666,10 +677,11 @@ table thead th {
 .day-timesheet .container-heading { box-shadow: none; }
 
 .input-read-only {
-  width: 60%;
+  width: 49%;
   padding: 0;
   border: none;
   margin-left: -2px;
+  display: inline-block;
   background-color: #fff;
   color: #1b1b1b;
   /*-webkit-text-fill-color: #1b1b1b;*/
@@ -688,7 +700,7 @@ table thead th {
 
 .timesheet-header-right > * {
   float: left;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);
+  /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);*/
 }
 
 .timesheet-header-right .today { 
@@ -706,6 +718,9 @@ table thead th {
 .timesheet-header-right .today-hover,
 .timesheet-header-right .date-pick:hover { opacity: .4; }
 
+.timesheet-header-right .today-hover,
+.views .active-view { cursor: default; }
+
 .timesheet-header-right .date-pick {
   width: 34px;
   height: 34px;
@@ -721,7 +736,7 @@ table thead th {
 .arrow { 
  margin-left: 19px;
  position: relative;
- box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);
+ /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);*/
 }
 
 .arrow a { 
@@ -1179,13 +1194,22 @@ table thead th {
   font: 400 15px / 19px 'Open Sans';
 }
 
-.login-form-page .form-group .message,
+.login-form-page .message,
 .login-form-page .error {
   position: absolute;
   bottom: -14px;
   color: #da4143;
   font: 400 11px / 11px 'Open Sans';
 }
+
+.login-form-page .login-error,
+.login-form-page .google-login-error{
+  width: calc(100% - 100px);
+  bottom: 93%;
+  text-align: center;
+  font-size: 14px;
+  /* pointer-events: none;*/
+} 
 
 .login-form-page .submit-btn,
 .login-form-page .google-login {
@@ -1266,7 +1290,7 @@ table thead th {
 .table-body thead,
 .post-table-body thead { background-color: #fff; }
 
-.designation-detail .before-assign { width: 83%; }
+.designation-detail .before-assign { width: 86%; }
 
 @-moz-document url-prefix() { 
   .designation-detail .before-assign { width: 75%; }
@@ -1715,7 +1739,8 @@ table thead th {
 
 .modal-body .form-group { position: relative; }
 
-.error {
+.error,
+.message {
   position: absolute;
   bottom: -14px;
   color: #da4143;
@@ -1881,6 +1906,8 @@ table thead th {
   background-color: #3b5998; 
 }
 
+.all-prj .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor { cursor: default; }
+
 .all-prj .ui-tabs-panel { font-size: 0; }
 
 .all-prj .proj_status { font-size: 14px; }
@@ -1893,11 +1920,15 @@ table thead th {
   padding: 5px 10px;
   background-color: #e9e9e9;
   font: 700 14px 'Open Sans';
+  text-align: left;
 }
 
 .wrap-project .actions div { float: right; }
 
-.wrap-project .actions span { color: #3b5998; }
+.wrap-project .actions span { 
+  color: #3b5998; 
+  text-transform: capitalize;
+}
 
 .wrap-project .actions div a,
 .wrap-project .actions div select {
@@ -1912,6 +1943,7 @@ table thead th {
 
 .wrap-project .actions div select {
   border: none;
+  border-radius: 0;
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none; 
@@ -2154,6 +2186,54 @@ table thead th {
 
 .login-form-page .scroll { display: none; }
 
+/* session expired dialog starts here*/
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  z-index: 1060;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.7);
+}
+
+.overlay .session-expired {
+  margin-top: calc(50vh - 83px);
+  margin-left: calc(50vw - 199px);
+  display: inline-block;
+  background-color: #fff;
+  margin-top: calc(50vh - 83px);
+  margin-left: calc(50vw - 199px);
+  text-align: center;
+}
+
+.session-expired h4 {
+  padding: 28px 16px 9px;
+  background-color: #ebf1fc;
+  color: #000;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.session-expired p { padding: 10px 50px 24px; }
+
+.session-expired a {
+  padding: 11px 14px;
+  margin-bottom: 33px;
+  background-color: #3b5998;
+  color: #fff;
+  font: 700 15px / 16px 'Open Sans';
+  text-transform: uppercase;
+}
+/* session expired dialog ends here*/
+
+@media screen and (min-width: 1370px) { 
+  .wrap-project .estimate-plan .estimate-span { padding-right: 9.8% }
+
+  .wrap-project .estimate-plan .planning-span { padding-left: 9.6% }
+}
+
 @media screen and (max-width: 1270px) {
   .select-proj select,
   .select-designation select { margin-left: 11px; }
@@ -2164,15 +2244,16 @@ table thead th {
 
   .select-designation .error { left: 35%; }
 
-  .select-proj .error { left: 71px; }
+  .select-proj .error,
+  .select-proj .message { left: 71px; }
 }
 
 @media screen and (max-width: 1162px) {
   .wrap-project .estimate-plan .detail-plan { font-size: 10px; }
 
-  .wrap-project .estimate-plan .estimate-span { padding-right: 1.8% }
+  .wrap-project .estimate-plan .estimate-span { padding-right: 0% }
 
-  .wrap-project .estimate-plan .planning-span { padding-left: 1.6% }
+  .wrap-project .estimate-plan .planning-span { padding-left: 0% }
 
   .estimation-designation-report .tableData th { white-space: normal; }
 
@@ -2183,13 +2264,44 @@ table thead th {
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .wrap-project .estimate-plan .estimate-span { padding-right: 0; }
 
+  .wrap-project .estimate-plan .detail-plan { font-size: 9px; }
+
   .wrap-project .estimate-plan .planning-span { padding-left: 0; }
 
-  .select-proj .error { left: 23%; }
+  .select-proj .error,
+  .select-proj .message { left: 23%; }
+
+  .timesheet-content .table-timesheet { width: 70%; }
+
+  .timesheet-content .table-timesheet-week { width: 100%; }
+
+  .week-table .head-row th:not(:first-of-type) { width: 10%; }
+
+  .week-table .head-row th:first-of-type { width: 20%; }
+
+  .week-table .head-row th:nth-of-type(4) { width: 13%; }
+
+  .week-table .head-row th a { padding: 14px 14% 13px; }
+
+  .week-table .head-row th:last-of-type { padding: 1%; }
+
+  .total-hrs .design-wrap-container { width: 80%; }
+
+}
+
+@media screen and (orientation: portrait)  and (min-width: 768px) and (max-width: 1024px) {
+  .wrap-project .estimate-plan .detail-plan { font-size: 12px; }
+
+  .wrap-project .estimate-plan .estimate-span {
+    border-right: 0;  
+    margin-bottom: 2px; 
+  }
+
+  .wrap-project .estimate-plan span { display: block; }
+
 }
 
 @media screen and (max-width: 961px) {
-  .total-hrs .design-wrap-container { width: 100%; }
 
   .total-hrs .tableData th { white-space: normal; }
 
@@ -2209,9 +2321,4 @@ table thead th {
   .before-assign th,
   .before-assign td { padding: 1%; }
 
-  .timesheet-content .table-timesheet { width: 80%; }
-
-  .timesheet-content .week-table { width: 100%; }
-
 }
-

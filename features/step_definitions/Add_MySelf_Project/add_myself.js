@@ -28,30 +28,16 @@ module.exports = function() {
     this.driver.sleep(1000);
   });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-   //click on hamburger
-   this.Then(/^I click on mouse hambergerr$/, function(){
-=======
+
   //click on hamburger
   this.Then(/^I click on mouse hamberger$/, function(){
->>>>>>> 688bf46fd0dcad0a6e060cd60b14802d1abb7b85
-=======
-  //click on hamburger
-  this.Then(/^I click on mouse hamberger$/, function(){
->>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
     this.driver.findElement({ css: '.nav-hamber'}).click();
     this.driver.sleep(1000);
   });
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-   //click on project in project list
-   this.Then(/^I click Project in listt$/, function(){
-=======
-   //click on project in project list
-   this.Then(/^I click Project in list$/, function(){
->>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
+
+  //click on project in project list
+  this.Then(/^I click Project in list$/, function(){
     this.driver.findElement({ css: '.all-projects'}).click();
     this.driver.sleep(1000);
   });
@@ -174,8 +160,7 @@ module.exports = function() {
   //   this.driver.findElement({ css:'.submit .submit-btn' }).click();
   //   this.driver.sleep(2000);
   // }); 
-<<<<<<< HEAD
-=======
+
   //click on project in project list
   this.Then(/^I click Project in list$/, function(){
     this.driver.findElement({ css: '.all-projects'}).click();
@@ -214,15 +199,15 @@ module.exports = function() {
   var selectDesignation=this.driver.findElement({css:'#designation'});
   selectDesignation.click();
   selectDesignation.findElements({css:'option'}).then(function findMatchingOption(options){
-   options.some(function(option){
-     option.getText().then(function doesOptionMatch(selected_des){
-       if (designation === selected_des){
-        desiredDesignation = option;
-        return true;
-      }
+    options.some(function(option){
+      option.getText().then(function doesOptionMatch(selected_des){
+        if (designation === selected_des){
+          desiredDesignation = option;
+          return true;
+        }
+      });
     });
-   });
- })
+  })
   .then(function clickOption(){
     if (desiredDesignation){
       desiredDesignation.click();
@@ -288,7 +273,4 @@ module.exports = function() {
   //     }      
   //   });
   // });
->>>>>>> 688bf46fd0dcad0a6e060cd60b14802d1abb7b85
-=======
->>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 };

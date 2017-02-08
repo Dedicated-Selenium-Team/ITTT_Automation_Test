@@ -4,6 +4,9 @@
 @section('content')
 <!-- project desination page start here -->
 
+<?php $role_id = Session::get('user')[0]['role_id']; ?>
+<input type="hidden" value={{$role_id}} id="role-id">
+
 <div class="bread-crumb">
   <div> 
     <a href="/store_project">projects</a>
@@ -114,8 +117,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -199,8 +202,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -283,8 +286,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -367,8 +370,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -452,8 +455,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -537,8 +540,8 @@
                   </th>
                   <th title="Total hours logged in timesheet for this designation">Actuals To-Date</th>
                   <th title="Actuals To-Date / Total of Actuals To-Date * 100">% of Actuals (Hours, Total)</th>
-                  <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
-                  <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">Actuals / Estimate Ratio</th>
+                  <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">Actuals / Planning Ratio</th>
                 </tr>
               </thead>
               <tfoot>
@@ -648,7 +651,7 @@
         }
       });
     }
-    function getDetails(e,project_id) {
+    function getDetails(e,project_id,role) {
       var output_array = [];
       var addOnProjectObj = new addOnProjectAfterAssistment();
       var getProjectName = $('#select_project option:selected').val();
@@ -656,6 +659,7 @@
       var designation = $('#select_designation option:selected').text();
       var get_proj = $('#select_project').val();
       var designation = [];
+      var getRole = role;
       $.ajax({
        type:'POST',
        data : {
@@ -749,20 +753,38 @@
              $(this).find('.employee').remove();
              for (var i = 0; i < key.name.length; i++) {
               var path = '/time-management/'+getFullDate+'/'+key.projects[i].user_id+'/'+project_id;
-              var row = '<tr class="employee">'+
-              '<td><a class="emp-name" href="' + path + '">'+ key.name[i] +'</a>'+
-              '</td>'+
-              '<td>'+ key.projects[i].required_hrs +'%'+'</td>'+
-              '<td>'+obj.Adjusted[i]+'%</td>'+
-              '<td>'+obj.adjustedEstimation[i]+'</td>'+
-              '<td>'+obj.adjustedPlanning[i]+'</td>'+
-              '<td>'+Number(key.timesheet_hrs[i].timesheet_hrs).toFixed(2)+'</td>'+
-              '<td>'+obj.actualHours[i] +'%'+'</td>'+
-              '<td>'+obj.actualEstimationRatio[i] +'%'+'</td>'+
-              '<td>'+obj.actualPlanningRatio[i] +'%'+'</td>'+
-              '</tr>';
-              $(this).find('.empty').remove();
-              $(this).append(row);
+              
+              if(getRole == 1){
+                var row = '<tr class="employee">'+
+                '<td><a class="emp-name" href="' + path + '">'+ key.name[i] +'</a>'+
+                '</td>'+
+                '<td>'+ Number(key.projects[i].required_hrs).toFixed(2) +'%'+'</td>'+
+                '<td>'+Number(obj.Adjusted[i]).toFixed(2) +'%'+'</td>'+
+                '<td>'+Number(obj.adjustedEstimation[i]).toFixed(2)+'</td>'+
+                '<td>'+obj.adjustedPlanning[i]+'</td>'+
+                '<td>'+Number(key.timesheet_hrs[i].timesheet_hrs).toFixed(2)+'</td>'+
+                '<td>'+Number(obj.actualHours[i]).toFixed(2) +'%'+'</td>'+
+                '<td>'+Number(obj.actualEstimationRatio[i]).toFixed(2) +'%'+'</td>'+
+                '<td>'+Number(obj.actualPlanningRatio[i]).toFixed(2) +'%'+'</td>'+
+                '</tr>';
+                $(this).find('.empty').remove();
+                $(this).append(row);
+              }
+              else {
+                var row = '<tr class="employee">'+
+                '<td>'+ key.name[i] +'</td>'+
+                '<td>'+ Number(key.projects[i].required_hrs).toFixed(2) +'%'+'</td>'+
+                '<td>'+Number(obj.Adjusted[i]).toFixed(2) +'%'+'</td>'+
+                '<td>'+Number(obj.adjustedEstimation[i]).toFixed(2)+'</td>'+
+                '<td>'+obj.adjustedPlanning[i]+'</td>'+
+                '<td>'+Number(key.timesheet_hrs[i].timesheet_hrs).toFixed(2)+'</td>'+
+                '<td>'+Number(obj.actualHours[i]).toFixed(2) +'%'+'</td>'+
+                '<td>'+Number(obj.actualEstimationRatio[i]).toFixed(2) +'%'+'</td>'+
+                '<td>'+Number(obj.actualPlanningRatio[i]).toFixed(2) +'%'+'</td>'+
+                '</tr>';
+                $(this).find('.empty').remove();
+                $(this).append(row);
+              }
             }
             $(this).find('tfoot').remove();
             var footer = '<tfoot><tr class="bold"><td>Total</td><td><span class="pre-self-total"></span></td><td><span class="pre-adjusted-total"></span></td><td><span class="pre-estimate-total"></span></td><td><span class="pre-planig-total"></span></td><td><span class="pre-actual-total"></span></td><td><span class="pre-actual-percent-total"></span></td><td><span class="pre-estimate-ratio-total"></span></td><td><span class="pre-planning-ratio-total"></span></td></tr><tr class="italic"><td>Remaining</td><td><span class="pre-remaining-assign-total"></span</td><td></td><td><span class="pre-remaining-estimation-total"></span></td><td><span class="pre-remaining-planning-total"></span></td><td></td><td></td><td></td><td></td></tr></tfoot>';
@@ -775,8 +797,8 @@
             $(this).find('.pre-actual-total').text(Number(obj.gettotAcualToDate).toFixed(2));
             $(this).find('.pre-actual-percent-total').text(Number(obj.getactualTotalHours).toFixed(2) + "%");
 
-            $(this).find('.pre-estimate-ratio-total').text(obj.getactualEstimaionRatio + "%");
-            $(this).find('.pre-planning-ratio-total').text(obj.getactualPlanningRatio + "%");
+            $(this).find('.pre-estimate-ratio-total').text(Number(obj.getactualEstimaionRatio).toFixed(2) + "%");
+            $(this).find('.pre-planning-ratio-total').text(Number(obj.getactualPlanningRatio).toFixed(2) + "%");
             $(this).find('.project_name').val(getProjectName);
             $(this).find('.designation_id').val(getProjectDesignation);
             $(this).find('.pre-remaining-assign-total').text(Number(obj.remainingSelfAssignedTotal).toFixed(2) + "%");
@@ -784,18 +806,20 @@
             $(this).find('.pre-remaining-planning-total').text(Number(obj.remainingPlanningTotal).toFixed(2));
           }
         });
-       }
-     });
+}
+});
 }
 var project_id = $('#select_project').val();
 
+var role = $('#role-id').val();
+
 document.onload = hoursData();
-document.onload = getDetails(null,project_id);
+document.onload = getDetails(null,project_id,role);
 $('#select_project').on('change', function(e) {
   var project_id = $(this).val();
   e.preventDefault();
   hoursData();
-  getDetails(e,project_id);
+  getDetails(e,project_id,role); 
 });
 
 $('#select_designation').on('change', function(e) {

@@ -10,11 +10,7 @@ Then I should see the mouse pointer changes to the hand pointer on hovering on "
 Then "<All projects>" button should be highlighted as I click on it "<Tab>"
 
 Examples: 
-<<<<<<< HEAD
-| url                            | username        | password | All projects | Tab    |
-=======
 | url                                      | username        | password | All projects | Tab    |
->>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-1      | tabs-1 |
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-2      | tabs-2 |
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-3      | tabs-3 |

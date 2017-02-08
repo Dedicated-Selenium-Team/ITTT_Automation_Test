@@ -15,6 +15,9 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\Inspire::class,
         \App\Console\Commands\DailyUpdate::class,
+        \App\Console\Commands\escalation::class,
+         \App\Console\Commands\PmReport::class,
+ \App\Console\Commands\Slack_notification::class,
     ];
 
     /**
@@ -25,9 +28,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('inspire')
+$schedule->command('command:PmReport')
+                 ->everyMinute();
+       /*$schedule->command('inspire')
                  ->hourly();
         $schedule->command('command:crone')
-                 ->everyMinute();
+                 ->dailyAt('19:30');
+        $schedule->command('command:escalation')
+                ->dailyAt('19:30');
+       
+ $schedule->command('command:PmReport')
+                 ->everyMinute();*/
+//$schedule->command('command:slack_notification')->dailyAt('17:15');
+
     }
 }

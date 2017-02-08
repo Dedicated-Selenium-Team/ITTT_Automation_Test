@@ -11,10 +11,6 @@ When I click back button
 Then The current page should not be redirected to the login page"<url>"
 
 Examples: 
-<<<<<<< HEAD
-| url                            | user            | pass     |
-=======
 | url                                      | user            | pass     |
->>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 |
 

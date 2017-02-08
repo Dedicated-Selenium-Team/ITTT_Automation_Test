@@ -57,6 +57,12 @@ class TimeTrackerController extends Controller {
           $value1['designation_name'] = $designation_name;
           $value                      = (object) $value1;
           $value->hrs_locked=str_replace('.',':', number_format($value->hrs_locked,2));
+          $value->comments=json_encode($value->comments);
+$value->comments=str_replace('\\r\\n','<br>',$value->comments);
+$value->comments=str_replace('"','',$value->comments);
+
+         
+      
           
           array_push($daily_project, $value);
         }
@@ -78,6 +84,7 @@ class TimeTrackerController extends Controller {
         }
 
       }
+      
       return view('time_tracker/day', compact('projects', 'daily_project', 'date','is_project_assigned'));
 
     } else {
@@ -99,7 +106,8 @@ class TimeTrackerController extends Controller {
     // store the timesheet values into databse
     $time->user_id      = $user_id;
     $time->project_name = Input::get('project_id');
-    $time->date         = Input::get('date');
+    $time->date         = date('Y-m-d');
+    //Input::get('date');
     $time->comments     = Input::get('comments');
     $time->hrs_locked   = Input::get('hidden_Hrs');
     $time->d_id         = Input::get('project_desig');
@@ -121,7 +129,6 @@ class TimeTrackerController extends Controller {
       'success'=>$success
 
       ]);
-
   }
 
   /**
@@ -350,6 +357,10 @@ class TimeTrackerController extends Controller {
           $value1['designation_name'] = $designation_name;
           $value                      = (object) $value1;
           $value->hrs_locked=str_replace('.',':', number_format($value->hrs_locked,2));
+          $value->comments=json_encode($value->comments);
+$value->comments=str_replace('\\r\\n','<br>',$value->comments);
+$value->comments=str_replace('"','',$value->comments);
+
           
           array_push($daily_project, $value);
         }

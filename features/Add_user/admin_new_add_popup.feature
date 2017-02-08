@@ -25,9 +25,5 @@ Then I should see error message
 # Then Field are updated 
 
 Examples: 
-<<<<<<< HEAD
-| url                           | username        | password | name | contact |  month | year | date |
-=======
-| url                                      | username        | password | name | contact |  month | year | date |
->>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
-| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | test | 0987654321 | Dec | 2016 | 13 |
+| url                                      | username        | password | name | contact    |  month | year | date |
+| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | test | 0987654321 | Dec    | 2016 | 13   |

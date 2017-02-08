@@ -120,18 +120,7 @@ class DailyUpdate extends Command
                             $project_id=$data_value->project_id;
                             $designation_id=$data_value->d_id;
 
-                            
-                            $total_estimated_hrs=DB::table('phase_individual_resources')->where('project_id',$project_id)->where('d_id',$designation_id)->where('ph_id','<','8')->lists('actual_hrs');
-                            if(count($total_estimated_hrs)==0)
-                            {
-                                $total_estimated_hrs=0;
-                            }
-                            else
-                            {
-                                 $total_estimated_hrs=(json_decode(json_encode($total_estimated_hrs), true));
-                            $total_estimated_hrs=$this->getminutes($total_estimated_hrs);
-                            }
-                           
+                            $total_estimated_hrs=DB::table('phase_individual_resources')->where('project_id',$project_id)->where('d_id',$designation_id)->SUM('actual_hrs');
                             $total_hrs_to_date=DB::table('day_times')->where('user_id',$all_dr_value)
                             ->where('project_name',$project_id)->where('d_id',$designation_id)->lists('hrs_locked');
 
@@ -141,10 +130,8 @@ class DailyUpdate extends Command
                             if(count($project_end_date)>0)
                                 $tmp['project_end_date']=$project_end_date[0]->p_II_live;
                             else
-                                $tmp['project_end_date']="Not specified";
+                                $tmp['project_end_date']="not specified";
                             $tmp['project_name']=$data_value->project_name;
-$comments=str_replace('\\r\\n','<br>',$data_value->comments);
-$comments=str_replace('"','',$comments);
                             $tmp['description']=$data_value->comments;
                             $tmp['hrs_locked']=$data_value->hrs_locked;
                             $tmp['total_estimated_hrs']=$total_estimated_hrs;
@@ -170,10 +157,10 @@ $comments=str_replace('"','',$comments);
                 Mail::send('cron/dailyupdate', ['manager_data'=>$manager_data,"dr_names"=>$dr_names], function ($message)
                 {
 
-                    $message->from('nilesh.vidhate.prdxn@gmail.com', ucwords($_POST['timesheetdata']["name"]));
+                    $message->from('nilesh.vidhate.prdxn@gmail.com', $_POST['timesheetdata']["name"]);
 
                     $message->to('vrushali.shelar.prdxn@gmail.com');
-                    $message->subject("Direct Report Activities Update for Manager (".ucwords($_POST['timesheetdata']['name']).") - ITTT");
+                    $message->subject("Direct Report Activities Update for Manager (".$_POST['timesheetdata']['name']." )-ITTT");
                    
 
                 });

@@ -48,6 +48,7 @@ $user_name = Session::get('user')[0]['first_name'];
          <!-- <a href="#FIXME" title="Add New Project" class="addProject" data-toggle="modal" data-target="#create-project">Add New Project</a -->>
        </select>
        <p class="error"></p>
+       <p class="message"></p>
      </div>
      <div class="select-designation">
       {!! Html::decode(Form::label('designation','Designation<span class="required">*</span>:')) !!}
@@ -70,7 +71,7 @@ $user_name = Session::get('user')[0]['first_name'];
     <!-- Modal content Starts Here-->
     <div class="modal-content">
 
-      {!! Form::open(array('url' => 'store_project','id' => 'add-project', 'method' => 'post')) !!}
+      {!! Form::open(array('id' => 'add-project', 'method' => 'post')) !!}
 
       <!-- Modal Header Starts Here -->
       <div class="modal-header">
@@ -83,8 +84,8 @@ $user_name = Session::get('user')[0]['first_name'];
       <div class="modal-body">
 
         <div class="form-group cf">
-          {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
-          {!! Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
+          {!! Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')) !!}
+          {!! Form::text('project_name1', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
           <p class="error"></p>
         </div>
 
@@ -224,10 +225,10 @@ $user_name = Session::get('user')[0]['first_name'];
           <th title="Actuals To-Date / Total of Actuals To-Date * 100">
             % of Actuals (Hours, Total)
           </th>
-          <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">
+          <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">
             Actuals / Estimate Ratio
           </th>
-          <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">
+          <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">
             Actuals / Planning Ratio
           </th>
         </tr>
@@ -326,10 +327,10 @@ $user_name = Session::get('user')[0]['first_name'];
         <th title="Actuals To-Date / Total of Actuals To-Date * 100">
           % of Actuals (Hours, Total)
         </th>
-        <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">
+        <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">
           Actuals / Estimate Ratio
         </th>
-        <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planniing Hours)">
+        <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">
           Actuals / Planning Ratio
         </th>
       </tr>
@@ -438,9 +439,14 @@ $user_name = Session::get('user')[0]['first_name'];
     e.preventDefault();
     var desig_index = $('#designation')[0].selectedIndex;
     var project_index = $('#project_name option:selected').val();
-    if(desig_index !=0 && project_index != 0) {
+    if(desig_index !=0 && project_index != 0 && project_index != 'newProjet') {
       $('html, body').animate({
-        scrollTop: $(this).next().offset().top }, 1000);
+        scrollTop: $('.designation-detail').offset().top }, 1000);
+    }
+
+    if(project_index=='newProjet'){
+      $('.designation #project_name').siblings('.message').text('Please select project name');
+      $('.designation #project_name').siblings('.message').show();
     }
 
     var clickValue = $(this).attr('id');
@@ -450,8 +456,6 @@ $user_name = Session::get('user')[0]['first_name'];
     var getProjectName = $('#project_name option:selected').val();
     var value1 = $('#designation').val();
     var url = $('#assign-project').attr('action') + '/' + project_index + '/' + value1;
-    $('html, body').animate({
-      scrollTop: $('.designation-detail').offset().top }, 1000);
     $.ajax({
       type : 'post',
       url : url,
@@ -461,7 +465,6 @@ $user_name = Session::get('user')[0]['first_name'];
         "_token": "{{ csrf_token() }}"
       },
       success: function(data) {
-        
         $('table').find('.employee').remove();
         $('.post-table-body span').empty();
         var testing  = testObj.init(data);
@@ -470,18 +473,19 @@ $user_name = Session::get('user')[0]['first_name'];
           var row = '<tr class="employee">'+
           '<td>'+ data.name[i] +'</td>'+
           '<td>'+ data.projects[i].required_hrs +'%'+'</td>'+
-          '<td>'+testing.Adjusted[i]+"%"+'</td>'+
+          '<td>'+Number(testing.Adjusted[i]).toFixed(2)+"%"+'</td>'+
           '<td>'+testing.adjustedEstimation[i]+'</td>'+
           '<td>'+testing.adjustedPlanning[i]+'</td>'+
           '<td>'+Number(data.timesheet_hrs[i].timesheet_hrs).toFixed(2)+'</td>'+
-          '<td>'+testing.actualHours[i]+"%"+'</td>'+
+          '<td>'+Number(testing.actualHours[i]).toFixed(2)+"%"+'</td>'+
           '<td>'+Number(testing.actualEstimationRatio[i]).toFixed(2)+"%"+'</td>'+
-          '<td>'+testing.actualPlanningRatio[i]+"%"+'</td>'
+          '<td>'+Number(testing.actualPlanningRatio[i]).toFixed(2)+"%"+'</td>'
           '</tr>';
           $('.table-body tr').eq(-2).before(row);
         }
         $('.appHours').val(Number(data.hrs).toFixed(2));
         $('.PostAppHours').val(Number(data.plan_hrs).toFixed(2));
+        $('.actualAppHours').val(Number(data.actual_hrs).toFixed(2));
         $('.pre-self-total').text((testing.sum).toFixed(2) + "%");
         $('.pre-adjusted-total').text(Number(testing.gettotAdjusted).toFixed(2) + "%");
         $('.pre-estimate-total').text(testing.gettotEstimation.toFixed(2));
@@ -508,6 +512,11 @@ $user_name = Session::get('user')[0]['first_name'];
 $("#project_name").on('change',function()
 {
   $('.percentHoursNeed').val("0.00");
+  var project_index = $('#project_name option:selected').val();
+  if(project_index != 'newProjet'){
+    $('.designation #project_name').siblings('.message').text('');
+    $('.designation #project_name').siblings('.message').hide();
+  }
 });
 $('#project_hrs').on('submit', function(e) {
   e.preventDefault();
@@ -546,7 +555,7 @@ $('#project_hrs').on('submit', function(e) {
         var row = '<tr class="employee">'+
         '<td>'+ data.name[i] +'</td>'+
         '<td>'+ data.projects[i].required_hrs +'%'+'</td>'+
-        '<td>'+object.Adjusted[i]+"%"+'</td>'+
+        '<td>'+Number(object.Adjusted[i]).toFixed(2)+"%"+'</td>'+
         '<td>'+object.adjustedEstimation[i]+'</td>'+
         '<td>'+object.adjustedPlanning[i]+'</td>'+
         '<td>'+Number(data.timesheet_hrs[i].timesheet_hrs).toFixed(2)+'</td>'+
@@ -588,6 +597,61 @@ $(document).on("click", '#project_name', function () {
   }
 });
 // project_hrs functionality Ends here
-</script>
-@stop
 
+var blurHappened = false;
+
+$('#project_name1').on('blur', function(e){
+ if (blurHappened)
+ {
+  blurHappened = false;
+}
+else 
+{
+  e.preventDefault();
+  var project_name=$("#project_name1").val();
+  $.ajax({
+   type : 'get',
+   url : '/duplicate_project',
+   data : {'project_name':project_name},
+   success : function(data) {
+     console.log('data', data);
+     if(data.duplicate_project_status==1){
+      $('#project_name1').siblings('.error').text('Entered project name already exist');
+      $('#project_name1').siblings('.error').show();
+    }
+    else{
+     console.log('no message')
+   }
+ }
+});
+}
+
+});
+
+$('#add-project').on('submit',function(e) {
+  e.preventDefault();
+  blurHappened = true;
+  var project_name=$("#project_name1").val();
+  var project_code=$("#project_code").val();
+  var client_name=$("#client_name").val();
+  var project_status=$(".status_id").val();
+  $.ajax({
+    type:'post',
+    url:'/project_info',
+    data:{'project_name':project_name,'project_code':project_code,'client_name':client_name,'status_id':project_status},
+    success:function(data)
+    { 
+      if(data.duplicate_project_status==1){
+        $('#project_name1').siblings('.error').text('Entered project name already exist');
+        $('#project_name1').siblings('.error').show();
+      }
+      else {
+        location.href='/store_project';
+      }
+    }
+  });
+});
+
+</script>
+</div>
+@stop

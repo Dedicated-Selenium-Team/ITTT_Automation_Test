@@ -20,7 +20,7 @@ Route::get('/login',[
 Route::post('/gmaillogin','Login@gmaillogin');
 Route::get('/logout', 'Login@logout');
 Route::post('/change','Login@change_password');
-Route::get('test','EstimattionController@test');
+Route::get('/session_timeout','Login@logout');
 /*Route::post('test','EstimattionController@test');
 Route::get('test',function(){
 	return view('test');
@@ -39,6 +39,8 @@ Route::get('/edit-project', 'ProjectController@editProject');
 Route::post('/delete-project/{id}', 'ProjectController@deleteProject');
 Route::post('/archive-project/{id}', 'ProjectController@archiveProject');
 Route::post('/test','EstimattionController@test');
+Route::get('/duplicate_project','ProjectController@duplicateProject');
+
 /************ Admin tab *************/
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin-edit-user', 'AdminController@edit');
@@ -56,7 +58,7 @@ Route::get('/addself/project-details/{name?}/{id?}/{hrs?}', 'MyselfProjectContro
 Route::post('/store-self-project/{id?}', 'MyselfProjectController@store');
 Route::post('/change_project_status', 'ProjectController@changeStatus');
 Route::get('edit_project_info', 'ProjectController@updateProject');
-
+Route::post('/project_info', 'ProjectController@storeProject');
 
 /************ Project Designation tab *************/
 Route::get('/project-designation/{id?}', 'ProjectDesignationController@index');

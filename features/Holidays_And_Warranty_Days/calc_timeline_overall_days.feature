@@ -11,11 +11,7 @@ Then Enter valid data in the field of holidays or warranty (Let put the number o
 Then Column of Timeline Overall (Days) should display zero
 
 Examples: 
-<<<<<<< HEAD
-| url                            | username        | password | Estimates | number | days | ID                      |
-=======
 | url                                      | username        | password | Estimates | number | days | ID                      |
->>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-1   | 3      | 3    | Warrenty-period-holiday |
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | ui-id-1   | 3      | 3    | Warrenty-days           |
 

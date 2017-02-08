@@ -7,6 +7,9 @@ $(document).ready(function () {
 //   }  
 // }); 
 
+$('.active-view').click(false);
+$('.today-hover').click(false);
+
 $('.dt-buttons').append('<span>Download</span>');
 
 $('#scroll').click(function(){ 
@@ -100,6 +103,7 @@ $( "#tabs" ).tabs();
 
   if(get_date_str == get_today_str){
     $(".timesheet-header-right .today").addClass("today-hover");
+    $('.today-hover').click(false);
   }
 
   // Active state for timesheet today's date is ends here //
@@ -137,6 +141,8 @@ $( "#tabs" ).tabs();
   } else { 
     $(".navigation-menu  li a").removeClass('nav-active');
   };
+
+  // $('.nav-active').click(false);
   // Active state for navigation is ends here //
 
   // Add tooltip to span inside all projects tab ends here// 
@@ -292,7 +298,7 @@ $( document ).ready(function() {
     'required': true,
     'regX': /^[^?<>*]*$/
   }
-  , 'project_name': {
+  , 'project_name1': {
     'required': true,
     'regX': /^[^?<>*]*$/
   }
@@ -383,7 +389,7 @@ var errorMessage = {
     'required': 'Please enter client name',
     'regX': 'Please enter valid client name'
   }
-  , 'project_name': {
+  , 'project_name1': {
     'required': 'Please enter project name',
     'regX': 'Please enter valid project name'
   }
@@ -512,9 +518,10 @@ $(document).on('focus', dynamicElements, function() {
 
 $(document).on('blur change', dynamicElements, function() {
   var regX = /^[0-9]{0,2}([:.][0-9]{1,2})?$/;
+
   var $this = $(this);
   var $err = $this.siblings('.error');
-  var val = $this.val();
+  var val = $this.val().trim();
   var isError = false;
   if(!val || (val > 16) || (val == 0)) {
     $err.text('Please enter hours to complete a task and it should be less than 16').show();
@@ -810,8 +817,16 @@ $(document).on('keyup', '.warranty_period', function () {
   $(".t2live_warranty_effective_days_utilezed").text(calwarantyBackwardDays);
   $(".t2livewarranty_hrs_cal").text(calwarantyBackwardHrs);
   $(".t2live_warranty_timeline_months").text(totwarantymonths);
-  $(".warranty_backword_effective_days_utilezed").text(eWResourceOverProject);
-  $(".warranty_backword_timeline_days").text(calWBackwards);
+  if (isNaN(eWResourceOverProject)) {
+    $(".warranty_backword_effective_days_utilezed").text(0);  
+  }else {
+    $(".warranty_backword_effective_days_utilezed").text(eWResourceOverProject);
+  }
+  if (isNaN(calWBackwards)) {
+    $(".warranty_backword_timeline_days").text(0.00);  
+  }else {
+    $(".warranty_backword_timeline_days").text(calWBackwards);
+  }
 });
 
 ///////////////////////////////////////////////////////////////////////////
@@ -846,8 +861,16 @@ $(document).on('keyup', '.timelineDays', function () {
   $(".t2live_timeline_days").text(exceptTester);
   $(".t2live_timeline_months").text(totalMonths);
   $(".t2live_hrs_cal").text(totPhaseHours);
-  $(".backword_effective_days_utilezed").text(eResourceOverProject);
-  $(".backword_timeline_days").text(calBackwards);
+  if (isNaN(eResourceOverProject)) {
+    $(".backword_effective_days_utilezed").text(0);  
+  }else{
+    $(".backword_effective_days_utilezed").text(eResourceOverProject);
+  }
+  if (isNaN(calBackwards)) {
+    $(".backword_timeline_days").text(0.00);  
+  }else {
+    $(".backword_timeline_days").text(calBackwards);
+  }
 });
 
 ///////////////////////////////////////////////////////////////////////////
@@ -1092,3 +1115,47 @@ $(document).mouseup(function (e)
 //   }
 // });
 
+
+//code for cheking session timeout is starts here
+var timeoutID;
+
+function setup() {
+  this.addEventListener("mousemove", resetTimer, false);
+  this.addEventListener("mousedown", resetTimer, false);
+  this.addEventListener("keypress", resetTimer, false);
+  this.addEventListener("DOMMouseScroll", resetTimer, false);
+  this.addEventListener("mousewheel", resetTimer, false);
+  this.addEventListener("touchmove", resetTimer, false);
+  this.addEventListener("MSPointerMove", resetTimer, false);
+
+  startTimer();
+}
+setup();
+
+function startTimer() {
+    // wait 2 seconds before calling goInactive
+    timeoutID = window.setTimeout(goInactive, 7200000);
+  }
+
+  function resetTimer(e) {
+    window.clearTimeout(timeoutID);
+    goActive();
+  }
+
+  function goInactive() {
+    $.ajax({
+      type : 'get',
+      url : '/session_timeout',
+      success : function(data) {
+      }
+    });
+
+    $('.login-form-page .overlay').remove();
+    $('.overlay').show();
+  }
+
+  function goActive() {
+    console.log('Active');
+    startTimer();
+  }
+//code for cheking session timeout is ends here

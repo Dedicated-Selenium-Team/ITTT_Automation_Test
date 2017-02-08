@@ -14,7 +14,8 @@
     $next_date = date('Y-m-d', strtotime($date.' +1 day'));
     ?>
 
-    <input type=" text" name="date" value="{{date('l, F j, Y', strtotime($date))}}" class="border-style input-read-only" disabled="true">
+    <input type="hidden" name="date" value="{{date('l, F j, Y', strtotime($date))}}" class="border-style input-read-only" disabled="true">
+    <span class="border-style input-read-only">{{date('l, F j, Y', strtotime($date))}}</span>
 
     <div class="timesheet-header-right">
       <a href="/time-management/{{$today}}" class="today"  title="Today">Today</a>
@@ -24,7 +25,7 @@
        <a href="/time-management/{{$next_date}}" class="next" title="Next">Next</a>
      </div>
 
-     <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date">
+     <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date" title="Datepicker">
 
      <div class="views">
        <a href="/time-management/{{$today}}" title="Day View" class="day active-view">Day</a>
@@ -145,17 +146,17 @@
        <td class="break-words">
         <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
 
-        <p>{{$today_project->comments}}</p>
+        <p><?php echo $today_project->comments; ?></p>
 
       </td>
       <td>
         {{$today_project->hrs_locked}}
       </td>
       <td>
-        <button type="button" class="btn btn-edit edit" id="edit-day-time" data-id= {{$today_project->id}}>Edit User</button>
+        <button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time" data-id= {{$today_project->id}}>Edit User</button>
       </td>
       <td>
-        <button type="button" class="btn btn-delete confirm" id="delete-day-time" data-id= "{{$today_project->id}}" data-target="#confirm-delete">Delete User</button>
+        <button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time" data-id= "{{$today_project->id}}" data-target="#confirm-delete">Delete User</button>
       </td>
     </tr>
     @endforeach
@@ -191,61 +192,61 @@
     <!-- Modal content Starts Here-->
     <div class="modal-content">
 
-     {!! Form::open(array('id' => 'add-project', 'method' => 'post', 'url' => 'store_project')) !!}
+      {!! Form::open(array('id' => 'add-project', 'method' => 'post')) !!}
 
-     <!-- Modal Header Starts Here -->
-     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h1 class="modal-title">Create New Project</h1>
-    </div>
-    <!-- Modal Header Ends Here -->
-
-    <!-- Modal Body Starts Here -->
-    <div class="modal-body">
-
-      <div class="form-group cf">
-        {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
-        {!! Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
-        <p class="error"></p>
+      <!-- Modal Header Starts Here -->
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h1 class="modal-title">Create New Project</h1>
       </div>
+      <!-- Modal Header Ends Here -->
 
-      <div class="form-group cf">
-        {!! Html::decode(Form::label('project_code','Project Code:')) !!}
-        {!! Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')) !!}
-        <p class="error"></p>
-      </div>
+      <!-- Modal Body Starts Here -->
+      <div class="modal-body">
 
-      <div class="form-group cf">
-        {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
-        {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
-        <p class="error"></p>
-      </div>
+        <div class="form-group cf">
+          {!! Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')) !!}
+          {!! Form::text('project_name1', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
+          <p class="error"></p>
+        </div>
 
-      <div class="form-group cf">
-       {!! Html::decode(Form::label('status_id','Project Status:')) !!}
-       <select class="status_id" name="status_id" >
-         <option value="1">Estimates</option>
-         <option value="2">Live-Projects</option>
-         <option value="3">Live-Ongoing</option>
-       </select>
+        <div class="form-group cf">
+          {!! Html::decode(Form::label('project_code','Project Code:')) !!}
+          {!! Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')) !!}
+          <p class="error"></p>
+        </div>
+
+        <div class="form-group cf">
+          {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
+          {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
+          <p class="error"></p>
+        </div>
+
+        <div class="form-group cf">
+         {!! Html::decode(Form::label('status_id','Project Status:')) !!}
+         <select class="status_id" name="status_id" >
+           <option value="1">Estimates</option>
+           <option value="2">Live-Projects</option>
+           <option value="3">Live-Ongoing</option>
+         </select>
+       </div>
+
      </div>
+     <!-- Modal Body Ends Here -->
 
-   </div>
-   <!-- Modal Body Ends Here -->
-
-   <!-- Modal Footer Starts Here -->
-   <div class="modal-footer">
-    <div class="save-project">
-      {!! Form::submit('Submit')!!}
-      {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+     <!-- Modal Footer Starts Here -->
+     <div class="modal-footer">
+      <div class="save-project">
+        {!! Form::submit('Submit')!!}
+        {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+      </div>
     </div>
+    <!-- Modal Footer Ends Here -->
+
   </div>
-  <!-- Modal Footer Ends Here -->
+  <!-- Modal content Starts Here-->
 
-</div>
-<!-- Modal content Starts Here-->
-
-{!! Form::close() !!}
+  {!! Form::close() !!}
 
 </div>
 </div>
@@ -380,18 +381,25 @@ $("#project").on('change',function(){
 
       /****  Create functionality ****/
       $("#daily-add").on('click',function(e){
-
-        $("#project-day-time")[0].reset();
+        if($('#create-project').hasClass('reset-form')){
+          $("#project-day-time")[0].reset();
+          $("#project_desig option").remove();
+          var options='<option value="0">Please Select Designation</option><option value="1">PM</option><option value="2">Designer</option><option value="3">FE_Developer</option><option value="4">BE_Developer</option><option value="5">Tester</option><option value="6">Tech Lead</option>';
+          $("#project_desig").append(options);
+          $('#project-day-time select').removeClass('noValue');
+        }
+        $('#create-project').removeClass('reset-form');
+        // $("#project-day-time")[0].reset();
         $('#save').val('Save Entry');
         $("#project_desig").prop('disabled',false);
         $("#project").prop('disabled',false);
-        $('#project-day-time select').removeClass('noValue');
+        // $('#project-day-time select').removeClass('noValue');
       });
 
       /********** Add and update functionality************/
       var obj = new phases();
       $(document).on('change','#hrs_locked',function(){
-        var getData = $(this).val();
+        var getData = $(this).val().trim();
         if(getData.indexOf(":") > -1) {
           var flag = 1 ;
           var separator = getData.split(":"),
@@ -415,6 +423,7 @@ $("#project").on('change',function(){
         e.preventDefault();
         var update_id = $('#row_id').val();
         var formData = $('#project-day-time').serialize();
+
         var url = $('#project-day-time').attr('action');
 
         var state = $('#save').val();
@@ -429,7 +438,7 @@ $("#project").on('change',function(){
 
         var prjName = $('#project-day-time #project').val();
         var prjDesig = $('#project_desig').val();
-        var hrs = $('#project-day-time #hrs_locked').val();
+        var hrs = $('#project-day-time #hrs_locked').val().trim();
         var regX = /^[0-9]{0,2}([:.][0-9]{1,2})?$/;
 
         if(prjName == 0) {
@@ -498,6 +507,7 @@ $("#project").on('change',function(){
      e.preventDefault();
    }
    else{
+
     var project_id=$("#project").val();
     $.ajax({
       type: type,
@@ -528,6 +538,7 @@ $("#project").on('change',function(){
             comments = data.project_name[i].comments;
             var cmnt_replace = comments.replace(/\</g, '&lt;');
             var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');
+            var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
             p_id = data.project_name[i].id;
             d_name=data.project_name[i].d_name;
           }
@@ -535,8 +546,8 @@ $("#project").on('change',function(){
           '<td class="break-words">'+ '<h3><span class="project_name">' + project_name + '</span> - <span class="project_designation">'+d_name+'</span></h3>' +
           '<p>' + cmnt_replace1 + '</p>' +'</td>'+
           '<td>' + total_hrs +'</td>'+
-          '<td>' + '<button type="button" class="btn btn-edit edit" id="edit-day-time"data-id="' + p_id + '">Edit User</button>' + '</td>' +
-          '<td>' + '<button type="button" class="btn btn-delete confirm" id="delete-day-time"data-id="' + p_id + '">Delete User</button>' + '</td>' +
+          '<td>' + '<button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time"data-id="' + p_id + '">Edit User</button>' + '</td>' +
+          '<td>' + '<button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time"data-id="' + p_id + '">Delete User</button>' + '</td>' +
           '</tr>';
           $('.head-row').eq(0).after(row);
           var hours = dayTotalHrs(2,'.day-table');
@@ -549,13 +560,13 @@ $("#project").on('change',function(){
         var comment_text = data.comments;
         var cmnt_replace = comment_text.replace(/\</g, '&lt;');
         var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
-
+var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
         var row1 = '<tr id="time' + data.id + '">'+
         '<td class="break-words">'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
         '<p>' + cmnt_replace1 + '</p>' +'</td>'+
         '<td>' + total_hrs +'</td>'+
-        '<td>' + '<button type="button" class="btn btn-edit edit" id="edit-day-time"data-id="' + data.id + '">Edit User</button>' + '</td>' +
-        '<td>' + '<button type="button" class="btn btn-delete confirm" id="delete-day-time"data-id="' + data.id + '">Delete User</button>' + '</td>' +
+        '<td>' + '<button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time"data-id="' + data.id + '">Edit User</button>' + '</td>' +
+        '<td>' + '<button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time"data-id="' + data.id + '">Delete User</button>' + '</td>' +
         '</tr>';
         $('#time' + data.id).replaceWith(row1);
         var hours = dayTotalHrs(2,'.day-table');
@@ -564,8 +575,12 @@ $("#project").on('change',function(){
       }
     }
   });
+    $("#project-day-time")[0].reset();
+    $('#project-day-time select').removeClass('noValue');
+    $("#project_desig option").remove();
+    var options='<option value="0">Please Select Designation</option><option value="1">PM</option><option value="2">Designer</option><option value="3">FE_Developer</option><option value="4">BE_Developer</option><option value="5">Tester</option><option value="6">Tech Lead</option>';
+    $("#project_desig").append(options);
     $('#create-project').modal('hide');
-
   }
 });
 
@@ -601,6 +616,7 @@ $('tbody').delegate('.btn-edit', 'click', function(){
      $('#project_id').val(data.id);
      $('#save').val('Update Entry');
      $('#create-project').modal('show');
+     $('#create-project').addClass('reset-form');
    }
  });
 });
@@ -642,5 +658,60 @@ $('tbody').delegate('.btn-delete', 'click', function(){
   });
 });
 
+var blurHappened = false;
+
+$('#project_name1').on('blur', function(e){
+ if (blurHappened)
+ {
+  blurHappened = false;
+}
+else 
+{
+  e.preventDefault();
+  var project_name=$("#project_name1").val();
+  $.ajax({
+   type : 'get',
+   url : '/duplicate_project',
+   data : {'project_name':project_name},
+   success : function(data) {
+     console.log('data', data);
+     if(data.duplicate_project_status==1){
+      $('#project_name1').siblings('.error').text('Entered project name already exist');
+      $('#project_name1').siblings('.error').show();
+    }
+    else{
+     console.log('no message')
+   }
+ }
+});
+}
+
+});
+
+$('#add-project').on('submit',function(e) {
+  e.preventDefault();
+  blurHappened = true;
+  var project_name=$("#project_name1").val();
+  var project_code=$("#project_code").val();
+  var client_name=$("#client_name").val();
+  var project_status=$(".status_id").val();
+  $.ajax({
+    type:'post',
+    url:'/project_info',
+    data:{'project_name':project_name,'project_code':project_code,'client_name':client_name,'status_id':project_status},
+    success:function(data)
+    { 
+      if(data.duplicate_project_status==1){
+        $('#project_name1').siblings('.error').text('Entered project name already exist');
+        $('#project_name1').siblings('.error').show();
+      }
+      else {
+        location.href='/store_project';
+      }
+    }
+  });
+});
+
 </script>
+</div>
 @stop

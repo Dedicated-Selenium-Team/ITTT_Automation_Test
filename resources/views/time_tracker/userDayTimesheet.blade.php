@@ -26,7 +26,8 @@
         ?>
         {!! Form::hidden('', $id, array('id' => 'user_id')) !!}
 
-        <input type=" text" name="date" value="{{date('l, F j, Y', strtotime($date))}}" class="border-style input-read-only" disabled="true">
+        <input type="hidden" name="date" value="{{date('l, F j, Y', strtotime($date))}}" class="border-style input-read-only" disabled="true">
+        <span class="border-style input-read-only">{{date('l, F j, Y', strtotime($date))}}</span>
 
         <div class="timesheet-header-right">
           <a href="/time-management/{{$today}}/{{$id}}/{{$unique_project_id}}" class="today"  title="Today">Today</a>
@@ -36,7 +37,7 @@
            <a href="/time-management/{{$next_date}}/{{$id}}/{{$unique_project_id}}" class="next" title="Next">Next</a>
          </div>
 
-         <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date">
+         <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date" title="Datepicker">
 
          <div class="views">
            <a href="/time-management/{{$today}}/{{$id}}/{{$unique_project_id}}" title="Day View" class="day active-view">Day</a>
@@ -161,7 +162,7 @@
      <tr id="time{{$today_project->id}}">
       <td class="break-words">
         <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
-        <p>{{$today_project->comments}}</p>
+        <p><?php echo $today_project->comments;?></p>
       </td>
       <td>
         {{$today_project->hrs_locked}}

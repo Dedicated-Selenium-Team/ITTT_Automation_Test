@@ -28,9 +28,5 @@ Then Day will be entered when day is between I to XV numaric value
 Then Day Will not entered if day is greater then XV "<wrong_day>"
 
 Examples: 
-<<<<<<< HEAD
-| url                           | username        | password | day | wrong_day | not_numeric |
-=======
 | url                                      | username        | password | day | wrong_day | not_numeric |
->>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | 12  | 17        |  abs |

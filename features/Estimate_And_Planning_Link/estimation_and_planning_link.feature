@@ -12,10 +12,5 @@ And color of link changes to red and tool tip appears on hovering on Estimation 
 Then I click on any link of Estimation and Planning "<Links>" project (Let us check this project "<number>" and "<Tab>")
 
 Examples: 
-<<<<<<< HEAD
-| url                            | username        | password | number | Tab    | Links         |
-| http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | 5      | tabs-1 | estimate-span |
-=======
 | url                                      | username        | password | number | Tab    | Links         |
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | 5      | tabs-1 | estimate-span |
->>>>>>> be355a8771dec742ec18c6f19a0e132c6bcec820

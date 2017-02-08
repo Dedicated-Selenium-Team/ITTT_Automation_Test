@@ -196,11 +196,15 @@ $( "#tabs" ).tabs();
      }
      if($(this).hasClass('p2Date')){
        minDate = $('#phase-I-end-date').val();
-     }
-     validateDate(currentDate,minDate,$(this));
-     $('.phaseCalculation').trigger('keyup');
-   }
- });
+       var error = $('#phase-I-end-date').siblings('.error').text();
+       if(minDate == '' || error != ''){
+        minDate = $('#project-start-date').val();
+      } 
+    }
+    validateDate(currentDate,minDate,$(this));
+    $('.phaseCalculation').trigger('keyup');
+  }
+});
 
   var start_date = $('#project-start-date').val();
   $('#phase-I-end-date').datepicker('option', 'minDate', start_date);

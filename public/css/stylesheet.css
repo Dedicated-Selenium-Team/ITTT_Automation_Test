@@ -1,0 +1,2324 @@
+@charset "utf-8";
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+/*------------------------------------------------------------------
+  [Table of contents]
+  * To keep an overview of structure of your code, we make use of table of
+  * content. Table of content is use display the overall tree structure of your
+  * Layout.
+  * (NOTE: Remove this commented code once you start developing the code.
+  * Remove the following table of content and add your own as this is just and
+  * example to let you know)
+
+  1. CSS Reset Code
+    1.1. Eric Meyers Reset/HTML5 display-role reset for older browsers
+    1.2. Clear Fix
+    1.3. Font class declaration
+  2. Body
+  3. Header / .header
+    2.1. Navigation / .navbar
+  4. Content / .content
+    4.1. Left column / .leftcolumn
+    4.2. Right column / .rightcolumn
+    4.3. Sidebar / .sidebar
+      4.3.1. RSS / .rss
+      4.3.2. Search / .search
+      4.3.3. Boxes / .box
+      4.3.4. Sideblog / .sideblog
+      4.3.5. Advertisements / .ads
+  5. Footer / .footer
+  ------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+  [Color codes]
+  * Mention the color code you have used in your html document for the respective
+  * elements given as follow.
+  * (NOTE: Remove this commented code once you start developing the code.
+  * Remove the following color code and add your own as this is just and
+  * example to let you know)
+
+  Header nav: #e5e5df (Cararra)
+  Header nav a (hover): #fff (white)
+  Header nav a (active): #fff (white)
+  -------------------------------------------------------------------*/
+
+/*------------------------------------------------------------------
+  [Typography]
+  * Mention the Typography you have used in your html document for the respective
+  * elements given as follow.
+  * (NOTE: Remove this commented code once you start developing the code.
+  * Remove the following typography and add your own as this is just and
+  * example to let you know)
+
+  Header nav a: 16px 'Futura Bold', 'Gill Sans', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  View-register li a : 12px 'Futura Bold', 'Gill Sans', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  -------------------------------------------------------------------*/
+
+/* ==========================================================================
+   1. CSS Reset Code
+   ========================================================================== */
+
+/* 1.1. Eric Meyers Reset
+   http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+   ========================================================================== */
+   html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
+   blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img,
+   ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center,
+   dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody,
+   tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure,
+   figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary,
+   time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+  }
+
+  /* HTML5 display-role reset for older browsers */
+  article, aside, details, figcaption, figure,
+  footer, header, hgroup, menu, nav, section { display: block; }
+
+  select option[disabled] {
+    background-color: rgba(192,192,192,.5); 
+    font-weight: bold 
+  }
+
+  /* Force scrollbar */
+  html { overflow-y: scroll; }
+
+  /* Align radios and text inputs with their label */
+
+  input[type='radio'] { vertical-align: text-bottom; }
+
+  /* Hand cursor on clickable input elements */
+  label,
+  input[type='button'],
+  input[type='submit'],
+  button { cursor: pointer; }
+
+  strong {
+    font-weight: bold;
+    font-family: inherit;
+    font-size: inherit;
+  }
+
+  em { font-style: italic; }
+
+  img {
+    border: 0;
+    vertical-align: middle;
+  }
+
+  sub,
+  sup {
+    vertical-align: baseline;
+    position: relative;
+    font-size: 55%;
+    line-height: 0;
+  }
+
+  sup { top: -.7em; }
+
+  sub { bottom: -.25em; }
+
+/* 1.2. Clear Fix
+========================================================================== */
+
+.cf:before,
+.cf:after {
+  display: table;
+  content: '';
+}
+
+.cf:after { clear: both; }
+
+.cf { *zoom: 1; }
+
+/* 1.3. Font class declaration
+========================================================================== */
+/*
+ * Mention the font property (eg: font-family, font-size, font-weight, font-style
+ * etc) that have been commonly used in the html document. Make a class of it and
+ * apply to the element wherever it is needed. If any single property in changed,
+ * then override only that property in the particular class which is used for the
+ * element.
+ * (NOTE: Remove this commented code once you start
+ * developing the code. Remove the following font class and add your own
+ * as this is just and example to let you know. If there is only one font family
+ * followed throughout the site, then menstion the font property in body. No need
+ * of creating an extra class for it) */
+
+ .futura-bold-font {
+  font-family: 'Futura Bold', 'Gill Sans', Arial, 'Helvetica Neue', Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+}
+
+a { 
+  display: inline-block; 
+  color: #3b5998;;
+}
+
+a:hover,
+a:focus { text-decoration: none; }
+
+li { list-style-type: none; }
+
+*:focus { outline: none !important; }
+
+.btn:focus,
+.btn:active { outline: none !important; }
+
+.remove-padding { padding-right: 0 !important; }
+
+/***************************************************************************/
+/*********************** Header styling start's here *********************/
+/***************************************************************************/
+
+header {
+  padding: 24px 0 23px;
+  border-bottom: 1px solid #cfcfcf;
+  background-color: #fff;
+}
+
+h1 a {
+  width: 93px;
+  height: 21px;
+  display: inline-block;
+  background: url(../images/prdxn.png) no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
+}
+
+body { font-family: 'Open Sans'; }
+
+header .wrapper {
+  max-width: 1665px;
+  width: 96.3% ;
+  margin: 0 auto ;
+}
+
+.logo { float: left ; }
+
+.profile-content {
+  margin-top: 3px; 
+  float: right; 
+  font-size: 0;
+}
+
+.user-name {
+  display: inline-block;
+  font: 400 13px 'Open Sans';
+  text-transform: uppercase;
+}
+
+.log-out {
+  display: inline-block;
+  font: 700 13px 'Open Sans';
+  text-transform: uppercase;
+}
+
+.log-out a { color: #3a5897; }
+
+.profile-content div {
+  padding: 0 15px 0 15px;
+  border-right: 1px solid #cfcfcf;
+  line-height: 15px;
+}
+
+.profile-content div:last-of-type {
+  padding-right: 0;
+  border: none;
+}
+
+/***************************************************************************/
+/************************* Header styling Ends's here **********************/
+/***************************************************************************/
+
+/***************************************************************************/
+/************************* Nav styling start's here ************************/
+/***************************************************************************/
+
+.nav-border {
+  width: 80px;
+  min-height: 100%;
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 1px 0 9.5px .5px rgba(68, 68, 68, .2);
+}
+
+.nav-content { 
+  min-height: 508px;
+  position: absolute;
+  left: 0;
+  background-color: #fff;
+}
+
+.nav-hamber a {
+  width: 25px;
+  height: 23px;
+  margin-bottom: 13px;
+}
+
+.hamb {
+  float: left;
+  background: url('../images/icon_menu.png') no-repeat; 
+}
+
+.hamb-cross {
+  float: right;
+  background: url('../images/icon_close.png') no-repeat;   
+}
+
+.nav-hamber {
+  box-sizing: border-box;
+  padding: 15px 25px 0 28px;
+  text-align: center;
+}
+
+.navigation-menu {
+  width: 219px;
+  display: none;
+  transition: .5s;
+}
+
+.navigation-menu li:first-of-type { border-top: 1px solid #cfcfcf; }
+
+.navigation-menu li {
+  box-sizing: border-box;
+  border-bottom: 1px solid #cfcfcf;
+  position: relative;
+  font: 600 13px 'Open Sans';
+}
+
+.navigation-menu li a {
+  padding: 12px 0 13px 48px;
+  display: block;
+  text-transform: capitalize;
+}
+
+.navigation-menu > li a:hover {
+  background-color: #3b5998;
+  color: #fff;
+}
+
+.navigation-menu a:before {
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  top: 15px;
+  left: 24px;
+  background: url('../images/sprite_nav.png') no-repeat;
+  content: '';
+}
+
+.nav-active {
+  background-color: #3b5998;
+  color: #fff;
+  /*cursor: default;*/
+}
+
+.nav-active:focus { color: #fff; }
+
+.time-sheet a:before { background-position: 0 0; } 
+
+.time-sheet a:hover:before,
+.time-sheet .nav-active:before  { background-position: 0 -23px; }
+
+.my-projects-i a:before { background-position: -23px 0; }
+
+.my-projects-i a:hover:before,
+.my-projects-i .nav-active:before { background-position: -23px -23px; }
+
+.project-designation-i a:before { background-position: -119px 0; }
+
+.project-designation-i a:hover:before,
+.project-designation-i .nav-active:before { background-position: -119px -23px; }
+
+.all-projects a:before {
+  width: 15px;
+  background-position: -139px 0;
+} 
+
+.all-projects a:hover:before,
+.all-projects .nav-active:before { background-position: -139px -23px; }
+
+.admin-menu.user:before {
+  width: 15px;
+  background-position: -67px 0;
+} 
+
+.user:hover:before,
+.user.nav-active:before { background-position: -67px -23px; }
+
+.menu-shadow { box-shadow: 1px 0 9.5px .5px rgba(68, 68, 68, .2); }
+
+/**************************************************************************/
+/************************* Nav styling End's here *************************/
+/**************************************************************************/
+
+/***************************************************************************/
+/*********************** Main Div styling Start's here *********************/
+/***************************************************************************/
+
+main .wrapper  {
+  width: 100%;
+  padding-left: 80px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.content {
+  max-width: 1665px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content-wrapper {
+  box-sizing: border-box;
+  width: 100%;
+  box-shadow: 1px 1px .98px .02px rgba(0, 0, 0, .21);
+}
+
+.content-inner-wrapper {
+  padding: 16px;
+  background-color: #f3f3f3;
+}
+
+/***************************************************************************/
+/*********************** Main Div styling Ends's here **********************/
+/***************************************************************************/
+
+
+/***************************************************************************/
+/********************** My project page syling start's here*****************/
+/***************************************************************************/
+
+.container-heading {
+  padding: 30px;
+  border-bottom: 1px solid #cfcfcf;
+  background-color: #fff;
+  box-shadow: 0 0 2.94px .06px rgba(0, 0, 0, .2);
+}
+
+.assign-project:focus { color: #fff; }
+
+.project-snipet {
+  padding: 50px 4%;
+  background-color: #fff;
+  box-shadow: 0 0 2.94px .06px rgba(0, 0, 0, .2);
+  font-size: 0;
+}
+
+.current-projects {
+  box-sizing: border-box;
+  width: 16.5%;
+  border: 1px solid #3b5998;
+  margin: 0 4.3% 3% 0;
+  display: inline-block;
+  font-size: 0;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  -ms-transition: .5s;
+  transition: .5s;
+  vertical-align: top;
+}
+
+.current-projects div {
+  padding: 30px 10px;
+  display: block;
+  font-size: 14px;
+  text-align: center;
+}
+
+.current-projects span {
+  display: block;
+  color: #1b1b1b;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.current-projects .project-client {
+  font: 700 15px 'Open Sans';
+  text-transform: uppercase;
+}
+
+.current-projects .project-name { font: 400 14px 'Open Sans'; }
+
+.project-snipet li:nth-of-type(5n) { margin-right: 0; }
+
+/***************************************************************************/
+/********************** My project page syling End's here*****************/
+/***************************************************************************/
+
+
+/***************************************************************************/
+/********************** Project Designation Start's here*****************/
+/***************************************************************************/
+
+.designation { 
+  box-sizing: border-box;
+  width: 86%;
+  padding: 20px 0;
+  margin: 0 auto;
+}
+
+@-moz-document url-prefix() { 
+  .designation { width: 94%; }
+}
+
+.designation label {
+  color: #1b1b1b;
+  font: 700 16px 'Open Sans';
+}
+
+.designation .form-control {
+  width: 74%;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  display: inline-block;
+}
+
+.select-proj ,
+.select-designation { 
+  width: 50%; 
+  position: relative;
+}
+
+.select-proj { float: left; }
+
+.select-designation { 
+  float: right;
+  text-align: right;  
+}
+
+.empty { text-align: center; }
+
+.select-proj .error,
+.select-proj .message { left: 83px; }
+
+.select-designation .error { left: 26%; }
+
+.select-proj select,
+.select-designation select { 
+  padding: 6px 25px 6px 12px;
+  margin-left: 15px; 
+}
+
+@-moz-document url-prefix() { 
+  .designation .submit { margin: 35px 6px 18px 0; }
+  .designation .form-control { width: 74%; }
+  .select-proj .error,
+  .select-proj .message { left: 85px; }
+  .select-proj select,
+  .select-designation select { margin-left: 13px; }
+}
+
+.submit input,
+.designation-detail-data .submit-btn,
+.table-content .submit-btn {
+  padding: 10px 13px;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  float: right;
+  background-color: #3b5998;
+  color: #fff;
+  font: 700 15px 'Open Sans';
+  text-transform: uppercase;
+}
+
+.designation .submit { margin: 67px 0 0 0 ; }
+
+/******Code for toggle in project designation starts here *********/
+
+.designation-view { margin-top: 18px; }
+
+.add-details-info .col-lg-6 {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.cd-accordion-menu > li {
+  margin-top: 20px;
+  position: relative;
+  background-color: #fff;      
+  color: #1b1b1b;
+  box-shadow: 0 0 2.94px .06px rgba(0, 0, 0, .2);
+}
+
+.cd-accordion-menu label { border-bottom: 1px solid #cfcfcf; }
+
+.cd-accordion-menu label,
+.container-heading .table-heading {
+  display: block;
+  position: relative;
+  font: 600 23px / 18px 'Open Sans'; 
+  text-transform: uppercase;
+}
+
+.cd-accordion-menu label { 
+  padding: 30px 30px 30px 28px; 
+  cursor: default;
+}
+
+.cd-accordion-menu input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+}
+
+.has-children > ul { padding: 4% 7%; }
+
+.has-children .Lead { margin-bottom: 0 ; }
+
+.has-children ul table th { 
+  -webkit-width: 0;
+  -moz-width: 0;
+  -ms-width: 0;
+  -o-width: 0;
+  width: 0;
+}
+
+.has-children ul table th:nth-of-type(3),
+.pre-table-body th:nth-of-type(3),
+.post-table-body th:nth-of-type(3) { width: 10%; }
+
+.has-children ul table th:nth-of-type(6),
+.pre-table-body th:nth-of-type(6),
+.post-table-body th:nth-of-type(6) { width: 9%; }
+
+.has-children ul table th:nth-of-type(2),
+.pre-table-body th:nth-of-type(2),
+.post-table-body th:nth-of-type(2) { width: 10%; }
+
+/******Code for toggle in project designation End's here *********/
+
+
+/**************** Code for Table starts here ***********************/
+
+table thead th { 
+  width: 2%; 
+  vertical-align: middle;
+}
+
+.tableData thead { background-color: #ebf1fc ; }
+
+.tableData th,
+.tableData td {
+  box-sizing: content-box;
+  padding: 1.5%;
+  border: 1px solid #dbdbdb ;
+  color: #1b1b1b ;
+  /*-webkit-text-fill-color: #1b1b1b;*/
+  font: 700 12px / 16px 'Open Sans';
+  opacity: 1;
+  text-transform: capitalize;
+}
+
+.data td,
+.designation-detail-data td { font-weight: 400; }
+
+.tableData .italic td { font-style: italic; }
+
+.tableData .bold td { font-weight: 700; }
+
+.tableData td p {
+ color: #969595 ;
+ font: 400 12px 'Open Sans';
+ text-transform: lowercase;
+}
+
+.tableData td + td { 
+ text-align: center; 
+ vertical-align: middle;
+}
+
+.tableData tr td:nth-of-type(6) { 
+  /*-webkit-text-fill-color: #da4143;*/
+  color: #da4143;
+  opacity:1;
+}
+
+.desig-table th,
+.desig-table td {
+  padding: 12px;
+  vertical-align: middle;
+}
+
+.desig-table .percentHoursNeed[disabled] { background-color: #eee; }
+
+/**************** Code for Table Ends here ***********************/
+
+/***************************************************************************/
+/********************** Project Designation Ends's here*****************/
+/***************************************************************************/
+
+
+/**************************************************************************/
+/************************* Timesheet Day View Start's here ****************/
+/**************************************************************************/
+
+.day-timesheet,
+.wrap-content,
+.admin {
+  background-color: #fff;
+  box-shadow: 0 0 2.94px .06px rgba(0, 0, 0, .2);
+}
+
+.day-timesheet .container-heading { box-shadow: none; }
+
+.input-read-only {
+  width: 49%;
+  padding: 0;
+  border: none;
+  margin-left: -2px;
+  display: inline-block;
+  background-color: #fff;
+  color: #1b1b1b;
+  /*-webkit-text-fill-color: #1b1b1b;*/
+  font: 600 23px 'Open Sans';
+  opacity: 1;
+  text-transform: capitalize;
+}
+
+.timesheet-header-right { float: right; }
+
+.timesheet-header-right a {
+  display: inline-block;
+  color: #3b5998;
+  text-transform: uppercase;
+}
+
+.timesheet-header-right > * {
+  float: left;
+  /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);*/
+}
+
+.timesheet-header-right .today { 
+ padding: 6px 27px;
+ border: 1px solid #3b5998;
+ background-color: #fff;
+ box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);
+ color: #3b5998;
+ font-size: 14px; 
+ line-height: 20px;
+ transform: scaleX(1.0135);
+}
+
+.timesheet-header-right .today:hover,
+.timesheet-header-right .today-hover,
+.timesheet-header-right .date-pick:hover { opacity: .4; }
+
+.timesheet-header-right .today-hover,
+.views .active-view { cursor: default; }
+
+.timesheet-header-right .date-pick {
+  width: 34px;
+  height: 34px;
+  border: none;
+  margin-left: 17px;
+  display: inline-block;
+  box-shadow: none;
+  background: url(../images/calendar.png) no-repeat;
+  cursor: pointer;
+  text-indent: -9999px;
+}
+
+.arrow { 
+ margin-left: 19px;
+ position: relative;
+ /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);*/
+}
+
+.arrow a { 
+ width: 40px;
+ height: 34px;
+ border: 1px solid #3b5998 ;
+ text-indent: -9999px; 
+}
+
+.arrow a:hover { opacity: .4; }
+
+.arrow .previous {
+  border-right: none;
+  margin-right: -5px;
+  background: url(../images/Left-Arrow.png) no-repeat center;
+}
+
+.arrow .previous:hover + .next { border-left-color: #b5c4e5; }
+
+.arrow .next { background: url(../images/Right-Arrow.png) no-repeat center; }
+
+.views a { 
+  padding: 7px 17px;
+  background-color: #dbdbdb ;
+  font-size: 13px; 
+  line-height: 18px;
+  text-shadow: 0 1px 0 rgba(37, 37, 37, .75);
+}
+
+.views { 
+  border: 1px solid #3b5998 ;
+  margin-left: 30px;
+  font-size: 0;
+  box-shadow: 0 0 1px rgba(0,0,0,.8);
+}
+
+.views a:hover,
+.views .active-view {
+  background-color: #3b5998 ;
+  color: #feffff ;
+}
+
+.views .day { border-right: 1px solid #b5c4e5 ; }
+
+.timesheet-content { 
+  min-height: calc(100vh - 197px);
+  padding: 50px 30px; 
+}
+
+.addProject,
+.assign-project,
+.admin-add-new {
+  padding: 10px 13px 10px 39px;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background: #3b5998 url(../images/Add-Icon.png) no-repeat 14px;
+  color: #fff;
+  font: 700 15px 'Open Sans';
+  text-transform: uppercase;
+}
+
+.admin-add-new { float: right; }
+
+.assign-project { padding: 10px 17px 10px 43px; }
+
+.addProject:hover,
+.addProject:focus,
+.assign-project:hover,
+.admin-add-new:hover,
+.admin-add-new:focus,
+.admin-add-new:focus:hover {
+  background-color: #3b5998;
+  color: #fff;
+}
+
+.disabled {
+  opacity: .65;
+  cursor: not-allowed;
+}
+
+.timesheet-content .table-timesheet {
+  width: 48%;
+  margin: 35px auto 0;
+}
+.table-timesheet .user-name, .table-timesheet-week .user-name {
+  margin: 2px 0 0 15px;
+  float: left;
+  font: 700 21px/25px 'Open Sans';
+  text-transform: capitalize;
+}
+.table-timesheet .day-table { width: 100%; }
+
+.head-row { background-color: #ebf1fc; }
+
+.day-table .head-row th:first-of-type { width: 65.4%; }
+
+.timesheet-content th,
+.timesheet-content td {
+  padding: 13px 15px;
+  border: 1px solid #dbdbdb ;
+  color: #1b1b1b ;
+  font: 700 14px / 16px 'Open Sans';
+  vertical-align: middle;
+}
+
+.timesheet-content td { padding: 10px 15px 9px; }
+
+.timesheet-content td p {
+  margin-top: 3px;
+  color: #969595 ;
+  font: 400 14px/18px 'Open Sans';
+}
+
+.timesheet-content td textarea {
+  padding: 0;
+  margin-top: 3px;
+  border: none;
+  background-color: #fff;
+  color: #969595;
+  font-weight: 400;
+  resize: none;
+}
+
+.timesheet-content .edit {
+  border: none;
+  background: #fff url(../images/edit.png) no-repeat center;
+  box-shadow: none;
+  text-indent: -9999px;
+}
+
+.timesheet-content .btn-delete {
+  border: none;
+  background: #fff url(../images/delete.png) no-repeat center;
+  box-shadow: none;
+  text-indent: -9999px;
+}
+
+.day-table td + td,
+.day-table th + th,
+.week-table td + td,
+.week-table th + th { 
+  text-align: center; 
+  vertical-align: middle;
+}
+
+.timesheet-content .no-data td,
+.timesheet-content .dataTables_empty { 
+  font-weight: 400; 
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.content-wrapper { box-shadow: none; }
+
+.time-details { 
+  margin-top: 40px; 
+  text-align: center;
+}
+
+.time-details p { 
+  display: inline-block; 
+  vertical-align: top;
+}
+
+.time-details p+p { margin-left: 30px; }
+
+.time-details span {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.time-details span:first-of-type {
+  padding: 6px 0 6px 40px;
+  font-weight: 700;
+}
+
+.time-details .tot-hours,
+.time-details .free-time { padding-top: 7px; }
+
+.time-details .tot-hours-title { background: url(../images/totalhours.png) no-repeat left; }
+
+.time-details .free-time-title { background: url(../images/freehours.png) no-repeat left; }
+
+.timesheet-message,
+.noproject-message {
+  width: 430px;
+  margin: 65px auto 0;
+  color: lightgrey;
+  font-size: 28px;
+  line-height: 39px;
+  text-align: center;
+}
+
+.noproject-message { margin: 30px auto 68px; }
+/**************************************************************************/
+/************************* Add New Modal start's here *********************/
+/**************************************************************************/
+
+.fade.in { background-color: rgba(0,0,0,.7); }
+
+.modal-content .form-group select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #636363 ;
+}
+
+.display { display: none; }
+
+.displayBlock { display: block; }
+
+.modal-dialog { width: 511px; }
+
+.day-timesheet .modal-dialog { margin-top: calc(50vh - 250px); }
+
+.modal-content { 
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0; 
+}
+
+.modal-header {
+  padding: 24px 24px 0;
+  border-bottom: none;
+}
+
+.modal-header .modal-title { display: none; }
+
+.modal-header .close {
+  width: 15px;
+  height: 15px;
+  background: url(../images/Close-Icon.png) no-repeat center;
+  opacity: 1;
+  text-indent: -9999px;
+}
+
+.modal-body { padding: 12px 50px 45px; }
+
+.modal-content .form-group > *:not(.note) {
+  width: 100%;
+  display: block;
+}
+
+.modal-content .form-group label {
+  margin-bottom: 10px;
+  color: #000;
+  font: 700 16px / 16px 'Open Sans';
+  text-transform: uppercase;
+}
+
+.required {
+  position: relative;
+  top: -.3em;
+  color: #da4143;
+  font-size: 90%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+
+.modal-content .form-group select,
+.modal-content .form-group input,
+.modal-content .form-group textarea {
+  height: 40px;
+  padding: 7px 15px 8px;
+  border: 1px solid #cfcfcf;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background-color: #fff;
+  color: #565656;
+  font: 400 15px / 19px 'Open Sans';
+}
+
+.modal-content .form-group select,
+.designation select { color: #a9a9a9; }
+
+.designation .color-nonzero { color: #565656; }
+
+.modal-content .form-group option,
+.designation option { color: #565656; }
+
+.modal-content .form-group option[value=''],
+.designation option[value=''] { color: #7c7c7c; }
+
+.modal-content .form-group .noValue,
+.designation .noValue { color: #565656; }
+
+.modal-content .form-group select[disabled] { 
+  background-color: #eee;
+  color: #565656; 
+}
+
+.project-ddl option[value='other'],
+.select-proj option[value='newProjet'] { color: #3b5998; }
+
+/* Internet Explorer 10+ */
+.modal-content .form-group input:-ms-input-placeholder,
+.login-form-page .form-control:-ms-input-placeholder,
+.modal-content .form-group textarea:-ms-input-placeholder,
+.search-function:-ms-input-placeholder { color: #a9a9a9; }
+
+
+.modal-content .form-group select,
+.select-proj select,
+.select-designation select
+{
+  -webkit-appearance: none;
+  -moz-appearance: none; 
+  background: url(../images/Select-Down-Icon.png) no-repeat 97% ;
+}
+
+.modal-content .form-group select::-ms-expand,
+.select-proj select::-ms-expand,
+.select-designation select::-ms-expand { display: none; }
+
+@-moz-document url-prefix() { 
+  .modal-content .form-group select,
+  .select-proj select,
+  .select-designation select { padding-left: 11px; }
+  .modal-content select option,
+  .select-proj select option,
+  .select-designation select option { padding-left: 14px; }
+}
+
+.modal-content .form-group textarea { 
+  height: 80px;
+  resize: none; 
+}
+
+.modal-footer {
+  padding: 0 50px 50px;
+  border-top: none;
+}
+
+.modal-footer  .btn,
+.modal-footer input {
+  padding: 12px 13px;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background-color:#3b5998;
+  color: #fff;
+  font: 700 15px / 16px 'Open Sans';
+  text-transform: uppercase;
+  vertical-align: top;
+}
+
+.modal-footer  .btn { margin-left: 10px; }
+
+.day-timesheet .form-group { margin-bottom: 25px; }
+
+.day-timesheet .modal-body .form-group:nth-of-type(5) { margin-bottom: 0; }
+
+.day-timesheet .form-group:nth-of-type(2) label { margin-bottom: 25px; }
+
+
+/**************************************************************************/
+/************************* Add New Modal End's here ***********************/
+/**************************************************************************/
+
+/**************************************************************************/
+/************************* Timesheet Day View Ends's here ****************/
+/**************************************************************************/
+
+
+/**************************************************************************/
+/************************* Timesheet Week View Starts's here **************/
+/**************************************************************************/
+
+.timesheet-content .table-timesheet-week {
+ width: 74%;
+ margin: 0 auto;
+}
+
+.week-table .head-row th+th { padding: 0; }
+
+.week-table .head-row th a {
+  padding: 14px 15px 13px;
+  display: block;
+  color: #1b1b1b ;
+  cursor: pointer;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.week-table .head-row a p + p { 
+  margin-top: 2px;
+  font-weight: 400; 
+}
+
+.week-table .head-row th a:hover { color: #da4143; }
+
+.week-table .head-row th:first-of-type { width: 31.8%; }
+
+.week-table td { 
+  font-weight: 400; 
+  text-align: center;
+}
+
+.week-table .head-row th:last-of-type { padding: 14px 15px 13px; }
+
+.week-table .total { background-color: #f2fceb; }
+
+.break-words { word-break: break-word; }
+
+/**************************************************************************/
+/************************* Timesheet Week View Ends's here ****************/
+/**************************************************************************/
+
+
+/**************************************************************************/
+/************************* Login Page Start's here ************************/
+/**************************************************************************/
+
+.login-form-page {
+  background: url(../images/img_bg_login.jpg) no-repeat left 70px;
+  background-size: 100% 94vh;
+}
+
+.login-form-page .login-form-wrapper {
+  width: 511px;
+  height: auto;
+  padding: 46px 50px 50px;
+  position: relative;
+  top: calc(44.6vh - 214px);
+  left: calc(50% - 255px);
+  background-color: #ebf1fc;
+}
+
+.login-form-page .form-group {
+  margin-bottom: 45px;
+  position: relative;
+}
+
+.login-form-page .form-group:first-of-type {margin-bottom: 37px; }
+
+.form-group:last-of-type { margin-bottom: 0; }
+
+.login-form-page .form-group:not(:last-of-type) label {
+  margin-bottom: 10px;
+  color: #1b1b1b;
+  font: 700 16px / 16px 'Open Sans';
+  text-transform: uppercase;
+}
+
+.login-form-page .form-control {
+  height: 40px;
+  padding: 7px 15px 8px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  color: #565656;
+  font: 400 15px / 19px 'Open Sans';
+}
+
+.login-form-page .message,
+.login-form-page .error {
+  position: absolute;
+  bottom: -14px;
+  color: #da4143;
+  font: 400 11px / 11px 'Open Sans';
+}
+
+.login-form-page .login-error,
+.login-form-page .google-login-error{
+  width: calc(100% - 100px);
+  bottom: 93%;
+  text-align: center;
+  font-size: 14px;
+  /* pointer-events: none;*/
+} 
+
+.login-form-page .submit-btn,
+.login-form-page .google-login {
+  width: 100%;
+  padding: 10px 0 10px;
+  border: none;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  display: block;
+  color: #fff;
+  font: 700 15px / 20px 'Open Sans';
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.login-form-page .login { margin-bottom: 30px; }
+
+.login-form-page .submit-btn { background-color: #3b5998; }
+
+.login-form-page .google-login { background: #db4437; }
+
+.google-login:hover { cursor: pointer; }
+
+.login-form-page .content-inner-wrapper { border: none; }
+
+.login-form-page .content-wrapper { box-shadow: none; }
+
+.login-form-page main .wrapper { padding-left: 0; }
+
+.login-form-page .content-inner-wrapper {
+ padding: 0; 
+ background-color: transparent; 
+}
+
+/**************************************************************************/
+/************************* Login Page End's here ************************/
+/**************************************************************************/
+
+
+/**************************************************************************/
+/************************* Assign Project Start's here ********************/
+/**************************************************************************/
+.display { display: none; }
+
+.designation-table {
+  width: 50%;
+  margin: 50px auto 0;
+}
+
+.designation-table input[type='text'],
+.pro-date-calulation-table input[type='text'] { 
+  width: 100%; 
+  text-align: center;
+}
+
+.designation-table .input-read,
+.pro-date-calulation-table .input-read {
+  border: none;
+  background-color: #fff;
+  opacity: 1;
+}
+
+.designation-detail { 
+  padding-bottom: 50px;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 2.94px .06px rgba(0, 0, 0, .2);
+}
+
+.designation-detail .container-heading,
+.project-phase .container-heading,
+.project-timeline .container-heading { box-shadow: none; }
+
+.designation-detail-data .submit-btn,
+.table-content .submit-btn { margin-top: 35px; }
+
+.table-body thead,
+.post-table-body thead { background-color: #fff; }
+
+.designation-detail .before-assign { width: 86%; }
+
+@-moz-document url-prefix() { 
+  .designation-detail .before-assign { width: 75%; }
+}
+
+.camle-case { text-transform: capitalize; }
+
+.cell-middle td input {
+  border: 1px solid #cfcfcf;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  text-align: center; 
+  vertical-align: middle;
+}
+
+.pre-table-body th,
+.post-table-body th { 
+  width: 0; 
+  padding: 1.5%;
+}
+
+.designation-detail table tr th:nth-of-type(3) { width: 11%; } 
+
+.input-read-only-hrs {
+  border: none;
+  background-color: inherit;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.estimation-report td:nth-last-child(2) > input {
+  border: none;
+  background-color: inherit;
+  font-size: 12px;
+  font-weight: 400; 
+}
+
+.design-wrap-container { position: relative; }
+/**************************************************************************/
+/************************* Assign Project Ends's here *********************/
+/**************************************************************************/
+
+
+/*This will add the minimum height to content*/
+
+.content-min-height { min-height: calc(100vh - 197px); }
+
+
+/**************************************************************************/
+/************************* Delete modal Start's here *********************/
+/**************************************************************************/
+
+.delete-modal .modal-dialog { margin-top: calc(50vh - 114px); }
+
+.delete-modal .modal-body h5 {
+  margin-bottom: 10px;
+  color:  #1b1b1b;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 18px;
+  text-transform: capitalize;
+}
+
+.delete-modal .modal-body { padding-bottom: 41px; }
+
+.delete-modal .modal-body p {
+  color:  #7c7c7c;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.delete-modal .modal-footer a:active { background-color: #3b5998; }
+
+/**************************************************************************/
+/************************* Delete modal End's here *********************/
+/**************************************************************************/
+
+/**************************************************************************/
+/************************* Admin / User Tab start's here ******************/
+/**************************************************************************/
+
+.admin .container-heading { 
+  padding: 28px 28px 25px;
+  box-shadow: none; 
+}
+
+.dataTables_length,
+.dataTables_filter,
+.dataTables_info { display: none; }
+
+.admin-add-new:active { background: #3b5998 url(../images/Add-Icon.png) no-repeat 14px; }
+
+.admin .admin-list { display: inline-block; }
+
+.admin .admin-menu {
+  color:  #1b1b1b;
+  font-size: 23px;
+  font-weight: 600;
+  line-height: 23px;
+  text-transform: uppercase;
+}
+
+.search-function {
+  width: 319px;
+  height: 40px;
+  padding: 9px 10px 10px 40px;
+  border: 1px solid #cfcfcf;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  margin-right: 20px;
+  float: right;
+  background: #fff url(../images/search-icon.png) no-repeat 14px;
+  color: #565656;
+  font-size: 15px;
+  line-height: 19px;
+}
+
+.admin .user-table {
+  width: 87%;
+  margin: 35px auto 0;
+}
+
+.admin .dataTables_wrapper { overflow-y: auto; }
+
+.user-table td { 
+  padding: 6px 15px; 
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.user-table th { white-space: nowrap; }
+
+.user-table th:not(:nth-of-type(2)):not(:nth-of-type(3)):not(:nth-of-type(4)),
+.user-table td:not(:nth-of-type(2)):not(:nth-of-type(3)):not(:nth-of-type(4)) { text-align: center; }
+
+.name-capital { text-transform: capitalize; }
+
+/*.emp-name:visited { -webkit-text-fill-color: #3b5998; }*/
+
+.emp-name:hover { color: #da4143; }
+
+/**************************************************************************/
+/************************* Estimation/planning starts here *****************/
+/**************************************************************************/
+
+.uppercase { 
+  color:#3b5998;
+  text-transform: uppercase; 
+} 
+.phase-heading h2,
+.timeline-heading h2 {
+  font: 600 19px / 16px 'Open Sans';
+  text-transform: uppercase;
+}
+
+.timeline-heading {
+  padding-top: 49px;
+  padding-bottom: 0;
+  border: none;
+}
+
+.phase-heading .proj-data { float: right; }
+
+.phase-heading .page-title { 
+  margin: 16px 0 0 -2px;
+  float: left; 
+}
+
+.phase-heading .page-title h2 { font-size: 23px; }
+
+.phase-heading .camle-case { color: #3b5998; }
+
+.phase-heading h2 + h2 { margin-top: 15px; }
+
+.timeline-heading .ballpark-estimate { font-size: 19px; }
+
+.phase-data { margin: 0 8.5%; }
+
+.proj-date {
+  width: 66%;
+  margin: 30px auto 6px;
+  font-size: 0;
+}
+
+.proj-date-snipet {
+  width: 25%;
+  margin: 0 12.5% 34px 0  ;
+  display: inline-block;
+  position: relative;
+  font: 700 16px / 16px 'Open Sans';
+  text-align: left;
+}
+
+.proj-date-snipet input {
+  width: 100%;
+  padding: 6px 6px; 
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  margin-top: 15px;
+  background-color: #fff;
+  font-size: 15px;
+  text-align: center;
+}
+
+.proj-date .proj-date-snipet input { background-color: #fff; }
+
+.proj-date .proj-date-snipet .warrantyDate { background-color: #eee; }
+
+
+.resource-field {
+  width: 100%;
+  margin: 40px 0 0;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.resource-field input { 
+  width: 68px;
+  margin: 0 0 0 15px;
+  display: inline-block; 
+}
+
+.note {
+  width: 196px;
+  padding: 10px;
+  border: 1px solid #deca00;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  top: -7px;
+  left: calc(100% + 9px);
+  background-color: #fffcde;
+  font: 400 13px/17px 'Open Sans';
+  letter-spacing: 0;
+  text-align: left;
+  text-transform: none;
+}
+
+.note:before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 45%;
+  right: 100%;
+  border-right: 10px solid #deca00;
+  border-top: 8px solid transparent; 
+  border-bottom: 8px solid transparent;
+}
+
+.note span { text-transform: uppercase; }
+
+.disp-note { display: block; }
+
+.warranty-days + .note { top: 22px;}
+
+.warranty-days + .note:before { top: 31%; }
+
+.res { 
+  display: inline-block; 
+  position: relative;
+}
+
+.resource-field .note { top: -11px; }
+
+.resource-field .note:before { top: 37%; }
+
+.estimation-report .note {
+  top: -9px;
+  left: 98%;
+  color: #1b1b1b;
+  text-transform: none;
+}
+
+.estimation-report .note:before { top: 37%; }
+
+.hrs-locked ~ .note { top: -16px; }
+
+.hrs-locked ~ .note:before,
+.comment ~ .note:before { top: calc(50% - 8px); }
+
+.comment ~ .note { top: 4px; }
+
+.proj-date div:nth-of-type(3n) { margin-right: 0;}
+
+.project-phase form { background-color: #fff; }
+
+.pro-date-calulation {
+  width: 72%;
+  margin: 0 auto ;
+}
+
+.table-heading-font { font: 700 12px / 15px 'Open Sans'; }
+
+.pro-date-calulation-table { width: 100%; }
+
+.project-phase {
+  padding-bottom: 50px;
+  background-color: #fff; 
+  box-shadow: 0 0 2.94px .06px rgba(0, 0, 0, .2);
+}
+
+.project-timeline { 
+  margin-top: 20px;
+  box-shadow: 0 0 2.94px .06px rgba(0, 0, 0, .2);
+}
+
+.estimation-report td:last-of-type,
+.estimation-report tr td:nth-of-type(4) { display: none; }
+
+.table-content {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-y: auto;
+}
+
+.estimation {
+  padding: 30px 0 50px; 
+  background-color: #fff; 
+}
+
+.light-orange { background-color: #fbf2d9; }
+
+.estimation-report .light-orange td { font-weight: 700; }
+
+.light-green { background-color:  #f2fceb; }  
+
+.estimation-report tbody td { 
+  font: 400 12px / 16px 'Open Sans';
+  position: relative; 
+}
+
+.estimation-report th,
+.estimation-report td {
+  padding: 10px;
+  vertical-align: middle;
+}
+
+.estimation-report th:first-of-type { width: 1%; }
+
+.estimation-report tr td:nth-of-type(6) { 
+  /*-webkit-text-fill-color: #000; */
+  color: #000;
+}
+
+.estimation-report input { 
+  width: 100%;
+  border: 1px solid #cfcfcf;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  text-align: center;
+}
+
+.estimation-report th + td,
+.estimation-report td + td { text-align: center;}
+
+.estimation-report tr td.left-align { text-align: left; }
+
+.head-row label { cursor: text; }
+
+@-moz-document url-prefix() { 
+  .tableData { width: 100%; }
+}
+
+.user .background-inherit { 
+  background: inherit;
+  border: none;
+  opacity: 1;
+}
+
+.estimation-designation-report {margin-top: 30px; }
+
+.estimation-designation-report { text-align: center; }
+
+.estimation-designation-report .tableData { 
+ width: 88%;
+ margin: 15px auto 0; 
+}
+
+.estimation-designation-report .tableData th,
+.estimation-designation-report .tableData td {
+  width: 12%;
+  padding: 12px;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.estimation-designation-report .tableData td { font-weight: 400; }
+
+.estimation-designation-report .tableData tr td:nth-of-type(6) { 
+  /*-webkit-text-fill-color: #000; */
+  color: #000;
+}
+
+.estimation-designation-report .warranty-text {
+  width: 16px;
+  height: 15px;
+  margin-right: 5px;
+  vertical-align: top;
+}
+
+.estimation-designation-report label {
+  font-style: italic;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.estimation-report .sorting_disabled {
+  border-right: none;
+  border-left: none;
+}
+
+.estimation-report .sorting_disabled:first-of-type { border-left: 1px solid #dbdbdb; }
+
+.estimation-report .sorting_disabled:nth-last-of-type(2) { border-right: 1px solid #dbdbdb; }
+
+/**************************************************************************/
+/************************* Estimation/planning Ends here ***************/
+/**************************************************************************/
+
+
+/**************************************************************************/
+/***************** User Tab - Add new popup start's here ******************/
+/**************************************************************************/
+
+.admin .panel {
+  border: none;
+  margin-bottom: 0;
+  box-shadow: none;
+}
+
+.admin .panel-body { padding: 0; }
+
+.admin .modal-body .row:not(:last-of-type) { margin-bottom: 40px; }
+
+.modal-body .form-group { position: relative; }
+
+.error,
+.message {
+  position: absolute;
+  bottom: -14px;
+  color: #da4143;
+  font: 400 11px / 11px 'Open Sans';
+}
+
+.admin .modal-open .modal { overflow: hidden; }
+
+.admin .edit-modal .modal-content {
+  height: 89.8vh;
+  overflow: auto;
+}
+
+.admin .edit-modal .modal-dialog { margin-top: calc(50vh - 44.7vh); }
+
+
+/**************************************************************************/
+/******************* User Tab - Add new popup end's here ******************/
+/**************************************************************************/
+
+.unassigned-projects .estimate-plan { width: 100%; }
+
+.wrap-project .estimate-plan .detail-plan {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 13px;
+  text-transform: uppercase;
+}
+
+/**************************************************************************/
+/********************** All Projects Tab Start's here *********************/
+/**************************************************************************/
+.wrap-content .timesheet-content { padding: 50px 6.1% 10px; }
+
+.wrap-content .all-projects-content { padding-top: 30px; }
+
+.addProjectNav.container-heading { box-shadow: none; }
+
+.addProjectNav ul { float: right; }
+
+.addProjectNav ul li { 
+  margin-left: 6px;
+  display: inline-block; 
+}
+
+.wrap-project {
+  width: 16.95%;
+  border: 1px solid #3b5998;
+  margin: 0 3.81% 41px 0;
+  display: inline-block;
+  text-align: center;
+  text-transform: uppercase;
+  transition: .19s;
+  vertical-align: top;
+}
+
+.wrap-project:nth-of-type(5n) { margin-right: 0; }
+
+.wrap-project .count_name {
+  box-sizing: content-box;
+  padding: 15px 10px 14px;
+  display: block;
+  position: relative;
+  color:  #1b1b1b;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 19px;
+}
+
+.pstatus {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.wrap-project .estimate-plan {
+  width: 100%;
+  padding: 9px 0 7px;
+  border-top: 1px solid #3b5998;
+}
+
+.wrap-project .estimate-plan .detail-plan {
+  color: #3b5998;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 13px;
+  text-decoration: underline;
+}
+
+.wrap-project .estimate-plan .not-filled { color: grey; }
+
+.estimate-plan .detail-plan:hover { color: #da4143; }
+
+.wrap-project .estimate-plan span {  
+  display: inline-block;
+  vertical-align: top; 
+}
+
+.wrap-project .estimate-plan .estimate-span {
+  padding-right: 6.8%;
+  border-right: 1px solid #3b5998;
+}
+
+.wrap-project .estimate-plan .planning-span { padding-left: 6.6%; }
+
+@-moz-document url-prefix() { 
+  * { letter-spacing: -.6px; }
+
+  .wrap-project .estimate-plan .estimate-span { padding-right: 6.5%; }
+}
+
+.detail-plan:hover { color: #da4143; }
+
+.create-new-project .modal-body .form-group:not(:last-of-type),
+.edit-project .modal-body .form-group:not(:last-of-type) { margin-bottom: 40px; }
+
+.create-new-project .modal-dialog { margin-top: calc(50vh - 289px); }
+
+.edit-project .modal-dialog { margin-top: calc(50vh - 178px); }
+
+.wrap-project .count_name span,
+.current-projects > div span { 
+  margin-bottom: 5px;
+  display: block;
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wrap-project .count_name .pro_client,
+.current-client { font: 700 12px/16px 'Open Sans'; }
+
+.wrap-project .count_name .pro_code,
+.wrap-project .count_name .pro_desig { font: 400 13px/ 19px 'Open Sans'; }
+
+.wrap-project .count_name span:last-of-type { margin-bottom: 0; }
+
+.wrap-content .total-projects { margin: 20px 0 30px; }
+
+.total-projects .project-count { 
+  margin-bottom: 10px;
+  font: 700 19px/19px 'Open Sans'; 
+  text-transform: capitalize;
+}
+
+.italic {
+  font-style: italic;
+  text-decoration: none;
+}
+
+.assigned-projects .count_name { background-color: #f9eac2; }
+
+.all-prj .ui-tabs-nav { padding: .9em .9em 0; }
+
+.all-prj .ui-tabs-nav li { margin-right: .6em; }
+
+.all-prj .ui-tabs-panel { padding: 40px 15px 0; }
+
+.all-prj .ui-state-active { 
+  border: 1px solid #3b5998;
+  background-color: #3b5998; 
+}
+
+.all-prj .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor { cursor: default; }
+
+.all-prj .ui-tabs-panel { font-size: 0; }
+
+.all-prj .proj_status { font-size: 14px; }
+
+.all-prj .proj_status option { padding: 0 5px; }
+
+.all-prj { font-family: 'Open Sans'; }
+
+.wrap-project .actions {
+  padding: 5px 10px;
+  background-color: #e9e9e9;
+  font: 700 14px 'Open Sans';
+  text-align: left;
+}
+
+.wrap-project .actions div { float: right; }
+
+.wrap-project .actions span { 
+  color: #3b5998; 
+  text-transform: capitalize;
+}
+
+.wrap-project .actions div a,
+.wrap-project .actions div select {
+  width: 16px;
+  height: 16px;
+  margin-top: 2px;
+  display: inline-block;
+  font-family: 'Open Sans';
+  text-indent: -9999px;
+  vertical-align: top;
+}
+
+.wrap-project .actions div select {
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none; 
+}
+
+.wrap-project .actions .proj_status {  background: url(../images/move.png) no-repeat center; }
+
+.wrap-project .actions .edit-action-arrow { background: url(../images/edit-project.png) no-repeat center; }
+
+.shadow-hover { 
+  box-shadow: 0 0 9.5px 2px #ccc9c9; 
+  transform: scale(1.05);
+}
+
+/**************************************************************************/
+/*********************** All Projects Tab End's here **********************/
+/**************************************************************************/
+
+
+/* Total hours table on designation is starts here */
+.total-hrs { 
+  margin: 8px 0 20px;
+  text-align: center; 
+}
+
+.total-hrs .design-wrap-container {
+  width: 62%;
+  margin: 20px auto 0; 
+}
+
+.total-hrs .tableData { width: 100%; }
+
+.total-hrs .tableData th,
+.total-hrs .tableData td {
+  padding: 12px;
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.total-hrs .tableData th a { 
+  color: #3b5998;
+  /*-webkit-text-fill-color: #3b5998; */
+}
+
+.total-hrs .tableData th:first-of-type { width: 20%; }
+
+.total-hrs .tableData th:last-of-type { width: 31%; }
+
+.total-hrs .tableData td { font-weight: 400; }
+
+.total-hrs .prj-name { 
+  width: 60%;
+  margin: 0 auto;
+  color: #1b1b1b;
+  font: 700 17px/18px 'Open Sans';
+  text-transform: capitalize;
+}
+
+.total-hrs th a:hover { 
+  /*-webkit-text-fill-color: #da4143; */
+  color: #da4143;
+}
+
+.total-hrs .tableData .dates { padding: 0; }
+
+.total-hrs .dates .start-date { 
+  padding: 11px 0 11px 12%; 
+  display: inline-block;
+}
+
+.total-hrs .dates .end-date { 
+  padding: 11px 12% 11px 0; 
+  display: inline-block;
+}
+
+.total-hrs .dates .padding-zero { padding: 0; }
+
+.designation-CTA .page-title h2 {
+  margin-top: 10px;
+  display: inline-block;
+  font-size: 23px;
+  font: 600 23px / 16px 'Open Sans';
+  text-transform: uppercase;
+}
+
+/* Back button stylig starts here */
+.back { 
+  margin-top: 20px;
+  float: left; 
+}
+
+.phase-heading .back { margin-top: 8px; }
+
+.back a {
+  width: 49px;
+  height: 33px;
+  display: inline-block;
+  text-indent: -9999px;
+  background: url('../images/back-button.png') no-repeat;
+}
+
+.designation-CTA .back { margin-top: 0; }
+/* Back button stylig ends here */
+
+.designation-CTA { margin-top: 20px; }
+
+.designation-CTA .assign-project { float: right; }
+
+.designation-CTA ~ .designation { padding-top: 30px; }
+
+
+/* Breadcrumb styling starts here */
+.bread-crumb {
+  padding: 10px 30px;
+  margin-bottom: 16px;
+  background-color: #fff;
+  box-shadow: 0 0 3.94px .06px rgba(0, 0, 0, .2);
+}
+
+.bread-crumb a { 
+  margin-right: 21px;
+  display: inline-block;
+  position: relative;
+  color: rgba(63,106,185,.82);
+  font: 400 14px/17px 'Open Sans';
+  text-transform: capitalize;
+}
+
+.bread-crumb a+a:before {
+  content: '';
+  width: 13px;
+  height: 14px;
+  display: inline-block;
+  position: absolute;
+  top: calc(50% - 7px);
+  left: -19px;
+  background: url(../images/lightblue_arrow.png) no-repeat;
+  pointer-events: none;
+}
+
+.bread-crumb .current-page {
+  color: #3b5998;
+  font-weight: 700;
+}
+
+.bread-crumb a + .current-page:before { background: url(../images/lightblue_arrow_hover.png) no-repeat; }
+
+.bread-crumb a:not(.current-page):after {
+  content: '';
+  width: 100%;
+  height: 1px;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #3b5998;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  transition: all .4s linear;
+}
+
+.bread-crumb a:not(.current-page):hover:after {
+ -webkit-transform: scaleX(1);
+ -moz-transform: scaleX(1);
+ -ms-transform: scaleX(1);
+ -o-transform: scaleX(1);
+ transform: scaleX(1);
+}
+
+/* Breadcrumb styling End here */
+
+.scroll {
+  width: 110px;
+  padding: 10px;
+  position: fixed;
+  right: 46px;
+  bottom: 44px;
+  background-color: #3498db;
+  color: #fff;
+  cursor: pointer;
+  font: 400 15px 'Open Sans';
+  text-align: center;
+  text-transform: uppercase;
+}
+
+
+/*error page*/
+.error_wrapper {
+  max-width: 1100px;
+  width: 67%;
+  padding: 23px 0;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.error_wrapper .title { 
+  width: 481px;
+  padding: 122px 0;
+  margin: 0 auto;
+  display: block;
+  background: url(../images/Clock.png) no-repeat;
+  background-size: 100% 100%;
+  color: #fe8e54;
+  font-family: 'Roboto', sans-serif;
+  font-size: 186px;
+  line-height: 190px;
+  font-weight: 900;
+  text-shadow: -4px 0px 0 #cecece;
+}
+
+.error_wrapper .message {
+  margin-top: 25px;
+  display: block;
+  font-family: 'Roboto Mono', monospace;
+  color: #273b65;
+  font-size: 70px;
+  line-height: 72px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.error_wrapper a {
+  font-family: 'Roboto', sans-serif;
+  color: #fe8e55;
+  font-size: 33px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 1s ease;
+}
+
+.error_wrapper a:hover { color: #273b65; }
+
+.error-page-body-html { overflow-y: auto; }
+
+.scroll:hover, .scroll:focus { color: #fff; }
+
+.login-form-page .scroll { display: none; }
+
+/* session expired dialog starts here*/
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  z-index: 1060;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.7);
+}
+
+.overlay .session-expired {
+  margin-top: calc(50vh - 83px);
+  margin-left: calc(50vw - 199px);
+  display: inline-block;
+  background-color: #fff;
+  margin-top: calc(50vh - 83px);
+  margin-left: calc(50vw - 199px);
+  text-align: center;
+}
+
+.session-expired h4 {
+  padding: 28px 16px 9px;
+  background-color: #ebf1fc;
+  color: #000;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.session-expired p { padding: 10px 50px 24px; }
+
+.session-expired a {
+  padding: 11px 14px;
+  margin-bottom: 33px;
+  background-color: #3b5998;
+  color: #fff;
+  font: 700 15px / 16px 'Open Sans';
+  text-transform: uppercase;
+}
+/* session expired dialog ends here*/
+
+@media screen and (min-width: 1370px) { 
+  .wrap-project .estimate-plan .estimate-span { padding-right: 9.8% }
+
+  .wrap-project .estimate-plan .planning-span { padding-left: 9.6% }
+}
+
+@media screen and (max-width: 1270px) {
+  .select-proj select,
+  .select-designation select { margin-left: 11px; }
+
+  .designation .form-control { width: 65%; }
+
+  .designation label { font-size: 14px; }
+
+  .select-designation .error { left: 35%; }
+
+  .select-proj .error,
+  .select-proj .message { left: 71px; }
+}
+
+@media screen and (max-width: 1162px) {
+  .wrap-project .estimate-plan .detail-plan { font-size: 10px; }
+
+  .wrap-project .estimate-plan .estimate-span { padding-right: 0% }
+
+  .wrap-project .estimate-plan .planning-span { padding-left: 0% }
+
+  .estimation-designation-report .tableData th { white-space: normal; }
+
+  .table-content { width: 90%; }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  .wrap-project .estimate-plan .estimate-span { padding-right: 0; }
+
+  .wrap-project .estimate-plan .detail-plan { font-size: 9px; }
+
+  .wrap-project .estimate-plan .planning-span { padding-left: 0; }
+
+  .select-proj .error,
+  .select-proj .message { left: 23%; }
+
+  .timesheet-content .table-timesheet { width: 70%; }
+
+  .timesheet-content .table-timesheet-week { width: 100%; }
+
+  .week-table .head-row th:not(:first-of-type) { width: 10%; }
+
+  .week-table .head-row th:first-of-type { width: 20%; }
+
+  .week-table .head-row th:nth-of-type(4) { width: 13%; }
+
+  .week-table .head-row th a { padding: 14px 14% 13px; }
+
+  .week-table .head-row th:last-of-type { padding: 1%; }
+
+  .total-hrs .design-wrap-container { width: 80%; }
+
+}
+
+@media screen and (orientation: portrait)  and (min-width: 768px) and (max-width: 1024px) {
+  .wrap-project .estimate-plan .detail-plan { font-size: 12px; }
+
+  .wrap-project .estimate-plan .estimate-span {
+    border-right: 0;  
+    margin-bottom: 2px; 
+  }
+
+  .wrap-project .estimate-plan span { display: block; }
+
+}
+
+@media screen and (max-width: 961px) {
+
+  .total-hrs .tableData th { white-space: normal; }
+
+  .designation { width: 93%; }
+
+  .designation .form-control { width: 57%; }
+
+  .select-designation .error { left: 32%; }
+
+  .data th,
+  .data td { padding: 1%; }
+
+  .has-children > ul { padding: 4% 2%; }
+
+  .designation-detail .before-assign { width: 93%; }
+
+  .before-assign th,
+  .before-assign td { padding: 1%; }
+
+}

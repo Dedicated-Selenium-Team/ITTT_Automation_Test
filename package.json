@@ -1,36 +1,4 @@
 {
-<<<<<<< HEAD
-  "name": "cucumber-js-selenium-webdriver-example",
-  "version": "0.0.1",
-  "description": "A starter for acceptance testing using cucumber-js and webdriver-js.",
-  "repository": {
-    "type": "git"
-  },
-  "scripts": {
-    "test": "gulp"
-  },
-  "devDependencies": {
-    "cucumber": "^0.10.2",
-    "cucumber-html-report": "^0.4.4",
-    "cucumber-html-reporter": "^0.3.1",
-    "gulp": "^3.9.1",
-    "gulp-cucumber": "0.0.22",
-    "gulp-env": "^0.4.0",
-    "gulp-install": "^0.6.0",
-    "gulp-protractor-cucumber-html-report": "^0.1.2",
-    "gulp-webdriver": "^2.0.2",
-    "jsonfile": "^2.4.0",
-    "sanitize-filename": "^1.6.0",
-    "selenium-webdriver": "^2.53.2",
-    "yargs": "^6.5.0"
-  },
-  "dependencies": {
-    "gulp-run": "^1.7.1",
-    "jsonfile": "^2.4.0",
-    "laravel-elixir": "^3.0.0",
-    "bootstrap-sass": "^3.0.0",
-    "private": true
-=======
   "private": true,
   "devDependencies": {
     "gulp": "^3.8.8"
@@ -38,6 +6,5 @@
   "dependencies": {
     "laravel-elixir": "^3.0.0",
     "bootstrap-sass": "^3.0.0"
->>>>>>> 2745d2ca41be357ef21772383fa816330fac3fea
   }
 }

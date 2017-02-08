@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+   <IfModule mod_negotiation.c>
+       Options -MultiViews
+	order deny,allow
+	deny from all
+	allow from 125.99.76.206
+	allow from 113.193.7.70
+   </IfModule>
+
+Options +FollowSymLinks
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ public/index.php [L]
+</IfModule>

@@ -30,11 +30,11 @@ if ($role_id == 2) {?>
    <?php }?>
    {{-- This will check the User session and if admin then edit the planning and if not admin then only view Ends here--}}
    {{-- Project palning starts here --}}
-   <div class="numericValidation">
-    <div class="estimation-form">
-      {{-- project phase starts here --}}
-      <div class="project-phase">
-        <div class="phase-heading container-heading cf">
+   <!-- <div class="numericValidation"> -->
+   <div class="estimation-form">
+    {{-- project phase starts here --}}
+    <div class="project-phase">
+      <div class="phase-heading container-heading cf">
          <!--  <div class="back">
             <a href="{{ URL::previous() }}" title="Back">Back</a>
           </div> -->
@@ -123,7 +123,7 @@ if ($role_id == 2) {?>
 
 
     {{-- project timeline starts here --}}
-    <div class="project-timeline">
+    <div class="project-timeline numericValidation">
       <div class="timeline-heading container-heading">
         <h2 class="ballpark-estimate">ballpark estimate: resource utilization</h2>
       </div>

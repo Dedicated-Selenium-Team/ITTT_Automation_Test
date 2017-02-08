@@ -983,7 +983,7 @@ $(document).on("bind keyup change", '.phaseCalculation', function (e) {
     effectiveTotDays = objDate.calbackword(overalldays, resource),
     effectiveTotHrs = objDate.calbackword(hourEqi, resource);
 
-    document.getElementById("phase-II-end-date").value = phaseTwoDate;
+    // document.getElementById("phase-II-end-date").value = phaseTwoDate;
     document.getElementById("p1-go-live").value = p1goLive;
     document.getElementById("timelineDays").value = overalldays;
     document.getElementById("timelineMonths").value = monthEqi;

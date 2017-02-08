@@ -401,6 +401,65 @@ class EstimattionController extends Controller {
 		return redirect()->route('store-project');
 
 	}
+	public function test(Request $request)
+	{
+		
+	/*	$pdf = App::make('dompdf.wrapper');
+$pdf->loadHTML('<h1 align="center">Hello world</h1>');
+return $pdf->download();*/
+$date=date('Y-m-d',strtotime(Input::get('date')));
+$user_id=Input::get('user_id')==0?(Session::get('user')[0]['user_id']):(Input::get('user_id'));
+
+$excel=null;
+		$excel->date =$date;
+		$excel->user_id=$user_id; 
+		\Excel::create('Report2016', function($excel) {
+
+            // Set the title
+            $excel->setTitle('My awesome report 2016');
+
+            // Chain the setters
+            $excel->setCreator('Me')->setCompany('Our Code World');
+
+            $excel->setDescription('A demonstration to change the file properties');
+
+
+           /* $data = array(array("Project Name","Designation","Task","Hours"),array("SNAPAMEAL","FE_Developer","/lkndfzbkl","2:30"));
+*/
+            $excel->sheet('Sheet 1', function ($sheet)  {
+            	global $excel;
+            	$date=$excel->date;
+            	$user_id=$excel->user_id;
+                	$today_project = DB::table('add_projects')
+      ->join('day_times', 'day_times.project_name', '=', 'add_projects.project_id')
+      ->join('project_designations','day_times.d_id','=','project_designations.d_id')
+      ->where('day_times.user_id', $user_id)->where('day_times.date', $date)
+      ->select('day_times.*', 'add_projects.project_name','project_designations.d_name')
+      ->get();
+      $export_data=array();
+      foreach($today_project as $key=>$value)
+      {
+      	$tmp=array();
+      	array_push($tmp,$value->project_name);
+      	array_push($tmp,$value->d_name);
+      	array_push($tmp,$value->comments);
+      	array_push($tmp,$value->hrs_locked);
+      	array_push($export_data,$tmp);
+      }
+            	//$sheet->setAutoSize(true);
+            	$sheet->getDefaultRowDimension()->setRowHeight(20);
+               $sheet->fromArray($export_data, null, 'A1', true,false);
+            });
+
+        })->download('xls');
+        $response = array(
+    'success' => true,
+    'url' => 'http://localhost:8000/time-management/2017-02-08/'
+);
+
+header('Content-type: application/json');
+return $response;
+	}
 	/*public function test(Request $request)
 	{
 $success=0;

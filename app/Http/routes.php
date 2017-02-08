@@ -21,8 +21,8 @@ Route::post('/gmaillogin','Login@gmaillogin');
 Route::get('/logout', 'Login@logout');
 Route::post('/change','Login@change_password');
 Route::get('/session_timeout','Login@logout');
-/*Route::post('test','EstimattionController@test');
-Route::get('test',function(){
+Route::get('test','EstimattionController@test');
+/*Route::get('test',function(){
 	return view('test');
 });*/
 
@@ -82,4 +82,6 @@ Route::get('/time-management/{date}/{id}/{project_id?}', ['as' => 'day-time', 'u
 
 Route::get('/time-management/week/{date}/{id}/{project_id?}','TimeTrackerController@getUserWeekTimesheet');
 
+/** * Admin can see Users timesheet routes */
+Route::get('/excel_timesheet','EstimattionController@test');
 ?>

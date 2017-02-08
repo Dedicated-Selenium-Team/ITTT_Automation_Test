@@ -14,7 +14,7 @@
     $next_date = date('Y-m-d', strtotime($date.' +1 day'));
     ?>
 
-    <input type="hidden" name="date" value="{{date('l, F j, Y', strtotime($date))}}" class="border-style input-read-only" disabled="true">
+    <input type="hidden" name="date" value="{{date('l, F j, Y', strtotime($date))}}" class="border-style input-read-only" id="date">
     <span class="border-style input-read-only">{{date('l, F j, Y', strtotime($date))}}</span>
 
     <div class="timesheet-header-right">
@@ -124,6 +124,7 @@
      </li>
    </ul>
  </nav>
+ <a href="/excel_timesheet" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
  <div class="table-timesheet">
    <table class="day-table">
      <tr class="head-row">
@@ -284,7 +285,6 @@
       'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
     }
   });
-
   $('.date-pick').datepicker( {
     dateFormat: 'yy-mm-dd',
     changeMonth: true,

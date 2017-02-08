@@ -136,6 +136,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+        'Maatwebsite\Excel\ExcelServiceProvider',
+        Barryvdh\DomPDF\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -199,6 +201,8 @@ return [
         'Form'      => 'Collective\Html\FormFacade',
         'Html'      => 'Collective\Html\HtmlFacade',
         'Calendar' => 'MaddHatter\LaravelFullcalendar\Facades\Calendar',
+        'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+        'PDF'       => Barryvdh\DomPDF\Facade::class,
 
     ],
 

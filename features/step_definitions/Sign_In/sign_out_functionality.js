@@ -29,7 +29,7 @@ module.exports = function() {
     });
   });
 
-  this.When(/^Click on sign out button$/, function () {
+  this.When(/^I click on sign\-out button$/, function () {
     this.driver.findElement({ css:'.logout' }).click(); 
   });
 

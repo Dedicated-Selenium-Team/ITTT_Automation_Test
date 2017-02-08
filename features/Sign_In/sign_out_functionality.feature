@@ -7,12 +7,7 @@ When I enter valid entry "<user>" and "<pass>"
 Then I Click on sign in button
 Then User must successfully logged in to the site
 
-When Click on sign out button
-
-Then I Click on sign in button
-Then User must successfully logged in to the site
-
-When I click on sign out button
+When I click on sign-out button
 Then User must successfully logged out "<url>"
 
 When I click on back button

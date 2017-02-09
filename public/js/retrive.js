@@ -203,6 +203,13 @@ $( "#tabs" ).tabs();
     }
     validateDate(currentDate,minDate,$(this));
     $('.phaseCalculation').trigger('keyup');
+  },
+  onSelect: function(){
+    if($(this).hasClass('p1Date')){
+      var p1date = $('#phase-I-end-date').val();
+      $('#phase-II-end-date').val(p1date);
+      $('#phase-II-end-date').siblings('.error').text('');
+    }
   }
 });
 
@@ -1007,7 +1014,6 @@ $(document).on("bind keyup change", '.phaseCalculation', function (e) {
     document.getElementById("timelineHours").value = 0.00;
     document.getElementById("timelineTotDays").value = 0.00;
     document.getElementById("timelineTotHours").value = 0.00;
-    // $('.submit-est-plan').addClass('prevent');
     e.preventDefault();
   }
 });

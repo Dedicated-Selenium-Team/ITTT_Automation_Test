@@ -975,17 +975,15 @@ function validateDate(date,mindate,thisEle){
   thisEle.siblings('.error').text('');
   thisEle.siblings('.error').hide();
   var reg = /^(?:(?:31(\/)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
-  var currentDate = new Date(date.split("/").reverse().join("-"));
-  var minDate = new Date(mindate.split("/").reverse().join("-"));
-  // var currentDate = new Date(date);
-  // var minDate = new Date(mindate);
+  var currentDate = new Date(date.split("/").reverse().join("/"));
   var valueEntered = Date.parse(currentDate);
-  var minEntered = Date.parse(minDate);
   if(!date.match(reg)){
     thisEle.siblings('.error').text('Please enter a valid date');
     thisEle.siblings('.error').show();
   }
   else if(mindate!=0){
+    var minDate = new Date(mindate.split("/").reverse().join("/"));
+    var minEntered = Date.parse(minDate);
     if(valueEntered < minEntered){
      thisEle.siblings('.error').text('Please check the min date');
      thisEle.siblings('.error').show();

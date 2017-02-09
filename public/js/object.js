@@ -990,7 +990,7 @@ function validateDate(date,mindate,thisEle){
    }
  }
  else {
-    // thisEle.siblings('.error').text('');
-    thisEle.siblings('.error').hide();
-  }
+  thisEle.siblings('.error').text('');
+  thisEle.siblings('.error').hide();
+}
 }

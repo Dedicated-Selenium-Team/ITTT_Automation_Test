@@ -50,8 +50,8 @@
       <div class="modal-body">
 
         <div class="form-group cf">
-          {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
-          {!! Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
+          {!! Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')) !!}
+          {!! Form::text('project_name1', Input::old('project_name1'), array('placeholder' =>'Project name')) !!}
           <p class="error"></p>
         </div>
 
@@ -596,6 +596,7 @@
         <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
         <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
       </select>
+
     </div>
   </div>
   <?php } 
@@ -721,14 +722,14 @@ $(".proj_status").change(function(){
      {
       if(data.success==1){
         location.reload();
-                            // $("#tabs").tabs({ active: project_status });
-                          }
-                          else{
-                            alert("Something went wrong.Please try again later.");
-                          }
-                        }
 
-                      });
+      }
+      else{
+        alert("Something went wrong.Please try again later.");
+      }
+    }
+
+  });
   }
 
 });
@@ -849,6 +850,60 @@ $(".proj_status").change(function(){
                      $('#edit-project').modal('show');
                    }
                  });
+                });
+
+                var blurHappened = false;
+
+                $('#project_name1').on('blur', function(e){
+                 if (blurHappened)
+                 {
+                  blurHappened = false;
+                }
+                else 
+                {
+                  e.preventDefault();
+                  var project_name=$("#project_name1").val();
+                  $.ajax({
+                   type : 'get',
+                   url : '/duplicate_project',
+                   data : {'project_name':project_name},
+                   success : function(data) {
+                     console.log('data', data);
+                     if(data.duplicate_project_status==1){
+                      $('#project_name1').siblings('.error').text('Entered project name already exist');
+                      $('#project_name1').siblings('.error').show();
+                    }
+                    else{
+                     console.log('no message')
+                   }
+                 }
+               });
+                }
+
+              });
+
+                $('#add-project').on('submit',function(e) {
+                  e.preventDefault();
+                  blurHappened = true;
+                  var project_name=$("#project_name1").val();
+                  var project_code=$("#project_code").val();
+                  var client_name=$("#client_name").val();
+                  var project_status=$(".status_id").val();
+                  $.ajax({
+                    type:'post',
+                    url:'/project_info',
+                    data:{'project_name':project_name,'project_code':project_code,'client_name':client_name,'status_id':project_status},
+                    success:function(data)
+                    { 
+                      if(data.duplicate_project_status==1){
+                        $('#project_name1').siblings('.error').text('Entered project name already exist');
+                        $('#project_name1').siblings('.error').show();
+                      }
+                      else {
+                        location.reload();
+                      }
+                    }
+                  });
                 });
 
               </script>

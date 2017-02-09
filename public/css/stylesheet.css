@@ -680,12 +680,12 @@ table thead th {
   width: 49%;
   padding: 0;
   border: none;
-  margin-left: -2px;
+  margin-top: 4px;
   display: inline-block;
   background-color: #fff;
   color: #1b1b1b;
   /*-webkit-text-fill-color: #1b1b1b;*/
-  font: 600 23px 'Open Sans';
+  font: 600 23px/27px 'Open Sans';
   opacity: 1;
   text-transform: capitalize;
 }
@@ -770,7 +770,7 @@ table thead th {
   border: 1px solid #3b5998 ;
   margin-left: 30px;
   font-size: 0;
-  box-shadow: 0 0 1px rgba(0,0,0,.8);
+  /*box-shadow: 0 0 1px rgba(0,0,0,.8);*/
 }
 
 .views a:hover,
@@ -973,7 +973,9 @@ table thead th {
   text-indent: -9999px;
 }
 
-.modal-body { padding: 12px 50px 45px; }
+.modal-body { padding: 10px 50px 45px; }
+
+.modal-header .close { margin-top: 0; }
 
 .modal-content .form-group > *:not(.note) {
   width: 100%;
@@ -1374,7 +1376,7 @@ table thead th {
 /**************************************************************************/
 
 .admin .container-heading { 
-  padding: 28px 28px 25px;
+  padding: 28px 28px 27px;
   box-shadow: none; 
 }
 
@@ -1774,7 +1776,7 @@ table thead th {
 /**************************************************************************/
 /********************** All Projects Tab Start's here *********************/
 /**************************************************************************/
-.wrap-content .timesheet-content { padding: 50px 6.1% 10px; }
+.wrap-content .timesheet-content { padding: 50px 6.1% 50px; }
 
 .wrap-content .all-projects-content { padding-top: 30px; }
 
@@ -1790,7 +1792,7 @@ table thead th {
 .wrap-project {
   width: 16.95%;
   border: 1px solid #3b5998;
-  margin: 0 3.81% 41px 0;
+  margin: 0 3.81% 40px 0;
   display: inline-block;
   text-align: center;
   text-transform: uppercase;
@@ -1858,7 +1860,10 @@ table thead th {
 .create-new-project .modal-body .form-group:not(:last-of-type),
 .edit-project .modal-body .form-group:not(:last-of-type) { margin-bottom: 40px; }
 
-.create-new-project .modal-dialog { margin-top: calc(50vh - 289px); }
+.create-new-project .modal-dialog { 
+  margin-top: calc(50vh - 285px); 
+  margin-bottom: 0;
+}
 
 .edit-project .modal-dialog { margin-top: calc(50vh - 178px); }
 
@@ -1914,7 +1919,10 @@ table thead th {
 
 .all-prj .proj_status option { padding: 0 5px; }
 
-.all-prj { font-family: 'Open Sans'; }
+.all-prj { 
+  padding-bottom: 0;
+  font-family: 'Open Sans'; 
+}
 
 .wrap-project .actions {
   padding: 5px 10px;
@@ -1934,7 +1942,7 @@ table thead th {
 .wrap-project .actions div select {
   width: 16px;
   height: 16px;
-  margin-top: 2px;
+  margin-top: 1px;
   display: inline-block;
   font-family: 'Open Sans';
   text-indent: -9999px;
@@ -2023,10 +2031,9 @@ table thead th {
 .total-hrs .dates .padding-zero { padding: 0; }
 
 .designation-CTA .page-title h2 {
-  margin-top: 10px;
+  margin-top: 7px;
   display: inline-block;
-  font-size: 23px;
-  font: 600 23px / 16px 'Open Sans';
+  font: 600 23px / 27px 'Open Sans';
   text-transform: uppercase;
 }
 

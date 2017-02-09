@@ -298,7 +298,7 @@ $( document ).ready(function() {
     'required': true,
     'regX': /^[^?<>*]*$/
   }
-  , 'project_name': {
+  , 'project_name1': {
     'required': true,
     'regX': /^[^?<>*]*$/
   }
@@ -389,7 +389,7 @@ var errorMessage = {
     'required': 'Please enter client name',
     'regX': 'Please enter valid client name'
   }
-  , 'project_name': {
+  , 'project_name1': {
     'required': 'Please enter project name',
     'regX': 'Please enter valid project name'
   }

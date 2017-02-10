@@ -28,20 +28,6 @@ module.exports = function() {
     this.driver.sleep(1000);
   });
 
-
-  //click on hamburger
-  this.Then(/^I click on mouse hamberger$/, function(){
-    this.driver.findElement({ css: '.nav-hamber'}).click();
-    this.driver.sleep(1000);
-  });
-
-
-  //click on project in project list
-  this.Then(/^I click Project in list$/, function(){
-    this.driver.findElement({ css: '.all-projects'}).click();
-    this.driver.sleep(1000);
-  });
-
   //click on add project button
   this.When(/^I click on add new project button$/, function(){
     this.driver.findElement({ css: '.addProject' }).click();
@@ -60,7 +46,7 @@ module.exports = function() {
    
   //enter project detail
   this.Then(/^I enter detail like "(.*?)" and "(.*?)" and "(.*?)"$/, function(pro_name, pro_code, cleint){
-    this.driver.findElement({ css: '.form-group #project_name'}).then(function(project){
+    this.driver.findElement({ css: '.form-group #project_name1'}).then(function(project){
       var value = project.sendKeys(pro_name);
     });
     this.driver.sleep(500);

@@ -7,7 +7,7 @@ var folder;
 var directory;
 
 gulp.task('Json',function(){
-	return run('cucumber --format json features/'+argv.folder+'/*.feature -o report/'+argv.directory+'/'+argv.folder+'.json').exec();
+	return run('cucumber --format json_pretty features/'+argv.folder+'/*.feature -o report/'+argv.directory+'/'+argv.folder+'.json').exec();
 });
 
 gulp.task('PRDXN-ITTT',['Json'], function(){

@@ -47,7 +47,7 @@ module.exports = function() {
   });
 
   this.Then(/^color of link changes to red and tool tip appears on hovering on Estimation and Planning "([^"]*)" link \(Let us check this project "([^"]*)" and "([^"]*)"\)$/, function (link,projNumber,tab) {
-   this.driver.findElement({ css:'#'+tab+' .wrap-project:nth-of-type('+projNumber+') .'+link+' .detail-plan:hover' }).then(function(detailPlan){
+   this.driver.findElement({ css: '#'+tab+' .wrap-project:nth-of-type('+projNumber+') .'+link+' .detail-plan:hover' }).then(function(detailPlan){
     var checkToolTip=detailPlan.getAttribute('title').then(function(toolTip){
       console.log("Tooltip text is => "+toolTip);
     });

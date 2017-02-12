@@ -83,5 +83,5 @@ Route::get('/time-management/{date}/{id}/{project_id?}', ['as' => 'day-time', 'u
 Route::get('/time-management/week/{date}/{id}/{project_id?}','TimeTrackerController@getUserWeekTimesheet');
 
 /** * Admin can see Users timesheet routes */
-Route::get('/excel_timesheet','EstimattionController@test');
+Route::get('/excel_timesheet/{date}/{strDownloadFor?}/{strDownloadType?}/{userID?}','EstimattionController@test');
 ?>

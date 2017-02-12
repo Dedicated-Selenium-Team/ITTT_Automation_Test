@@ -124,7 +124,6 @@
      </li>
    </ul>
  </nav>
- <a href="/excel_timesheet" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
  <div class="table-timesheet">
    <table class="day-table">
      <tr class="head-row">

@@ -6,11 +6,11 @@ var file;
 var folder;
 var directory;
 
-gulp.task('Json',function(){
-	return run('cucumber --format json_pretty features/'+argv.folder+'/*.feature -o report/'+argv.directory+'/'+argv.folder+'.json').exec();
-});
+// gulp.task('Json',function(){
+// 	return run('cucumber --format json_pretty features/'+argv.folder+'/*.feature -o report/'+argv.directory+'/'+argv.folder+'.json').exec();
+// });
 
-gulp.task('PRDXN-ITTT', ['Json'], function(){
+gulp.task('PRDXN-ITTT', function(){
 	return gulp.src('*features/'+argv.folder+'/*.feature').pipe(cucumber({
 		'steps': '*features/step_definitions/'+argv.folder+'/*.js',
 		'support': '*features/support/*.js',

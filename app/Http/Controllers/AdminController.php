@@ -26,7 +26,7 @@ class AdminController extends Controller {
 		$session = Session::get('user')[0]['role_id'];
 		if ($session == 1) {
 			$user_id     = Session::get('user')[0]['user_id'];
-			$users_info  = User::with('UserDetails')->orderBy('user_id', 'desc')->get();
+			$users_info  = User::with('UserDetails')->where('status',1)->orderBy('user_id', 'desc')->get();
 			$designation = array('' => 'Designation')+Designation::select('designation.designation_name', 'designation.designation_id')->lists('designation_name', 'designation_id')->toArray();
 			$roles       = array('' => 'Select role')+Roles::select('roles.role_name', 'roles.role_id')->lists('role_name', 'role_id')->toArray();
 			$details = UserDetails::select('joining_date','user_id')->orderBy('user_id', 'desc')->get();
@@ -265,10 +265,12 @@ class AdminController extends Controller {
 			if ($request->ajax()) {
 
 				$user = User::find($id);
-				$user->delete();
+				$user->status=0;
+				$user->save();
+//				$user->delete();
 
 				$user_details = UserDetails::find($id);
-				$user_details->delete();
+				//$user_details->delete();
 
 				return response()->json([
 					'user'        => $user,

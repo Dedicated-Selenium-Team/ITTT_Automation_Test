@@ -768,9 +768,20 @@ table thead th {
 
 .views { 
   border: 1px solid #3b5998 ;
-  margin-left: 17px;
+  margin-left: 44px;
+  position: relative;
   font-size: 0;
   /*box-shadow: 0 0 1px rgba(0,0,0,.8);*/
+}
+
+.views:before {
+  content: "";
+  width: 1px;
+  height: 34px;
+  background-color: #cfcfcf;
+  position: absolute;
+  top: 0;
+  left: -24px;
 }
 
 .views a:hover,
@@ -958,166 +969,179 @@ table thead th {
   border-radius: 0; 
 }
 
-.modal-header {
+/*.modal-header {
   padding: 24px 24px 0;
   border-bottom: none;
-}
+  }*/
 
-.modal-header .modal-title { display: none; }
+  .modal-header {
+    width: 99.6%;
+    padding: 24px 23px 0;
+    border-bottom: none;
+    position: fixed;
+    z-index: 1;
+    background-color: #fff;
+  }
 
-.modal-header .close {
-  width: 15px;
-  height: 15px;
-  background: url(../images/Close-Icon.png) no-repeat center;
-  opacity: 1;
-  text-indent: -9999px;
-}
+  .edit-modal .modal-header {
+    width: 96.6%;
+  }
 
-.modal-body { padding: 10px 50px 45px; }
+  .modal-header .modal-title { display: none; }
 
-.modal-header .close { margin-top: 0; }
+  .modal-header .close {
+    width: 15px;
+    height: 15px;
+    background: url(../images/Close-Icon.png) no-repeat center;
+    opacity: 1;
+    text-indent: -9999px;
+  }
 
-.modal-content .form-group > *:not(.note) {
-  width: 100%;
-  display: block;
-}
+  .modal-body { padding: 50px 50px 45px; }
 
-.modal-content .form-group label {
-  margin-bottom: 10px;
-  color: #000;
-  font: 700 16px / 16px 'Open Sans';
-  text-transform: uppercase;
-}
+  .modal-header .close { margin-top: 0; }
 
-.required {
-  position: relative;
-  top: -.3em;
-  color: #da4143;
-  font-size: 90%;
-  line-height: 0;
-  vertical-align: baseline;
-}
+  .modal-content .form-group > *:not(.note) {
+    width: 100%;
+    display: block;
+  }
 
+  .modal-content .form-group label {
+    margin-bottom: 10px;
+    color: #000;
+    font: 700 16px / 16px 'Open Sans';
+    text-transform: uppercase;
+  }
 
-.modal-content .form-group select,
-.modal-content .form-group input,
-.modal-content .form-group textarea {
-  height: 40px;
-  padding: 7px 15px 8px;
-  border: 1px solid #cfcfcf;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background-color: #fff;
-  color: #565656;
-  font: 400 15px / 19px 'Open Sans';
-}
-
-.modal-content .form-group select,
-.designation select { color: #a9a9a9; }
-
-.designation .color-nonzero { color: #565656; }
-
-.modal-content .form-group option,
-.designation option { color: #565656; }
-
-.modal-content .form-group option[value=''],
-.designation option[value=''] { color: #7c7c7c; }
-
-.modal-content .form-group .noValue,
-.designation .noValue { color: #565656; }
-
-.modal-content .form-group select[disabled] { 
-  background-color: #eee;
-  color: #565656; 
-}
-
-.project-ddl option[value='other'],
-.select-proj option[value='newProjet'] { color: #3b5998; }
-
-/* Internet Explorer 10+ */
-.modal-content .form-group input:-ms-input-placeholder,
-.login-form-page .form-control:-ms-input-placeholder,
-.modal-content .form-group textarea:-ms-input-placeholder,
-.search-function:-ms-input-placeholder { color: #a9a9a9; }
+  .required {
+    position: relative;
+    top: -.3em;
+    color: #da4143;
+    font-size: 90%;
+    line-height: 0;
+    vertical-align: baseline;
+  }
 
 
-.modal-content .form-group select,
-.select-proj select,
-.select-designation select
-{
-  -webkit-appearance: none;
-  -moz-appearance: none; 
-  background: url(../images/Select-Down-Icon.png) no-repeat 97% ;
-}
+  .modal-content .form-group select,
+  .modal-content .form-group input,
+  .modal-content .form-group textarea {
+    height: 40px;
+    padding: 7px 15px 8px;
+    border: 1px solid #cfcfcf;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background-color: #fff;
+    color: #565656;
+    font: 400 15px / 19px 'Open Sans';
+  }
 
-.modal-content .form-group select::-ms-expand,
-.select-proj select::-ms-expand,
-.select-designation select::-ms-expand { display: none; }
+  .modal-content .form-group select,
+  .designation select { color: #a9a9a9; }
 
-@-moz-document url-prefix() { 
+  .designation .color-nonzero { color: #565656; }
+
+  .modal-content .form-group option,
+  .designation option { color: #565656; }
+
+  .modal-content .form-group option[value=''],
+  .designation option[value=''] { color: #7c7c7c; }
+
+  .modal-content .form-group .noValue,
+  .designation .noValue { color: #565656; }
+
+  .modal-content .form-group select[disabled] { 
+    background-color: #eee;
+    color: #565656; 
+  }
+
+  .project-ddl option[value='other'],
+  .select-proj option[value='newProjet'] { color: #3b5998; }
+
+  /* Internet Explorer 10+ */
+  .modal-content .form-group input:-ms-input-placeholder,
+  .login-form-page .form-control:-ms-input-placeholder,
+  .modal-content .form-group textarea:-ms-input-placeholder,
+  .search-function:-ms-input-placeholder { color: #a9a9a9; }
+
+
   .modal-content .form-group select,
   .select-proj select,
-  .select-designation select { padding-left: 11px; }
-  .modal-content select option,
-  .select-proj select option,
-  .select-designation select option { padding-left: 14px; }
-}
+  .select-designation select
+  {
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    background: url(../images/Select-Down-Icon.png) no-repeat 97% ;
+  }
 
-.modal-content .form-group textarea { 
-  height: 80px;
-  resize: none; 
-}
+  .modal-content .form-group select::-ms-expand,
+  .select-proj select::-ms-expand,
+  .select-designation select::-ms-expand { display: none; }
 
-.modal-footer {
-  padding: 0 50px 50px;
-  border-top: none;
-}
+  @-moz-document url-prefix() { 
+    .modal-content .form-group select,
+    .select-proj select,
+    .select-designation select { padding-left: 11px; }
+    .modal-content select option,
+    .select-proj select option,
+    .select-designation select option { padding-left: 14px; }
+  }
 
-.modal-footer  .btn,
-.modal-footer input {
-  padding: 12px 13px;
-  border: none;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background-color:#3b5998;
-  color: #fff;
-  font: 700 15px / 16px 'Open Sans';
-  text-transform: uppercase;
-  vertical-align: top;
-}
+  .modal-content .form-group textarea { 
+    height: 80px;
+    resize: none; 
+  }
 
-.modal-footer  .btn { margin-left: 10px; }
+  .modal-footer {
+    padding: 0 50px 50px;
+    border-top: none;
+  }
 
-.day-timesheet .form-group { margin-bottom: 25px; }
+  .modal-footer  .btn,
+  .modal-footer input {
+    padding: 12px 13px;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background-color:#3b5998;
+    color: #fff;
+    font: 700 15px / 16px 'Open Sans';
+    text-transform: uppercase;
+    vertical-align: top;
+  }
 
-.day-timesheet .modal-body .form-group:nth-of-type(5) { margin-bottom: 0; }
+  .modal-footer  .btn { margin-left: 10px; }
 
-.day-timesheet .form-group:nth-of-type(2) label { margin-bottom: 25px; }
+  .day-timesheet .form-group { margin-bottom: 25px; }
 
+  .day-timesheet .modal-body .form-group:nth-of-type(5) { margin-bottom: 0; }
 
-/**************************************************************************/
-/************************* Add New Modal End's here ***********************/
-/**************************************************************************/
-
-/**************************************************************************/
-/************************* Timesheet Day View Ends's here ****************/
-/**************************************************************************/
+  .day-timesheet .form-group:nth-of-type(2) label { margin-bottom: 25px; }
 
 
-/**************************************************************************/
-/************************* Timesheet Week View Starts's here **************/
-/**************************************************************************/
+  /**************************************************************************/
+  /************************* Add New Modal End's here ***********************/
+  /**************************************************************************/
 
-.timesheet-content .table-timesheet-week {
- width: 74%;
- margin: 0 auto;
-}
+  /**************************************************************************/
+  /************************* Timesheet Day View Ends's here ****************/
+  /**************************************************************************/
 
-.week-table .head-row th+th { padding: 0; }
 
-.week-table .head-row th a {
+  /**************************************************************************/
+  /************************* Timesheet Week View Starts's here **************/
+  /**************************************************************************/
+
+  .timesheet-content .table-timesheet-week {
+   width: 74%;
+   margin: 0 auto;
+ }
+
+ .week-table .head-row th+th { padding: 0; }
+
+ .week-table .head-row th a {
   padding: 14px 15px 13px;
   display: block;
   color: #1b1b1b ;

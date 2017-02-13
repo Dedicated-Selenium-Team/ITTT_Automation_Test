@@ -1155,7 +1155,6 @@ function startTimer() {
   }
 
   function goActive() {
-    console.log('Active');
     startTimer();
   }
 //code for cheking session timeout is ends here

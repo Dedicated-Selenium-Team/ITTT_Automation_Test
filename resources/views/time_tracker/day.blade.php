@@ -124,6 +124,9 @@
      </li>
    </ul>
  </nav>
+ <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
+ <!-- Route::get('/excel_timesheet/{date}/{strDownloadFor?}/{strDownloadType?}/{userID?}','EstimattionController@test'); -->
+
  <div class="table-timesheet">
    <table class="day-table">
      <tr class="head-row">

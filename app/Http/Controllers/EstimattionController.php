@@ -422,9 +422,22 @@ class EstimattionController extends Controller {
 
 		//calculate start day and end day 
 		if($strDownloadFor == 'week'){
-			$arrExportParameter['dateStartDay'] = $arrExportParameter['date']. " 00:00:00" ;
+			$dateStartDay = strtotime($date);
+    if (date('w', $dateStartDay) == 1)
+    {
+      $dateStartDay=$date;
+    }
+    else
+    {
+      $dateStartDay_timestamp =  strtotime('last monday',
+        $dateStartDay);
+      $dateStartDay=date('Y-m-d',$dateStartDay_timestamp);
+    }
+     $start_date        = new \DateTime($dateStartDay);
+      $end_date          = new \DateTime($dateStartDay);
+			$arrExportParameter['dateStartDay'] = $dateStartDay. " 00:00:00" ;
 			
-			$arrExportParameter['dateLastDay'] = date("Y-m-d",strtotime($arrExportParameter['date']."+7 days")) . " 00:00:00";
+			$arrExportParameter['dateLastDay'] = date("Y-m-d",strtotime($dateStartDay."+7 days")) . " 00:00:00";
 		}else{
 			$arrExportParameter['dateStartDay'] = $date." 00:00:00";
 			$arrExportParameter['dateLastDay'] = $date." 23:59:59";
@@ -446,14 +459,24 @@ class EstimattionController extends Controller {
 				      ->join('project_designations','day_times.d_id','=','project_designations.d_id')
 				      ->where('day_times.user_id', $arrExportParameter['userID'])
 				      ->whereBetween('day_times.date',array($arrExportParameter['dateStartDay'], $arrExportParameter['dateLastDay']))
-				      ->select('day_times.*', 'add_projects.project_name','project_designations.d_name')
+				      ->select('day_times.*', 'add_projects.project_name','project_designations.d_name','add_projects.client_name')
 	      			->get();
 
-	      			//echo "<pre>";print_r(print_r(\DB::getQueryLog()));exit();
+	      			//echo "<pre>";print_r($today_project);exit();
 					$export_data=array();
+					$tmp=array();
+						array_push($tmp,'Date');
+						array_push($tmp,'Client_name');
+						array_push($tmp,'Project Name');
+						array_push($tmp,'Designation');
+						array_push($tmp,'Description');
+						array_push($tmp,'Hrs Locked');
+						array_push($export_data,$tmp);
 					foreach($today_project as $key=>$value)
 					{
 						$tmp=array();
+						array_push($tmp,$value->date);
+						array_push($tmp,$value->client_name);
 						array_push($tmp,$value->project_name);
 						array_push($tmp,$value->d_name);
 						array_push($tmp,$value->comments);

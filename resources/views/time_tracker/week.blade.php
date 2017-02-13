@@ -144,7 +144,8 @@ $today = date('Y-m-d');
 
   <!-- Timesheet content starts here -->
   <div class="timesheet-content">
-
+<a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/week" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
+ <!-- Route::get('/excel_timesheet/{date}/{strDownloadFor?}/{strDownloadType?}/{userID?}','EstimattionController@test'); -->
     <!-- Week View Table Starts here -->
     <div class="table-timesheet-week">
      <?php $free_time=array();?>

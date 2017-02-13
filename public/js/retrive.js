@@ -1155,7 +1155,19 @@ function startTimer() {
   }
 
   function goActive() {
-    console.log('Active');
     startTimer();
   }
 //code for cheking session timeout is ends here
+
+
+ // to display new client and existing client fields on add new project popup
+ $(document).on('click','.client-type input[type="radio"]',function(){
+  if ($(this).val()=='new') {
+    $("#client_name").show();
+    $("#existing_client").hide();
+  }
+  else {
+    $("#client_name").hide();
+    $("#existing_client").show();
+  }
+});

@@ -1000,7 +1000,7 @@ table thead th {
 
 
 .modal-content .form-group select,
-.modal-content .form-group input,
+.modal-content .form-group input:not([type="radio"]),
 .modal-content .form-group textarea {
   height: 40px;
   padding: 7px 15px 8px;
@@ -1965,6 +1965,21 @@ table thead th {
   box-shadow: 0 0 9.5px 2px #ccc9c9; 
   transform: scale(1.05);
 }
+
+/* Add new prject popup starts here */
+.create-new-project .form-group label[for="client_name"],
+.create-new-project .form-group .client-type {
+  width: initial;
+  display: inline-block;
+}
+
+.create-new-project .form-group input[type="radio"] {
+  vertical-align: top;
+  margin-left: 10px;
+}
+
+.create-new-project .form-group .existing-client { display: none; }
+/* Add new prject popup ends here */
 
 /**************************************************************************/
 /*********************** All Projects Tab End's here **********************/

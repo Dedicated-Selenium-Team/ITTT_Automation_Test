@@ -1,5 +1,6 @@
-[2016-09-30 11:41:18] local.ERROR: exception 'ErrorException' with message 'Creating default object from empty value' in /home/prdxnadmin2/public_html/ittt/project/app/Http/Controllers/TimeTrackerController.php:175
+[2017-02-12 08:06:15] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Maatwebsite\Excel\ExcelServiceProvider' not found' in /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:146
 Stack trace:
+<<<<<<< HEAD
 #0 /home/prdxnadmin2/public_html/ittt/project/app/Http/Controllers/TimeTrackerController.php(175): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'Creating defaul...', '/home/prdxnadmi...', 175, Array)
 #1 [internal function]: App\Http\Controllers\TimeTrackerController->updateTime(Object(Illuminate\Http\Request), '390', '390')
 #2 /home/prdxnadmin2/public_html/ittt/project/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(256): call_user_func_array(Array, Array)
@@ -21439,7 +21440,129 @@ Stack trace:
 #4 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(112): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\MyselfProjectController), Object(Illuminate\Routing\Route), 'show')
 =======
 [2017-02-08 07:12:11] production.ERROR: exception 'ErrorException' with message 'Creating default object from empty value' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php:290
+=======
+#0 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(114): Illuminate\Foundation\ProviderRepository->createProvider()
+#4 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate\Foundation\ProviderRepository->compileManifest()
+#5 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#6 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#8 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(208): Illuminate\Foundation\Application->bootstrapWith()
+#9 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(105): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle()
+#11 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
+#12 {main}  
+[2017-02-12 08:06:41] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Maatwebsite\Excel\ExcelServiceProvider' not found' in /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:146
 Stack trace:
+#0 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(114): Illuminate\Foundation\ProviderRepository->createProvider()
+#4 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate\Foundation\ProviderRepository->compileManifest()
+#5 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#6 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#8 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(208): Illuminate\Foundation\Application->bootstrapWith()
+#9 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(105): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle()
+#11 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
+#12 {main}  
+[2017-02-12 08:11:46] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Maatwebsite\Excel\ExcelServiceProvider' not found' in /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:146
+Stack trace:
+#0 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(114): Illuminate\Foundation\ProviderRepository->createProvider()
+#4 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate\Foundation\ProviderRepository->compileManifest()
+#5 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#6 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#8 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(208): Illuminate\Foundation\Application->bootstrapWith()
+#9 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(105): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle()
+#11 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
+#12 {main}  
+[2017-02-12 08:12:37] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Maatwebsite\Excel\ExcelServiceProvider' not found' in /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:146
+Stack trace:
+#0 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(114): Illuminate\Foundation\ProviderRepository->createProvider()
+#4 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate\Foundation\ProviderRepository->compileManifest()
+#5 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#6 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#8 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(208): Illuminate\Foundation\Application->bootstrapWith()
+#9 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(105): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle()
+#11 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
+#12 {main}  
+[2017-02-12 08:12:56] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Maatwebsite\Excel\ExcelServiceProvider' not found' in /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:146
+Stack trace:
+#0 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(114): Illuminate\Foundation\ProviderRepository->createProvider()
+#4 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate\Foundation\ProviderRepository->compileManifest()
+#5 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#6 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#8 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(208): Illuminate\Foundation\Application->bootstrapWith()
+#9 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(105): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle()
+#11 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
+#12 {main}  
+[2017-02-12 08:16:08] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Maatwebsite\Excel\ExcelServiceProvider' not found' in /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:146
+Stack trace:
+#0 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(114): Illuminate\Foundation\ProviderRepository->createProvider()
+#4 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate\Foundation\ProviderRepository->compileManifest()
+#5 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#6 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#8 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(208): Illuminate\Foundation\Application->bootstrapWith()
+#9 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(105): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle()
+#11 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
+#12 {main}  
+[2017-02-12 08:18:48] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Maatwebsite\Excel\ExcelServiceProvider' not found' in /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:146
+Stack trace:
+#0 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(114): Illuminate\Foundation\ProviderRepository->createProvider()
+#4 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate\Foundation\ProviderRepository->compileManifest()
+#5 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#6 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#8 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(208): Illuminate\Foundation\Application->bootstrapWith()
+#9 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(105): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle()
+#11 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
+#12 {main}  
+[2017-02-12 08:20:02] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Maatwebsite\Excel\ExcelServiceProvider' not found' in /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:146
+Stack trace:
+#0 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(114): Illuminate\Foundation\ProviderRepository->createProvider()
+#4 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate\Foundation\ProviderRepository->compileManifest()
+#5 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#6 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#8 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(208): Illuminate\Foundation\Application->bootstrapWith()
+#9 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(105): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle()
+#11 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
+#12 {main}  
+[2017-02-12 08:22:36] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Class 'Maatwebsite\Excel\ExcelServiceProvider' not found' in /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php:146
+>>>>>>> 018709a670ee26119dd35790db5f289e5caed09c
+Stack trace:
+<<<<<<< HEAD
 #0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php(290): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'Creating defaul...', '/var/www/html/V...', 290, Array)
 #1 [internal function]: App\Http\Controllers\TimeTrackerController->week('2017, February ...')
 #2 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(256): call_user_func_array(Array, Array)
@@ -21492,6 +21615,7 @@ Stack trace:
 #43 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/server.php(21): require_once('/var/www/html/V...')
 #45 {main}  
+<<<<<<< HEAD
 <<<<<<< HEAD
 [2017-02-08 06:16:55] production.ERROR: exception 'ErrorException' with message 'Missing argument 2 for App\Http\Controllers\MyselfProjectController::show()' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/MyselfProjectController.php:237
 Stack trace:
@@ -21502,6 +21626,10 @@ Stack trace:
 #4 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(112): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\MyselfProjectController), Object(Illuminate\Routing\Route), 'show')
 =======
 [2017-02-08 07:17:50] production.ERROR: exception 'ErrorException' with message 'Creating default object from empty value' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php:290
+=======
+>>>>>>> bf5701ca7a56f2bb1ea748253a914e31800c75ae
+[2017-02-13 05:06:36] production.ERROR: exception 'ErrorException' with message 'Creating default object from empty value' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php:290
+>>>>>>> 018709a670ee26119dd35790db5f289e5caed09c
 Stack trace:
 #0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php(290): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'Creating defaul...', '/var/www/html/V...', 290, Array)
 #1 [internal function]: App\Http\Controllers\TimeTrackerController->week('2017, February ...')
@@ -21555,6 +21683,7 @@ Stack trace:
 #43 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/server.php(21): require_once('/var/www/html/V...')
 #45 {main}  
+<<<<<<< HEAD
 <<<<<<< HEAD
 [2017-02-08 06:17:00] production.ERROR: exception 'ErrorException' with message 'Missing argument 2 for App\Http\Controllers\MyselfProjectController::show()' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/MyselfProjectController.php:237
 Stack trace:
@@ -21565,6 +21694,24 @@ Stack trace:
 #4 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(112): Illuminate\Routing\ControllerDispatcher->call(Object(App\Http\Controllers\MyselfProjectController), Object(Illuminate\Routing\Route), 'show')
 =======
 [2017-02-08 07:24:09] production.ERROR: exception 'ErrorException' with message 'Creating default object from empty value' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php:290
+=======
+=======
+#0 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(133): Symfony\Component\Debug\Exception\FatalErrorException->__construct()
+#1 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(118): Illuminate\Foundation\Bootstrap\HandleExceptions->fatalExceptionFromError()
+#2 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php(0): Illuminate\Foundation\Bootstrap\HandleExceptions->handleShutdown()
+#3 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(114): Illuminate\Foundation\ProviderRepository->createProvider()
+#4 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/ProviderRepository.php(60): Illuminate\Foundation\ProviderRepository->compileManifest()
+#5 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(507): Illuminate\Foundation\ProviderRepository->load()
+#6 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/RegisterProviders.php(17): Illuminate\Foundation\Application->registerConfiguredProviders()
+#7 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(203): Illuminate\Foundation\Bootstrap\RegisterProviders->bootstrap()
+#8 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(208): Illuminate\Foundation\Application->bootstrapWith()
+#9 /var/www/html/github-ittt/prdxn-ittt/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(105): Illuminate\Foundation\Console\Kernel->bootstrap()
+#10 /var/www/html/github-ittt/prdxn-ittt/artisan(36): Illuminate\Foundation\Console\Kernel->handle()
+#11 /var/www/html/github-ittt/prdxn-ittt/artisan(0): {main}()
+#12 {main}  
+<<<<<<< HEAD
+[2017-02-13 09:02:13] production.ERROR: exception 'ErrorException' with message 'Creating default object from empty value' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php:290
+>>>>>>> 018709a670ee26119dd35790db5f289e5caed09c
 Stack trace:
 #0 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/app/Http/Controllers/TimeTrackerController.php(290): Illuminate\Foundation\Bootstrap\HandleExceptions->handleError(2, 'Creating defaul...', '/var/www/html/V...', 290, Array)
 #1 [internal function]: App\Http\Controllers\TimeTrackerController->week('2017, February ...')
@@ -21618,6 +21765,7 @@ Stack trace:
 #43 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/public/index.php(54): Illuminate\Foundation\Http\Kernel->handle(Object(Illuminate\Http\Request))
 #44 /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/server.php(21): require_once('/var/www/html/V...')
 #45 {main}  
+<<<<<<< HEAD
 <<<<<<< HEAD
 [2017-02-09 11:28:15] production.ERROR: exception 'ErrorException' with message 'Undefined index: HTTP_REFERER' in /var/www/html/Vrushali/Laravel/Backup/git backup/prdxn-ittt/storage/framework/views/0f747525dea3d815416d70ff436f6d2d:9
 Stack trace:
@@ -21728,3 +21876,8 @@ Stack trace:
 =======
 >>>>>>> bf5701ca7a56f2bb1ea748253a914e31800c75ae
 >>>>>>> 734398889abc09947987d9ded45921f0d27ece5f
+=======
+=======
+>>>>>>> b5f259ecc68b23c133e0279ea587009cca8e4da2
+>>>>>>> design-inspection
+>>>>>>> 018709a670ee26119dd35790db5f289e5caed09c

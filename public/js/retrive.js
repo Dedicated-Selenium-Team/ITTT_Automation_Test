@@ -298,6 +298,10 @@ $( document ).ready(function() {
     'required': true,
     'regX': /^[^?<>*]*$/
   }
+  , 'existing_client': {
+    'required': true
+    , 'dropdown': 0
+  }
   , 'project_name1': {
     'required': true,
     'regX': /^[^?<>*]*$/
@@ -388,6 +392,10 @@ var errorMessage = {
   , 'client_name': {
     'required': 'Please enter client name',
     'regX': 'Please enter valid client name'
+  }
+  , 'existing_client': {
+    'required': 'Please select client name'
+    , 'dropdown': 'Please select client name'
   }
   , 'project_name1': {
     'required': 'Please enter project name',
@@ -1163,11 +1171,11 @@ function startTimer() {
  // to display new client and existing client fields on add new project popup
  $(document).on('click','.client-type input[type="radio"]',function(){
   if ($(this).val()=='new') {
-    $("#client_name").show();
-    $("#existing_client").hide();
+    $(".new-field").show();
+    $(".existing-field").hide();
   }
   else {
-    $("#client_name").hide();
-    $("#existing_client").show();
+    $(".new-field").hide();
+    $(".existing-field").show();
   }
 });

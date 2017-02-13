@@ -218,11 +218,24 @@
 
         <div class="form-group cf">
           {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
+          <div class="client-type">
+            <input type="radio" name="client" id="new" value="new" checked>
+            <label for="new">new</label>
+            <input type="radio" name="client" id="existing" value="existing">
+            <label for="existing">existing</label>
+          </div>
           {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
-          <p class="error"></p>
-        </div>
+          <select class="existing-client" name="existing_client" id="existing_client">
+           <option value="0">Please select client</option>
+           <!--  @foreach($projects as $key=>$value) -->
+           <!-- <option value="{{$value['project_id']}}">{{$value['project_name']}}</option> -->
+           <!-- @endforeach -->
+           <option value="other">abc</option>
+         </select>
+         <p class="error"></p>
+       </div>
 
-        <div class="form-group cf">
+       <div class="form-group cf">
          {!! Html::decode(Form::label('status_id','Project Status:')) !!}
          <select class="status_id" name="status_id" >
            <option value="1">Estimates</option>

@@ -97,7 +97,18 @@ $user_name = Session::get('user')[0]['first_name'];
 
         <div class="form-group cf">
           {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
+          <div class="client-type">
+            <input type="radio" name="client" id="new" value="new" checked>
+            <label for="new">new</label>
+            <input type="radio" name="client" id="existing" value="existing">
+            <label for="existing">existing</label>
+          </div>
           {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
+          <select class="existing-client" name="existing_client" id="existing_client">
+            <option value="0">Please select client</option>
+            
+            <option value="other">abc</option>
+          </select>
           <p class="error"></p>
         </div>
 

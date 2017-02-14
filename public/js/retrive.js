@@ -1195,3 +1195,12 @@ function startTimer() {
     $(this).siblings('.error').hide();
   }
 });
+
+ $(document).on('click','.create-new-project .close', function(){
+  $('#add-project')[0].reset();
+});
+
+ $(document).on('click','.create-project .close', function(){
+  $('#project-day-time')[0].reset();
+  $('#project-day-time select').removeClass('noValue');
+});

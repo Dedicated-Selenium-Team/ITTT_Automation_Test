@@ -151,7 +151,8 @@ $today = date('Y-m-d');
 
     <!-- Timesheet content starts here -->
     <div class="timesheet-content">
-
+ <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/week/excel/{{$id}}" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
+  <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/week/pdf/{{$id}}" target="_blank"><input type="button" value="PDF" id="export_excel"></a>
       <!-- Week View Table Starts here -->
       <div class="table-timesheet-week table-timesheet-admin-week ">
         <span class="user-name">{{$userFullName}} Timesheet</span>

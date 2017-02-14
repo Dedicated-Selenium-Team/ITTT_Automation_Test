@@ -124,10 +124,11 @@
      </li>
    </ul>
  </nav>
- <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/excel" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
-  <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/pdf" target="_blank"><input type="button" value="PDF" id="export_excel"></a>
- <!-- Route::get('/excel_timesheet/{date}/{strDownloadFor?}/{strDownloadType?}/{userID?}','EstimattionController@test'); -->
-
+ <div class="export-functionality">
+   <span>download</span>
+   <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/excel" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
+   <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/pdf" target="_blank"><input type="button" value="PDF" id="export_excel"></a>
+ </div>
  <div class="table-timesheet">
    <table class="day-table">
      <tr class="head-row">
@@ -563,7 +564,7 @@ $("#project").on('change',function(){
         var comment_text = data.comments;
         var cmnt_replace = comment_text.replace(/\</g, '&lt;');
         var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
-var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
+        var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
         var row1 = '<tr id="time' + data.id + '">'+
         '<td class="break-words">'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
         '<p>' + cmnt_replace1 + '</p>' +'</td>'+

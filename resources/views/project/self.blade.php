@@ -103,13 +103,17 @@ $user_name = Session::get('user')[0]['first_name'];
             <input type="radio" name="client" id="existing" value="existing">
             <label for="existing">existing</label>
           </div>
-          {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
-          <select class="existing-client" name="existing_client" id="existing_client">
-            <option value="0">Please select client</option>
-            
-            <option value="other">abc</option>
-          </select>
-          <p class="error"></p>
+          <div class="new-field">
+            {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
+            <p class="error"></p>
+          </div>
+          <div class="existing-field">
+            <select class="existing-client" name="existing_client" id="existing_client">
+              <option value="0">Please select client</option>
+              <option value="demo">abc</option>
+            </select>
+            <p class="error"></p>
+          </div>
         </div>
 
         <div class="form-group cf">
@@ -644,7 +648,13 @@ $('#add-project').on('submit',function(e) {
   blurHappened = true;
   var project_name=$("#project_name1").val();
   var project_code=$("#project_code").val();
-  var client_name=$("#client_name").val();
+  
+  if($('#new').is(':checked')){
+    client_name=$("#client_name").val();
+  }else {
+    client_name=$("#existing_client").val();
+  }
+
   var project_status=$(".status_id").val();
   $.ajax({
     type:'post',

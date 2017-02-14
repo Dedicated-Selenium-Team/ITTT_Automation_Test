@@ -124,12 +124,12 @@
      </li>
    </ul>
  </nav>
- <div class="export-functionality">
-   <span>download</span>
-   <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/excel" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
-   <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/pdf" target="_blank"><input type="button" value="PDF" id="export_excel"></a>
- </div>
  <div class="table-timesheet">
+   <div class="export-functionality">
+     <span>download</span>
+     <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/excel" target="_blank" title="Excel"><input type="button" value="Excel" id="export_excel"></a>
+     <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/pdf" target="_blank" title="Pdf"><input type="button" value="PDF" id="export_excel"></a>
+   </div>
    <table class="day-table">
      <tr class="head-row">
        <th>

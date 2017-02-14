@@ -2231,6 +2231,7 @@ table thead th {
 
 /*styling for download*/
 .export-functionality {
+  float: right;
   position: relative;
   margin: 0 0 5px;
 }
@@ -2242,7 +2243,7 @@ table thead th {
   position: absolute;
   right: -53px;
   height: 46px;
-  text-indent: 99999999px;
+  text-indent: -9999px;
 }
 
 .export-functionality a:first-of-type { 
@@ -2253,7 +2254,7 @@ table thead th {
 
 .export-functionality a:last-of-type {
   border-top: none;
-  top: 46px;
+  top: 67px;
   background: url('../images/pdf.png') no-repeat center center;
   background-size: 50% 50%;
 }

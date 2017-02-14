@@ -20,6 +20,10 @@ use Input;
 use Redirect;
 use Response;
 use Session;
+use App;
+use PDF; 
+use PHPExcel;
+use PHPExcel_IOFactory;
 
 class TimeTrackerController extends Controller {
   /**
@@ -58,11 +62,11 @@ class TimeTrackerController extends Controller {
           $value                      = (object) $value1;
           $value->hrs_locked=str_replace('.',':', number_format($value->hrs_locked,2));
           $value->comments=json_encode($value->comments);
-$value->comments=str_replace('\\r\\n','<br>',$value->comments);
-$value->comments=str_replace('"','',$value->comments);
+          $value->comments=str_replace('\\r\\n','<br>',$value->comments);
+          $value->comments=str_replace('"','',$value->comments);
 
-         
-      
+          
+          
           
           array_push($daily_project, $value);
         }
@@ -358,8 +362,8 @@ $value->comments=str_replace('"','',$value->comments);
           $value                      = (object) $value1;
           $value->hrs_locked=str_replace('.',':', number_format($value->hrs_locked,2));
           $value->comments=json_encode($value->comments);
-$value->comments=str_replace('\\r\\n','<br>',$value->comments);
-$value->comments=str_replace('"','',$value->comments);
+          $value->comments=str_replace('\\r\\n','<br>',$value->comments);
+          $value->comments=str_replace('"','',$value->comments);
 
           
           array_push($daily_project, $value);
@@ -490,17 +494,17 @@ $value->comments=str_replace('"','',$value->comments);
     //calculate start day and end day 
     if($strDownloadFor == 'week'){
       $dateStartDay = strtotime($date);
-    if (date('w', $dateStartDay) == 1)
-    {
-      $dateStartDay=$date;
-    }
-    else
-    {
-      $dateStartDay_timestamp =  strtotime('last monday',
-        $dateStartDay);
-      $dateStartDay=date('Y-m-d',$dateStartDay_timestamp);
-    }
-     $start_date        = new \DateTime($dateStartDay);
+      if (date('w', $dateStartDay) == 1)
+      {
+        $dateStartDay=$date;
+      }
+      else
+      {
+        $dateStartDay_timestamp =  strtotime('last monday',
+          $dateStartDay);
+        $dateStartDay=date('Y-m-d',$dateStartDay_timestamp);
+      }
+      $start_date        = new \DateTime($dateStartDay);
       $end_date          = new \DateTime($dateStartDay);
       $arrExportParameter['dateStartDay'] = $dateStartDay. " 00:00:00" ;
       
@@ -513,34 +517,34 @@ $value->comments=str_replace('"','',$value->comments);
     if($arrExportParameter['strDownloadType'] == 'excel'){
       \Excel::create('Report2016', function($excel) {
               // Set the title
-              $excel->setTitle('My awesome report 2016');
+        $excel->setTitle('My awesome report 2016');
               // Chain the setters
-              $excel->setCreator('Me')->setCompany('Our Code World');
-              $excel->setDescription('A demonstration to change the file properties');
+        $excel->setCreator('Me')->setCompany('Our Code World');
+        $excel->setDescription('A demonstration to change the file properties');
 
-              $excel->sheet('Sheet 1', function ($sheet)  {
-                DB::enableQueryLog();
-                $arrExportParameter = Session::get('arrExportParameter');
-            $today_project = DB::table('add_projects')
-              ->join('day_times', 'day_times.project_name', '=', 'add_projects.project_id')
-              ->join('project_designations','day_times.d_id','=','project_designations.d_id')
-              ->where('day_times.user_id', $arrExportParameter['userID'])
-              ->whereBetween('day_times.date',array($arrExportParameter['dateStartDay'], $arrExportParameter['dateLastDay']))
-              ->select('day_times.*', 'add_projects.project_name','project_designations.d_name','add_projects.client_name')
-              ->get();
+        $excel->sheet('Sheet 1', function ($sheet)  {
+          DB::enableQueryLog();
+          $arrExportParameter = Session::get('arrExportParameter');
+          $today_project = DB::table('add_projects')
+          ->join('day_times', 'day_times.project_name', '=', 'add_projects.project_id')
+          ->join('project_designations','day_times.d_id','=','project_designations.d_id')
+          ->where('day_times.user_id', $arrExportParameter['userID'])
+          ->whereBetween('day_times.date',array($arrExportParameter['dateStartDay'], $arrExportParameter['dateLastDay']))
+          ->select('day_times.*', 'add_projects.project_name','project_designations.d_name','add_projects.client_name')
+          ->get();
 
-              if(count($today_project)==0)
-                return "No data to Show";
+          if(count($today_project)==0)
+            return "No data to Show";
               //echo "<pre>";print_r($today_project);exit();
           $export_data=array();
           $tmp=array();
-            array_push($tmp,'Date');
-            array_push($tmp,'Client_name');
-            array_push($tmp,'Project Name');
-            array_push($tmp,'Designation');
-            array_push($tmp,'Description');
-            array_push($tmp,'Hrs Locked');
-            array_push($export_data,$tmp);
+          array_push($tmp,'Date');
+          array_push($tmp,'Client_name');
+          array_push($tmp,'Project Name');
+          array_push($tmp,'Designation');
+          array_push($tmp,'Description');
+          array_push($tmp,'Hrs Locked');
+          array_push($export_data,$tmp);
           foreach($today_project as $key=>$value)
           {
             $tmp=array();
@@ -553,57 +557,57 @@ $value->comments=str_replace('"','',$value->comments);
             array_push($export_data,$tmp);
           }
                 //$sheet->setAutoSize(true);
-                $sheet->getDefaultRowDimension()->setRowHeight(20);
-                 $sheet->fromArray($export_data, null, 'A1', true,false);
-              });
+          $sheet->getDefaultRowDimension()->setRowHeight(20);
+          $sheet->fromArray($export_data, null, 'A1', true,false);
+        });
 
-          })->download('xls');
-          $response = array(
-            'success' => true,
-            'url' => 'http://localhost:8000/time-management/2017-02-08/'
+      })->download('xls');
+      $response = array(
+        'success' => true,
+        'url' => 'http://localhost:8000/time-management/2017-02-08/'
         );
 
       header('Content-type: application/json');
     }elseif($arrExportParameter['strDownloadType'] == 'pdf'){
 
-$today_project = DB::table('add_projects')
-              ->join('day_times', 'day_times.project_name', '=', 'add_projects.project_id')
-              ->join('project_designations','day_times.d_id','=','project_designations.d_id')
-              ->join('users','users.user_id','=','day_times.user_id')
-              ->where('day_times.user_id', $arrExportParameter['userID'])
-              ->whereBetween('day_times.date',array($arrExportParameter['dateStartDay'], $arrExportParameter['dateLastDay']))
-              ->select('day_times.*', 'add_projects.project_name','project_designations.d_name','add_projects.client_name','users.first_name','users.last_name')
-              ->get();
-              $user_name_timesheet=DB::table('users')->where('user_id',$arrExportParameter['userID'])->get();
+      $today_project = DB::table('add_projects')
+      ->join('day_times', 'day_times.project_name', '=', 'add_projects.project_id')
+      ->join('project_designations','day_times.d_id','=','project_designations.d_id')
+      ->join('users','users.user_id','=','day_times.user_id')
+      ->where('day_times.user_id', $arrExportParameter['userID'])
+      ->whereBetween('day_times.date',array($arrExportParameter['dateStartDay'], $arrExportParameter['dateLastDay']))
+      ->select('day_times.*', 'add_projects.project_name','project_designations.d_name','add_projects.client_name','users.first_name','users.last_name')
+      ->get();
+      $user_name_timesheet=DB::table('users')->where('user_id',$arrExportParameter['userID'])->get();
 
-$name=$user_name_timesheet[0]->first_name." ".$user_name_timesheet[0]->last_name."'s Timesheet";
+      $name=$user_name_timesheet[0]->first_name." ".$user_name_timesheet[0]->last_name."'s Timesheet";
               //echo "<pre>";print_r($today_project);exit();
-          $export_data=array();
-          $tmp=array();
-            array_push($tmp,'Date');
-            array_push($tmp,'Client_name');
-            array_push($tmp,'Project Name');
-            array_push($tmp,'Designation');
-            array_push($tmp,'Description');
-            array_push($tmp,'Hrs Locked');
-            array_push($export_data,$tmp);
-          foreach($today_project as $key=>$value)
-          {
-            $tmp=array();
-            array_push($tmp,$value->date);
-            array_push($tmp,$value->client_name);
-            array_push($tmp,$value->project_name);
-            array_push($tmp,$value->d_name);
-            array_push($tmp,$value->comments);
-            array_push($tmp,$value->hrs_locked);
-            array_push($export_data,$tmp);
-          }
-          $name=ucwords($name);
+      $export_data=array();
+      $tmp=array();
+      array_push($tmp,'Date');
+      array_push($tmp,'Client_name');
+      array_push($tmp,'Project Name');
+      array_push($tmp,'Designation');
+      array_push($tmp,'Description');
+      array_push($tmp,'Hrs Locked');
+      array_push($export_data,$tmp);
+      foreach($today_project as $key=>$value)
+      {
+        $tmp=array();
+        array_push($tmp,$value->date);
+        array_push($tmp,$value->client_name);
+        array_push($tmp,$value->project_name);
+        array_push($tmp,$value->d_name);
+        array_push($tmp,$value->comments);
+        array_push($tmp,$value->hrs_locked);
+        array_push($export_data,$tmp);
+      }
+      $name=ucwords($name);
 
-          
-          $pdf = PDF::loadView('pdf_export.pdf', compact('export_data','name'));
-          
-return $pdf->download('timesheet.pdf');         
+      
+      $pdf = PDF::loadView('pdf_export.pdf', compact('export_data','name'));
+      
+      return $pdf->download('timesheet.pdf');         
     }
     return $response;
   }

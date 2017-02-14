@@ -231,9 +231,9 @@
           <div class="existing-field">
             <select class="existing-client" name="existing_client" id="existing_client">
               <option value="0">Please select client</option>
-              <!--  @foreach($projects as $key=>$value) -->
-              <!-- <option value="{{$value['project_id']}}">{{$value['project_name']}}</option> -->
-              <!-- @endforeach -->
+               @foreach($client_name_list as $value)
+              <option value="{{$value}}">{{$value}}</option>
+              @endforeach
               <option value="demo">abc</option>
             </select>
             <p class="error"></p>

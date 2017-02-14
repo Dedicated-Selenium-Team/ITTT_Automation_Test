@@ -110,7 +110,9 @@ $user_name = Session::get('user')[0]['first_name'];
           <div class="existing-field">
             <select class="existing-client" name="existing_client" id="existing_client">
               <option value="0">Please select client</option>
-              <option value="demo">abc</option>
+             @foreach($client_name_list as $value)
+              <option value="{{$value}}">{{$value}}</option>
+              @endforeach
             </select>
             <p class="error"></p>
           </div>

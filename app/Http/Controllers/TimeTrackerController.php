@@ -84,8 +84,9 @@ $value->comments=str_replace('"','',$value->comments);
         }
 
       }
+      $client_name_list=DB::table('add_projects')->distinct('client_name')->select('client_name')->lists('client_name');
       
-      return view('time_tracker/day', compact('projects', 'daily_project', 'date','is_project_assigned'));
+      return view('time_tracker/day', compact('projects', 'daily_project', 'date','is_project_assigned','client_name_list'));
 
     } else {
       return Redirect::to('/');

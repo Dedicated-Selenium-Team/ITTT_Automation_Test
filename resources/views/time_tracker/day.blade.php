@@ -711,14 +711,29 @@ $('#add-project').on('submit',function(e) {
   blurHappened = true;
   var project_name=$("#project_name1").val();
   var project_code=$("#project_code").val();
-  
+  var iserror = 0;
+
   if($('#new').is(':checked')){
+    $('#existing_client').siblings('.error').text('');
     client_name=$("#client_name").val();
   }else {
+    $('#client_name').siblings('.error').text('');
     client_name=$("#existing_client").val();
   }
-  
+
   var project_status=$(".status_id").val();
+
+  $(".error").each(function(){
+    if ($(this).text().trim().length) {
+     iserror++;
+   }
+ });
+  console.log('iserror', iserror);
+
+  if(iserror > 0 || client_name == 0){
+   e.preventDefault();
+ }
+ else{
   $.ajax({
     type:'post',
     url:'/project_info',
@@ -734,6 +749,7 @@ $('#add-project').on('submit',function(e) {
       }
     }
   });
+}
 });
 
 </script>

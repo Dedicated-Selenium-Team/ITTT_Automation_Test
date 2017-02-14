@@ -21,10 +21,7 @@ Route::post('/gmaillogin','Login@gmaillogin');
 Route::get('/logout', 'Login@logout');
 Route::post('/change','Login@change_password');
 Route::get('/session_timeout','Login@logout');
-/*Route::post('test','EstimattionController@test');
-Route::get('test',function(){
-	return view('test');
-});*/
+
 
 /************ Projects tab *************/
 Route::get('/store_project/estimate/{id}', 'EstimattionController@index');
@@ -38,7 +35,6 @@ Route::get('/edit-project', 'ProjectController@editProject');
 
 Route::post('/delete-project/{id}', 'ProjectController@deleteProject');
 Route::post('/archive-project/{id}', 'ProjectController@archiveProject');
-Route::post('/test','EstimattionController@test');
 Route::get('/duplicate_project','ProjectController@duplicateProject');
 
 /************ Admin tab *************/
@@ -82,4 +78,6 @@ Route::get('/time-management/{date}/{id}/{project_id?}', ['as' => 'day-time', 'u
 
 Route::get('/time-management/week/{date}/{id}/{project_id?}','TimeTrackerController@getUserWeekTimesheet');
 
+/** * Admin can see Users timesheet routes */
+Route::get('/excel_timesheet/{date}/{strDownloadFor?}/{strDownloadType?}/{userID?}','TimeTrackerController@export');
 ?>

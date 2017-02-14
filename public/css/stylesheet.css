@@ -2285,6 +2285,45 @@ table thead th {
 
 .proj-date .error { text-transform: none; }
 
+/*styling for download*/
+.export-functionality {
+  float: right;
+  position: relative;
+  margin: 0 0 5px;
+}
+
+.export-functionality a {
+  width: 46px;
+  border: 1px solid #eee;
+  display: none;
+  position: absolute;
+  right: -53px;
+  height: 46px;
+  text-indent: -9999px;
+}
+
+.export-functionality a:first-of-type { 
+  border-bottom: none;
+  background: url('../images/excel.png') no-repeat center center;
+  background-size: 50% 50%;
+}
+
+.export-functionality a:last-of-type {
+  border-top: none;
+  top: 67px;
+  background: url('../images/pdf.png') no-repeat center center;
+  background-size: 50% 50%;
+}
+
+.export-functionality span {
+  padding-right: 24px;
+  background: url('../images/download.png') no-repeat center right;
+  background-size: 20% 100%;
+  color: #0000FF;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
 @media screen and (min-width: 1370px) { 
   .wrap-project .estimate-plan .estimate-span { padding-right: 9.8% }
 

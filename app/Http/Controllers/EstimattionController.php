@@ -26,6 +26,8 @@ use Input;
 use DB;
 use Redirect;
 use Session;
+use App;
+use PDF;
 
 class EstimattionController extends Controller {
 	/**
@@ -402,8 +404,17 @@ class EstimattionController extends Controller {
 		return redirect()->route('store-project');
 
 	}
-	
-	/*public function test(Request $request)
+	/**
+	 * function to download a excel and pdf 
+	 * @method test
+	 * @access public 
+	 * @param Request  $request [For input parameter]
+	 * @param date $date date to calculate working hours
+	 * @param String $strDownloadFor [shows download for i.e. day or week default:day]
+	 * @param String $strDownloadType Download type i.e. excel or pdf default:excel
+	 * @param Integer $user_id user id
+	 */
+		/*public function test(Request $request)
 	{
 $success=0;
 $errormsg="";

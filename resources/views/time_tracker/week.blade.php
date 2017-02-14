@@ -144,9 +144,13 @@ $today = date('Y-m-d');
 
   <!-- Timesheet content starts here -->
   <div class="timesheet-content">
-
-    <!-- Week View Table Starts here -->
-    <div class="table-timesheet-week">
+   <!-- Week View Table Starts here -->
+   <div class="table-timesheet-week">
+     <div class="export-functionality">
+       <span>download</span>
+       <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/week/excel" target="_blank"><input type="button" value="Excel" ></a>
+       <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/week/pdf" target="_blank"><input type="button" value="PDF" ></a>
+     </div>
      <?php $free_time=array();?>
      <table class="week-table">
       <tbody>

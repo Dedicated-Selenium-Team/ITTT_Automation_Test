@@ -140,6 +140,11 @@
    </nav>
    <div class="table-timesheet">
      <span class="user-name">{{$userFullName}} Timesheet</span>
+     <div class="export-functionality">
+       <span>download</span>
+       <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/excel/{{$id}}" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
+       <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/pdf/{{$id}}" target="_blank"><input type="button" value="PDF" id="export_excel"></a>
+     </div>
      <table class="day-table">
        <thead>
          <tr class="head-row">

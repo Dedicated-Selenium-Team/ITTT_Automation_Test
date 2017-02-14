@@ -54,12 +54,29 @@
         {!! Form::text('project_name1', Input::old('project_name1'), array('placeholder' =>'Project name')) !!}
         <p class="error"></p>
       </div>
-
-      <div class="form-group cf">
-        {!! Html::decode(Form::label('project_code','Project Code:')) !!}
-        {!! Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')) !!}
-        <p class="error"></p>
-      </div>
+        <div class="form-group cf">
+          {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
+          <div class="client-type">
+            <input type="radio" name="client" id="new" value="new" checked>
+            <label for="new">new</label>
+            <input type="radio" name="client" id="existing" value="existing">
+            <label for="existing">existing</label>
+          </div>
+          <div class="new-field">
+            {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
+            <p class="error"></p>
+          </div>
+          <div class="existing-field">
+            <select class="existing-client" name="existing_client" id="existing_client">
+              <option value="0">Please select client</option>
+               @foreach($client_name_list as $value)
+              <option value="{{$value}}">{{$value}}</option>
+              @endforeach
+              
+            </select>
+            <p class="error"></p>
+          </div>
+        </div>
 
       <div class="form-group cf">
         {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
@@ -890,8 +907,29 @@
                   blurHappened = true;
                   var project_name=$("#project_name1").val();
                   var project_code=$("#project_code").val();
-                  var client_name=$("#client_name").val();
+                  var iserror = 0;
+
+                  if($('#new').is(':checked')){
+                    $('#existing_client').siblings('.error').text('');
+                    client_name=$("#client_name").val();
+                  }else {
+                    $('#client_name').siblings('.error').text('');
+                    client_name=$("#existing_client").val();
+                  }
+
                   var project_status=$(".status_id").val();
+
+                  $(".error").each(function(){
+                    if ($(this).text().trim().length) {
+                     iserror++;
+                   }
+                 });
+                  console.log('iserror', iserror);
+
+                  if(iserror > 0 || client_name == 0){
+                   e.preventDefault();
+                 }
+                 else{
                   $.ajax({
                     type:'post',
                     url:'/project_info',
@@ -907,8 +945,9 @@
                       }
                     }
                   });
-                });
+                }
+              });
 
-              </script>
-            </div>
-            @stop
+            </script>
+          </div>
+          @stop

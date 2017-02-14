@@ -1022,20 +1022,19 @@ table thead th {
     vertical-align: baseline;
   }
 
-
-  .modal-content .form-group select,
-  .modal-content .form-group input,
-  .modal-content .form-group textarea {
-    height: 40px;
-    padding: 7px 15px 8px;
-    border: 1px solid #cfcfcf;
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    background-color: #fff;
-    color: #565656;
-    font: 400 15px / 19px 'Open Sans';
-  }
+.modal-content .form-group select,
+.modal-content .form-group input:not([type="radio"]),
+.modal-content .form-group textarea {
+  height: 40px;
+  padding: 7px 15px 8px;
+  border: 1px solid #cfcfcf;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  background-color: #fff;
+  color: #565656;
+  font: 400 15px / 19px 'Open Sans';
+}
 
   .modal-content .form-group select,
   .designation select { color: #a9a9a9; }
@@ -1989,6 +1988,24 @@ table thead th {
   box-shadow: 0 0 9.5px 2px #ccc9c9; 
   transform: scale(1.05);
 }
+
+/* Add new prject popup starts here */
+.create-new-project .form-group label[for="client_name"],
+.create-new-project .form-group .client-type {
+  width: initial;
+  display: inline-block;
+}
+
+.create-new-project .form-group input[type="radio"] {
+  vertical-align: top;
+  margin-left: 10px;
+}
+
+.create-new-project .form-group .existing-field { display: none; }
+
+.create-new-project .form-group .existing-client,
+.create-new-project .new-field input { width: 100%; }
+/* Add new prject popup ends here */
 
 /**************************************************************************/
 /*********************** All Projects Tab End's here **********************/

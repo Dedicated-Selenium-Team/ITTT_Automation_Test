@@ -63,12 +63,11 @@ class MyselfProjectController extends Controller {
 				
 				array_push($list_name, $value->project_name);
 			}
-			/*echo json_encode($project_list[0]);
-			
-*/
+		
 			$users_info  = $add_project->with('ProjectDetail')->get();
 			$designation = array('' => 'Choose your Designation/Role on this Project...')+ProjectDesignation::lists('d_name', 'd_id')->toArray();
-			return view('project/self', compact('designation', 'list_name',  'project_id', 'project_list'));
+			$client_name_list=DB::table('add_projects')->distinct('client_name')->select('client_name')->lists('client_name');
+			return view('project/self', compact('designation', 'list_name',  'project_id', 'project_list','client_name_list'));
 			//	return $designation;
 		} else {
 			return Redirect::to('/');

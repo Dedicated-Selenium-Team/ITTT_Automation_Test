@@ -394,7 +394,14 @@ class ProjectController extends Controller {
 				$archive_project->prepend($value);
 			}
 
-			return view('project/projectDetail')->with(['myproject' => $myassigned_project, 'projects' => $projects, 'estimates_project' => $estimates_project, 'live_project' => $live_project, 'live_ongoing_project' => $live_ongoing_project, 'completed_project' => $completed_project]);
+			/********Client List*************/
+			$client_list=DB::table('add_projects')->distinct('client_name')->select('client_name')->lists('client_name');
+			
+
+
+			/*****************************/
+
+			return view('project/projectDetail')->with(['myproject' => $myassigned_project, 'projects' => $projects, 'estimates_project' => $estimates_project, 'live_project' => $live_project, 'live_ongoing_project' => $live_ongoing_project, 'completed_project' => $completed_project,'client_name_list'=>$client_list]);
 
 		} else {
 			return Redirect::to('/');

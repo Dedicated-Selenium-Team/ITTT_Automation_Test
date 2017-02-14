@@ -314,6 +314,10 @@ $( document ).ready(function() {
     'required': true,
     'regX': /^[^?<>*]*$/
   }
+  , 'existing_client': {
+    'required': true
+    , 'dropdown': 0
+  }
   , 'project_name1': {
     'required': true,
     'regX': /^[^?<>*]*$/
@@ -405,6 +409,10 @@ var errorMessage = {
   , 'client_name': {
     'required': 'Please enter client name',
     'regX': 'Please enter valid client name'
+  }
+  , 'existing_client': {
+    'required': 'Please select client name'
+    , 'dropdown': 'Please select client name'
   }
   , 'project_name1': {
     'required': 'Please enter project name',
@@ -1206,3 +1214,32 @@ function startTimer() {
     startTimer();
   }
 //code for cheking session timeout is ends here
+
+
+ // to display new client and existing client fields on add new project popup
+ $(document).on('click','.client-type input[type="radio"]',function(){
+  if ($(this).val()=='new') {
+    $(".existing-field").children('.error').text('');
+    $(".existing-field").hide();
+    $("#existing_client").val(0);
+    $("#existing_client").removeClass("noValue");
+    $(".new-field").show();
+  }
+  else {
+    $(".new-field").children('.error').text('');
+    $(".new-field").hide();
+    $("#client_name").val('');
+    $(".existing-field").show();
+  }
+});
+
+ $(document).on('change blur','#existing_client',function(){
+  if($(this).val()==0){
+    $(this).siblings('.error').text('Please select client name');
+    $(this).siblings('.error').show();
+  }
+  else{
+    $(this).siblings('.error').text('');
+    $(this).siblings('.error').hide();
+  }
+});

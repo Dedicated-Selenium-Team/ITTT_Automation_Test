@@ -2,63 +2,78 @@
 
 var fs = require('fs');
 var webdriver = require('selenium-webdriver');
-var platform = process.env.PLATFORM || "ANDROID";
+var platform = process.env.PLATFORM || "CHROME" || "FIREFOX";
 
 var webdriver = require('selenium-webdriver'),
 username = "nilesh_vidhate_prdxn",
 accessKey = "4b956187-7b4d-438b-9d18-860ce77eced0",
 driver;
 
-//driver = new webdriver.Builder();
+driver = new webdriver.Builder().
+withCapabilities({
+	'browserName': 'firefox',
+	'platform': 'Linux',
+	'version': '45.0',
+	'username': username,
+	'accessKey': accessKey
+}).
+usingServer("http://" + username + ":" + accessKey +
+	"@ondemand.saucelabs.com:80/wd/hub").
+build();
+
 
 // for android devices
-var buildAndroidDriver = function() {
-	return new webdriver.Builder().
-	withCapabilities({
-		'browserName': 'chrome',
-		'platformName': 'Android',
-		'platformVersion': '5.0',
-		'deviceName': 'Android Emulator',
-		'username': username,
-		'accessKey': accessKey
-	}).
-	usingServer("http://" + username + ":" + accessKey +
-		"@ondemand.saucelabs.com:80/wd/hub").
-	build();
-};
-
-// for firefox browser on Linux
-var buildFirefoxDriver = function() {
-	return new webdriver.Builder().
-	withCapabilities({
-		'browserName': 'firefox',
-		'platform': 'Linux',
-		'version': '45.0',
-		'username': username,
-		'accessKey': accessKey
-	}).
-	usingServer("http://" + username + ":" + accessKey +
-		"@ondemand.saucelabs.com:80/wd/hub").
-	build();
-};
-
-switch(platform) {
-	case 'ANDROID':
-	var driver = buildAndroidDriver();
-	break;
-	default:
-	var driver = buildFirefoxDriver();
-}
-
-
-// var capabilities = {
-// 	browserName: 'chrome',
+// var buildAndroidDriver = function() {
+// 	return new webdriver.Builder().
+// 	withCapabilities({
+// 		'browserName': 'chrome',
+// 		'platformName': 'Android',
+// 		'platformVersion': '5.0',
+// 		'deviceName': 'Android Emulator',
+// 		'username': username,
+// 		'accessKey': accessKey
+// 	}).
+// 	usingServer("http://" + username + ":" + accessKey +
+// 		"@ondemand.saucelabs.com:80/wd/hub").
+// 	build();
 // };
 
-// var driver = new webdriver
-// .Builder()
-// .withCapabilities(capabilities)
-// .build();
+// for firefox browser on Linux
+// var buildFirefoxDriver = function() {
+// 	return new webdriver.Builder().
+// 	withCapabilities({
+// 		'browserName': 'firefox',
+// 		'platform': 'Linux',
+// 		'version': '45.0',
+// 		'username': username,
+// 		'accessKey': accessKey
+// 	}).
+// 	usingServer("http://" + username + ":" + accessKey +
+// 		"@ondemand.saucelabs.com:80/wd/hub").
+// 	build();
+// };
+
+// switch(platform) {
+// 	case 'ANDROID':
+// 	var driver = buildAndroidDriver();
+// 	break;
+// 	default:
+// 	var driver = buildFirefoxDriver();
+// }
+
+
+
+// var buildAndroidDriver = function() {
+// 	return new webdriver.Builder().
+// 	usingServer('http://localhost:4444/wd/hub').
+// 	withCapabilities({
+// 		platformName: 'Android',
+// 		platformVersion: '4.4',
+// 		deviceName: 'Android Emulator',
+// 		browserName: 'Chrome'
+// 	}).
+// 	build();
+// };
 
 //for saucelabs integration and selenium grid
 // var capabilities = {

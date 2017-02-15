@@ -22,14 +22,6 @@ var myHooks = function () {
   });
 
   this.registerHandler('AfterFeatures', function () {
-
-    // var options = {
-    //   theme: 'bootstrap',
-    //   jsonFile: '/var/www/html/Sushant/JavaScript/PRDXN-ITTT/report/cucumber_report.json',
-    //   output: '/var/www/html/Sushant/JavaScript/PRDXN-ITTT/report/cucumber_report.html',
-    // };
-    // reporter.generate(options);
-
     return driver.quit();
   });
 };

@@ -54,34 +54,34 @@
         {!! Form::text('project_name1', Input::old('project_name1'), array('placeholder' =>'Project name')) !!}
         <p class="error"></p>
       </div>
-        <div class="form-group cf">
-          {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
-          <div class="client-type">
-            <input type="radio" name="client" id="new" value="new" checked>
-            <label for="new">new</label>
-            <input type="radio" name="client" id="existing" value="existing">
-            <label for="existing">existing</label>
-          </div>
-          <div class="new-field">
-            {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
-            <p class="error"></p>
-          </div>
-          <div class="existing-field">
-            <select class="existing-client" name="existing_client" id="existing_client">
-              <option value="0">Please select client</option>
-               @foreach($client_name_list as $value)
-              <option value="{{$value}}">{{$value}}</option>
-              @endforeach
-              
-            </select>
-            <p class="error"></p>
-          </div>
-        </div>
+      
+      <div class="form-group cf">
+        {!! Html::decode(Form::label('project_code','Project Code:')) !!}
+        {!! Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')) !!}
+        <p class="error"></p>
+      </div>
 
       <div class="form-group cf">
         {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
-        {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
-        <p class="error"></p>
+        <div class="client-type">
+          <input type="radio" name="client" id="new" value="new" checked>
+          <label for="new">new</label>
+          <input type="radio" name="client" id="existing" value="existing">
+          <label for="existing">existing</label>
+        </div>
+        <div class="new-field">
+          {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
+          <p class="error"></p>
+        </div>
+        <div class="existing-field">
+          <select class="existing-client" name="existing_client" id="existing_client">
+            <option value="0">Please select client</option>
+            @foreach($client_name_list as $value)
+            <option value="{{$value}}">{{$value}}</option>
+            @endforeach
+          </select>
+          <p class="error"></p>
+        </div>
       </div>
 
       <div class="form-group cf">

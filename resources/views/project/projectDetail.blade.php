@@ -175,8 +175,8 @@
 ?>
 <div class="timesheet-content all-projects-content">
   <div class="total-projects cf">
-    <h2 class="project-count">Total Number of Projects: <span class="italic">{{ $count }}</span> </h2>
-    <h2 class="project-count">total Number of Projects assigned: <span class="italic">{{ count($myproject) }}</span> </h2>
+    <h2 class="project-count">Total Number of Projects: {{ $count }}</h2>
+    <h2 class="project-count">total Number of Projects assigned: {{ count($myproject) }}</h2>
     <!--<input type='text' id='search_project' class="form-control search-function project-search" placeholder="Search Project">-->
   </div>
 
@@ -187,6 +187,7 @@
       <li><a href="#tabs-3">Live-Projects</a></li>
       <li><a href="#tabs-4">Live-Ongoing</a></li>
       <li><a href="#tabs-5">Completed</a></li>
+      <li><a href="#tabs-6">Hold</a></li>
     </ul>
     <div id="tabs-1" class="grid">
       <?php if((count($projects) == 0)) {?>
@@ -207,8 +208,10 @@
             Live-Projects
             <?php } else if($my_allproject->status_id == 3){ ?>
             Live-Ongoing
-            <?php } else { ?>
+            <?php } else if($my_allproject->status_id == 4){ ?>
             Completed
+            <?php } else { ?>
+            Hold
             <?php } ?>
           </span>
           <div>
@@ -226,24 +229,32 @@
              <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
              <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
              <option value="4_{{$my_allproject->project_id }}">Completed</option>
+             <option value="5_{{$my_allproject->project_id }}">Hold</option>
              <?php } else if($my_allproject->status_id == 2) { ?>
              <option value="0">Please Select</option>
              <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
              <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
              <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
              <option value="4_{{$my_allproject->project_id }}">Completed</option>
+             <option value="5_{{$my_allproject->project_id }}">Hold</option>
              <?php } else if($my_allproject->status_id == 3) { ?>
              <option value="0">Please Select</option>
              <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
              <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
              <option value="3_{{$my_allproject->project_id }}" disabled>Live-Ongoing</option>
              <option value="4_{{$my_allproject->project_id }}">Completed</option>
+             <option value="5_{{$my_allproject->project_id }}">Hold</option>
              <?php } else if($my_allproject->status_id == 4) { ?>
              <option value="0">Please Select</option>
              <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
              <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
              <option value="3_{{$my_allproject->project_id }}" disabled>Live-Ongoing</option>
              <option value="4_{{$my_allproject->project_id }}" disabled>Completed</option>
+              <?php } else if($my_allproject->status_id == 5) { ?>
+             <option value="0">Please Select</option>
+             <option value="1_{{$my_allproject->project_id }}">Estimates</option>
+             <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
+             <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
              <?php } ?> 
            </select>
          </div>
@@ -303,8 +314,10 @@
         Live-Projects
         <?php } else if($project_detail->status_id == 3){ ?>
         Live-Ongoing
-        <?php } else { ?>
+        <?php } else if($project_detail->status_id == 4){ ?>
         Completed
+        <?php } else { ?>
+        Hold
         <?php } ?>
       </span> 
       <div>
@@ -322,24 +335,32 @@
           <option value="2_{{$project_detail->project_id }}">Live-Projects</option>
           <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
           <option value="4_{{$project_detail->project_id }}">Completed</option>
+          <option value="5_{{$project_detail->project_id }}">Hold</option>
           <?php } else if($project_detail->status_id == 2) { ?>
           <option value="0">Please Select</option>
           <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
           <option value="2_{{$project_detail->project_id }}" disabled>Live-Projects</option>
           <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
           <option value="4_{{$project_detail->project_id }}">Completed</option>
+          <option value="5_{{$project_detail->project_id }}">Hold</option>
           <?php } else if($project_detail->status_id == 3) { ?>
           <option value="0">Please Select</option>
           <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
           <option value="2_{{$project_detail->project_id }}" disabled>Live-Projects</option>
           <option value="3_{{$project_detail->project_id }}" disabled>Live-Ongoing</option>
           <option value="4_{{$project_detail->project_id }}">Completed</option>
+          <option value="5_{{$project_detail->project_id }}">Hold</option>
           <?php } else if($project_detail->status_id == 4) { ?>
           <option value="0">Please Select</option>
           <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
           <option value="2_{{$project_detail->project_id }}" disabled>Live-Projects</option>
           <option value="3_{{$project_detail->project_id }}" disabled>Live-Ongoing</option>
           <option value="4_{{$project_detail->project_id }}" disabled>Completed</option>
+          <?php } else if($project_detail->status_id == 5) { ?>
+          <option value="0">Please Select</option>
+          <option value="1_{{$project_detail->project_id }}">Estimates</option>
+          <option value="2_{{$project_detail->project_id }}">Live-Projects</option>
+          <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
           <?php } ?>
         </select>
 
@@ -409,10 +430,11 @@
           <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
         </select>
         <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <option value="1">Please Select</option>
+          <option value="0">Please Select</option>
           <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
           <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
           <option value="4_{{$my_allproject->project_id }}">Completed</option>
+          <option value="5_{{$my_allproject->project_id }}">Hold</option>
         </select>
       </div>
     </div>
@@ -480,9 +502,10 @@
           <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
         </select>
         <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <option value="1">Please Select</option>
+          <option value="0">Please Select</option>
           <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
           <option value="4_{{$my_allproject->project_id }}">Completed</option>
+          <option value="5_{{$my_allproject->project_id }}">Hold</option>
         </select>
       </div>
     </div>
@@ -549,8 +572,9 @@
           <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
         </select>
         <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <option value="1">Please Select</option>
+          <option value="0">Please Select</option>
           <option value="4_{{$my_allproject->project_id }}">Completed</option>
+          <option value="5_{{$my_allproject->project_id }}">Hold</option>
         </select>
       </div>
     </div>
@@ -615,6 +639,7 @@
         <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
         <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
       </select>
+
     </div>
   </div>
   <?php } 
@@ -656,7 +681,75 @@
 </div>
 @endforeach
 </div>
+<div id="tabs-6">
+  <?php if(count($hold_project) == 0) {?>
+  <p class="noproject-message">There are no projects to show.</p>
+  <?php } ?>
+  @foreach($hold_project as $my_allproject  )
+  @if($my_allproject->is_myproject == "Yes")
+  <div class="wrap-project assigned-projects cf">
+   @else
+   <div class="wrap-project cf">
+    @endif
 
+    <?php if ($role_id == 1) {?>
+    <div class="actions cf">
+      <!--<span>Action</span> -->
+      <div>
+        <select id="project_action" class="edit-action-arrow">
+          <option value = "1">Please Select</option>
+          <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
+          <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
+          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+        </select>
+        <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+          <option value="0">Please Select</option>
+          <option value="1_{{$my_allproject->project_id }}">Estimates</option>
+          <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
+          <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
+        </select>
+      </div>
+    </div>
+    <?php } 
+    if ($role_id == 2) {?>
+    <div class="actions cf">
+      <!--<span>Action</span> -->
+      <div>
+        <select id="project_action" class="edit-action-arrow">
+          <option value = "1">Please Select</option>
+          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+        </select>
+      </div>
+    </div>
+    <?php }?>
+    <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
+      <!-- <div class="all-project-details"> -->
+      <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
+      <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
+      <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
+      <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
+      <!-- </div> -->
+    </a>
+
+    <div class="estimate-plan">
+      <span class="estimate-span">
+        <?php if($my_allproject->estimation_status == 0) { ?>
+        <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
+        <?php } else { ?>
+        <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
+        <?php } ?>
+      </span>
+      <span class="planning-span">
+        <?php if($my_allproject->planning_status == 0) { ?>
+        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
+        <?php } else { ?>
+        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
+        <?php } ?>
+      </span>
+    </div>
+  </div>
+  @endforeach
+</div>
 </div>
 </div>
 <!-- All Projects list ends here -->
@@ -711,25 +804,24 @@
   }
 });
 
-
- // $(window).load(function() {
- //   var grid = $('.grid').isotope({});
- //   $("#search_project").keyup(function(){
- //    var searchstring=$("#search_project").val().toUpperCase();
- //    var divtosearch=$(".wrap-project");
- //    grid.isotope({
- //      filter: function( divtosearch ) {
- //        return ($(".pro_name",this).html().indexOf(searchstring)>-1)
- //      }
- //    });
- //  });
- // });
+/* $(window).load(function() {
+   var grid = $('.grid').isotope({});
+   $("#search_project").keyup(function(){
+    var searchstring=$("#search_project").val().toUpperCase();
+    var divtosearch=$(".wrap-project");
+    grid.isotope({
+      filter: function( divtosearch ) {
+        return ($(".pro_name",this).html().indexOf(searchstring)>-1)
+      }
+    });
+  });
+});*/
 
  $(".proj_status").change(function(){
   var status=($(this).val()).split("_");
   var project_status=status[0];
   var project_id=status[1];
-  if(project_status==1)
+  if(project_status==0)
     alert("please select project status");
   else
   {

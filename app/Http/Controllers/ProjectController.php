@@ -427,7 +427,7 @@ class ProjectController extends Controller {
 				$hold_project->prepend($value);
 			}
 
-			return view('project/projectDetail')->with(['myproject' => $myassigned_project, 'projects' => $projects, 'estimates_project' => $estimates_project, 'live_project' => $live_project, 'live_ongoing_project' => $live_ongoing_project, 'completed_project' => $completed_project]);
+			return view('project/projectDetail')->with(['myproject' => $myassigned_project, 'projects' => $projects, 'estimates_project' => $estimates_project, 'live_project' => $live_project, 'live_ongoing_project' => $live_ongoing_project, 'completed_project' => $completed_project, 'hold_project'=>$hold_project]);
 
 		} else {
 			return Redirect::to('/');

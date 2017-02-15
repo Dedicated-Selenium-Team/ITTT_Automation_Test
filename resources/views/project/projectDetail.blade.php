@@ -649,10 +649,10 @@
 @endforeach
 </div>
 <div id="tabs-6">
-  <?php if(count($live_ongoing_project) == 0) {?>
+  <?php if(count($hold_project) == 0) {?>
   <p class="noproject-message">There are no projects to show.</p>
   <?php } ?>
-  @foreach($live_ongoing_project as $my_allproject  )
+  @foreach($hold_project as $my_allproject  )
   @if($my_allproject->is_myproject == "Yes")
   <div class="wrap-project assigned-projects cf">
    @else
@@ -671,9 +671,9 @@
         </select>
         <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
           <option value="0">Please Select</option>
-          <option value="1_{{$project_detail->project_id }}">Estimates</option>
-          <option value="2_{{$project_detail->project_id }}">Live-Projects</option>
-          <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
+          <option value="1_{{$my_allproject->project_id }}">Estimates</option>
+          <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
+          <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
         </select>
       </div>
     </div>

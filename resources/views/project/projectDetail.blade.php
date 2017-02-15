@@ -184,13 +184,15 @@
 
           <span>
             <?php if($my_allproject->status_id == 1){ ?>
-            estimates
+            estimates 1
             <?php } else if($my_allproject->status_id == 2){ ?>
-            Live-Projects
+            Live-Projects 2
             <?php } else if($my_allproject->status_id == 3){ ?>
-            Live-Ongoing
+            Live-Ongoing 3
+            <?php } else if($my_allproject->status_id == 4){ ?>
+            Completed 4 
             <?php } else { ?>
-            Completed
+            Hold 5
             <?php } ?>
           </span>
           <div>
@@ -283,13 +285,15 @@
     <div class="actions cf">
       <span>
         <?php if($project_detail->status_id == 1){ ?>
-        estimates
+        estimates 1
         <?php } else if($project_detail->status_id == 2){ ?>
-        Live-Projects
+        Live-Projects 2
         <?php } else if($project_detail->status_id == 3){ ?>
-        Live-Ongoing
+        Live-Ongoing 3
+        <?php } else if($my_allproject->status_id == 4){ ?>
+        Completed 4
         <?php } else { ?>
-        Completed
+        Hold 5
         <?php } ?>
       </span> 
       <div>
@@ -397,7 +401,7 @@
           <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
         </select>
         <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <option value="1">Please Select</option>
+          <option value="0">Please Select</option>
           <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
           <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
           <option value="4_{{$my_allproject->project_id }}">Completed</option>
@@ -469,7 +473,7 @@
           <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
         </select>
         <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <option value="1">Please Select</option>
+          <option value="0">Please Select</option>
           <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
           <option value="4_{{$my_allproject->project_id }}">Completed</option>
           <option value="5_{{$my_allproject->project_id }}">Hold</option>
@@ -539,7 +543,7 @@
           <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
         </select>
         <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <option value="1">Please Select</option>
+          <option value="0">Please Select</option>
           <option value="4_{{$my_allproject->project_id }}">Completed</option>
           <option value="5_{{$my_allproject->project_id }}">Hold</option>
         </select>
@@ -788,7 +792,7 @@ $(".proj_status").change(function(){
   var status=($(this).val()).split("_");
   var project_status=status[0];
   var project_id=status[1];
-  if(project_status==1)
+  if(project_status==0)
     alert("please select project status");
   else
   {

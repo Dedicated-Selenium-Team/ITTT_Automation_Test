@@ -234,6 +234,7 @@ class ProjectController extends Controller {
 			$live_project         = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '2')->where('is_deleted',0)->where('is_archived',0)->get();
 			$live_ongoing_project = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '3')->where('is_deleted',0)->where('is_archived',0)->get();
 			$completed_project    = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '4')->where('is_deleted',0)->where('is_archived',0)->get();
+			$hold_project    = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('status_id', '5')->where('is_deleted',0)->where('is_archived',0)->get();
 
 			$archive_project    = AddProject::select('project_id', 'project_name', 'client_name','status_id')->orderBy('project_id', 'desc')->where('is_archived', '1')->where('is_deleted','0')->get();
 			
@@ -392,6 +393,38 @@ class ProjectController extends Controller {
 				unset($archive_project[$value]);
 			foreach ($my_project as $key => $value) {
 				$archive_project->prepend($value);
+			}
+
+			$my_project=array();
+			$my_project_key=array();
+			foreach ($hold_project as $key => $value) {
+				$set_plan = PlanProjectDetail::where('project_id', $value->project_id)->get();
+				$set_estimate = ProjectDetail::where('project_id', $value->project_id)->get();
+				if(count($set_plan)==0)
+					$value->planning_status=0;
+				else
+					$value->planning_status=1;
+				if(count($set_estimate)==0)
+					$value->estimation_status=0;
+				else
+					$value->estimation_status=1;
+				$new_key = array_keys($myassigned_project_id,$value->project_id);
+				if (count($new_key)>0) {
+					$value->designation_name=$myassigned_project[$new_key[0]]->designation_name;
+					$value->is_myproject = 'Yes';
+					array_push($my_project, $value);
+					array_push($my_project_key, $key);
+				} else {
+
+					$value->is_myproject = 'No';
+
+				}
+
+			}
+			foreach($my_project_key as $value)
+				unset($hold_project[$value]);
+			foreach ($my_project as $key => $value) {
+				$hold_project->prepend($value);
 			}
 
 			return view('project/projectDetail')->with(['myproject' => $myassigned_project, 'projects' => $projects, 'estimates_project' => $estimates_project, 'live_project' => $live_project, 'live_ongoing_project' => $live_ongoing_project, 'completed_project' => $completed_project]);

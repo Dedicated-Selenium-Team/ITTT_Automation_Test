@@ -184,15 +184,15 @@
 
           <span>
             <?php if($my_allproject->status_id == 1){ ?>
-            estimates 1
+            estimates
             <?php } else if($my_allproject->status_id == 2){ ?>
-            Live-Projects 2
+            Live-Projects
             <?php } else if($my_allproject->status_id == 3){ ?>
-            Live-Ongoing 3
+            Live-Ongoing
             <?php } else if($my_allproject->status_id == 4){ ?>
-            Completed 4 
+            Completed
             <?php } else { ?>
-            Hold 5
+            Hold
             <?php } ?>
           </span>
           <div>
@@ -285,15 +285,15 @@
     <div class="actions cf">
       <span>
         <?php if($project_detail->status_id == 1){ ?>
-        estimates 1
+        estimates
         <?php } else if($project_detail->status_id == 2){ ?>
-        Live-Projects 2
+        Live-Projects
         <?php } else if($project_detail->status_id == 3){ ?>
-        Live-Ongoing 3
-        <?php } else if($my_allproject->status_id == 4){ ?>
-        Completed 4
+        Live-Ongoing
+        <?php } else if($project_detail->status_id == 4){ ?>
+        Completed
         <?php } else { ?>
-        Hold 5
+        Hold
         <?php } ?>
       </span> 
       <div>

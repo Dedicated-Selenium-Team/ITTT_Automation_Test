@@ -1,0 +1,232 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Project Tab",
+    "line":1,
+    "description":"",
+    "id":"project-tab",
+    "uri":"features/Admin_project_click_user_search/admin_click_projext_box.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click Projects box.",
+        "line":3,
+        "description":"",
+        "id":"project-tab;verify-click-projects-box.",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_click_projext_box.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_click_projext_box.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":7,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_click_projext_box.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be in project",
+            "line":8,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_click_projext_box.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see hover and mouse pointer",
+            "line":9,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_click_projext_box.feature:9"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on any random Project",
+            "line":10,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_click_projext_box.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see the project which I have selected",
+            "line":11,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_click_projext_box.feature:11"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":13,
+            "description":"",
+            "id":"project-tab;verify-click-projects-box.;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password"
+                ],
+                "line":14,
+                "id":"project-tab;verify-click-projects-box.;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123"
+                ],
+                "line":15,
+                "id":"project-tab;verify-click-projects-box.;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword":"Feature",
+    "name":"Admin edit Pop up",
+    "line":1,
+    "description":"",
+    "id":"admin-edit-pop-up",
+    "uri":"features/Admin_project_click_user_search/admin_user_search.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click On Edit Button and update Entry and close the popup",
+        "line":3,
+        "description":"",
+        "id":"admin-edit-pop-up;verify-click-on-edit-button-and-update-entry-and-close-the-popup",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_user_search.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid Admin \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_user_search.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should open",
+            "line":7,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_user_search.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click on mouse hamberger",
+            "line":8,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_user_search.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click User in list",
+            "line":9,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_user_search.feature:9"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter some invalid \"<invalid_data>\"",
+            "line":10,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_user_search.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should not see the result",
+            "line":11,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_user_search.feature:11"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter some valid \"<valid_data>\"",
+            "line":12,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_user_search.feature:12"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see the result on top",
+            "line":13,
+            "match":{
+              "location":"features/Admin_project_click_user_search/admin_user_search.feature:13"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":15,
+            "description":"",
+            "id":"admin-edit-pop-up;verify-click-on-edit-button-and-update-entry-and-close-the-popup;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "invalid_data",
+                  "valid_data"
+                ],
+                "line":16,
+                "id":"admin-edit-pop-up;verify-click-on-edit-button-and-update-entry-and-close-the-popup;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "kjjjljd",
+                  "Pravin"
+                ],
+                "line":17,
+                "id":"admin-edit-pop-up;verify-click-on-edit-button-and-update-entry-and-close-the-popup;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

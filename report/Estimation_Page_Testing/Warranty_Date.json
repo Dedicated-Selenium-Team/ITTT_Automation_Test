@@ -1,0 +1,157 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Estimation",
+    "line":1,
+    "description":"",
+    "id":"estimation",
+    "uri":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"To check the field of \"Warranty End date\" when 'project start date', 'Phase 1 End Date', 'Phase 2 End Date' are entered same.",
+        "line":3,
+        "description":"",
+        "id":"estimation;to-check-the-field-of-\"warranty-end-date\"-when-'project-start-date',-'phase-1-end-date',-'phase-2-end-date'-are-entered-same.",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":7,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be in project",
+            "line":8,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click on any link of Estimation project (Let us check this project \"<number>\")",
+            "line":9,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:9"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Place mouse on warranty End date field",
+            "line":10,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Cursor should change to disable symbol",
+            "line":11,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:11"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Field of Warranty end date should display the dd/mm/yyyy",
+            "line":12,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:12"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Select date from project start date from calender (Let say \"<date>\" \"<month>\" \"<year>\")",
+            "line":13,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:13"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Set the same date for Phase I End Date from calender (Let say \"<date>\" \"<month>\" \"<year>\")",
+            "line":14,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:14"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Set the same date for Phase II End Date from calender (Let say \"<date>\" \"<month>\" \"<year>\")",
+            "line":15,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:15"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Warranty end daye should be same as the date set in all the filed",
+            "line":16,
+            "match":{
+              "location":"features/Warranty_Date/check_warranty_end_date_when_all_dates_same.feature:16"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":18,
+            "description":"",
+            "id":"estimation;to-check-the-field-of-\"warranty-end-date\"-when-'project-start-date',-'phase-1-end-date',-'phase-2-end-date'-are-entered-same.;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "Estimates",
+                  "number",
+                  "date",
+                  "month",
+                  "year"
+                ],
+                "line":19,
+                "id":"estimation;to-check-the-field-of-\"warranty-end-date\"-when-'project-start-date',-'phase-1-end-date',-'phase-2-end-date'-are-entered-same.;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-1",
+                  "5",
+                  "29",
+                  "Dec",
+                  "2016"
+                ],
+                "line":20,
+                "id":"estimation;to-check-the-field-of-\"warranty-end-date\"-when-'project-start-date',-'phase-1-end-date',-'phase-2-end-date'-are-entered-same.;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

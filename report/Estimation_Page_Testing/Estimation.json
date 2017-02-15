@@ -1,0 +1,201 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Estimation",
+    "line":1,
+    "description":"",
+    "id":"estimation",
+    "uri":"features/Estimation/estimation.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify the functionality of Holiday",
+        "line":3,
+        "description":"",
+        "id":"estimation;verify-the-functionality-of-holiday",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Estimation/estimation.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Estimation/estimation.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":7,
+            "match":{
+              "location":"features/Estimation/estimation.feature:7"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on mouse hamberger",
+            "line":9,
+            "match":{
+              "location":"features/Estimation/estimation.feature:9"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I see project option and click on project",
+            "line":10,
+            "match":{
+              "location":"features/Estimation/estimation.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should on estimation page",
+            "line":11,
+            "match":{
+              "location":"features/Estimation/estimation.feature:11"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on project start date option",
+            "line":13,
+            "match":{
+              "location":"features/Estimation/estimation.feature:13"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see same date highlited in calender",
+            "line":14,
+            "match":{
+              "location":"features/Estimation/estimation.feature:14"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on phase one end date",
+            "line":16,
+            "match":{
+              "location":"features/Estimation/estimation.feature:16"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see same phase one date highlited in calender",
+            "line":17,
+            "match":{
+              "location":"features/Estimation/estimation.feature:17"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on phase two end date",
+            "line":19,
+            "match":{
+              "location":"features/Estimation/estimation.feature:19"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see same phase two date highlited in calender",
+            "line":20,
+            "match":{
+              "location":"features/Estimation/estimation.feature:20"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I Enter valid day \"<day>\" in Warranty Days field",
+            "line":22,
+            "match":{
+              "location":"features/Estimation/estimation.feature:22"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Day will be entered when day is numaric value",
+            "line":23,
+            "match":{
+              "location":"features/Estimation/estimation.feature:23"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Day Will not entered if day is not numaric \"<not_numeric>\" value",
+            "line":24,
+            "match":{
+              "location":"features/Estimation/estimation.feature:24"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I Enter valid day \"<day>\" in holiday field",
+            "line":26,
+            "match":{
+              "location":"features/Estimation/estimation.feature:26"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Day will be entered when day is between I to XV numaric value",
+            "line":27,
+            "match":{
+              "location":"features/Estimation/estimation.feature:27"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Day Will not entered if day is greater then XV \"<wrong_day>\"",
+            "line":28,
+            "match":{
+              "location":"features/Estimation/estimation.feature:28"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":30,
+            "description":"",
+            "id":"estimation;verify-the-functionality-of-holiday;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "day",
+                  "wrong_day",
+                  "not_numeric"
+                ],
+                "line":31,
+                "id":"estimation;verify-the-functionality-of-holiday;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "12",
+                  "17",
+                  "abs"
+                ],
+                "line":32,
+                "id":"estimation;verify-the-functionality-of-holiday;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

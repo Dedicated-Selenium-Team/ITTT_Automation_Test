@@ -70,92 +70,6 @@ module.exports = function() {
         }
       });
     });
-
-    // this.When(/^I enter the "(.*?)", "(.*?)", "(.*?)", "(.*?)", "(.*?)", "(.*?)", "(.*?)"$/, function(name, contact, email, pass, month, year, date){
-    //   this.driver.findElement({ id: 'fname' }).sendKeys(name);
-    //   this.driver.sleep(1000);
-
-    //   this.driver.findElement({ id: 'lname' }).sendKeys(name);
-    //   this.driver.sleep(1000);
-
-    //   this.driver.findElement({ id: 'designation' }).click();
-    //   this.driver.findElement({ css: '#designation option:nth-of-type(3)' }).click();
-    //   this.driver.sleep(1000);
-
-    //   this.driver.findElement({ id: 'mobile_no' }).sendKeys(contact);
-    //   this.driver.sleep(1000);
-
-    //   this.driver.findElement({ id: 'joining_date' }).click();
-    //   this.driver.sleep(1000);
-
-    //     //Select Month from dropdown
-    //     var desiredMonth;
-    //     var selectMonth=this.driver.findElement({css:'.ui-datepicker-month'});
-    //     selectMonth.click();
-    //     selectMonth.findElements({css:'option'}).then(function findMatchingOption(options){
-    //      options.some(function(option){
-    //        option.getText().then(function doesOptionMatch(text){
-    //          if (month === text){
-    //            desiredMonth = option;
-    //            return true;
-    //          }
-    //        });
-    //      });
-    //    })
-    //     .then(function clickOption(){
-    //      if (desiredMonth){
-    //        desiredMonth.click();
-    //      }
-    //    });
-    //     this.driver.sleep(2000);
-
-    //     //Select Year from dropdown
-    //     var desiredYear;
-    //     var selectYear=this.driver.findElement({css:'.ui-datepicker-year'});
-    //     selectYear.click();
-    //     selectYear.findElements({css:'option'}).then(function findMatchingOption(options){
-    //      options.some(function(option){
-    //        option.getText().then(function doesOptionMatch(text){
-    //          if (year === text){
-    //            desiredYear = option;
-    //            return true;
-    //          }
-    //        });
-    //      });
-    //    })
-    //     .then(function clickOption(){
-    //      if (desiredYear){
-    //        desiredYear.click();
-    //      }
-    //    });
-    //     this.driver.sleep(2000);
-
-    //     // Select date and click
-    //     this.driver.findElement({ css:'.ui-datepicker-calendar td:nth-of-type(6) a'}).click();
-    //     this.driver.sleep(2000);     
-
-    //     this.driver.findElement({ id: 'email' }).sendKeys(email);
-    //     this.driver.sleep(1000);
-
-    //     this.driver.findElement({ id: 'password' }).sendKeys(pass);
-    //     this.driver.sleep(1000);
-
-    //     this.driver.findElement({ id: 're-password' }).sendKeys(pass);
-    //     this.driver.sleep(1000);
-
-    //     this.driver.findElement({ id: 'role' }).click();
-    //     this.driver.findElement({ css: '#designation option:nth-of-type(2)' }).click();
-    //     this.driver.sleep(1000);
-
-    //     this.driver.findElement({ css: '#save'}).click();
-    //     this.driver.sleep(1000);
-
-    //   });
-
-    // this.Then(/^I should see error message$/, function(){
-    //   this.driver.findElement({ css: '#DataTables_Table_0_wrapper' });
-    // });
-
     
 
     //click on close icon
@@ -201,110 +115,72 @@ module.exports = function() {
     this.driver.findElement({ id: 'joining_date' }).click();
     this.driver.sleep(1000);
 
-        //Select Month from dropdown
-        var desiredMonth;
-        var selectMonth=this.driver.findElement({css:'.ui-datepicker-month'});
-        selectMonth.click();
-        selectMonth.findElements({css:'option'}).then(function findMatchingOption(options){
-         options.some(function(option){
-           option.getText().then(function doesOptionMatch(text){
-             if (month === text){
-               desiredMonth = option;
-               return true;
-             }
-           });
-         });
-       })
-        .then(function clickOption(){
-         if (desiredMonth){
-           desiredMonth.click();
+    //Select Month from dropdown
+    var desiredMonth;
+    var selectMonth=this.driver.findElement({css:'.ui-datepicker-month'});
+    selectMonth.click();
+    selectMonth.findElements({css:'option'}).then(function findMatchingOption(options){
+     options.some(function(option){
+       option.getText().then(function doesOptionMatch(text){
+         if (month === text){
+           desiredMonth = option;
+           return true;
          }
        });
-        this.driver.sleep(2000);
+     });
+   })
+    .then(function clickOption(){
+      if (desiredMonth){
+        desiredMonth.click();
+      }
+    });
+    this.driver.sleep(2000);
 
-        //Select Year from dropdown
-        var desiredYear;
-        var selectYear=this.driver.findElement({css:'.ui-datepicker-year'});
-        selectYear.click();
-        selectYear.findElements({css:'option'}).then(function findMatchingOption(options){
-         options.some(function(option){
-           option.getText().then(function doesOptionMatch(text){
-             if (year === text){
-               desiredYear = option;
-               return true;
-             }
-           });
-         });
-       })
-        .then(function clickOption(){
-         if (desiredYear){
-           desiredYear.click();
+    //Select Year from dropdown
+    var desiredYear;
+    var selectYear=this.driver.findElement({css:'.ui-datepicker-year'});
+    selectYear.click();
+    selectYear.findElements({css:'option'}).then(function findMatchingOption(options){
+     options.some(function(option){
+       option.getText().then(function doesOptionMatch(text){
+         if (year === text){
+           desiredYear = option;
+           return true;
          }
        });
-        this.driver.sleep(2000);
+     });
+   })
+    .then(function clickOption(){
+     if (desiredYear){
+       desiredYear.click();
+     }
+   });
+    this.driver.sleep(2000);
 
-        // Select date and click
-        this.driver.findElement({ css:'.ui-datepicker-calendar td:nth-of-type(6) a'}).click();
-        this.driver.sleep(2000);     
+    // Select date and click
+    this.driver.findElement({ css:'.ui-datepicker-calendar td:nth-of-type(6) a'}).click();
+    this.driver.sleep(2000);     
 
-        this.driver.findElement({ id: 'email' }).sendKeys(email);
-        this.driver.sleep(1000);
+    this.driver.findElement({ id: 'email' }).sendKeys(email);
+    this.driver.sleep(1000);
 
-        this.driver.findElement({ id: 'password' }).sendKeys(pass);
-        this.driver.sleep(1000);
+    this.driver.findElement({ id: 'password' }).sendKeys(pass);
+    this.driver.sleep(1000);
 
-        this.driver.findElement({ id: 're-password' }).sendKeys(pass);
-        this.driver.sleep(1000);
+    this.driver.findElement({ id: 're-password' }).sendKeys(pass);
+    this.driver.sleep(1000);
 
-        this.driver.findElement({ id: 'role' }).click();
-        this.driver.findElement({ css: '#designation option:nth-of-type(2)' }).click();
-        this.driver.sleep(1000);
+    this.driver.findElement({ id: 'role' }).click();
+    this.driver.findElement({ css: '#designation option:nth-of-type(2)' }).click();
+    this.driver.sleep(1000);
 
-        this.driver.findElement({ css: '#save'}).click();
-        this.driver.sleep(1000);
+    this.driver.findElement({ css: '#save'}).click();
+    this.driver.sleep(1000);
 
-      });
+  });
 
   this.Then(/^I should see error message$/, function(){
     this.driver.findElement({ css: '#DataTables_Table_0_wrapper' });
   });
 
-  // //I enter valid input 
-    // this.When(/^I enter valid entry and click update$/, function(){
-
-    //   this.driver.findElement({ id: 'fname' }).clear();
-    //   this.driver.findElement({ id: 'fname' }).sendKeys("Test");
-    //   this.driver.sleep(1000);
-
-    //   this.driver.findElement({ id: 'email' }).clear();
-    //   this.driver.findElement({ id: 'email' }).sendKeys("test@gmail.com");
-    //   this.driver.sleep(1000);
-
-    //   this.driver.findElement({ id: 'password' }).sendKeys("123456");
-    //   this.driver.sleep(1000);
-
-    //   this.driver.findElement({ id: 're-password' }).sendKeys("123456");
-    //   this.driver.sleep(1000);
-
-    //   this.driver.findElement({ id: 'save' }).click();
-    //   this.driver.sleep(2000);
-
-    // });
-
-    // //checking error message is displaying or not
-    // this.Then(/^I should not see any error message$/, function(){
-    //   this.driver.findElements({ css: '.error' }).then(function(error_list){
-    //     for(var i=0; i<error_list.length; i++){
-    //       var error_value = error_list[i].getText().then(function(error){
-    //         if(!error==""){
-    //           console.log("Error messager for invalid fiels: "+error);
-    //         }
-    //       });
-    //     }
-    //   });
-    // });
-
-    // this.Then(/^Field are updated$/, function(){
-    // });
-
-  };
+};

@@ -11,7 +11,6 @@ Then I should see list of tab
 When I click on close icon hamburger
 Then Hamburger should be closed 
 
-# you select list number: 1 => TimeSheet, 2 => Project, 3 => User
 Then I click on mouses hamberger
 Then I should see hover effect in list "<list_num_first>"
 Then I click on timesheet option in list "<list_num_first>"

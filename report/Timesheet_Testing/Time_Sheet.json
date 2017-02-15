@@ -1,0 +1,123 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Time sheet",
+    "line":1,
+    "description":"",
+    "id":"time-sheet",
+    "uri":"features/Time_Sheet/click_next_cta.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"To verify the click functionality next CTA",
+        "line":3,
+        "description":"",
+        "id":"time-sheet;to-verify-the-click-functionality-next-cta",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Time_Sheet/click_next_cta.feature:5"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Time_Sheet/click_next_cta.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click signin and home page open",
+            "line":7,
+            "match":{
+              "location":"features/Time_Sheet/click_next_cta.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I see hover effect on next button",
+            "line":8,
+            "match":{
+              "location":"features/Time_Sheet/click_next_cta.feature:8"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on next cta",
+            "line":9,
+            "match":{
+              "location":"features/Time_Sheet/click_next_cta.feature:9"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I see next date on header",
+            "line":10,
+            "match":{
+              "location":"features/Time_Sheet/click_next_cta.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I see hover effect on prev button",
+            "line":11,
+            "match":{
+              "location":"features/Time_Sheet/click_next_cta.feature:11"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"click prev button",
+            "line":12,
+            "match":{
+              "location":"features/Time_Sheet/click_next_cta.feature:12"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I see the previous date on header",
+            "line":13,
+            "match":{
+              "location":"features/Time_Sheet/click_next_cta.feature:13"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":15,
+            "description":"",
+            "id":"time-sheet;to-verify-the-click-functionality-next-cta;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password"
+                ],
+                "line":16,
+                "id":"time-sheet;to-verify-the-click-functionality-next-cta;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123"
+                ],
+                "line":17,
+                "id":"time-sheet;to-verify-the-click-functionality-next-cta;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

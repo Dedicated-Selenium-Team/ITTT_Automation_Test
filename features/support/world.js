@@ -9,15 +9,6 @@ username = "nilesh_vidhate_prdxn",
 accessKey = "4b956187-7b4d-438b-9d18-860ce77eced0",
 driver;
 
-// var capabilities = {
-// 	browserName: process.env.SELENIUM_BROWSER,
-// 	version: process.env.SELENIUM_VERSION,
-// 	platform: process.env.SELENIUM_PLATFORM,
-// 	username:process.env.SAUCE_USERNAME,
-// 	accessKey:process.env.SAUCE_ACCESS_KEY
-// };
-
-
 driver = new webdriver.Builder().
 withCapabilities({
 	'browserName': 'firefox',

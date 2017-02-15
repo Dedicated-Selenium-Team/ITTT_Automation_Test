@@ -1,0 +1,284 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Users Tab",
+    "line":1,
+    "description":"",
+    "id":"users-tab",
+    "uri":"features/Add_user/admin_add_user_with_invalid_entry.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify the click functionality of \"Add new\" CTA when admined is logged in",
+        "line":3,
+        "description":"",
+        "id":"users-tab;verify-the-click-functionality-of-\"add-new\"-cta-when-admined-is-logged-in",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start the Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Add_user/admin_add_user_with_invalid_entry.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"Enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Add_user/admin_add_user_with_invalid_entry.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged-in and home page should be open",
+            "line":7,
+            "match":{
+              "location":"features/Add_user/admin_add_user_with_invalid_entry.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be in users tab",
+            "line":8,
+            "match":{
+              "location":"features/Add_user/admin_add_user_with_invalid_entry.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Click on Add new button present on the left top corner, pop-up will get displayed",
+            "line":9,
+            "match":{
+              "location":"features/Add_user/admin_add_user_with_invalid_entry.feature:9"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Fill all the fields with invalid data",
+            "line":10,
+            "match":{
+              "location":"features/Add_user/admin_add_user_with_invalid_entry.feature:10"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":12,
+            "description":"",
+            "id":"users-tab;verify-the-click-functionality-of-\"add-new\"-cta-when-admined-is-logged-in;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password"
+                ],
+                "line":13,
+                "id":"users-tab;verify-the-click-functionality-of-\"add-new\"-cta-when-admined-is-logged-in;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123"
+                ],
+                "line":14,
+                "id":"users-tab;verify-the-click-functionality-of-\"add-new\"-cta-when-admined-is-logged-in;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword":"Feature",
+    "name":"Admin Pop up",
+    "line":1,
+    "description":"",
+    "id":"admin-pop-up",
+    "uri":"features/Add_user/admin_new_add_popup.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click On Add New Button and Save Entry",
+        "line":3,
+        "description":"",
+        "id":"admin-pop-up;verify-click-on-add-new-button-and-save-entry",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid Admin \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":7,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click on mouse hamberger",
+            "line":8,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click User in list",
+            "line":9,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:9"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on add new button",
+            "line":10,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see a popup",
+            "line":11,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:11"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click save entry button with empty field",
+            "line":13,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:13"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see errore message",
+            "line":14,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:14"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on cross symbol top right",
+            "line":16,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:16"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"popup should be close",
+            "line":17,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:17"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on ad new button",
+            "line":19,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:19"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter the \"<name>\", \"<contact>\", \"<username>\", \"<password>\", \"<month>\", \"<year>\", \"<date>\"",
+            "line":20,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:20"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see error message",
+            "line":21,
+            "match":{
+              "location":"features/Add_user/admin_new_add_popup.feature:21"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "comments":[
+              {
+                "value":"# When I enter valid entry and click update",
+                "line":23
+              },
+              {
+                "value":"# Then I should not see any error message",
+                "line":24
+              },
+              {
+                "value":"# Then Field are updated ",
+                "line":25
+              }
+            ],
+            "keyword":"Examples",
+            "name":"",
+            "line":27,
+            "description":"",
+            "id":"admin-pop-up;verify-click-on-add-new-button-and-save-entry;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "name",
+                  "contact",
+                  "month",
+                  "year",
+                  "date"
+                ],
+                "line":28,
+                "id":"admin-pop-up;verify-click-on-add-new-button-and-save-entry;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "test",
+                  "0987654321",
+                  "Dec",
+                  "2016",
+                  "13"
+                ],
+                "line":29,
+                "id":"admin-pop-up;verify-click-on-add-new-button-and-save-entry;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

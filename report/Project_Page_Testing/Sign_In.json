@@ -1,0 +1,383 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Sign In",
+    "line":1,
+    "description":"",
+    "id":"sign-in",
+    "uri":"features/Sign_In/functionality_loggedIn_back.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click functionality of the Login In and click back button",
+        "line":3,
+        "description":"",
+        "id":"sign-in;verify-click-functionality-of-the-login-in-and-click-back-button",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application (for back button)\"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Sign_In/functionality_loggedIn_back.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter the valid \"<user>\" and \"<pass>\"",
+            "line":6,
+            "match":{
+              "location":"features/Sign_In/functionality_loggedIn_back.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Click on sign in button",
+            "line":7,
+            "match":{
+              "location":"features/Sign_In/functionality_loggedIn_back.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User must successfully logged-in",
+            "line":8,
+            "match":{
+              "location":"features/Sign_In/functionality_loggedIn_back.feature:8"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click back button",
+            "line":10,
+            "match":{
+              "location":"features/Sign_In/functionality_loggedIn_back.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"The current page should not be redirected to the login page\"<url>\"",
+            "line":11,
+            "match":{
+              "location":"features/Sign_In/functionality_loggedIn_back.feature:11"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":13,
+            "description":"",
+            "id":"sign-in;verify-click-functionality-of-the-login-in-and-click-back-button;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "user",
+                  "pass"
+                ],
+                "line":14,
+                "id":"sign-in;verify-click-functionality-of-the-login-in-and-click-back-button;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123"
+                ],
+                "line":15,
+                "id":"sign-in;verify-click-functionality-of-the-login-in-and-click-back-button;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword":"Feature",
+    "name":"Sign In Functionality",
+    "line":1,
+    "description":"",
+    "id":"sign-in-functionality",
+    "uri":"features/Sign_In/sign_in_functionality.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click functionality of the Sign In Button",
+        "line":3,
+        "description":"",
+        "id":"sign-in-functionality;verify-click-functionality-of-the-sign-in-button",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":4,
+            "match":{
+              "location":"features/Sign_In/sign_in_functionality.feature:4"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Sign_In/sign_in_functionality.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Click on sign-in button",
+            "line":7,
+            "match":{
+              "location":"features/Sign_In/sign_in_functionality.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Proper error message must be appeared or successfully login",
+            "line":8,
+            "match":{
+              "location":"features/Sign_In/sign_in_functionality.feature:8"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":10,
+            "description":"",
+            "id":"sign-in-functionality;verify-click-functionality-of-the-sign-in-button;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password"
+                ],
+                "line":11,
+                "id":"sign-in-functionality;verify-click-functionality-of-the-sign-in-button;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "",
+                  ""
+                ],
+                "line":12,
+                "id":"sign-in-functionality;verify-click-functionality-of-the-sign-in-button;;2"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "abcd",
+                  "abcd"
+                ],
+                "line":13,
+                "id":"sign-in-functionality;verify-click-functionality-of-the-sign-in-button;;3"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword":"Feature",
+    "name":"Sign In With Valid Entry",
+    "line":1,
+    "description":"",
+    "id":"sign-in-with-valid-entry",
+    "uri":"features/Sign_In/sign_in_with_valid_entry.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click functionality of the Sign In with valid entry",
+        "line":3,
+        "description":"",
+        "id":"sign-in-with-valid-entry;verify-click-functionality-of-the-sign-in-with-valid-entry",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application for valid login\"<url>\"",
+            "line":4,
+            "match":{
+              "location":"features/Sign_In/sign_in_with_valid_entry.feature:4"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter the valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Sign_In/sign_in_with_valid_entry.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Click sign in button",
+            "line":7,
+            "match":{
+              "location":"features/Sign_In/sign_in_with_valid_entry.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User must successfully signed in to the site",
+            "line":8,
+            "match":{
+              "location":"features/Sign_In/sign_in_with_valid_entry.feature:8"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":10,
+            "description":"",
+            "id":"sign-in-with-valid-entry;verify-click-functionality-of-the-sign-in-with-valid-entry;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password"
+                ],
+                "line":11,
+                "id":"sign-in-with-valid-entry;verify-click-functionality-of-the-sign-in-with-valid-entry;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123"
+                ],
+                "line":12,
+                "id":"sign-in-with-valid-entry;verify-click-functionality-of-the-sign-in-with-valid-entry;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword":"Feature",
+    "name":"Sign Out",
+    "line":1,
+    "description":"",
+    "id":"sign-out",
+    "uri":"features/Sign_In/sign_out_functionality.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click functionality of the Sign Out",
+        "line":3,
+        "description":"",
+        "id":"sign-out;verify-click-functionality-of-the-sign-out",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application again\"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Sign_In/sign_out_functionality.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid entry \"<user>\" and \"<pass>\"",
+            "line":6,
+            "match":{
+              "location":"features/Sign_In/sign_out_functionality.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I Click on sign in button",
+            "line":7,
+            "match":{
+              "location":"features/Sign_In/sign_out_functionality.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User must successfully logged in to the site",
+            "line":8,
+            "match":{
+              "location":"features/Sign_In/sign_out_functionality.feature:8"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on sign-out button",
+            "line":10,
+            "match":{
+              "location":"features/Sign_In/sign_out_functionality.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User must successfully logged out \"<url>\"",
+            "line":11,
+            "match":{
+              "location":"features/Sign_In/sign_out_functionality.feature:11"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on back button",
+            "line":13,
+            "match":{
+              "location":"features/Sign_In/sign_out_functionality.feature:13"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"The login page must be redirect \"<url>\"",
+            "line":14,
+            "match":{
+              "location":"features/Sign_In/sign_out_functionality.feature:14"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":16,
+            "description":"",
+            "id":"sign-out;verify-click-functionality-of-the-sign-out;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "user",
+                  "pass"
+                ],
+                "line":18,
+                "id":"sign-out;verify-click-functionality-of-the-sign-out;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123"
+                ],
+                "line":19,
+                "id":"sign-out;verify-click-functionality-of-the-sign-out;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

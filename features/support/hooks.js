@@ -28,7 +28,6 @@ var myHooks = function () {
     //   jsonFile: '/var/www/html/Sushant/JavaScript/PRDXN-ITTT/report/cucumber_report.json',
     //   output: '/var/www/html/Sushant/JavaScript/PRDXN-ITTT/report/cucumber_report.html',
     // };
-
     // reporter.generate(options);
 
     return driver.quit();

@@ -1,0 +1,121 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Project Tab",
+    "line":1,
+    "description":"",
+    "id":"project-tab",
+    "uri":"features/Estimate_And_Planning_Link/estimation_and_planning_link.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click functionality for the Estimation and Planning Projects Links.",
+        "line":3,
+        "description":"",
+        "id":"project-tab;verify-click-functionality-for-the-estimation-and-planning-projects-links.",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Estimate_And_Planning_Link/estimation_and_planning_link.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Estimate_And_Planning_Link/estimation_and_planning_link.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":7,
+            "match":{
+              "location":"features/Estimate_And_Planning_Link/estimation_and_planning_link.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be in project",
+            "line":8,
+            "match":{
+              "location":"features/Estimate_And_Planning_Link/estimation_and_planning_link.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see the mouse pointer changes to the hand pointer (Let us check this project \"<number>\" and \"<Tab>\")",
+            "line":9,
+            "match":{
+              "location":"features/Estimate_And_Planning_Link/estimation_and_planning_link.feature:9"
+            }
+          },
+          {
+            "keyword":"And ",
+            "name":"color of \"<Links>\" changes to red (Let us check this project \"<number>\" and \"<Tab>\")",
+            "line":10,
+            "match":{
+              "location":"features/Estimate_And_Planning_Link/estimation_and_planning_link.feature:10"
+            }
+          },
+          {
+            "keyword":"And ",
+            "name":"color of link changes to red and tool tip appears on hovering on Estimation and Planning \"<Links>\" link (Let us check this project \"<number>\" and \"<Tab>\")",
+            "line":11,
+            "match":{
+              "location":"features/Estimate_And_Planning_Link/estimation_and_planning_link.feature:11"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click on any link of Estimation and Planning \"<Links>\" project (Let us check this project \"<number>\" and \"<Tab>\")",
+            "line":12,
+            "match":{
+              "location":"features/Estimate_And_Planning_Link/estimation_and_planning_link.feature:12"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":14,
+            "description":"",
+            "id":"project-tab;verify-click-functionality-for-the-estimation-and-planning-projects-links.;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "number",
+                  "Tab",
+                  "Links"
+                ],
+                "line":15,
+                "id":"project-tab;verify-click-functionality-for-the-estimation-and-planning-projects-links.;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "5",
+                  "tabs-1",
+                  "estimate-span"
+                ],
+                "line":16,
+                "id":"project-tab;verify-click-functionality-for-the-estimation-and-planning-projects-links.;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,147 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Check All Projects Tabs",
+    "line":1,
+    "description":"",
+    "id":"check-all-projects-tabs",
+    "uri":"features/Check_All_ProjectTabs/check_all_project_tabs.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click functionality of the All Projects Tabs button",
+        "line":3,
+        "description":"",
+        "id":"check-all-projects-tabs;verify-click-functionality-of-the-all-projects-tabs-button",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Check_All_ProjectTabs/check_all_project_tabs.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Check_All_ProjectTabs/check_all_project_tabs.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":7,
+            "match":{
+              "location":"features/Check_All_ProjectTabs/check_all_project_tabs.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be in project",
+            "line":8,
+            "match":{
+              "location":"features/Check_All_ProjectTabs/check_all_project_tabs.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see the mouse pointer changes to the hand pointer on hovering on \"<Tab>\"",
+            "line":9,
+            "match":{
+              "location":"features/Check_All_ProjectTabs/check_all_project_tabs.feature:9"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"\"<All projects>\" button should be highlighted as I click on it \"<Tab>\"",
+            "line":10,
+            "match":{
+              "location":"features/Check_All_ProjectTabs/check_all_project_tabs.feature:10"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":12,
+            "description":"",
+            "id":"check-all-projects-tabs;verify-click-functionality-of-the-all-projects-tabs-button;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "All projects",
+                  "Tab"
+                ],
+                "line":13,
+                "id":"check-all-projects-tabs;verify-click-functionality-of-the-all-projects-tabs-button;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-1",
+                  "tabs-1"
+                ],
+                "line":14,
+                "id":"check-all-projects-tabs;verify-click-functionality-of-the-all-projects-tabs-button;;2"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-2",
+                  "tabs-2"
+                ],
+                "line":15,
+                "id":"check-all-projects-tabs;verify-click-functionality-of-the-all-projects-tabs-button;;3"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-3",
+                  "tabs-3"
+                ],
+                "line":16,
+                "id":"check-all-projects-tabs;verify-click-functionality-of-the-all-projects-tabs-button;;4"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-4",
+                  "tabs-4"
+                ],
+                "line":17,
+                "id":"check-all-projects-tabs;verify-click-functionality-of-the-all-projects-tabs-button;;5"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-5",
+                  "tabs-5"
+                ],
+                "line":18,
+                "id":"check-all-projects-tabs;verify-click-functionality-of-the-all-projects-tabs-button;;6"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

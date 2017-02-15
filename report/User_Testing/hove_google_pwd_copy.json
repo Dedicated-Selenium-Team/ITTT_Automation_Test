@@ -1,0 +1,174 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Sign in",
+    "line":1,
+    "description":"",
+    "id":"sign-in",
+    "uri":"features/hove_google_pwd_copy/hover_cta_sign_in_google_click.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify hover and cta for sign in with google and popup",
+        "line":3,
+        "description":"",
+        "id":"sign-in;verify-hover-and-cta-for-sign-in-with-google-and-popup",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/hove_google_pwd_copy/hover_cta_sign_in_google_click.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/hove_google_pwd_copy/hover_cta_sign_in_google_click.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Verify the CTA is \"<cta>\"",
+            "line":7,
+            "match":{
+              "location":"features/hove_google_pwd_copy/hover_cta_sign_in_google_click.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Verify Hover on sign in with google",
+            "line":8,
+            "match":{
+              "location":"features/hove_google_pwd_copy/hover_cta_sign_in_google_click.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Click on sign in with google button and check popup is displayed",
+            "line":9,
+            "match":{
+              "location":"features/hove_google_pwd_copy/hover_cta_sign_in_google_click.feature:9"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":11,
+            "description":"",
+            "id":"sign-in;verify-hover-and-cta-for-sign-in-with-google-and-popup;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "cta"
+                ],
+                "line":12,
+                "id":"sign-in;verify-hover-and-cta-for-sign-in-with-google-and-popup;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "Sign In With Google"
+                ],
+                "line":13,
+                "id":"sign-in;verify-hover-and-cta-for-sign-in-with-google-and-popup;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword":"Feature",
+    "name":"Sign in",
+    "line":1,
+    "description":"",
+    "id":"sign-in",
+    "uri":"features/hove_google_pwd_copy/password_copied.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify password copie or not",
+        "line":3,
+        "description":"",
+        "id":"sign-in;verify-password-copie-or-not",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/hove_google_pwd_copy/password_copied.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" andd \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/hove_google_pwd_copy/password_copied.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I copy the password value",
+            "line":7,
+            "match":{
+              "location":"features/hove_google_pwd_copy/password_copied.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I print it for check in console",
+            "line":8,
+            "match":{
+              "location":"features/hove_google_pwd_copy/password_copied.feature:8"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":10,
+            "description":"",
+            "id":"sign-in;verify-password-copie-or-not;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password"
+                ],
+                "line":11,
+                "id":"sign-in;verify-password-copie-or-not;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123"
+                ],
+                "line":12,
+                "id":"sign-in;verify-password-copie-or-not;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,238 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Total hours",
+    "line":1,
+    "description":"",
+    "id":"total-hours",
+    "uri":"features/Timesheet/add_new_entry.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click on NewEntry, check popup display, check empty field validation and click save button.",
+        "line":3,
+        "description":"",
+        "id":"total-hours;verify-click-on-newentry,-check-popup-display,-check-empty-field-validation-and-click-save-button.",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application (New)\"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Timesheet/add_new_entry.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter the valid \"<user>\" and \"<pass>\"",
+            "line":7,
+            "match":{
+              "location":"features/Timesheet/add_new_entry.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home-page should be open",
+            "line":8,
+            "match":{
+              "location":"features/Timesheet/add_new_entry.feature:8"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on New Entry button",
+            "line":9,
+            "match":{
+              "location":"features/Timesheet/add_new_entry.feature:9"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"New Entry popup should be display",
+            "line":10,
+            "match":{
+              "location":"features/Timesheet/add_new_entry.feature:10"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I Click on save button without value",
+            "line":11,
+            "match":{
+              "location":"features/Timesheet/add_new_entry.feature:11"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"SHould be get error message",
+            "line":12,
+            "match":{
+              "location":"features/Timesheet/add_new_entry.feature:12"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"If I not fill the \"<project>\", \"<designation>\", \"<task>\" and \"<hours>\"",
+            "line":13,
+            "match":{
+              "location":"features/Timesheet/add_new_entry.feature:13"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click on save button",
+            "line":14,
+            "match":{
+              "location":"features/Timesheet/add_new_entry.feature:14"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"New entry \"<project>\" and \"<designation>\" should be entered",
+            "line":15,
+            "match":{
+              "location":"features/Timesheet/add_new_entry.feature:15"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":17,
+            "description":"",
+            "id":"total-hours;verify-click-on-newentry,-check-popup-display,-check-empty-field-validation-and-click-save-button.;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "user",
+                  "pass",
+                  "project",
+                  "designation",
+                  "task",
+                  "hours"
+                ],
+                "line":18,
+                "id":"total-hours;verify-click-on-newentry,-check-popup-display,-check-empty-field-validation-and-click-save-button.;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "TESTZ",
+                  "Tester",
+                  "conectivity",
+                  "5"
+                ],
+                "line":19,
+                "id":"total-hours;verify-click-on-newentry,-check-popup-display,-check-empty-field-validation-and-click-save-button.;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "keyword":"Feature",
+    "name":"Click Edit Button",
+    "line":1,
+    "description":"",
+    "id":"click-edit-button",
+    "uri":"features/Timesheet/edit_entry.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click functionality for Edit button",
+        "line":3,
+        "description":"",
+        "id":"click-edit-button;verify-click-functionality-for-edit-button",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application (Edit)\"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Timesheet/edit_entry.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"Enter valid \"<username>\" and \"<password>\"",
+            "line":7,
+            "match":{
+              "location":"features/Timesheet/edit_entry.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":8,
+            "match":{
+              "location":"features/Timesheet/edit_entry.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Edit icon for project should be visible in Web Page",
+            "line":10,
+            "match":{
+              "location":"features/Timesheet/edit_entry.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"After I click on the Edit icon pop up should get display",
+            "line":11,
+            "match":{
+              "location":"features/Timesheet/edit_entry.feature:11"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"After I click on the update entry button, hrs should get display/ reflected on the page \"<hrs>\"",
+            "line":12,
+            "match":{
+              "location":"features/Timesheet/edit_entry.feature:12"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":14,
+            "description":"",
+            "id":"click-edit-button;verify-click-functionality-for-edit-button;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "hrs"
+                ],
+                "line":15,
+                "id":"click-edit-button;verify-click-functionality-for-edit-button;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "3"
+                ],
+                "line":16,
+                "id":"click-edit-button;verify-click-functionality-for-edit-button;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

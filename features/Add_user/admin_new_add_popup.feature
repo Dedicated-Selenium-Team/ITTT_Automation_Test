@@ -20,10 +20,6 @@ When I click on ad new button
 When I enter the "<name>", "<contact>", "<username>", "<password>", "<month>", "<year>", "<date>"
 Then I should see error message
 
-# When I enter valid entry and click update
-# Then I should not see any error message
-# Then Field are updated 
-
 Examples: 
 | url                                      | username        | password | name | contact    |  month | year | date |
 | http://timetrackingwip.prdxnstaging.com/ | admin@prdxn.com | admin123 | test | 0987654321 | Dec    | 2016 | 13   |

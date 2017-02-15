@@ -136,7 +136,7 @@
                 <div class="form-group cf">
                  <?php echo Html::decode(Form::label('joining_date','Date of Joining<span class="required">*</span>:')); ?>
 
-                 <?php echo Form::text('joining_date','',['class' => 'datepicker','placeholder'=>'DD/MM/YYYY','readonly']); ?>
+                 <?php echo Form::text('joining_date','',['class' => 'datepicker','placeholder'=>'DD/MM/YYYY']); ?>
 
                  <?php echo $errors->first('joining_date', '<div>:message</div>'); ?>
 

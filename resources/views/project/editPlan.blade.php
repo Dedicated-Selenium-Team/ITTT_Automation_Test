@@ -55,14 +55,17 @@ if ($role_id == 2) {?>
             <div class="proj-date-snipet">
               {!! Form::label('project-start-date', 'Project Start Date:') !!}
               {!! Form::text('project-start-date',$set_plan[0]['start_date'],array('class' => 'startDate phaseCalculation form-control datepicker')) !!}
+              <p class="error"></p>
             </div>
             <div class="proj-date-snipet">
               {!! Form::label('phase-I-end-date', 'Phase 1 End Date:') !!}
               {!! Form::text('phase-I-end-date',$set_plan[0]['p_I_live'],['class' => 'p1Date phaseCalculation form-control datepicker']) !!}
+              <p class="error"></p>
             </div>
             <div class="proj-date-snipet">
               {!! Form::label('phase-II-end-date', 'Phase 2 End Date:') !!}
               {!! Form::text('phase-II-end-date',$set_plan[0]['p_II_live'],['class' => 'p2Date phaseCalculation form-control datepicker']) !!}
+              <p class="error"></p>
             </div>
           <!-- <div class="proj-date-snipet">
             {!! Form::label('resources', 'Required Resource Number: ')!!}
@@ -383,8 +386,11 @@ if ($role_id == 2) {?>
 <?php
 $role_id = Session::get('user')[0]['role_id'];
 if ($role_id == 1) {?>
- {!! Form::submit('Submit',array('class' => 'submit-btn')) !!}
- <?php }if ($role_id == 1 || $role_id == 2) {?> <?php }?>
+ <div class="submit-wrapper cf">
+   {!! Form::submit('Submit',array('class' => 'submit-btn submit-est-plan')) !!}
+   <p class="error"></p>
+ </div>
+ <?php } ?>
  
 
 </div>

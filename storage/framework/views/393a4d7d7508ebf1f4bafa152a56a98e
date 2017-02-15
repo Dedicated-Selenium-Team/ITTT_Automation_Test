@@ -39,88 +39,88 @@
   <input type="submit" class="form-control btn btn-primary" value="Export Contacts">
   </div>
   </div>
-<?php echo Form::close(); ?> -->
-    <!-- User details table starts here -->
-    <table class="user-table">
-      <thead>
-        <tr class="head-row">
-          <th>User Id</th>
-          <th>Employee Name</th>
-          <th>Email</th>
-          <th>Designation</th>
-          <th>Date of Joining</th>
-          <th>Role</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        <?php $count = 1;
-        $i           = 0;
-        $today = date('Y-m-d');
-        ?>
-        <?php foreach($users_info as $user): ?>
-        <tr id="user<?php echo e($user->user_id); ?>">
-          <td class="count"><?php echo e($count); ?></td>
-          <td><a href="/time-management/<?php echo e($today); ?>/<?php echo e($user->user_id); ?>" class="emp-name"><span class="name-capital"><?php echo e($user->first_name); ?></span> <span class="name-capital"><?php echo e($user->last_name); ?></span></a></td>
-          <td><?php echo e($user->username); ?></td>
-          <td>
-            <?php foreach($designation as $key => $value): ?>
-            <?php if($user->UserDetails['designation_id'] == $key): ?>
-            <?php echo e($value); ?>
+  <?php echo Form::close(); ?> -->
+  <!-- User details table starts here -->
+  <table class="user-table">
+    <thead>
+      <tr class="head-row">
+        <th>User Id</th>
+        <th>Employee Name</th>
+        <th>Email</th>
+        <th>Designation</th>
+        <th>Date of Joining</th>
+        <th>Role</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <?php $count = 1;
+      $i           = 0;
+      $today = date('Y-m-d');
+      ?>
+      <?php foreach($users_info as $user): ?>
+      <tr id="user<?php echo e($user->user_id); ?>">
+        <td class="count"><?php echo e($count); ?></td>
+        <td><a href="/time-management/<?php echo e($today); ?>/<?php echo e($user->user_id); ?>" class="emp-name"><span class="name-capital"><?php echo e($user->first_name); ?></span> <span class="name-capital"><?php echo e($user->last_name); ?></span></a></td>
+        <td><?php echo e($user->username); ?></td>
+        <td>
+          <?php foreach($designation as $key => $value): ?>
+          <?php if($user->UserDetails['designation_id'] == $key): ?>
+          <?php echo e($value); ?>
 
-            <?php endif; ?>
-            <?php endforeach; ?>
-          </td>
-          <td id="<?php echo e($i); ?>"><?php echo e($details[$i]->joining_date); ?></td>
-          <td>
-            <?php foreach($roles as $key => $value): ?>
-            <?php if($user->role_id == $key): ?>
-            <?php echo e($value); ?>
+          <?php endif; ?>
+          <?php endforeach; ?>
+        </td>
+        <td id="<?php echo e($i); ?>"><?php echo e($details[$i]->joining_date); ?></td>
+        <td>
+          <?php foreach($roles as $key => $value): ?>
+          <?php if($user->role_id == $key): ?>
+          <?php echo e($value); ?>
 
-            <?php endif; ?>
-            <?php endforeach; ?>
-          </td>
-          <td>
-            <button type="button" class="btn btn-edit edit" id="edit-user" data-id="<?php echo e($user->user_id); ?>">Edit User</button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-delete confirm" id="delete-user" data-id="<?php echo e($user->user_id); ?>" data-toggle="modal" data-target="#confirm-delete">Delete User</button>
-            <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
-          </td>
-        </tr>
-        <?php $count += 1;
-        $i += 1;?>
-        <?php endforeach; ?>
-      </tbody>
-    </table>
-    <!-- User details table starts here -->
+          <?php endif; ?>
+          <?php endforeach; ?>
+        </td>
+        <td>
+          <button type="button" class="btn btn-edit edit" id="edit-user" data-id="<?php echo e($user->user_id); ?>">Edit User</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-delete confirm" id="delete-user" data-id="<?php echo e($user->user_id); ?>" data-toggle="modal" data-target="#confirm-delete">Delete User</button>
+          <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>">
+        </td>
+      </tr>
+      <?php $count += 1;
+      $i += 1;?>
+      <?php endforeach; ?>
+    </tbody>
+  </table>
+  <!-- User details table starts here -->
 
-    <!-- Admin page main content starts here -->
+  <!-- Admin page main content starts here -->
 
-  </div>
-  <!-- Admin Page Ends Here -->
+</div>
+<!-- Admin Page Ends Here -->
 
-  <!-- Modal for Delete start here -->
-  <div class="modal fade delete-modal" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-        </div>
-        <div class="modal-body">
-          <h5>Confirm Delete</h5>
-          <p>Remove entry from this timesheet?</p>
-          <p class="debug-url"></p>
-        </div>
-        <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
-          <a class="btn btn-danger btn-ok" id="btnYes">Delete</a>
-        </div>
+<!-- Modal for Delete start here -->
+<div class="modal fade delete-modal" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+      </div>
+      <div class="modal-body">
+        <h5>Confirm Delete</h5>
+        <p>Remove entry from this timesheet?</p>
+        <p class="debug-url"></p>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
+        <a class="btn btn-danger btn-ok" id="btnYes">Delete</a>
       </div>
     </div>
   </div>
+</div>
 </div>
 <!-- Modal for delete ends here -->
 
@@ -361,6 +361,7 @@
      });
     });
   });
+
 </script>
 <?php $__env->stopSection(); ?>
 

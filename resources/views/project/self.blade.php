@@ -66,7 +66,7 @@ $user_name = Session::get('user')[0]['first_name'];
 {!! Form::close() !!}
 <!-- container heading for addmyself Ends here -->
 <!-- Add New Project Modal Starts Here-->
-<div class="modal fade create-new-project modal-error-off" id="create-project" role="dialog">
+<div class="modal fade create-new-project" id="create-project" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content Starts Here-->
     <div class="modal-content">

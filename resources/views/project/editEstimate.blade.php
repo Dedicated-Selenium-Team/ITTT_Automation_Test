@@ -6,11 +6,11 @@
 <?php
 $role_id = Session::get('user')[0]['role_id'];
 if ($role_id == 2)
- {?>
+{?>
   <div class="user">
     <?php }
     else
-      echo "<div>";
+    echo "<div>";
     ?>
     {{-- This will check the User session and if admin then edit the planning and if not admin then only view Ends here--}}
     @section('content')
@@ -21,26 +21,26 @@ if ($role_id == 2)
         <?php 
         $prev_page = $_SERVER['HTTP_REFERER'];
         if(strpos($prev_page, 'project-designation') !== false){
-          ?>
-          <a href="{{ URL::previous() }}">Project Designation</a>
-          <a class="current-page">estimation</a>
-        </span>
-        <?php } else { ?>
-          <a class="current-page">estimation</a>
-        </span>
-        <?php } ?>
-      </div>
-    </div>
+        ?>
+        <a href="{{ URL::previous() }}">Project Designation</a>
+        <a class="current-page">estimation</a>
+      </span>
+      <?php } else { ?>
+      <a class="current-page">estimation</a>
+    </span>
+    <?php } ?>
+  </div>
+</div>
 
-    <div class="text-capitalize">
-      <!-- Estimate starts here -->
-      <div class="edit-estimation-form">
-        {!! Form::open(array('route' => ['submitEstimate', 'id' => $unique_id])) !!}
+<div class="text-capitalize">
+  <!-- Estimate starts here -->
+  <div class="edit-estimation-form">
+    {!! Form::open(array('route' => ['submitEstimate', 'id' => $unique_id])) !!}
 
-        <div class="estimate-plan">
-          <!-- project phase starts here -->
-          <div class="project-phase">
-            <div class="phase-heading container-heading cf">
+    <div class="estimate-plan">
+      <!-- project phase starts here -->
+      <div class="project-phase">
+        <div class="phase-heading container-heading cf">
             <!-- <div class="back">
               <a href="{{ URL::previous() }}" title="Back">Back</a>
             </div> -->
@@ -59,15 +59,18 @@ if ($role_id == 2)
             <div class="proj-date">
               <div class="proj-date-snipet">
                 {!! Form::label('project-start-date', 'Project Start Date:') !!}
-                {!! Form::text('project-start-date',$set_estimate[0]['start_date'],array('class' => 'startDate phaseCalculation form-control datepicker','readonly')) !!}
+                {!! Form::text('project-start-date',$set_estimate[0]['start_date'],array('class' => 'startDate phaseCalculation form-control datepicker')) !!}
+                <p class="error"></p>
               </div>
               <div class="proj-date-snipet">
                 {!! Form::label('phase-I-end-date', 'Phase 1 End Date:') !!}
-                {!! Form::text('phase-I-end-date', $set_estimate[0]['p_I_live'],['class' => 'p1Date phaseCalculation form-control datepicker','readonly']) !!}
+                {!! Form::text('phase-I-end-date', $set_estimate[0]['p_I_live'],['class' => 'p1Date phaseCalculation form-control datepicker']) !!}
+                <p class="error"></p>
               </div>
               <div class="proj-date-snipet">
                 {!! Form::label('phase-II-end-date', 'Phase 2 End Date:') !!}
-                {!! Form::text('phase-II-end-date', $set_estimate[0]['p_II_live'],['class' => 'p2Date phaseCalculation form-control datepicker','readonly']) !!}
+                {!! Form::text('phase-II-end-date', $set_estimate[0]['p_II_live'],['class' => 'p2Date phaseCalculation form-control datepicker']) !!}
+                <p class="error"></p>
               </div>
               <div class="proj-date-snipet numericValidation">
                 {!! Form::label('Warrenty-days', 'Warranty days:') !!}
@@ -190,168 +193,168 @@ if ($role_id == 2)
                        $count=1;
                        foreach($data['phase'] as $key=>$value)
                        {
-                        $phase_name=$key;
-                        $phase_id=$value['phase_id'];
-                        $spent_days= $value['spent_days'];
-                        $name_to_display=$value['display_name'];
-                        $tmp=$total_phases-$count;
-                        if($tmp<'1')
-                        {
-                          echo "<tr class='light-green'>
-                          <th>
-                           Timeline to LIVE (calc):
-                         </th>
-                         <td>
-                           <span class='t2live_timeline_days'></span>
-                         </td>
-                         <td>
-                          <span class='t2live_timeline_months'></span>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                        </td>
-                        <td>
-                         TOTALS &gt;&gt;
+                       $phase_name=$key;
+                       $phase_id=$value['phase_id'];
+                       $spent_days= $value['spent_days'];
+                       $name_to_display=$value['display_name'];
+                       $tmp=$total_phases-$count;
+                       if($tmp<'1')
+                       {
+                       echo "<tr class='light-green'>
+                       <th>
+                         Timeline to LIVE (calc):
+                       </th>
+                       <td>
+                         <span class='t2live_timeline_days'></span>
                        </td>
                        <td>
-                         <span class='t2live_effective_days_utilezed'></span>
-                       </td>
-                       <td>
-                         <span class='t2live_hrs_cal'></span>
-                       </td>
-                       <td></td>
-                     </tr>";
-                     
-                     echo "<tr class='light-green'>
-                     <td>
-                       Backwards working:
+                        <span class='t2live_timeline_months'></span>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                      </td>
+                      <td>
+                       TOTALS &gt;&gt;
                      </td>
                      <td>
-                       <span class='backword_timeline_days'></span>
+                       <span class='t2live_effective_days_utilezed'></span>
                      </td>
                      <td>
-                      
+                       <span class='t2live_hrs_cal'></span>
                      </td>
-                     <td>
-                      
-                     </td>
-                     <td>
-                      
-                     </td>
-                     <td>
-                      
-                     </td>
-                     <td class='left-align'>
-                       effective resources over project until LIVE - NOT incl. of warranty period:
-                     </td>
-                     <td>
-                       <span class='backword_effective_days_utilezed'></span>
-                     </td>
-                     <td>
-                      
-                     </td>
-                     <td>
-                      
-                     </td>
+                     <td></td>
                    </tr>";
-                   
-                 }
-                 
-                 echo "<tr class='light-orange'>
-                 <th data-phase-id='$phase_id'>$name_to_display
-                  <input type='hidden' name='phase[$name_to_display][phase_id]' value='$phase_id'></th>";
-                  if($tmp<'1')
-                  {
-                    
-                    echo "<td><input type='text' value='$spent_days' class='$key  wtot triggerWarranty' name='phase[$name_to_display][spent_days]'></td>
-                    <td><span class='".$key."_month ".$key."timelineMonths'></span></td><td></td><td></td><td></td>";
-                  }
-                  else
-                  {
-                    echo "<td><input type='text' value='$spent_days' class='$key timelineDays' name='phase[$name_to_display][spent_days]'></td>";
-                    
-                    echo "<td><span class='".$key."_month timelineMonths'></span></td>
-                    <td></td><td></td><td></td>";
-                  }
-                  echo "<td><span class='".$key."_effective_resources eResources'></span></td>";
-                  if($tmp<'1')
-                  {
-                    echo "<td><span class='".$key."_effective_days_utilezed eWDays'></span></td><td><span class='".$key."_hrs_cal'></span></td>
-                    <td></td></tr>";
-                  }
-                  else
-                  {
-                    echo "<td><span class='".$key."_effective_days_utilezed eDays'></span></td>";
-                    echo "<td><span class='".$key."_hrs_cal phaseHourCal'></span></td>
-                    <td></td></tr>";
-                  }
-                  
-                  foreach($value as $phase_detail_key=>$phase_detail_value)
-                    if(is_array($phase_detail_value))
-                    {
-                      foreach($phase_detail_value  as $designation=>$designation_info)
-                      {
-                        if(is_array($designation_info))
-                        {
-                          foreach($designation_info as $key1=>$designation_detail)
-                          {
-                            $lower_desig=strtolower($key1);
-                            
-                            echo "<tr><td>$key1
-                            <input type='hidden' value='$designation_detail[row_id]' name='phase[$name_to_display][designations][$designation][$key1][row_id]'>
-                            <input type='hidden' value='$designation_detail[d_id]' name='phase[$name_to_display][designations][$designation][$key1][d_id]'>
-                          </td>
-                          <td></td><td></td><td></td>";
-                          echo "<td><input type='text' class='$key hrsLimit $lower_desig-hrs' value='$designation_detail[per_day_hours]' name='phase[$name_to_display][designations][$designation][$key1][per_day_hours]'></td>
-                          <td><span class='".$lower_desig."_work_per_day'></span></td>
-                          <td></td>
-                          <td></td>
-                          <td><span class='".$lower_desig."-calc-hrs'></span></td>
-                          <td></td>
-                        </tr>";
-                                    //foreach($designation_detail as $designation_detail_key=>$designation_detail_value)
-                        
-                      }
-                      
-                                    /*$d_id=$designation_info['d_id'];
-                                    $hours=$designation_info['per_day_hours'];
-                                    $row_id=$designation_info['row_id'];
-                                    echo "data is $d_id and $hours and row id is $row_id<br>";*/
-                                    
-                                  }
-                                }
-                              }
-                              
-                              
-                                    //print_r($phase_detail_value);
-                              $count++;
-                            }
-                            echo '<tr class="light-green">
-                            <th>
-                              Timeline to Warranty End (calc):
-                            </th>
-                            <td>
-                              <span class="t2live_warranty_timeline_days"></span>
-                            </td>
-                            <td>
-                              <span class="t2live_warranty_timeline_months"></span>
-                            </td>
-                            <td>
-                              
-                            </td>
-                            <td>
-                              
-                            </td>
-                            <td>
-                              
-                            </td>
-                            <td>
-                              TOTALS &gt;&gt;
-                            </td>
-                            <td>
+
+                   echo "<tr class='light-green'>
+                   <td>
+                     Backwards working:
+                   </td>
+                   <td>
+                     <span class='backword_timeline_days'></span>
+                   </td>
+                   <td>
+
+                   </td>
+                   <td>
+
+                   </td>
+                   <td>
+
+                   </td>
+                   <td>
+
+                   </td>
+                   <td class='left-align'>
+                     effective resources over project until LIVE - NOT incl. of warranty period:
+                   </td>
+                   <td>
+                     <span class='backword_effective_days_utilezed'></span>
+                   </td>
+                   <td>
+
+                   </td>
+                   <td>
+
+                   </td>
+                 </tr>";
+
+               }
+
+               echo "<tr class='light-orange'>
+               <th data-phase-id='$phase_id'>$name_to_display
+                <input type='hidden' name='phase[$name_to_display][phase_id]' value='$phase_id'></th>";
+                if($tmp<'1')
+                {
+
+                echo "<td><input type='text' value='$spent_days' class='$key  wtot triggerWarranty' name='phase[$name_to_display][spent_days]'></td>
+                <td><span class='".$key."_month ".$key."timelineMonths'></span></td><td></td><td></td><td></td>";
+              }
+              else
+              {
+              echo "<td><input type='text' value='$spent_days' class='$key timelineDays' name='phase[$name_to_display][spent_days]'></td>";
+
+              echo "<td><span class='".$key."_month timelineMonths'></span></td>
+              <td></td><td></td><td></td>";
+            }
+            echo "<td><span class='".$key."_effective_resources eResources'></span></td>";
+            if($tmp<'1')
+            {
+            echo "<td><span class='".$key."_effective_days_utilezed eWDays'></span></td><td><span class='".$key."_hrs_cal'></span></td>
+            <td></td></tr>";
+          }
+          else
+          {
+          echo "<td><span class='".$key."_effective_days_utilezed eDays'></span></td>";
+          echo "<td><span class='".$key."_hrs_cal phaseHourCal'></span></td>
+          <td></td></tr>";
+        }
+
+        foreach($value as $phase_detail_key=>$phase_detail_value)
+        if(is_array($phase_detail_value))
+        {
+        foreach($phase_detail_value  as $designation=>$designation_info)
+        {
+        if(is_array($designation_info))
+        {
+        foreach($designation_info as $key1=>$designation_detail)
+        {
+        $lower_desig=strtolower($key1);
+
+        echo "<tr><td>$key1
+        <input type='hidden' value='$designation_detail[row_id]' name='phase[$name_to_display][designations][$designation][$key1][row_id]'>
+        <input type='hidden' value='$designation_detail[d_id]' name='phase[$name_to_display][designations][$designation][$key1][d_id]'>
+      </td>
+      <td></td><td></td><td></td>";
+      echo "<td><input type='text' class='$key hrsLimit $lower_desig-hrs' value='$designation_detail[per_day_hours]' name='phase[$name_to_display][designations][$designation][$key1][per_day_hours]'></td>
+      <td><span class='".$lower_desig."_work_per_day'></span></td>
+      <td></td>
+      <td></td>
+      <td><span class='".$lower_desig."-calc-hrs'></span></td>
+      <td></td>
+    </tr>";
+    //foreach($designation_detail as $designation_detail_key=>$designation_detail_value)
+
+  }
+
+  /*$d_id=$designation_info['d_id'];
+  $hours=$designation_info['per_day_hours'];
+  $row_id=$designation_info['row_id'];
+  echo "data is $d_id and $hours and row id is $row_id<br>";*/
+
+}
+}
+}
+
+
+//print_r($phase_detail_value);
+$count++;
+}
+echo '<tr class="light-green">
+<th>
+  Timeline to Warranty End (calc):
+</th>
+<td>
+  <span class="t2live_warranty_timeline_days"></span>
+</td>
+<td>
+  <span class="t2live_warranty_timeline_months"></span>
+</td>
+<td>
+
+</td>
+<td>
+
+</td>
+<td>
+
+</td>
+<td>
+  TOTALS &gt;&gt;
+</td>
+<td>
                               <!-- <input name="t2live_effective_days_utilezed" type="text">
                             -->
                             <span class="t2live_warranty_effective_days_utilezed"></span>
@@ -373,16 +376,16 @@ if ($role_id == 2)
                           <span class="warranty_backword_timeline_days"></span>
                         </td>
                         <td>
-                          
+
                         </td>
                         <td>
-                          
+
                         </td>
                         <td>
-                          
+
                         </td>
                         <td>
-                          
+
                         </td>
                         <td class="left-align">
                           effective resources over ENTIRE project - incl. warranty period:
@@ -392,10 +395,10 @@ if ($role_id == 2)
                           <span class="warranty_backword_effective_days_utilezed"></span>
                         </td>
                         <td>
-                          
+
                         </td>
                         <td>
-                          
+
                         </td>
                       </tr>';
                       
@@ -433,20 +436,23 @@ if ($role_id == 2)
                  <?php
                  $role_id = Session::get('user')[0]['role_id'];
                  if ($role_id == 1) {?>
-                   {!! Form::submit('Submit',array('class' => 'submit-btn')) !!}
-                   <?php }if ($role_id == 1 || $role_id == 2) {?> <?php }?>
+                 <div class="submit-wrapper cf">
+                   {!! Form::submit('Submit',array('class' => 'submit-btn submit-est-plan')) !!}
+                   <p class="error"></p>
                  </div>
+                 <?php } ?>
                </div>
              </div>
            </div>
          </div>
        </div>
-       <!-- project timeline ends here -->
      </div>
-     <!--  Estimate ends here-->
+     <!-- project timeline ends here -->
    </div>
-   {!! Form::close() !!}
+   <!--  Estimate ends here-->
  </div>
+ {!! Form::close() !!}
+</div>
 </div>
 
 <script type="text/javascript">

@@ -1246,6 +1246,8 @@ function startTimer() {
 
  $(document).on('click','.create-new-project .close', function(){
   $('#add-project')[0].reset();
+  $('.new-field').show();
+  $('.existing-field').hide();
 });
 
  $(document).on('click','.create-project .close', function(){

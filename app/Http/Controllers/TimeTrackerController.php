@@ -515,7 +515,10 @@ class TimeTrackerController extends Controller {
     }
     $request->session()->put('arrExportParameter', $arrExportParameter); 
     if($arrExportParameter['strDownloadType'] == 'excel'){
-      \Excel::create('Report2016', function($excel) {
+      $user_name_timesheet=DB::table('users')->where('user_id',$arrExportParameter['userID'])->get();
+
+      $name=ucwords($user_name_timesheet[0]->first_name." ".$user_name_timesheet[0]->last_name." - Timesheet");
+      \Excel::create($name, function($excel) {
               // Set the title
         $excel->setTitle('My awesome report 2016');
               // Chain the setters
@@ -606,8 +609,8 @@ class TimeTrackerController extends Controller {
 
       
       $pdf = PDF::loadView('pdf_export.pdf', compact('export_data','name'));
-      
-      return $pdf->download('timesheet.pdf');         
+      $pdf_name=ucwords($user_name_timesheet[0]->first_name." ".$user_name_timesheet[0]->last_name." - Timesheet");
+      return $pdf->download($pdf_name.'.pdf');         
     }
     return $response;
   }

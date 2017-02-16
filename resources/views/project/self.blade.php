@@ -66,7 +66,7 @@ $user_name = Session::get('user')[0]['first_name'];
 {!! Form::close() !!}
 <!-- container heading for addmyself Ends here -->
 <!-- Add New Project Modal Starts Here-->
-<div class="modal fade create-new-project" id="create-project" role="dialog">
+<div class="modal fade create-new-project modal-error-off" id="create-project" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content Starts Here-->
     <div class="modal-content">
@@ -110,7 +110,7 @@ $user_name = Session::get('user')[0]['first_name'];
           <div class="existing-field">
             <select class="existing-client" name="existing_client" id="existing_client">
               <option value="0">Please select client</option>
-             @foreach($client_name_list as $value)
+              @foreach($client_name_list as $value)
               <option value="{{$value}}">{{$value}}</option>
               @endforeach
             </select>

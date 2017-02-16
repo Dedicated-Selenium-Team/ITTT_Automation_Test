@@ -231,6 +231,11 @@
              <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
              <option value="3_{{$my_allproject->project_id }}" disabled>Live-Ongoing</option>
              <option value="4_{{$my_allproject->project_id }}" disabled>Completed</option>
+             <?php } else if($my_allproject->status_id == 5) { ?>
+             <option value="0">Please Select</option>
+             <option value="1_{{$my_allproject->project_id }}">Estimates</option>
+             <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
+             <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
              <?php } ?> 
            </select>
          </div>
@@ -332,6 +337,11 @@
           <option value="2_{{$project_detail->project_id }}" disabled>Live-Projects</option>
           <option value="3_{{$project_detail->project_id }}" disabled>Live-Ongoing</option>
           <option value="4_{{$project_detail->project_id }}" disabled>Completed</option>
+          <?php } else if($project_detail->status_id == 5) { ?>
+          <option value="0">Please Select</option>
+          <option value="1_{{$project_detail->project_id }}">Estimates</option>
+          <option value="2_{{$project_detail->project_id }}">Live-Projects</option>
+          <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
           <?php } ?>
         </select>
 

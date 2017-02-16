@@ -76,7 +76,7 @@
           <div class="existing-field">
             <select class="existing-client" name="existing_client" id="existing_client">
               <option value="0">Please select client</option>
-               @foreach($client_name_list as $value)
+              @foreach($client_name_list as $value)
               <option value="{{$value}}">{{$value}}</option>
               @endforeach
               
@@ -180,7 +180,7 @@
   </div>
 
   <div class="all-prj connectedSortable" id="tabs">
-    <ul>
+    <ul class="tab-filters">
       <li><a href="#tabs-1">All Projects</a></li>
       <li><a href="#tabs-2">Estimates</a></li>
       <li><a href="#tabs-3">Live-Projects</a></li>
@@ -406,7 +406,7 @@
 
 </div>
 
-<div id="tabs-2">
+<div id="tabs-2" class="grid">
   <?php if(count($estimates_project) == 0) {?>
   <p class="noproject-message">There are no projects to show.</p>
   <?php } ?>
@@ -477,7 +477,7 @@
   </div>
   @endforeach
 </div>
-<div id="tabs-3">
+<div id="tabs-3" class="grid">
 
  <?php if(count($live_project) == 0) {?>
  <p class="noproject-message">There are no projects to show.</p>
@@ -549,7 +549,7 @@
 @endforeach
 
 </div>
-<div id="tabs-4">
+<div id="tabs-4" class="grid">
   <?php if(count($live_ongoing_project) == 0) {?>
   <p class="noproject-message">There are no projects to show.</p>
   <?php } ?>
@@ -617,7 +617,7 @@
   </div>
   @endforeach
 </div>
-<div id="tabs-5">
+<div id="tabs-5" class="grid">
   <?php if(count($completed_project) == 0) {?>
   <p class="noproject-message">There are no projects to show.</p>
   <?php } ?>
@@ -680,7 +680,7 @@
 </div>
 @endforeach
 </div>
-<div id="tabs-6">
+<div id="tabs-6" class="grid">
   <?php if(count($hold_project) == 0) {?>
   <p class="noproject-message">There are no projects to show.</p>
   <?php } ?>
@@ -815,6 +815,47 @@
     });
   });
 });*/
+
+/***** search functionality started**********/
+$(window).load(function() {
+ var grid = $('.grid');
+ grid.css('min-height', '101px');
+ 
+ $("#search_project").keyup(function(){
+  var activeDiv = $('.ui-tabs-active a').attr('href');
+  console.log('activeDiv', activeDiv);
+  var checkgrid= $(activeDiv).isotope();
+  try {
+   var searchstring=$("#search_project").val().toUpperCase();
+   var divtosearch=$(".wrap-project");
+   checkgrid.isotope({
+     filter: function( divtosearch ) {
+      return ($(".pro_name",this).html().indexOf(searchstring)>-1)
+    }
+
+  });
+ }
+ catch(error)
+ {}
+ checkgrid.isotope( 'on', 'layoutComplete', function(isoInstance, laidOutItems) {
+  console.log(isoInstance.length);
+  if(isoInstance.length==0){
+    if ( $(activeDiv).children('.noproject-message').length <= 0 ) {
+      console.log('error message');
+      $(activeDiv).append('<p class="noproject-message no-pro-msg">No search result found</p>');
+    }
+  }
+  else
+   $(activeDiv).children(".noproject-message").remove();   
+});
+});
+ $('.tab-filters a').click(function(){
+  $("#search_project").trigger('keyup');
+});
+});
+
+/***** search functionality completed**********/
+
 
 $(".proj_status").change(function(){
   var status=($(this).val()).split("_");

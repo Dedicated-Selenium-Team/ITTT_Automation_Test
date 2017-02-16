@@ -590,7 +590,8 @@ $formToValidate.on('submit', function(event) {
 /* Form validation end */
 
 $('.modal-error-off').on('hidden.bs.modal', function () {
- $(this).find('.error').text('');
+  $(this).find('.error').text('');
+  // $('.select-proj #project_name').siblings('.error').text('');
 });
 
 });

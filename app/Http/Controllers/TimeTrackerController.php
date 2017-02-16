@@ -545,9 +545,6 @@ class TimeTrackerController extends Controller {
           ->select('day_times.*', 'add_projects.project_name','project_designations.d_name','add_projects.client_name')
           ->get();
 
-          if(count($today_project)==0)
-            return "No data to Show";
-              //echo "<pre>";print_r($today_project);exit();
           $export_data=array();
           $tmp=array();
           array_push($tmp,'Date');

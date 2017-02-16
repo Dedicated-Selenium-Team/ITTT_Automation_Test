@@ -117,81 +117,81 @@
 <div class="timesheet-content">
 
  <?php if($is_project_assigned == 1) {?>
-  <nav class = "addProjectNav cf" >
-   <ul>
-     <li class="myproject cf">
-       <a href="#FIXME" title="Add New Entry" class="addProject" id="daily-add" data-toggle="modal" data-target="#create-project">New Entry</a>
-     </li>
-   </ul>
- </nav>
- <div class="table-timesheet">
-   <div class="export-functionality">
-     <span>download</span>
-     <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/excel" target="_blank" title="Excel"><input type="button" value="Excel" id="export_excel"></a>
-     <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/pdf" target="_blank" title="Pdf"><input type="button" value="PDF" id="export_excel"></a>
-   </div>
-   <table class="day-table">
-     <tr class="head-row">
-       <th>
-         Project Name
-       </th>
-       <th>
-         Hours
-       </th>
-       <th>
-         Edit
-       </th>
-       <th>
-         Delete
-       </th>
-     </tr>
+   <nav class = "addProjectNav cf" >
+     <ul>
+       <li class="myproject cf">
+         <a href="#FIXME" title="Add New Entry" class="addProject" id="daily-add" data-toggle="modal" data-target="#create-project">New Entry</a>
+       </li>
+     </ul>
+   </nav>
+   <div class="table-timesheet">
+     <div class="export-functionality">
+       <span>download</span>
+       <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/excel" target="_blank" title="Excel"><input type="button" value="Excel" id="export_excel"></a>
+       <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/pdf" target="_blank" title="Pdf"><input type="button" value="PDF" id="export_excel"></a>
+     </div>
+     <table class="day-table">
+       <tr class="head-row">
+         <th>
+           Project Name
+         </th>
+         <th>
+           Hours
+         </th>
+         <th>
+           Edit
+         </th>
+         <th>
+           Delete
+         </th>
+       </tr>
 
-     @foreach($daily_project as $today_project)
-     <tr id="time{{$today_project->id}}">
-       <td class="break-words">
-        <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
+       @foreach($daily_project as $today_project)
+       <tr id="time{{$today_project->id}}">
+         <td class="break-words">
+          <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
 
-        <p><?php echo $today_project->comments; ?></p>
+          <p><?php echo $today_project->comments; ?></p>
 
-      </td>
-      <td>
-        {{$today_project->hrs_locked}}
-      </td>
-      <td>
-        <button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time" data-id= {{$today_project->id}}>Edit User</button>
-      </td>
-      <td>
-        <button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time" data-id= "{{$today_project->id}}" data-target="#confirm-delete">Delete User</button>
-      </td>
-    </tr>
-    @endforeach
-  </table>
-  <div class="time-details">
-    <p><span class="tot-hours-title">Total Hours - </span> <span class="tot-hours"></span></p>
-    <p><span class="free-time-title">Free Hours - </span> <span class="free-time"></span></p>
+        </td>
+        <td>
+          {{$today_project->hrs_locked}}
+        </td>
+        <td>
+          <button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time" data-id= {{$today_project->id}}>Edit User</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time" data-id= "{{$today_project->id}}" data-target="#confirm-delete">Delete User</button>
+        </td>
+      </tr>
+      @endforeach
+    </table>
+    <div class="time-details">
+      <p><span class="tot-hours-title">Total Hours - </span> <span class="tot-hours"></span></p>
+      <p><span class="free-time-title">Free Hours - </span> <span class="free-time"></span></p>
+    </div>
   </div>
-</div>
-<?php } else { ?>
-  <nav class = "addProjectNav cf" >
-   <ul>
-     <?php if ($role_id == 1) { ?>
-      <li class="myproject cf">
-       <a href="#FIXME" title="Add New Project" class="addProject" data-toggle="modal" data-target="#create-new-project">Add New Project</a>
-     </li>
+  <?php } else { ?>
+    <nav class = "addProjectNav cf" >
+     <ul>
+       <?php if ($role_id == 1) { ?>
+         <li class="myproject cf">
+           <a href="#FIXME" title="Add New Project" class="addProject" data-toggle="modal" data-target="#create-new-project">Add New Project</a>
+         </li>
+         <?php } ?>
+         <li class="myproject cf">
+           <a href="/myself" title="Add Myself To A Project" class="assign-project">Add myself to a project</a>
+         </li>
+       </ul>
+     </nav>
+     <p class="timesheet-message">You are not assigned to any project. Please assign yourself to the project first and start tracking your time.</p>
      <?php } ?>
-     <li class="myproject cf">
-       <a href="/myself" title="Add Myself To A Project" class="assign-project">Add myself to a project</a>
-     </li>
-   </ul>
- </nav>
- <p class="timesheet-message">You are not assigned to any project. Please assign yourself to the project first and start tracking your time.</p>
- <?php } ?>
 
-</div>
-</div>
+   </div>
+ </div>
 
-<!-- Add New Project Modal Starts Here-->
-<div class="modal fade create-new-project modal-error-off" id="create-new-project" role="dialog">
+ <!-- Add New Project Modal Starts Here-->
+ <div class="modal fade create-new-project modal-error-off" id="create-new-project" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content Starts Here-->
@@ -236,7 +236,7 @@
           <div class="existing-field">
             <select class="existing-client" name="existing_client" id="existing_client">
               <option value="0">Please select client</option>
-               @foreach($client_name_list as $value)
+              @foreach($client_name_list as $value)
               <option value="{{$value}}">{{$value}}</option>
               @endforeach
               <option value="demo">abc</option>

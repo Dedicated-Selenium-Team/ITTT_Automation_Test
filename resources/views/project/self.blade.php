@@ -608,7 +608,6 @@ $('#project_hrs').on('submit', function(e) {
 
 $('#project_name').on("focus click", function (e) {
   var data = $(this).val();
-  console.log('data', data);
   if (data == "newProjet") {
     $("#create-project").modal('show');
     $(this).val(0);

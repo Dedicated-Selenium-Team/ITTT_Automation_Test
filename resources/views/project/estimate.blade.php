@@ -9,32 +9,32 @@
     <?php 
     $prev_page = $_SERVER['HTTP_REFERER'];
     if(strpos($prev_page, 'project-designation') !== false){
-      ?>
-      <a href="{{ URL::previous() }}">Project Designation</a>
-      <a class="current-page">estimation</a>
-    </span>
-    <?php } else { ?>
-      <a class="current-page">estimation</a>
-    </span>
-    <?php } ?>
-  </div>
+    ?>
+    <a href="{{ URL::previous() }}">Project Designation</a>
+    <a class="current-page">estimation</a>
+  </span>
+  <?php } else { ?>
+  <a class="current-page">estimation</a>
+</span>
+<?php } ?>
+</div>
 </div>
 
 {{-- This will check the User session and if admin then edit the planning and if not admin then only view Starts here--}}
 <?php
 $role_id = Session::get('user')[0]['role_id'];
 if ($role_id == 2) {?>
-	<div class="user">
-   <?php }?>
-   {{-- This will check the User session and if admin then edit the planning and if not admin then only view Ends here--}}
+<div class="user">
+ <?php }?>
+ {{-- This will check the User session and if admin then edit the planning and if not admin then only view Ends here--}}
 
-   {!! Form::open(array('route' => ['submitEstimate', 'id' => $unique_id])) !!}
-   <div class="text-capitalize">
-    {{-- Estimate starts here --}}
-    <div class="estimate-plan">
-      {{-- project phase starts here --}}
-      <div class="project-phase">
-        <div class="phase-heading container-heading cf">
+ {!! Form::open(array('route' => ['submitEstimate', 'id' => $unique_id])) !!}
+ <div class="text-capitalize">
+  {{-- Estimate starts here --}}
+  <div class="estimate-plan">
+    {{-- project phase starts here --}}
+    <div class="project-phase">
+      <div class="phase-heading container-heading cf">
           <!-- <div class="back">
             <a href="{{ URL::previous() }}" title="Back">Back</a>
           </div> -->
@@ -53,15 +53,18 @@ if ($role_id == 2) {?>
           <div class="proj-date">
             <div class="proj-date-snipet">
               {!! Form::label('project-start-date', 'Project Start Date:') !!}
-              {!! Form::text('project-start-date', \Carbon\Carbon::now()->format('d/m/Y'),array('class' => 'startDate phaseCalculation form-control datepicker' ,'readonly')) !!}
+              {!! Form::text('project-start-date', \Carbon\Carbon::now()->format('d/m/Y'),array('class' => 'startDate phaseCalculation form-control datepicker')) !!}
+              <p class="error"></p>
             </div>
             <div class="proj-date-snipet">
               {!! Form::label('phase-I-end-date', 'Phase 1 End Date:') !!}
-              {!! Form::text('phase-I-end-date','',['class' => 'p1Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy','readonly']) !!}
+              {!! Form::text('phase-I-end-date','',['class' => 'p1Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy']) !!}
+              <p class="error"></p>
             </div>
             <div class="proj-date-snipet">
               {!! Form::label('phase-II-end-date', 'Phase 2 End Date:') !!}
-              {!! Form::text('phase-II-end-date','',['class' => 'p2Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy','readonly']) !!}
+              {!! Form::text('phase-II-end-date','',['class' => 'p2Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy']) !!}
+              <p class="error"></p>
             </div>
           <!-- <div class="proj-date-snipet">
             {!! Form::label('resources', 'Required Resource Number: ')!!}
@@ -791,38 +794,41 @@ if ($role_id == 2) {?>
                          <?php
                          $role_id = Session::get('user')[0]['role_id'];
                          if ($role_id == 1) {?>
-                           {!! Form::submit('Submit',array('class' => 'submit-btn')) !!}
-                           <?php }if ($role_id == 1 || $role_id == 2) {?> <?php }?>
-
+                         <div class="submit-wrapper cf">
+                           {!! Form::submit('Submit',array('class' => 'submit-btn submit-est-plan')) !!}
+                           <p class="error"></p>
                          </div>
+                         <?php } ?>
+
                        </div>
                      </div>
                    </div>
                  </div>
-                 {!! Form::close() !!}
-                 {{-- project timeline ends here --}}
                </div>
-               {{--  Estimate ends here--}}
+               {!! Form::close() !!}
+               {{-- project timeline ends here --}}
              </div>
+             {{--  Estimate ends here--}}
+           </div>
 
-             <script type="text/javascript">
-              $("#estimate").DataTable({
-                "bSort":false,
-                "orderable": false,
-                "paging": false,
-                "scrollY": "500px",
-                "scrollCollapse": true,
-              });
-              var th_width=[];
-              $("#estimate th").each(function(){
-                var width=$(this).width();
-                th_width.push(width);
-              });
+           <script type="text/javascript">
+            $("#estimate").DataTable({
+              "bSort":false,
+              "orderable": false,
+              "paging": false,
+              "scrollY": "500px",
+              "scrollCollapse": true,
+            });
+            var th_width=[];
+            $("#estimate th").each(function(){
+              var width=$(this).width();
+              th_width.push(width);
+            });
 
 
-            </script> 
+          </script> 
 
 
-          </div>
+        </div>
 
-          @stop
+        @stop

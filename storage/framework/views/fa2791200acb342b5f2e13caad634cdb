@@ -569,7 +569,11 @@ $("#project").on('change',function(){
           $("#empty").remove();
         }
         if (state == 'Save Entry') {
-          if(data.success==1)
+          if(data.success==2)
+          {
+            alert("Please check your system date and try again.")
+          }
+          else
           {
            for (var i = 0; i < data.project_name.length; i++) {
             project_name = data.project_name[i].project_name;

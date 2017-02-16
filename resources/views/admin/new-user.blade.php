@@ -110,7 +110,7 @@
               <div class="col-lg-12 col-sm-12">
                 <div class="form-group cf">
                  {!! Html::decode(Form::label('joining_date','Date of Joining<span class="required">*</span>:')) !!}
-                 {!! Form::text('joining_date','',['class' => 'datepicker','placeholder'=>'DD/MM/YYYY','readonly']) !!}
+                 {!! Form::text('joining_date','',['class' => 'datepicker','placeholder'=>'DD/MM/YYYY']) !!}
                  {!! $errors->first('joining_date', '<div>:message</div>') !!}
                  <p class="error"></p>
                </div>

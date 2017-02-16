@@ -36,7 +36,7 @@ module.exports = function() {
 	});
 
 	this.When(/^I click on project start date option$/, function() {
-		this.driver.findElement({ css:'#project-start-date' }).then(function(element){
+		this.driver.findElement({ id:'project-start-date' }).then(function(element){
 			element.click();
 			var value = element.getAttribute("value").then(function(date_value){
 				console.log("Project start date is: "+ date_value);

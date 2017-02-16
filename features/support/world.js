@@ -21,48 +21,6 @@ usingServer("http://" + username + ":" + accessKey +
 	"@ondemand.saucelabs.com:80/wd/hub").
 build();
 
-
-// for android devices
-// var buildAndroidDriver = function() {
-// 	return new webdriver.Builder().
-// 	withCapabilities({
-// 		'browserName': 'chrome',
-// 		'platformName': 'Android',
-// 		'platformVersion': '5.0',
-// 		'deviceName': 'Android Emulator',
-// 		'username': username,
-// 		'accessKey': accessKey
-// 	}).
-// 	usingServer("http://" + username + ":" + accessKey +
-// 		"@ondemand.saucelabs.com:80/wd/hub").
-// 	build();
-// };
-
-// for firefox browser on Linux
-// var buildFirefoxDriver = function() {
-// 	return new webdriver.Builder().
-// 	withCapabilities({
-// 		'browserName': 'firefox',
-// 		'platform': 'Linux',
-// 		'version': '45.0',
-// 		'username': username,
-// 		'accessKey': accessKey
-// 	}).
-// 	usingServer("http://" + username + ":" + accessKey +
-// 		"@ondemand.saucelabs.com:80/wd/hub").
-// 	build();
-// };
-
-// switch(platform) {
-// 	case 'ANDROID':
-// 	var driver = buildAndroidDriver();
-// 	break;
-// 	default:
-// 	var driver = buildFirefoxDriver();
-// }
-
-
-
 // var buildAndroidDriver = function() {
 // 	return new webdriver.Builder().
 // 	usingServer('http://localhost:4444/wd/hub').
@@ -74,6 +32,39 @@ build();
 // 	}).
 // 	build();
 // };
+
+// var buildChromeDriver = function() {
+// 	return new webdriver.Builder().
+// 	withCapabilities(webdriver.Capabilities.chrome()).
+// 	build();
+// };
+
+// var buildFirefoxDriver = function() {
+// 	return new webdriver.Builder().
+// 	withCapabilities(webdriver.Capabilities.firefox()).
+// 	build();
+// };
+
+// switch(platform) {
+// 	case 'ANDROID':
+// 	var driver = buildAndroidDriver();
+// 	break;
+// 	case 'FIREFOX':
+// 	var driver = buildFirefoxDriver();
+// 	break;
+// 	default:
+// 	var driver = buildChromeDriver();
+// }
+
+
+// var capabilities = {
+// 	browserName: 'chrome',
+// };
+
+// var driver = new webdriver
+// .Builder()
+// .withCapabilities(capabilities)
+// .build();
 
 //for saucelabs integration and selenium grid
 // var capabilities = {

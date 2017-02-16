@@ -59,7 +59,8 @@ public function index($error = null)
 
      $userdata = array(
        'username' => trim(Input::get('email')),
-       'password' => Input::get('password')
+       'password' => Input::get('password'),
+       'status'   => 1
        );
 
      if (Auth::attempt($userdata)) {
@@ -131,7 +132,7 @@ else {
 
      $email=$request->email;
      $user=new User;
-     $checkemail=$user->where('username',$email)->get();
+     $checkemail=$user->where('username',$email)->where('status',1)->get();
 
      if(count($checkemail)>0)
      {

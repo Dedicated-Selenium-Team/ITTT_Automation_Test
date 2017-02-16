@@ -30,11 +30,11 @@ if ($role_id == 2) {?>
    <?php }?>
    {{-- This will check the User session and if admin then edit the planning and if not admin then only view Ends here--}}
    {{-- Project palning starts here --}}
-   <div class="numericValidation">
-    <div class="estimation-form">
-      {{-- project phase starts here --}}
-      <div class="project-phase">
-        <div class="phase-heading container-heading cf">
+   <!-- <div class="numericValidation"> -->
+   <div class="estimation-form">
+    {{-- project phase starts here --}}
+    <div class="project-phase">
+      <div class="phase-heading container-heading cf">
          <!--  <div class="back">
             <a href="{{ URL::previous() }}" title="Back">Back</a>
           </div> -->
@@ -53,15 +53,18 @@ if ($role_id == 2) {?>
           <div class="proj-date">
             <div class="proj-date-snipet">
               {!! Form::label('project-start-date', 'Project Start Date:') !!}
-              {!! Form::text('project-start-date', \Carbon\Carbon::now()->format('d/m/Y'),array('class' => 'startDate phaseCalculation form-control datepicker','readonly')) !!}
+              {!! Form::text('project-start-date', \Carbon\Carbon::now()->format('d/m/Y'),array('class' => 'startDate phaseCalculation form-control datepicker')) !!}
+              <p class="error"></p>
             </div>
             <div class="proj-date-snipet">
               {!! Form::label('phase-I-end-date', 'Phase 1 End Date:') !!}
-              {!! Form::text('phase-I-end-date','',['class' => 'p1Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy','readonly']) !!}
+              {!! Form::text('phase-I-end-date','',['class' => 'p1Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy']) !!}
+              <p class="error"></p>
             </div>
             <div class="proj-date-snipet">
               {!! Form::label('phase-II-end-date', 'Phase 2 End Date:') !!}
-              {!! Form::text('phase-II-end-date','',['class' => 'p2Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy','readonly']) !!}
+              {!! Form::text('phase-II-end-date','',['class' => 'p2Date phaseCalculation form-control datepicker','placeholder'=>'dd/mm/yyyy']) !!}
+              <p class="error"></p>
             </div>
           <!-- <div class="proj-date-snipet">
             {!! Form::label('resources', 'Required Resource Number: ')!!}
@@ -120,7 +123,7 @@ if ($role_id == 2) {?>
 
 
     {{-- project timeline starts here --}}
-    <div class="project-timeline">
+    <div class="project-timeline numericValidation">
       <div class="timeline-heading container-heading">
         <h2 class="ballpark-estimate">ballpark estimate: resource utilization</h2>
       </div>
@@ -792,34 +795,37 @@ if ($role_id == 2) {?>
                          <?php
                          $role_id = Session::get('user')[0]['role_id'];
                          if ($role_id == 1) {?>
-                           {!! Form::submit('Submit',array('class' => 'submit-btn')) !!}
-                           <?php }if ($role_id == 1 || $role_id == 2) {?> <?php }?>
-                           {!! Form::close() !!}
-
+                          <div class="submit-wrapper cf">
+                           {!! Form::submit('Submit',array('class' => 'submit-btn submit-est-plan')) !!}
+                           <p class="error"></p>
                          </div>
+                         <?php } ?>
+                         {!! Form::close() !!}
+
                        </div>
                      </div>
                    </div>
                  </div>
-                 {{-- project timeline ends here --}}
                </div>
-               {{--  Planning ends here--}}
+               {{-- project timeline ends here --}}
              </div>
-
+             {{--  Planning ends here--}}
            </div>
-           <script>
-            $("#newplan").DataTable({
-              "bSort":false,
-              "orderable": false,
-              "paging": false,
-              "scrollY": "500px",
-              "scrollCollapse": true,
-            });
-            var th_width=[];
-            $("#newplan th").each(function(){
-              var width=$(this).width();
-              th_width.push(width);
-            });
 
-          </script>
-          @stop
+         </div>
+         <script>
+          $("#newplan").DataTable({
+            "bSort":false,
+            "orderable": false,
+            "paging": false,
+            "scrollY": "500px",
+            "scrollCollapse": true,
+          });
+          var th_width=[];
+          $("#newplan th").each(function(){
+            var width=$(this).width();
+            th_width.push(width);
+          });
+
+        </script>
+        @stop

@@ -187,8 +187,24 @@ $( "#tabs" ).tabs();
   $( ".datepicker" ).datepicker({ 
    dateFormat: 'dd/mm/yy',
    changeMonth: true,
-   changeYear: true
- });
+   changeYear: true,
+   onClose: function(){
+     var currentDate = $(this).val();
+     var minDate = 0;
+     if($(this).hasClass('p1Date')){
+       minDate = $('#project-start-date').val();
+     }
+     if($(this).hasClass('p2Date')){
+       minDate = $('#phase-I-end-date').val();
+       var error = $('#phase-I-end-date').siblings('.error').text();
+       if(minDate == '' || error != ''){
+        minDate = $('#project-start-date').val();
+      } 
+    }
+    validateDate(currentDate,minDate,$(this));
+    $('.phaseCalculation').trigger('keyup');
+  }
+});
 
   var start_date = $('#project-start-date').val();
   $('#phase-I-end-date').datepicker('option', 'minDate', start_date);
@@ -292,11 +308,15 @@ $( document ).ready(function() {
   }
   , 'joining_date': {
     'required': true
-    , 'regex': /^[^?<>*]*$/
+    , 'regX': /^(?:(?:31(\/)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/
   }
   , 'client_name': {
     'required': true,
     'regX': /^[^?<>*]*$/
+  }
+  , 'existing_client': {
+    'required': true
+    , 'dropdown': 0
   }
   , 'project_name1': {
     'required': true,
@@ -383,11 +403,16 @@ var errorMessage = {
     , 'dropdown': 'Please select role'
   }
   ,'joining_date': {
-    'required': 'Please select the date and time'
+    'required': 'Please select the date'
+    ,'regX': 'Please enter a valid date'
   }
   , 'client_name': {
     'required': 'Please enter client name',
     'regX': 'Please enter valid client name'
+  }
+  , 'existing_client': {
+    'required': 'Please select client name'
+    , 'dropdown': 'Please select client name'
   }
   , 'project_name1': {
     'required': 'Please enter project name',
@@ -566,7 +591,7 @@ $formToValidate.on('submit', function(event) {
 
 $('.modal-error-off').on('hidden.bs.modal', function () {
   $(this).find('.error').text('');
-  $('.select-proj #project_name').siblings('.error').text('');
+  // $('.select-proj #project_name').siblings('.error').text('');
 });
 
 });
@@ -897,15 +922,18 @@ var objDate = new Calculate();
 /***************************************************************************************/
 $(document).on('change',"#project-start-date",function () {
   var start_date1 = $(this).val();
-  $('#phase-I-end-date').datepicker('option', 'minDate', start_date1);
-  $('#phase-II-end-date').datepicker('option', 'minDate', start_date1);
+  if($(this).siblings('.error').text()==''){
+    $('#phase-I-end-date').datepicker('option', 'minDate', start_date1);
+    $('#phase-II-end-date').datepicker('option', 'minDate', start_date1);
+  }
 });
 
 $(document).on('change',"#phase-I-end-date",function () {
-  var phs1End_date = $(this).val();
-  $('#phase-II-end-date').datepicker('option', 'minDate', phs1End_date);
-  var getPhaseOneDate = $('#phase-I-end-date').val();
-  $('#phase-II-end-date').val(getPhaseOneDate);
+  var getPhaseOneDate = $(this).val();
+  if($(this).siblings('.error').text()==''){
+    $('#phase-II-end-date').datepicker('option', 'minDate', getPhaseOneDate);
+    $('#phase-II-end-date').val(getPhaseOneDate);
+  }
 });
 
 $(document).on('keyup', '.holiday', function () {
@@ -933,48 +961,76 @@ $(document).on('keyup', '.resources', function () {
  }
 });
 
-$(document).on("bind keyup change", '.phaseCalculation', function () {
-  var startDate = $('.startDate').val(),
-  phaseOneDate = $('.p1Date').val(),
-  phaseTwoDate = $('.p2Date').val(),
-  warranty_days = $('.warranty-days').val(),
-  totHolidays = $('.holiday').val();
-  getwarrantyDate = $('#warrantyDate').val();
+$(document).on("bind keyup change", '.phaseCalculation', function (e) {
 
-  if(warranty_days == '')
-  {
-    warranty_days=0;
+  if($('.startDate').siblings('.error').text()=='' && $('.p1Date').siblings('.error').text()=='' && $('.p2Date').siblings('.error').text()==''){
+    var startDate = $('.startDate').val(),
+    phaseOneDate = $('.p1Date').val(),
+    phaseTwoDate = $('.p2Date').val(),
+    warranty_days = $('.warranty-days').val(),
+    totHolidays = $('.holiday').val();
+    getwarrantyDate = $('#warrantyDate').val();
+
+    if(warranty_days == '')
+    {
+      warranty_days=0;
+    }
+    if(totHolidays =='')
+    {
+      totHolidays=0;
+    }
+
+    var warrenty_end_date=$('#Warrenty-period-end').val();
+
+
+    var resource = $('.resources').val(),
+    p1goLive = objDate.datecalculate(startDate, phaseOneDate,warranty_days,totHolidays),
+    warrantyDate = objDate.addWarranty(phaseTwoDate,warranty_days,totHolidays),
+    overalldays = objDate.timelineOverallDay(startDate,warrantyDate,totHolidays),  
+    monthEqi = objDate.eqiMonths(overalldays),
+    hourEqi = objDate.Hour(overalldays),
+    effectiveTotDays = objDate.calbackword(overalldays, resource),
+    effectiveTotHrs = objDate.calbackword(hourEqi, resource);
+
+    // document.getElementById("phase-II-end-date").value = phaseTwoDate;
+    document.getElementById("p1-go-live").value = p1goLive;
+    document.getElementById("timelineDays").value = overalldays;
+    document.getElementById("timelineMonths").value = monthEqi;
+    document.getElementById("timelineHours").value = hourEqi;
+    document.getElementById("timelineTotDays").value = effectiveTotDays;
+    document.getElementById("timelineTotHours").value = effectiveTotHrs;
+
+    if (warrantyDate == 'aN/aN/NaN') {
+      $('#Warrenty-period-end').attr("placeholder", "dd/mm/yyyy");
+      $('.pro-date-calulation-table input').val('0');
+    } else {
+      document.getElementById('Warrenty-period-end').value =warrantyDate ;
+      $( "input[name*='Warrenty-period-end']" ).val(warrantyDate);
+    }
+    $('.submit-wrapper .error').text('');
   }
-  if(totHolidays =='')
-  {
-    totHolidays=0;
+  else {
+    document.getElementById("p1-go-live").value = 0;
+    document.getElementById("timelineDays").value = 0;
+    document.getElementById("timelineMonths").value = 0;
+    document.getElementById("timelineHours").value = 0;
+    document.getElementById("timelineTotDays").value = 0;
+    document.getElementById("timelineTotHours").value = 0;
+    e.preventDefault();
   }
+});
 
-  var warrenty_end_date=$('#Warrenty-period-end').val();
+var form = $('.submit-est-plan').parent('form');
 
-  var resource = $('.resources').val(),
-  p1goLive = objDate.datecalculate(startDate, phaseOneDate,warranty_days,totHolidays),
-  warrantyDate = objDate.addWarranty(phaseTwoDate,warranty_days,totHolidays),
-  overalldays = objDate.timelineOverallDay(startDate,warrantyDate,totHolidays),  
-  monthEqi = objDate.eqiMonths(overalldays),
-  hourEqi = objDate.Hour(overalldays),
-  effectiveTotDays = objDate.calbackword(overalldays, resource),
-  effectiveTotHrs = objDate.calbackword(hourEqi, resource);
-
-  document.getElementById("phase-II-end-date").value = phaseTwoDate;
-  document.getElementById("p1-go-live").value = p1goLive;
-  document.getElementById("timelineDays").value = overalldays;
-  document.getElementById("timelineMonths").value = monthEqi;
-  document.getElementById("timelineHours").value = hourEqi;
-  document.getElementById("timelineTotDays").value = effectiveTotDays;
-  document.getElementById("timelineTotHours").value = effectiveTotHrs;
-
-  if (warrantyDate == 'aN/aN/NaN') {
-    $('#Warrenty-period-end').attr("placeholder", "dd/mm/yyyy");
-    $('.pro-date-calulation-table input').val('0');
-  } else {
-    document.getElementById('Warrenty-period-end').value =warrantyDate ;
-    $( "input[name*='Warrenty-period-end']" ).val(warrantyDate);
+$(document).on('click','.submit-est-plan',function(e){
+  if($('.startDate').siblings('.error').text()=='' && $('.p1Date').siblings('.error').text()=='' && $('.p2Date').siblings('.error').text()==''){
+    $(form).submit(true);
+    $(this).siblings('.error').text('');
+  }
+  else {
+    $(this).siblings('.error').text('Please check the entered dates');
+    e.preventDefault();
+    return false;
   }
 });
 
@@ -1159,3 +1215,43 @@ function startTimer() {
     startTimer();
   }
 //code for cheking session timeout is ends here
+
+
+ // to display new client and existing client fields on add new project popup
+ $(document).on('click','.client-type input[type="radio"]',function(){
+  if ($(this).val()=='new') {
+    $(".existing-field").children('.error').text('');
+    $(".existing-field").hide();
+    $("#existing_client").val(0);
+    $("#existing_client").removeClass("noValue");
+    $(".new-field").show();
+  }
+  else {
+    $(".new-field").children('.error').text('');
+    $(".new-field").hide();
+    $("#client_name").val('');
+    $(".existing-field").show();
+  }
+});
+
+ $(document).on('change blur','#existing_client',function(){
+  if($(this).val()==0){
+    $(this).siblings('.error').text('Please select client name');
+    $(this).siblings('.error').show();
+  }
+  else{
+    $(this).siblings('.error').text('');
+    $(this).siblings('.error').hide();
+  }
+});
+
+ $(document).on('click','.create-new-project .close', function(){
+  $('#add-project')[0].reset();
+  $('.new-field').show();
+  $('.existing-field').hide();
+});
+
+ $(document).on('click','.create-project .close', function(){
+  $('#project-day-time')[0].reset();
+  $('#project-day-time select').removeClass('noValue');
+});

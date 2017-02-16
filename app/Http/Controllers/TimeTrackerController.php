@@ -84,8 +84,9 @@ $value->comments=str_replace('"','',$value->comments);
         }
 
       }
+      $client_name_list=DB::table('add_projects')->distinct('client_name')->select('client_name')->lists('client_name');
       
-      return view('time_tracker/day', compact('projects', 'daily_project', 'date','is_project_assigned'));
+      return view('time_tracker/day', compact('projects', 'daily_project', 'date','is_project_assigned','client_name_list'));
 
     } else {
       return Redirect::to('/');
@@ -104,31 +105,43 @@ $value->comments=str_replace('"','',$value->comments);
 
     $success=1;
     // store the timesheet values into databse
-    $time->user_id      = $user_id;
+    
+    $date = Input::get('date');
+$current_date=strtotime(date('Y-m-d'));
+$check_date=strtotime($date);
+if($current_date>$check_date)
+{
+  $success=2;
+   return response()->json([
+      'success'=>$success
+      ]);
+}
+else
+{
+  $time->user_id      = $user_id;
     $time->project_name = Input::get('project_id');
     $time->date         = Input::get('date');
     $time->comments     = Input::get('comments');
     $time->hrs_locked   = Input::get('hidden_Hrs');
     $time->d_id         = Input::get('project_desig');
     $time->save();
-
-    $date = Input::get('date');
-
-    $project_name = DB::table('add_projects')
+     $project_name = DB::table('add_projects')
     ->join('day_times', 'day_times.project_name', '=', 'add_projects.project_id')
     ->join('project_designations', 'day_times.d_id', '=', 'project_designations.d_id')
     ->where('day_times.user_id', $user_id)  ->where('day_times.date', $date)
     ->where('day_times.d_id', $time->d_id)
     ->where('day_times.project_name', $time->project_name)
     ->select('day_times.*', 'add_projects.project_name', 'project_designations.d_name') ->get();
-
-    //$project_name=$time;
-    return response()->json([
+ return response()->json([
       'project_name' => $project_name,
       'success'=>$success
 
       ]);
+}
+   
 
+    //$project_name=$time;
+   
   }
 
   /**
@@ -170,8 +183,6 @@ $value->comments=str_replace('"','',$value->comments);
         'hrs_locked'   => Input::get('hidden_Hrs')
         ]);
       $time = DayTime::find($id);
-      // $project_id=$time->project_name;
-      //  echo $request->header('project_id');
       $project_name       = DB::table('add_projects')->select('project_name')->where('project_id', $project_id)->get();
       $time->project_name = $project_name[0]->project_name;
       $designation        = DB::table('project_designations')->select('d_name')->where('d_id', $time->d_id)->get();

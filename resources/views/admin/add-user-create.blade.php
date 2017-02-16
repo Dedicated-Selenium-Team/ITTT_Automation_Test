@@ -39,86 +39,86 @@
   <input type="submit" class="form-control btn btn-primary" value="Export Contacts">
   </div>
   </div>
-{!! Form::close() !!} -->
-    <!-- User details table starts here -->
-    <table class="user-table">
-      <thead>
-        <tr class="head-row">
-          <th>User Id</th>
-          <th>Employee Name</th>
-          <th>Email</th>
-          <th>Designation</th>
-          <th>Date of Joining</th>
-          <th>Role</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody class="table-body">
-        <?php $count = 1;
-        $i           = 0;
-        $today = date('Y-m-d');
-        ?>
-        @foreach ($users_info as $user)
-        <tr id="user{{$user->user_id}}">
-          <td class="count">{{$count}}</td>
-          <td><a href="/time-management/{{$today}}/{{$user->user_id}}" class="emp-name"><span class="name-capital">{{$user->first_name}}</span> <span class="name-capital">{{$user->last_name}}</span></a></td>
-          <td>{{$user->username}}</td>
-          <td>
-            @foreach ($designation as $key => $value)
-            @if ($user->UserDetails['designation_id'] == $key)
-            {{$value}}
-            @endif
-            @endforeach
-          </td>
-          <td id="{{$i}}">{{$details[$i]->joining_date}}</td>
-          <td>
-            @foreach ($roles as $key => $value)
-            @if ($user->role_id == $key)
-            {{$value}}
-            @endif
-            @endforeach
-          </td>
-          <td>
-            <button type="button" class="btn btn-edit edit" id="edit-user" data-id="{{$user->user_id}}">Edit User</button>
-          </td>
-          <td>
-            <button type="button" class="btn btn-delete confirm" id="delete-user" data-id="{{$user->user_id}}" data-toggle="modal" data-target="#confirm-delete">Delete User</button>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          </td>
-        </tr>
-        <?php $count += 1;
-        $i += 1;?>
-        @endforeach
-      </tbody>
-    </table>
-    <!-- User details table starts here -->
+  {!! Form::close() !!} -->
+  <!-- User details table starts here -->
+  <table class="user-table">
+    <thead>
+      <tr class="head-row">
+        <th>User Id</th>
+        <th>Employee Name</th>
+        <th>Email</th>
+        <th>Designation</th>
+        <th>Date of Joining</th>
+        <th>Role</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody class="table-body">
+      <?php $count = 1;
+      $i           = 0;
+      $today = date('Y-m-d');
+      ?>
+      @foreach ($users_info as $user)
+      <tr id="user{{$user->user_id}}">
+        <td class="count">{{$count}}</td>
+        <td><a href="/time-management/{{$today}}/{{$user->user_id}}" class="emp-name"><span class="name-capital">{{$user->first_name}}</span> <span class="name-capital">{{$user->last_name}}</span></a></td>
+        <td>{{$user->username}}</td>
+        <td>
+          @foreach ($designation as $key => $value)
+          @if ($user->UserDetails['designation_id'] == $key)
+          {{$value}}
+          @endif
+          @endforeach
+        </td>
+        <td id="{{$i}}">{{$details[$i]->joining_date}}</td>
+        <td>
+          @foreach ($roles as $key => $value)
+          @if ($user->role_id == $key)
+          {{$value}}
+          @endif
+          @endforeach
+        </td>
+        <td>
+          <button type="button" class="btn btn-edit edit" id="edit-user" data-id="{{$user->user_id}}">Edit User</button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-delete confirm" id="delete-user" data-id="{{$user->user_id}}" data-toggle="modal" data-target="#confirm-delete">Delete User</button>
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+        </td>
+      </tr>
+      <?php $count += 1;
+      $i += 1;?>
+      @endforeach
+    </tbody>
+  </table>
+  <!-- User details table starts here -->
 
-    <!-- Admin page main content starts here -->
+  <!-- Admin page main content starts here -->
 
-  </div>
-  <!-- Admin Page Ends Here -->
+</div>
+<!-- Admin Page Ends Here -->
 
-  <!-- Modal for Delete start here -->
-  <div class="modal fade delete-modal" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-        </div>
-        <div class="modal-body">
-          <h5>Confirm Delete</h5>
-          <p>Remove entry from this timesheet?</p>
-          <p class="debug-url"></p>
-        </div>
-        <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
-          <a class="btn btn-danger btn-ok" id="btnYes">Delete</a>
-        </div>
+<!-- Modal for Delete start here -->
+<div class="modal fade delete-modal" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+      </div>
+      <div class="modal-body">
+        <h5>Confirm Delete</h5>
+        <p>Remove entry from this timesheet?</p>
+        <p class="debug-url"></p>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
+        <a class="btn btn-danger btn-ok" id="btnYes">Delete</a>
       </div>
     </div>
   </div>
+</div>
 </div>
 <!-- Modal for delete ends here -->
 
@@ -359,5 +359,6 @@
      });
     });
   });
+
 </script>
 @stop

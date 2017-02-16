@@ -321,6 +321,7 @@ header .wrapper {
 .nav-active {
   background-color: #3b5998;
   color: #fff;
+  /*cursor: default;*/
 }
 
 .nav-active:focus { color: #fff; }
@@ -501,7 +502,8 @@ main .wrapper  {
 
 .empty { text-align: center; }
 
-.select-proj .error { left: 83px; }
+.select-proj .error,
+.select-proj .message { left: 83px; }
 
 .select-designation .error { left: 26%; }
 
@@ -514,7 +516,8 @@ main .wrapper  {
 @-moz-document url-prefix() { 
   .designation .submit { margin: 35px 6px 18px 0; }
   .designation .form-control { width: 74%; }
-  .select-proj .error { left: 85px; }
+  .select-proj .error,
+  .select-proj .message { left: 85px; }
   .select-proj select,
   .select-designation select { margin-left: 13px; }
 }
@@ -573,7 +576,7 @@ main .wrapper  {
   opacity: 0;
 }
 
-.has-children > ul { padding: 4% 7.25%; }
+.has-children > ul { padding: 4% 7%; }
 
 .has-children .Lead { margin-bottom: 0 ; }
 
@@ -585,9 +588,17 @@ main .wrapper  {
   width: 0;
 }
 
-.has-children ul table th:nth-of-type(3) { width: 11%; }
+.has-children ul table th:nth-of-type(3),
+.pre-table-body th:nth-of-type(3),
+.post-table-body th:nth-of-type(3) { width: 10%; }
 
-.has-children ul table th:nth-of-type(2) { width: 10%; }
+.has-children ul table th:nth-of-type(6),
+.pre-table-body th:nth-of-type(6),
+.post-table-body th:nth-of-type(6) { width: 9%; }
+
+.has-children ul table th:nth-of-type(2),
+.pre-table-body th:nth-of-type(2),
+.post-table-body th:nth-of-type(2) { width: 10%; }
 
 /******Code for toggle in project designation End's here *********/
 
@@ -666,14 +677,15 @@ table thead th {
 .day-timesheet .container-heading { box-shadow: none; }
 
 .input-read-only {
-  width: 60%;
+  width: 49%;
   padding: 0;
   border: none;
-  margin-left: -2px;
+  margin-top: 4px;
+  display: inline-block;
   background-color: #fff;
   color: #1b1b1b;
   /*-webkit-text-fill-color: #1b1b1b;*/
-  font: 600 23px 'Open Sans';
+  font: 600 23px/27px 'Open Sans';
   opacity: 1;
   text-transform: capitalize;
 }
@@ -688,7 +700,7 @@ table thead th {
 
 .timesheet-header-right > * {
   float: left;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);
+  /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);*/
 }
 
 .timesheet-header-right .today { 
@@ -706,6 +718,9 @@ table thead th {
 .timesheet-header-right .today-hover,
 .timesheet-header-right .date-pick:hover { opacity: .4; }
 
+.timesheet-header-right .today-hover,
+.views .active-view { cursor: default; }
+
 .timesheet-header-right .date-pick {
   width: 34px;
   height: 34px;
@@ -721,7 +736,7 @@ table thead th {
 .arrow { 
  margin-left: 19px;
  position: relative;
- box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);
+ /*box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .08);*/
 }
 
 .arrow a { 
@@ -753,9 +768,20 @@ table thead th {
 
 .views { 
   border: 1px solid #3b5998 ;
-  margin-left: 30px;
+  margin-left: 44px;
+  position: relative;
   font-size: 0;
-  box-shadow: 0 0 1px rgba(0,0,0,.8);
+  /*box-shadow: 0 0 1px rgba(0,0,0,.8);*/
+}
+
+.views:before {
+  content: "";
+  width: 1px;
+  height: 34px;
+  background-color: #cfcfcf;
+  position: absolute;
+  top: 0;
+  left: -24px;
 }
 
 .views a:hover,
@@ -943,164 +969,178 @@ table thead th {
   border-radius: 0; 
 }
 
-.modal-header {
+/*.modal-header {
   padding: 24px 24px 0;
   border-bottom: none;
-}
+  }*/
 
-.modal-header .modal-title { display: none; }
+  .modal-header {
+    width: 99.6%;
+    padding: 24px 23px 0;
+    border-bottom: none;
+    position: fixed;
+    z-index: 1;
+    background-color: #fff;
+  }
 
-.modal-header .close {
-  width: 15px;
-  height: 15px;
-  background: url(../images/Close-Icon.png) no-repeat center;
-  opacity: 1;
-  text-indent: -9999px;
-}
+  .edit-modal .modal-header {
+    width: 96.6%;
+  }
 
-.modal-body { padding: 12px 50px 45px; }
+  .modal-header .modal-title { display: none; }
 
-.modal-content .form-group > *:not(.note) {
-  width: 100%;
-  display: block;
-}
+  .modal-header .close {
+    width: 15px;
+    height: 15px;
+    background: url(../images/Close-Icon.png) no-repeat center;
+    opacity: 1;
+    text-indent: -9999px;
+  }
 
-.modal-content .form-group label {
-  margin-bottom: 10px;
-  color: #000;
-  font: 700 16px / 16px 'Open Sans';
-  text-transform: uppercase;
-}
+  .modal-body { padding: 50px 50px 45px; }
 
-.required {
-  position: relative;
-  top: -.3em;
-  color: #da4143;
-  font-size: 90%;
-  line-height: 0;
-  vertical-align: baseline;
-}
+  .modal-header .close { margin-top: 0; }
+
+  .modal-content .form-group > *:not(.note) {
+    width: 100%;
+    display: block;
+  }
+
+  .modal-content .form-group label {
+    margin-bottom: 10px;
+    color: #000;
+    font: 700 16px / 16px 'Open Sans';
+    text-transform: uppercase;
+  }
+
+  .modal-content .form-group select,
+  .modal-content .form-group input:not([type="radio"]),
+  .modal-content .form-group textarea {
+    height: 40px;
+    padding: 7px 15px 8px;
+    border: 1px solid #cfcfcf;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background-color: #fff;
+    color: #565656;
+    font: 400 15px / 19px 'Open Sans';
+  }
+
+  .required {
+    position: relative;
+    top: -.3em;
+    color: #da4143;
+    font-size: 90%;
+    line-height: 0;
+    vertical-align: baseline;
+  }
+
+  .modal-content .form-group select,
+  .designation select { color: #a9a9a9; }
+
+  .designation .color-nonzero { color: #565656; }
+
+  .modal-content .form-group option,
+  .designation option { color: #565656; }
+
+  .modal-content .form-group option[value=''],
+  .designation option[value=''] { color: #7c7c7c; }
+
+  .modal-content .form-group .noValue,
+  .designation .noValue { color: #565656; }
+
+  .modal-content .form-group select[disabled] { 
+    background-color: #eee;
+    color: #565656; 
+  }
+
+  .project-ddl option[value='other'],
+  .select-proj option[value='newProjet'] { color: #3b5998; }
+
+  /* Internet Explorer 10+ */
+  .modal-content .form-group input:-ms-input-placeholder,
+  .login-form-page .form-control:-ms-input-placeholder,
+  .modal-content .form-group textarea:-ms-input-placeholder,
+  .search-function:-ms-input-placeholder { color: #a9a9a9; }
 
 
-.modal-content .form-group select,
-.modal-content .form-group input,
-.modal-content .form-group textarea {
-  height: 40px;
-  padding: 7px 15px 8px;
-  border: 1px solid #cfcfcf;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background-color: #fff;
-  color: #565656;
-  font: 400 15px / 19px 'Open Sans';
-}
-
-.modal-content .form-group select,
-.designation select { color: #a9a9a9; }
-
-.designation .color-nonzero { color: #565656; }
-
-.modal-content .form-group option,
-.designation option { color: #565656; }
-
-.modal-content .form-group option[value=''],
-.designation option[value=''] { color: #7c7c7c; }
-
-.modal-content .form-group .noValue,
-.designation .noValue { color: #565656; }
-
-.modal-content .form-group select[disabled] { 
-  background-color: #eee;
-  color: #565656; 
-}
-
-.project-ddl option[value='other'],
-.select-proj option[value='newProjet'] { color: #3b5998; }
-
-/* Internet Explorer 10+ */
-.modal-content .form-group input:-ms-input-placeholder,
-.login-form-page .form-control:-ms-input-placeholder,
-.modal-content .form-group textarea:-ms-input-placeholder,
-.search-function:-ms-input-placeholder { color: #a9a9a9; }
-
-
-.modal-content .form-group select,
-.select-proj select,
-.select-designation select
-{
-  -webkit-appearance: none;
-  -moz-appearance: none; 
-  background: url(../images/Select-Down-Icon.png) no-repeat 97% ;
-}
-
-.modal-content .form-group select::-ms-expand,
-.select-proj select::-ms-expand,
-.select-designation select::-ms-expand { display: none; }
-
-@-moz-document url-prefix() { 
   .modal-content .form-group select,
   .select-proj select,
-  .select-designation select { padding-left: 11px; }
-  .modal-content select option,
-  .select-proj select option,
-  .select-designation select option { padding-left: 14px; }
-}
+  .select-designation select
+  {
+    -webkit-appearance: none;
+    -moz-appearance: none; 
+    background: url(../images/Select-Down-Icon.png) no-repeat 97% ;
+  }
 
-.modal-content .form-group textarea { 
-  height: 80px;
-  resize: none; 
-}
+  .modal-content .form-group select::-ms-expand,
+  .select-proj select::-ms-expand,
+  .select-designation select::-ms-expand { display: none; }
 
-.modal-footer {
-  padding: 0 50px 50px;
-  border-top: none;
-}
+  @-moz-document url-prefix() { 
+    .modal-content .form-group select,
+    .select-proj select,
+    .select-designation select { padding-left: 11px; }
+    .modal-content select option,
+    .select-proj select option,
+    .select-designation select option { padding-left: 14px; }
+  }
 
-.modal-footer  .btn,
-.modal-footer input {
-  padding: 12px 13px;
-  border: none;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background-color:#3b5998;
-  color: #fff;
-  font: 700 15px / 16px 'Open Sans';
-  text-transform: uppercase;
-  vertical-align: top;
-}
+  .modal-content .form-group textarea { 
+    height: 80px;
+    resize: none; 
+  }
 
-.modal-footer  .btn { margin-left: 10px; }
+  .modal-footer {
+    padding: 0 50px 50px;
+    border-top: none;
+  }
 
-.day-timesheet .form-group { margin-bottom: 25px; }
+  .modal-footer  .btn,
+  .modal-footer input {
+    padding: 12px 13px;
+    border: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background-color:#3b5998;
+    color: #fff;
+    font: 700 15px / 16px 'Open Sans';
+    text-transform: uppercase;
+    vertical-align: top;
+  }
 
-.day-timesheet .modal-body .form-group:nth-of-type(5) { margin-bottom: 0; }
+  .modal-footer  .btn { margin-left: 10px; }
 
-.day-timesheet .form-group:nth-of-type(2) label { margin-bottom: 25px; }
+  .day-timesheet .form-group { margin-bottom: 25px; }
 
+  .day-timesheet .modal-body .form-group:nth-of-type(5) { margin-bottom: 0; }
 
-/**************************************************************************/
-/************************* Add New Modal End's here ***********************/
-/**************************************************************************/
-
-/**************************************************************************/
-/************************* Timesheet Day View Ends's here ****************/
-/**************************************************************************/
+  .day-timesheet .form-group:nth-of-type(2) label { margin-bottom: 25px; }
 
 
-/**************************************************************************/
-/************************* Timesheet Week View Starts's here **************/
-/**************************************************************************/
+  /**************************************************************************/
+  /************************* Add New Modal End's here ***********************/
+  /**************************************************************************/
 
-.timesheet-content .table-timesheet-week {
- width: 74%;
- margin: 0 auto;
-}
+  /**************************************************************************/
+  /************************* Timesheet Day View Ends's here ****************/
+  /**************************************************************************/
 
-.week-table .head-row th+th { padding: 0; }
 
-.week-table .head-row th a {
+  /**************************************************************************/
+  /************************* Timesheet Week View Starts's here **************/
+  /**************************************************************************/
+
+  .timesheet-content .table-timesheet-week {
+   width: 74%;
+   margin: 0 auto;
+ }
+
+ .week-table .head-row th+th { padding: 0; }
+
+ .week-table .head-row th a {
   padding: 14px 15px 13px;
   display: block;
   color: #1b1b1b ;
@@ -1126,6 +1166,8 @@ table thead th {
 .week-table .head-row th:last-of-type { padding: 14px 15px 13px; }
 
 .week-table .total { background-color: #f2fceb; }
+
+.break-words { word-break: break-all; }
 
 /**************************************************************************/
 /************************* Timesheet Week View Ends's here ****************/
@@ -1177,13 +1219,22 @@ table thead th {
   font: 400 15px / 19px 'Open Sans';
 }
 
-.login-form-page .form-group .message,
+.login-form-page .message,
 .login-form-page .error {
   position: absolute;
   bottom: -14px;
   color: #da4143;
   font: 400 11px / 11px 'Open Sans';
 }
+
+.login-form-page .login-error,
+.login-form-page .google-login-error{
+  width: calc(100% - 100px);
+  bottom: 93%;
+  text-align: center;
+  font-size: 14px;
+  /* pointer-events: none;*/
+} 
 
 .login-form-page .submit-btn,
 .login-form-page .google-login {
@@ -1264,7 +1315,7 @@ table thead th {
 .table-body thead,
 .post-table-body thead { background-color: #fff; }
 
-.designation-detail .before-assign { width: 83%; }
+.designation-detail .before-assign { width: 86%; }
 
 @-moz-document url-prefix() { 
   .designation-detail .before-assign { width: 75%; }
@@ -1348,7 +1399,7 @@ table thead th {
 /**************************************************************************/
 
 .admin .container-heading { 
-  padding: 28px 28px 25px;
+  padding: 28px 28px 27px;
   box-shadow: none; 
 }
 
@@ -1548,7 +1599,10 @@ table thead th {
 
 .hrs-locked ~ .note { top: -16px; }
 
-.hrs-locked ~ .note:before { top: calc(50% - 8px); }
+.hrs-locked ~ .note:before,
+.comment ~ .note:before { top: calc(50% - 8px); }
+
+.comment ~ .note { top: 4px; }
 
 .proj-date div:nth-of-type(3n) { margin-right: 0;}
 
@@ -1584,7 +1638,7 @@ table thead th {
 
 .table-wrapper {
   width: 100%;
-  overflow-y: auto;
+  /* overflow-y: auto;*/
 }
 
 .estimation {
@@ -1710,7 +1764,8 @@ table thead th {
 
 .modal-body .form-group { position: relative; }
 
-.error {
+.error,
+.message {
   position: absolute;
   bottom: -14px;
   color: #da4143;
@@ -1744,7 +1799,7 @@ table thead th {
 /**************************************************************************/
 /********************** All Projects Tab Start's here *********************/
 /**************************************************************************/
-.wrap-content .timesheet-content { padding: 50px 6.1% 10px; }
+.wrap-content .timesheet-content { padding: 50px 6.1% 50px; }
 
 .wrap-content .all-projects-content { padding-top: 30px; }
 
@@ -1760,7 +1815,7 @@ table thead th {
 .wrap-project {
   width: 16.95%;
   border: 1px solid #3b5998;
-  margin: 0 3.81% 41px 0;
+  margin: 0 3.81% 40px 0;
   display: inline-block;
   text-align: center;
   text-transform: uppercase;
@@ -1828,7 +1883,10 @@ table thead th {
 .create-new-project .modal-body .form-group:not(:last-of-type),
 .edit-project .modal-body .form-group:not(:last-of-type) { margin-bottom: 40px; }
 
-.create-new-project .modal-dialog { margin-top: calc(50vh - 231px); }
+.create-new-project .modal-dialog { 
+  margin-top: calc(50vh - 285px); 
+  margin-bottom: 0;
+}
 
 .edit-project .modal-dialog { margin-top: calc(50vh - 178px); }
 
@@ -1876,49 +1934,78 @@ table thead th {
   background-color: #3b5998; 
 }
 
+.all-prj .ui-tabs-nav li.ui-tabs-active .ui-tabs-anchor { cursor: default; }
+
 .all-prj .ui-tabs-panel { font-size: 0; }
 
 .all-prj .proj_status { font-size: 14px; }
 
 .all-prj .proj_status option { padding: 0 5px; }
 
-.all-prj { font-family: 'Open Sans'; }
+.all-prj { 
+  padding-bottom: 0;
+  font-family: 'Open Sans'; 
+}
 
 .wrap-project .actions {
   padding: 5px 10px;
   background-color: #e9e9e9;
   font: 700 14px 'Open Sans';
+  text-align: left;
 }
 
 .wrap-project .actions div { float: right; }
 
-.wrap-project .actions span { color: #3b5998; }
+.wrap-project .actions span { 
+  color: #3b5998; 
+  text-transform: capitalize;
+}
 
 .wrap-project .actions div a,
 .wrap-project .actions div select {
   width: 16px;
   height: 16px;
-  margin-top: 2px;
+  margin-top: 1px;
   display: inline-block;
   font-family: 'Open Sans';
   text-indent: -9999px;
   vertical-align: top;
 }
 
-.wrap-project .actions .edit-action { background: url(../images/edit.png) no-repeat center; }
-
 .wrap-project .actions div select {
   border: none;
-  background: url(../images/move.png) no-repeat center;
+  border-radius: 0;
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none; 
 }
 
+.wrap-project .actions .proj_status {  background: url(../images/move.png) no-repeat center; }
+
+.wrap-project .actions .edit-action-arrow { background: url(../images/edit-project.png) no-repeat center; }
+
 .shadow-hover { 
   box-shadow: 0 0 9.5px 2px #ccc9c9; 
   transform: scale(1.05);
 }
+
+/* Add new prject popup starts here */
+.create-new-project .form-group label[for="client_name"],
+.create-new-project .form-group .client-type {
+  width: initial;
+  display: inline-block;
+}
+
+.create-new-project .form-group input[type="radio"] {
+  vertical-align: top;
+  margin-left: 10px;
+}
+
+.create-new-project .form-group .existing-field { display: none; }
+
+.create-new-project .form-group .existing-client,
+.create-new-project .new-field input { width: 100%; }
+/* Add new prject popup ends here */
 
 /**************************************************************************/
 /*********************** All Projects Tab End's here **********************/
@@ -1985,10 +2072,9 @@ table thead th {
 .total-hrs .dates .padding-zero { padding: 0; }
 
 .designation-CTA .page-title h2 {
-  margin-top: 10px;
+  margin-top: 7px;
   display: inline-block;
-  font-size: 23px;
-  font: 600 23px / 16px 'Open Sans';
+  font: 600 23px / 27px 'Open Sans';
   text-transform: uppercase;
 }
 
@@ -2148,6 +2234,61 @@ table thead th {
 
 .login-form-page .scroll { display: none; }
 
+/* session expired dialog starts here*/
+.overlay {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  z-index: 1060;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.7);
+}
+
+.overlay .session-expired {
+  margin-top: calc(50vh - 83px);
+  margin-left: calc(50vw - 199px);
+  display: inline-block;
+  background-color: #fff;
+  text-align: center;
+}
+
+.session-expired h4 {
+  padding: 28px 16px 9px;
+  background-color: #ebf1fc;
+  color: #000;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.session-expired p { padding: 10px 50px 24px; }
+
+.session-expired a {
+  padding: 11px 14px;
+  margin-bottom: 33px;
+  background-color: #3b5998;
+  color: #fff;
+  font: 700 15px / 16px 'Open Sans';
+  text-transform: uppercase;
+}
+/* session expired dialog ends here*/
+
+.submit-wrapper { position: relative; }
+
+.submit-wrapper .error { 
+  right: 0; 
+  text-transform: none;
+}
+
+.proj-date .error { text-transform: none; }
+
+@media screen and (min-width: 1370px) { 
+  .wrap-project .estimate-plan .estimate-span { padding-right: 9.8% }
+
+  .wrap-project .estimate-plan .planning-span { padding-left: 9.6% }
+}
+
 @media screen and (max-width: 1270px) {
   .select-proj select,
   .select-designation select { margin-left: 11px; }
@@ -2158,15 +2299,16 @@ table thead th {
 
   .select-designation .error { left: 35%; }
 
-  .select-proj .error { left: 71px; }
+  .select-proj .error,
+  .select-proj .message { left: 71px; }
 }
 
 @media screen and (max-width: 1162px) {
   .wrap-project .estimate-plan .detail-plan { font-size: 10px; }
 
-  .wrap-project .estimate-plan .estimate-span { padding-right: 1.8% }
+  .wrap-project .estimate-plan .estimate-span { padding-right: 0% }
 
-  .wrap-project .estimate-plan .planning-span { padding-left: 1.6% }
+  .wrap-project .estimate-plan .planning-span { padding-left: 0% }
 
   .estimation-designation-report .tableData th { white-space: normal; }
 
@@ -2177,13 +2319,44 @@ table thead th {
 @media screen and (min-width: 768px) and (max-width: 1024px) {
   .wrap-project .estimate-plan .estimate-span { padding-right: 0; }
 
+  .wrap-project .estimate-plan .detail-plan { font-size: 9px; }
+
   .wrap-project .estimate-plan .planning-span { padding-left: 0; }
 
-  .select-proj .error { left: 23%; }
+  .select-proj .error,
+  .select-proj .message { left: 23%; }
+
+  .timesheet-content .table-timesheet { width: 70%; }
+
+  .timesheet-content .table-timesheet-week { width: 100%; }
+
+  .week-table .head-row th:not(:first-of-type) { width: 10%; }
+
+  .week-table .head-row th:first-of-type { width: 20%; }
+
+  .week-table .head-row th:nth-of-type(4) { width: 13%; }
+
+  .week-table .head-row th a { padding: 14px 14% 13px; }
+
+  .week-table .head-row th:last-of-type { padding: 1%; }
+
+  .total-hrs .design-wrap-container { width: 80%; }
+
+}
+
+@media screen and (orientation: portrait)  and (min-width: 768px) and (max-width: 1024px) {
+  .wrap-project .estimate-plan .detail-plan { font-size: 12px; }
+
+  .wrap-project .estimate-plan .estimate-span {
+    border-right: 0;  
+    margin-bottom: 2px; 
+  }
+
+  .wrap-project .estimate-plan span { display: block; }
+
 }
 
 @media screen and (max-width: 961px) {
-  .total-hrs .design-wrap-container { width: 100%; }
 
   .total-hrs .tableData th { white-space: normal; }
 
@@ -2203,9 +2376,4 @@ table thead th {
   .before-assign th,
   .before-assign td { padding: 1%; }
 
-  .timesheet-content .table-timesheet { width: 80%; }
-
-  .timesheet-content .week-table { width: 100%; }
-
 }
-

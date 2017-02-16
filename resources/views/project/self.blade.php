@@ -42,25 +42,26 @@ $user_name = Session::get('user')[0]['first_name'];
        @for($i=0;$i<count($project_id);$i++)
        <option value="{{$project_id[$i]}}">{{$project_list[$i]->project_name}}</option>
        @endfor
-<?php if ($role_id == 1) {?>
-       <option value ="newProjet" data-toggle="modal" data-target="#create-project">Add New Project</option>
-<?php } ?>
-       <!-- <a href="#FIXME" title="Add New Project" class="addProject" data-toggle="modal" data-target="#create-project">Add New Project</a -->>
-     </select>
-     <p class="error"></p>
-   </div>
-   <div class="select-designation">
-    {!! Html::decode(Form::label('designation','Designation<span class="required">*</span>:')) !!}
-    {!!Form::Select('select_designation',$designation,'null',array('class' => 'form-control', 'id' => 'designation'))!!}
-    <p class="error"></p>
-  </div>
-  <div class="submit cf">
-    {!! Form::submit('Submit',array('class' => 'submit-btn','title' => 'Submit')) !!}
+       <?php if ($role_id == 1) {?>
+         <option value ="newProjet" data-toggle="modal" data-target="#create-project">Add New Project</option>
+         <?php } ?>
+         <!-- <a href="#FIXME" title="Add New Project" class="addProject" data-toggle="modal" data-target="#create-project">Add New Project</a -->>
+       </select>
+       <p class="error"></p>
+       <p class="message"></p>
+     </div>
+     <div class="select-designation">
+      {!! Html::decode(Form::label('designation','Designation<span class="required">*</span>:')) !!}
+      {!!Form::Select('select_designation',$designation,'null',array('class' => 'form-control', 'id' => 'designation'))!!}
+      <p class="error"></p>
+    </div>
+    <div class="submit cf">
+      {!! Form::submit('Submit',array('class' => 'submit-btn','title' => 'Submit')) !!}
 
 
+    </div>
+    <!-- Add New Project Modal Ends Here-->
   </div>
-  <!-- Add New Project Modal Ends Here-->
-</div>
 </div>
 {!! Form::close() !!}
 <!-- container heading for addmyself Ends here -->
@@ -69,6 +70,8 @@ $user_name = Session::get('user')[0]['first_name'];
   <div class="modal-dialog">
     <!-- Modal content Starts Here-->
     <div class="modal-content">
+
+      {!! Form::open(array('id' => 'add-project', 'method' => 'post')) !!}
 
       <!-- Modal Header Starts Here -->
       <div class="modal-header">
@@ -79,11 +82,10 @@ $user_name = Session::get('user')[0]['first_name'];
 
       <!-- Modal Body Starts Here -->
       <div class="modal-body">
-        {!! Form::open(array('url' => 'store_project','id' => 'add-project', 'method' => 'post')) !!}
 
         <div class="form-group cf">
-          {!! Html::decode(Form::label('project_name','Project Name<span class="required">*</span>:')) !!}
-          {!! Form::text('project_name', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
+          {!! Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')) !!}
+          {!! Form::text('project_name1', Input::old('project_name'), array('class' => '','placeholder' =>'Project name')) !!}
           <p class="error"></p>
         </div>
 
@@ -95,26 +97,53 @@ $user_name = Session::get('user')[0]['first_name'];
 
         <div class="form-group cf">
           {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
-          {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
-          <p class="error"></p>
+          <div class="client-type">
+            <input type="radio" name="client" id="new" value="new" checked>
+            <label for="new">new</label>
+            <input type="radio" name="client" id="existing" value="existing">
+            <label for="existing">existing</label>
+          </div>
+          <div class="new-field">
+            {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
+            <p class="error"></p>
+          </div>
+          <div class="existing-field">
+            <select class="existing-client" name="existing_client" id="existing_client">
+              <option value="0">Please select client</option>
+              @foreach($client_name_list as $value)
+              <option value="{{$value}}">{{$value}}</option>
+              @endforeach
+            </select>
+            <p class="error"></p>
+          </div>
         </div>
-      </div>
-      <!-- Modal Body Ends Here -->
 
-      <!-- Modal Footer Starts Here -->
-      <div class="modal-footer">
-        <div class="save-project">
-          {!! Form::submit('Submit')!!}
-        </div>
-      </div>
-      <!-- Modal Footer Ends Here -->
-      {!! Form::close() !!}
+        <div class="form-group cf">
+         {!! Html::decode(Form::label('status_id','Project Status:')) !!}
+         <select class="status_id" name="status_id" >
+           <option value="1">Estimates</option>
+           <option value="2">Live-Projects</option>
+           <option value="3">Live-Ongoing</option>
+         </select>
+       </div>
+       
+     </div>
+     <!-- Modal Body Ends Here -->
 
+     <!-- Modal Footer Starts Here -->
+     <div class="modal-footer">
+      <div class="save-project">
+        {!! Form::submit('Submit')!!}
+      </div>
     </div>
-    <!-- Modal content Starts Here-->
-
+    <!-- Modal Footer Ends Here -->
     {!! Form::close() !!}
+
   </div>
+  <!-- Modal content Starts Here-->
+
+  {!! Form::close() !!}
+</div>
 
 </div>
 <div class="designation-detail">
@@ -213,10 +242,10 @@ $user_name = Session::get('user')[0]['first_name'];
           <th title="Actuals To-Date / Total of Actuals To-Date * 100">
             % of Actuals (Hours, Total)
           </th>
-          <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">
+          <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">
             Actuals / Estimate Ratio
           </th>
-          <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planning Hours)">
+          <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">
             Actuals / Planning Ratio
           </th>
         </tr>
@@ -315,10 +344,10 @@ $user_name = Session::get('user')[0]['first_name'];
         <th title="Actuals To-Date / Total of Actuals To-Date * 100">
           % of Actuals (Hours, Total)
         </th>
-        <th title="Actuals To-Date - (% Adjusted * Estimated Hours) / (% Adjusted * Estimated Hours)">
+        <th title="[Actuals To-Date - (% Adjusted * Estimated Hours)]/ (% Adjusted * Estimated Hours)">
           Actuals / Estimate Ratio
         </th>
-        <th title="Actuals To-Date - (% Adjusted * Planning Hours) / (% Adjusted * Planniing Hours)">
+        <th title="[Actuals To-Date - (% Adjusted * Planning Hours)] / (% Adjusted * Planning Hours)">
           Actuals / Planning Ratio
         </th>
       </tr>
@@ -427,9 +456,14 @@ $user_name = Session::get('user')[0]['first_name'];
     e.preventDefault();
     var desig_index = $('#designation')[0].selectedIndex;
     var project_index = $('#project_name option:selected').val();
-    if(desig_index !=0 && project_index != 0) {
+    if(desig_index !=0 && project_index != 0 && project_index != 'newProjet') {
       $('html, body').animate({
-        scrollTop: $(this).next().offset().top }, 1000);
+        scrollTop: $('.designation-detail').offset().top }, 1000);
+    }
+
+    if(project_index=='newProjet'){
+      $('.designation #project_name').siblings('.message').text('Please select project name');
+      $('.designation #project_name').siblings('.message').show();
     }
 
     var clickValue = $(this).attr('id');
@@ -439,8 +473,6 @@ $user_name = Session::get('user')[0]['first_name'];
     var getProjectName = $('#project_name option:selected').val();
     var value1 = $('#designation').val();
     var url = $('#assign-project').attr('action') + '/' + project_index + '/' + value1;
-    $('html, body').animate({
-        scrollTop: $('.designation-detail').offset().top }, 1000);
     $.ajax({
       type : 'post',
       url : url,
@@ -450,7 +482,6 @@ $user_name = Session::get('user')[0]['first_name'];
         "_token": "{{ csrf_token() }}"
       },
       success: function(data) {
-        
         $('table').find('.employee').remove();
         $('.post-table-body span').empty();
         var testing  = testObj.init(data);
@@ -459,18 +490,19 @@ $user_name = Session::get('user')[0]['first_name'];
           var row = '<tr class="employee">'+
           '<td>'+ data.name[i] +'</td>'+
           '<td>'+ data.projects[i].required_hrs +'%'+'</td>'+
-          '<td>'+testing.Adjusted[i]+"%"+'</td>'+
+          '<td>'+Number(testing.Adjusted[i]).toFixed(2)+"%"+'</td>'+
           '<td>'+testing.adjustedEstimation[i]+'</td>'+
           '<td>'+testing.adjustedPlanning[i]+'</td>'+
           '<td>'+Number(data.timesheet_hrs[i].timesheet_hrs).toFixed(2)+'</td>'+
-          '<td>'+testing.actualHours[i]+"%"+'</td>'+
+          '<td>'+Number(testing.actualHours[i]).toFixed(2)+"%"+'</td>'+
           '<td>'+Number(testing.actualEstimationRatio[i]).toFixed(2)+"%"+'</td>'+
-          '<td>'+testing.actualPlanningRatio[i]+"%"+'</td>'
+          '<td>'+Number(testing.actualPlanningRatio[i]).toFixed(2)+"%"+'</td>'
           '</tr>';
           $('.table-body tr').eq(-2).before(row);
         }
         $('.appHours').val(Number(data.hrs).toFixed(2));
         $('.PostAppHours').val(Number(data.plan_hrs).toFixed(2));
+        $('.actualAppHours').val(Number(data.actual_hrs).toFixed(2));
         $('.pre-self-total').text((testing.sum).toFixed(2) + "%");
         $('.pre-adjusted-total').text(Number(testing.gettotAdjusted).toFixed(2) + "%");
         $('.pre-estimate-total').text(testing.gettotEstimation.toFixed(2));
@@ -496,7 +528,12 @@ $user_name = Session::get('user')[0]['first_name'];
 // project_hrs functionality starts here
 $("#project_name").on('change',function()
 {
-$('.percentHoursNeed').val("0.00");
+  $('.percentHoursNeed').val("0.00");
+  var project_index = $('#project_name option:selected').val();
+  if(project_index != 'newProjet'){
+    $('.designation #project_name').siblings('.message').text('');
+    $('.designation #project_name').siblings('.message').hide();
+  }
 });
 $('#project_hrs').on('submit', function(e) {
   e.preventDefault();
@@ -504,68 +541,68 @@ $('#project_hrs').on('submit', function(e) {
   var planninghrs=Number($(".PostAppHours").val());
   var estimationhrs=Number($(".appHours").val());
   
-    $('.post-table-body').find('.employee').remove();
-    var clickValue = $(this).attr('id');
-    var object = new addOnProjectAfterAssistment();
-    var userName = " <?php echo $user_name?>";
-    var getProjectName = $('#project_name').val();
+  $('.post-table-body').find('.employee').remove();
+  var clickValue = $(this).attr('id');
+  var object = new addOnProjectAfterAssistment();
+  var userName = " <?php echo $user_name?>";
+  var getProjectName = $('#project_name').val();
 
-    var value1 = $('#designation').val();
-    var hrs = $('.percentHoursNeed').val();
-    if(hrs.length==1)
-$('.req_hrs').val("0.00");
-else
+  var value1 = $('#designation').val();
+  var hrs = $('.percentHoursNeed').val();
+  if(hrs.length==1)
+    $('.req_hrs').val("0.00");
+  else
     $('.req_hrs').val(hrs);
-    var url = $('#project_hrs').attr('action') + '/' + getProjectName + '/' + value1 + '/' + hrs;
+  var url = $('#project_hrs').attr('action') + '/' + getProjectName + '/' + value1 + '/' + hrs;
 
-    $.ajax({
-      type : 'get',
-      url : url,
-      data : {
-        'name':getProjectName,
-        'id':value1,
-        'hrs':hrs,
-        'user_name':userName,
-        "_token": "{{ csrf_token() }}"
-      },
-      success:function(data){
-        var currentName;
-        var getNewUserData = object.init(data);
-        for (var i = 0; i < data.name.length; i++) {
-          var row = '<tr class="employee">'+
-          '<td>'+ data.name[i] +'</td>'+
-          '<td>'+ data.projects[i].required_hrs +'%'+'</td>'+
-          '<td>'+object.Adjusted[i]+"%"+'</td>'+
-          '<td>'+object.adjustedEstimation[i]+'</td>'+
-          '<td>'+object.adjustedPlanning[i]+'</td>'+
-          '<td>'+Number(data.timesheet_hrs[i].timesheet_hrs).toFixed(2)+'</td>'+
-          '<td>'+Number(object.actualHours[i]).toFixed(2)+"%"+'</td>'+
-          '<td>'+Number(object.actualEstimationRatio[i]).toFixed(2)+"%"+'</td>'+
-          '<td>'+Number(object.actualPlanningRatio[i]).toFixed(2)+"%"+'</td>'
-          '</tr>';
-          $('.post-table-body tr').eq(-2).before(row);
-        }
-        $('.post-self-total').text(object.sum.toFixed(2) + "%");
-        $('.post-adjusted-total').text(Number(object.gettotAdjusted).toFixed(2) + "%");
-        $('.post-estimate-total').text(object.gettotEstimation.toFixed(2));
-        $('.post-planig-total').text(object.gettotPlanning.toFixed(2));
-        $('.post-actual-total').text(Number(object.gettotAcualToDate).toFixed(2));
-        $('.post-actual-percent-total').text(Number(object.getactualTotalHours).toFixed(2) + "%");
-        $('.post-estimate-ratio-total').text(Number(object.getactualEstimaionRatio).toFixed(2) + "%");
-        $('.post-planning-ratio-total').text(Number(object.getactualPlanningRatio).toFixed(2) + "%");
-
-        $('.post-remaining-assign-total').text(Number(object.remainingSelfAssignedTotal).toFixed(2) + "%");
-        $('.post-remaining-estimation-total').text(Number(object.remainingEstimationTotal).toFixed(2));
-        $('.post-remaining-planning-total').text(Number(object.remainingPlanningTotal).toFixed(2));
+  $.ajax({
+    type : 'get',
+    url : url,
+    data : {
+      'name':getProjectName,
+      'id':value1,
+      'hrs':hrs,
+      'user_name':userName,
+      "_token": "{{ csrf_token() }}"
+    },
+    success:function(data){
+      var currentName;
+      var getNewUserData = object.init(data);
+      for (var i = 0; i < data.name.length; i++) {
+        var row = '<tr class="employee">'+
+        '<td>'+ data.name[i] +'</td>'+
+        '<td>'+ data.projects[i].required_hrs +'%'+'</td>'+
+        '<td>'+Number(object.Adjusted[i]).toFixed(2)+"%"+'</td>'+
+        '<td>'+object.adjustedEstimation[i]+'</td>'+
+        '<td>'+object.adjustedPlanning[i]+'</td>'+
+        '<td>'+Number(data.timesheet_hrs[i].timesheet_hrs).toFixed(2)+'</td>'+
+        '<td>'+Number(object.actualHours[i]).toFixed(2)+"%"+'</td>'+
+        '<td>'+Number(object.actualEstimationRatio[i]).toFixed(2)+"%"+'</td>'+
+        '<td>'+Number(object.actualPlanningRatio[i]).toFixed(2)+"%"+'</td>'
+        '</tr>';
+        $('.post-table-body tr').eq(-2).before(row);
       }
-    });
+      $('.post-self-total').text(object.sum.toFixed(2) + "%");
+      $('.post-adjusted-total').text(Number(object.gettotAdjusted).toFixed(2) + "%");
+      $('.post-estimate-total').text(object.gettotEstimation.toFixed(2));
+      $('.post-planig-total').text(object.gettotPlanning.toFixed(2));
+      $('.post-actual-total').text(Number(object.gettotAcualToDate).toFixed(2));
+      $('.post-actual-percent-total').text(Number(object.getactualTotalHours).toFixed(2) + "%");
+      $('.post-estimate-ratio-total').text(Number(object.getactualEstimaionRatio).toFixed(2) + "%");
+      $('.post-planning-ratio-total').text(Number(object.getactualPlanningRatio).toFixed(2) + "%");
 
-    var hoursNeed_index = $('.hoursNeed').val();
-    var appHours_index = $('.appHours').val();
-    if(hoursNeed_index != ' ' && appHours_index != ' ') {
-      $('html, body').animate({
-        scrollTop: $('.before-self-assign').offset().top }, 1000);
+      $('.post-remaining-assign-total').text(Number(object.remainingSelfAssignedTotal).toFixed(2) + "%");
+      $('.post-remaining-estimation-total').text(Number(object.remainingEstimationTotal).toFixed(2));
+      $('.post-remaining-planning-total').text(Number(object.remainingPlanningTotal).toFixed(2));
     }
+  });
+
+  var hoursNeed_index = $('.hoursNeed').val();
+  var appHours_index = $('.appHours').val();
+  if(hoursNeed_index != ' ' && appHours_index != ' ') {
+    $('html, body').animate({
+      scrollTop: $('.before-self-assign').offset().top }, 1000);
+  }
   
 });
 
@@ -577,6 +614,83 @@ $(document).on("click", '#project_name', function () {
   }
 });
 // project_hrs functionality Ends here
-</script>
-@stop
 
+var blurHappened = false;
+
+$('#project_name1').on('blur', function(e){
+ if (blurHappened)
+ {
+  blurHappened = false;
+}
+else 
+{
+  e.preventDefault();
+  var project_name=$("#project_name1").val();
+  $.ajax({
+   type : 'get',
+   url : '/duplicate_project',
+   data : {'project_name':project_name},
+   success : function(data) {
+     console.log('data', data);
+     if(data.duplicate_project_status==1){
+      $('#project_name1').siblings('.error').text('Entered project name already exist');
+      $('#project_name1').siblings('.error').show();
+    }
+    else{
+     console.log('no message')
+   }
+ }
+});
+}
+
+});
+
+$('#add-project').on('submit',function(e) {
+  e.preventDefault();
+  blurHappened = true;
+  var project_name=$("#project_name1").val();
+  var project_code=$("#project_code").val();
+  var iserror = 0;
+
+  if($('#new').is(':checked')){
+    $('#existing_client').siblings('.error').text('');
+    client_name=$("#client_name").val();
+  }else {
+    $('#client_name').siblings('.error').text('');
+    client_name=$("#existing_client").val();
+  }
+
+  var project_status=$(".status_id").val();
+
+  $(".error").each(function(){
+    if ($(this).text().trim().length) {
+     iserror++;
+   }
+ });
+  console.log('iserror', iserror);
+
+  if(iserror > 0 || client_name == 0){
+   e.preventDefault();
+ }
+ else{
+  $.ajax({
+    type:'post',
+    url:'/project_info',
+    data:{'project_name':project_name,'project_code':project_code,'client_name':client_name,'status_id':project_status},
+    success:function(data)
+    { 
+      if(data.duplicate_project_status==1){
+        $('#project_name1').siblings('.error').text('Entered project name already exist');
+        $('#project_name1').siblings('.error').show();
+      }
+      else {
+        location.href='/store_project';
+      }
+    }
+  });
+}
+});
+
+</script>
+</div>
+@stop

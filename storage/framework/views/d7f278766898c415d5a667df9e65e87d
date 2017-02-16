@@ -5,7 +5,7 @@ function getminutes($date_array)
   foreach($date_array as $new_date)
   {
 
-   
+
     $new_date = number_format((float)$new_date,2);
     $time->add(new DateInterval("PT".str_replace(".","H",$new_date."M")));  
   }
@@ -78,7 +78,7 @@ $today = date('Y-m-d');
    {
      foreach($projects as $project_key=>$project_value)
      {
-       
+
       foreach($project_value->project_details as $key=>$value)
       {
         if(count($value)>0)
@@ -114,7 +114,8 @@ $today = date('Y-m-d');
 }
 
 ?>
-<input type=" text" name="current_date" value="<?php echo e($prev_date); ?> - <?php echo e($end_date); ?>" class="border-style input-read-only" disabled>
+<input type="hidden" name="current_date" value="<?php echo e($prev_date); ?> - <?php echo e($end_date); ?>" class="border-style input-read-only" disabled>
+<span class="border-style input-read-only"><?php echo e($prev_date); ?> - <?php echo e($end_date); ?></span>
 
 <!-- Timesheet header right starts here -->
 <div class="timesheet-header-right">
@@ -128,7 +129,7 @@ $today = date('Y-m-d');
         <a href="/time-management/week/<?php echo e($next_date); ?>" class="next" title="Next">Next</a>
       </div>
 
-      <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date">
+      <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date" title="Datepicker">
 
       <div class="views">
         <a href="/time-management/<?php echo e($today); ?>" title="Day View" class="day">Day</a>
@@ -173,7 +174,7 @@ $today = date('Y-m-d');
         <?php foreach($projects as $project): ?>
         <?php $week_total_hrs = 0; ?>
         <tr>
-         <th>
+         <th class="break-words">
            <?php echo e($project->project_name); ?> 
          </th>
          <?php $total_hrs = array();?>

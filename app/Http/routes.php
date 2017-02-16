@@ -20,6 +20,7 @@ Route::get('/login',[
 Route::post('/gmaillogin','Login@gmaillogin');
 Route::get('/logout', 'Login@logout');
 Route::post('/change','Login@change_password');
+Route::get('/session_timeout','Login@logout');
 /*Route::post('test','EstimattionController@test');
 Route::get('test',function(){
 	return view('test');
@@ -38,6 +39,8 @@ Route::get('/edit-project', 'ProjectController@editProject');
 Route::post('/delete-project/{id}', 'ProjectController@deleteProject');
 Route::post('/archive-project/{id}', 'ProjectController@archiveProject');
 Route::post('/test','EstimattionController@test');
+Route::get('/duplicate_project','ProjectController@duplicateProject');
+
 /************ Admin tab *************/
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin-edit-user', 'AdminController@edit');
@@ -55,7 +58,7 @@ Route::get('/addself/project-details/{name?}/{id?}/{hrs?}', 'MyselfProjectContro
 Route::post('/store-self-project/{id?}', 'MyselfProjectController@store');
 Route::post('/change_project_status', 'ProjectController@changeStatus');
 Route::get('edit_project_info', 'ProjectController@updateProject');
-
+Route::post('/project_info', 'ProjectController@storeProject');
 
 /************ Project Designation tab *************/
 Route::get('/project-designation/{id?}', 'ProjectDesignationController@index');
@@ -75,8 +78,8 @@ Route::post('/time-management/getmyself_project_designation/{project_id}','TimeT
 /**
  * Admin can see Users timesheet routes
  */
+Route::get('/time-management/{date}/{id}/{project_id?}', ['as' => 'day-time', 'uses' => 'TimeTrackerController@getUserTimesheet']);
 
 Route::get('/time-management/week/{date}/{id}/{project_id?}','TimeTrackerController@getUserWeekTimesheet');
-Route::get('/time-management/{date}/{id}/{project_id?}', ['as' => 'day-time', 'uses' => 'TimeTrackerController@getUserTimesheet']);
 
 ?>

@@ -118,7 +118,8 @@ $today = date('Y-m-d');
   }
 
   ?>
-  <input type=" text" name="current_date" value="{{$prev_date}} - {{$end_date}}" class="border-style input-read-only" disabled>
+  <input type="hidden" name="current_date" value="{{$prev_date}} - {{$end_date}}" class="border-style input-read-only" disabled>
+  <span class="border-style input-read-only">{{$prev_date}} - {{$end_date}}</span>
 
   <!-- Timesheet header right starts here -->
   <div class="timesheet-header-right">
@@ -132,7 +133,7 @@ $today = date('Y-m-d');
           <a href="/time-management/week/{{$next_date}}/{{$id}}/{{$unique_project_id}}" class="next" title="Next">Next</a>
         </div>
 
-        <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date">
+        <input class="date-pick" placeholder="DD/MM/YYYY" readonly="readonly" name="joining_date" type="text" value="" id="joining_date" title="Datepicker">
 
         <div class="views">
           <a href="/time-management/{{$today}}/{{$id}}/{{$unique_project_id}}" title="Day View" class="day">Day</a>
@@ -181,7 +182,7 @@ $today = date('Y-m-d');
             @foreach($projects as $project)
             <?php $week_total_hrs = 0; ?>
             <tr>
-             <th>
+             <th class="break-words">
                {{$project->project_name}} 
              </th>
              <?php $total_hrs = array();?>

@@ -36,11 +36,11 @@ class MyselfProjectController extends Controller {
 			// Extract all the details of the projects whose estimation is done.
 			$getData         = $project_detail->get();
 			
-			$project_id      = $add_project->lists('project_id')->toArray();
+			$project_id      = $add_project->where('is_archived','0')->where('is_deleted','0')->lists('project_id')->toArray();
 			$project_list    = array();
 			$remove_project=array();
-
 			foreach ($project_id as $key => $value) {
+
 				$add_project_name = $add_project->select('project_name')->where('project_id', $value)->get()->first();
 				/*$add_project_id   = $add_project->select('project_id')->where('project_id', $value)->get()->first()->toArray();
 				echo json_encode($add_project_id);
@@ -63,13 +63,11 @@ class MyselfProjectController extends Controller {
 				
 				array_push($list_name, $value->project_name);
 			}
-			/*echo json_encode($project_list[0]);
-			
-*/
+		
 			$users_info  = $add_project->with('ProjectDetail')->get();
 			$designation = array('' => 'Choose your Designation/Role on this Project...')+ProjectDesignation::lists('d_name', 'd_id')->toArray();
-			
-			return view('project/self', compact('designation', 'list_name',  'project_id', 'project_list'));
+			$client_name_list=DB::table('add_projects')->distinct('client_name')->select('client_name')->lists('client_name');
+			return view('project/self', compact('designation', 'list_name',  'project_id', 'project_list','client_name_list'));
 			//	return $designation;
 		} else {
 			return Redirect::to('/');
@@ -243,7 +241,8 @@ class MyselfProjectController extends Controller {
 			$estimate_hrs = PhaseIndividualResource::select('actual_hrs')->where('project_id', $name)->where('d_id', $id)->where('ph_id', '<', 8)->get();
 			$planning_hrs = PlanPhaseResource::select('actual_hrs')->where('project_id', $name)->where('d_id', $id)->where('ph_id', '<', 8)->get();
 			$actual_hrs	=DayTime::select(DB::raw('SUM(hrs_locked) as actual_hrs'))
-			->where('project_name',$name)->get();
+			->where('project_name',$name)->where('d_id',$id)->get();
+
 			if($actual_hrs[0]->actual_hrs==null)
 				$actual_hrs=0;
 			else
@@ -297,6 +296,7 @@ class MyselfProjectController extends Controller {
 			return response()->json([
 				'hrs'           => $estimate_add,
 				'plan_hrs'      => $planning_add,
+				'actual_hrs'      => $actual_hrs,
 				'projects'      => $projects,
 				'name'          => $name_array,
 				'timesheet_hrs' => $timesheet_hrs,

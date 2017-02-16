@@ -506,6 +506,8 @@ var addOnProject = function(value) {
       if (key === 'projects') {
         data[key].forEach(function(element,index) {
           calculation = (Number(((element.required_hrs) / getTotal)*100)).toFixed(2);
+          if(isNaN(calculation))
+            calculation=0.00;
           getCalculation.push(calculation);
           obj.Adjusted = getCalculation;
         });
@@ -604,10 +606,14 @@ var addOnProject = function(value) {
     estimationRatio_Array = [];
     for (var i = 0; i < timesheet.length; i++) {
       calculation = (Number(((timesheet[i].timesheet_hrs)- adjustedData[i])/adjustedData[i])*100).toFixed(2);
+      if(calculation=='undefined' || isNaN(calculation) || calculation =='Infinity')
+      {
+        calculation=0.00;
+      }
       estimationRatio_Array.push(calculation);
       obj.actualEstimationRatio = estimationRatio_Array;
       obj.getactualEstimaionRatio = (Number((obj.gettotAcualToDate-obj.gettotEstimation)/obj.gettotEstimation)*100).toFixed(2);
-      if(obj.getactualEstimaionRatio=='undefined' || isNaN(obj.getactualEstimaionRatio))
+      if(obj.getactualEstimaionRatio=='undefined' || isNaN(obj.getactualEstimaionRatio) || obj.getactualEstimaionRatio == 'Infinity')
         obj.getactualEstimaionRatio=0.00;
     }
 
@@ -622,9 +628,17 @@ var addOnProject = function(value) {
 
     for( var i = 0 ; i < timesheet.length; i++ ) {
       calculation = (Number(((timesheet[i].timesheet_hrs)- adjustedPlanningData[i])/adjustedPlanningData[i])*100).toFixed(2);
+      if(calculation=='undefined' || isNaN(calculation) || calculation =='Infinity')
+      {
+        calculation=0.00;
+      }
       planningRatio_Array.push(calculation);
       obj.actualPlanningRatio = planningRatio_Array;
       obj.getactualPlanningRatio = (Number((obj.gettotAcualToDate-obj.gettotPlanning)/obj.gettotPlanning)*100).toFixed(2);
+      if(obj.getactualPlanningRatio=='undefined' || isNaN(obj.getactualPlanningRatio) || obj.getactualPlanningRatio == 'Infinity')
+      {
+        obj.getactualPlanningRatio=0.00;
+      }
     }
     return obj.getactualPlanningRatio;
   }
@@ -957,3 +971,26 @@ function dayTotalHrs(n,classname){
 // return intf;
 // }
 
+function validateDate(date,mindate,thisEle){
+  thisEle.siblings('.error').text('');
+  thisEle.siblings('.error').hide();
+  var reg = /^(?:(?:31(\/)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/)(?:0?[1,3-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/;
+  var currentDate = new Date(date.split("/").reverse().join("/"));
+  var valueEntered = Date.parse(currentDate);
+  if(!date.match(reg)){
+    thisEle.siblings('.error').text('Please enter a valid date');
+    thisEle.siblings('.error').show();
+  }
+  else if(mindate!=0){
+    var minDate = new Date(mindate.split("/").reverse().join("/"));
+    var minEntered = Date.parse(minDate);
+    if(valueEntered < minEntered){
+     thisEle.siblings('.error').text('Please check the min date');
+     thisEle.siblings('.error').show();
+   }
+ }
+ else {
+  thisEle.siblings('.error').text('');
+  thisEle.siblings('.error').hide();
+}
+}

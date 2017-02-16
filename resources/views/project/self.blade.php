@@ -606,7 +606,7 @@ $('#project_hrs').on('submit', function(e) {
   
 });
 
-$('#project_name').on("click", function (e) {
+$('#project_name').on("focus click", function (e) {
   var data = $(this).val();
   console.log('data', data);
   if (data == "newProjet") {
@@ -621,6 +621,10 @@ $('#project_name').on("click", function (e) {
       if(data==0){
         $(this).siblings('.error').text('Please select project name');
         $(this).siblings('.error').show();
+      }
+      else{
+        $(this).siblings('.error').text('');
+        $(this).siblings('.error').hide();
       }
     });
   }

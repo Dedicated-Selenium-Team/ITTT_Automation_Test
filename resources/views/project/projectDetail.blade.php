@@ -250,7 +250,7 @@
              <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
              <option value="3_{{$my_allproject->project_id }}" disabled>Live-Ongoing</option>
              <option value="4_{{$my_allproject->project_id }}" disabled>Completed</option>
-              <?php } else if($my_allproject->status_id == 5) { ?>
+             <?php } else if($my_allproject->status_id == 5) { ?>
              <option value="0">Please Select</option>
              <option value="1_{{$my_allproject->project_id }}">Estimates</option>
              <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
@@ -817,7 +817,7 @@
   });
 });*/
 
- $(".proj_status").change(function(){
+$(".proj_status").change(function(){
   var status=($(this).val()).split("_");
   var project_status=status[0];
   var project_id=status[1];

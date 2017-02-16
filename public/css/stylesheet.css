@@ -1013,6 +1013,20 @@ table thead th {
     text-transform: uppercase;
   }
 
+  .modal-content .form-group select,
+  .modal-content .form-group input:not([type="radio"]),
+  .modal-content .form-group textarea {
+    height: 40px;
+    padding: 7px 15px 8px;
+    border: 1px solid #cfcfcf;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    background-color: #fff;
+    color: #565656;
+    font: 400 15px / 19px 'Open Sans';
+  }
+
   .required {
     position: relative;
     top: -.3em;
@@ -1021,20 +1035,6 @@ table thead th {
     line-height: 0;
     vertical-align: baseline;
   }
-
-.modal-content .form-group select,
-.modal-content .form-group input:not([type="radio"]),
-.modal-content .form-group textarea {
-  height: 40px;
-  padding: 7px 15px 8px;
-  border: 1px solid #cfcfcf;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  background-color: #fff;
-  color: #565656;
-  font: 400 15px / 19px 'Open Sans';
-}
 
   .modal-content .form-group select,
   .designation select { color: #a9a9a9; }

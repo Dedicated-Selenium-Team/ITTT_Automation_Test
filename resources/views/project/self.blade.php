@@ -589,13 +589,18 @@ $('#project_hrs').on('submit', function(e) {
   
 });
 
-$(document).on("click", '#project_name', function () {
+$(document).on("click", '#project_name', function (e) {
   var data = $(this).val();
   console.log('data', data);
   if (data == "newProjet") {
     $("#create-project").modal('show');
+    $(this).val(0);
+    $(this).removeClass('noValue');
   }
 });
+
+
+
 // project_hrs functionality Ends here
 
 var blurHappened = false;

@@ -1815,7 +1815,7 @@ table thead th {
 .wrap-project {
   width: 16.95%;
   border: 1px solid #3b5998;
-  margin: 0 3.81% 40px 0;
+  margin: 0 1.52% 40px;
   display: inline-block;
   text-align: center;
   text-transform: uppercase;
@@ -1823,7 +1823,7 @@ table thead th {
   vertical-align: top;
 }
 
-.wrap-project:nth-of-type(5n) { margin-right: 0; }
+/*.wrap-project:nth-of-type(5n) { margin-right: 0; }*/
 
 .wrap-project .count_name {
   box-sizing: content-box;
@@ -1927,7 +1927,7 @@ table thead th {
 
 .all-prj .ui-tabs-nav li { margin-right: .6em; }
 
-.all-prj .ui-tabs-panel { padding: 40px 15px 0; }
+.all-prj .ui-tabs-panel { padding-top: 40px; }
 
 .all-prj .ui-state-active { 
   border: 1px solid #3b5998;

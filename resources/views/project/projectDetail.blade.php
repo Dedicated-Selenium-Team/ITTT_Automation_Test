@@ -76,7 +76,7 @@
           <div class="existing-field">
             <select class="existing-client" name="existing_client" id="existing_client">
               <option value="0">Please select client</option>
-               @foreach($client_name_list as $value)
+              @foreach($client_name_list as $value)
               <option value="{{$value}}">{{$value}}</option>
               @endforeach
               
@@ -174,13 +174,15 @@
 ?>
 <div class="timesheet-content all-projects-content">
   <div class="total-projects cf">
-    <h2 class="project-count">Total Number of Projects: {{ $count }}</h2>
-    <h2 class="project-count">total Number of Projects assigned: {{ count($myproject) }}</h2>
-    <!--<input type='text' id='search_project' class="form-control search-function project-search" placeholder="Search Project">-->
+    <div>
+      <h2 class="project-count">Total Number of Projects: {{ $count }}</h2>
+      <h2 class="project-count">total Number of Projects assigned: {{ count($myproject) }}</h2>
+    </div>
+    <input type='text' id='search_project' class="form-control search-function project-search" placeholder="Search Project">
   </div>
 
   <div class="all-prj connectedSortable" id="tabs">
-    <ul>
+    <ul class="tab-filters">
       <li><a href="#tabs-1">All Projects</a></li>
       <li><a href="#tabs-2">Estimates</a></li>
       <li><a href="#tabs-3">Live-Projects</a></li>
@@ -406,7 +408,7 @@
 
 </div>
 
-<div id="tabs-2">
+<div id="tabs-2" class="grid">
   <?php if(count($estimates_project) == 0) {?>
   <p class="noproject-message">There are no projects to show.</p>
   <?php } ?>
@@ -477,7 +479,7 @@
   </div>
   @endforeach
 </div>
-<div id="tabs-3">
+<div id="tabs-3" class="grid">
 
  <?php if(count($live_project) == 0) {?>
  <p class="noproject-message">There are no projects to show.</p>
@@ -549,7 +551,7 @@
 @endforeach
 
 </div>
-<div id="tabs-4">
+<div id="tabs-4" class="grid">
   <?php if(count($live_ongoing_project) == 0) {?>
   <p class="noproject-message">There are no projects to show.</p>
   <?php } ?>
@@ -617,7 +619,7 @@
   </div>
   @endforeach
 </div>
-<div id="tabs-5">
+<div id="tabs-5" class="grid">
   <?php if(count($completed_project) == 0) {?>
   <p class="noproject-message">There are no projects to show.</p>
   <?php } ?>
@@ -680,7 +682,7 @@
 </div>
 @endforeach
 </div>
-<div id="tabs-6">
+<div id="tabs-6" class="grid">
   <?php if(count($hold_project) == 0) {?>
   <p class="noproject-message">There are no projects to show.</p>
   <?php } ?>
@@ -803,20 +805,45 @@
   }
 });
 
-/* $(window).load(function() {
-   var grid = $('.grid').isotope({});
-   $("#search_project").keyup(function(){
-    var searchstring=$("#search_project").val().toUpperCase();
-    var divtosearch=$(".wrap-project");
-    grid.isotope({
-      filter: function( divtosearch ) {
-        return ($(".pro_name",this).html().indexOf(searchstring)>-1)
+ /***** search functionality started **********/
+ $(document).ready(function(){
+  $("#search_project").keyup(function(){
+
+    // Retrieve the input field text and reset the count to zero
+    var filter = $(this).val(), count = 0;
+
+      // Loop through the project list
+      var activeDiv = $('.ui-tabs-active a').attr('href');
+      $(activeDiv).find('.wrap-project').each(function(){
+
+          // If the list item does not contain the text phrase hide it
+          if ($(this).find('.pro_name').text().search(new RegExp(filter, "i")) < 0) {
+            $(this).hide();
+
+          // Show the list item if the phrase matches and increase the count by 1
+        } else {
+          $(this).show();
+          count++;
+        }
+      });
+
+      if(count==0){
+        // Check if the error message not already exist, then show an error
+        if ( $(activeDiv).children('.noproject-message').length <= 0 ) {
+          $(activeDiv).append('<p class="noproject-message no-pro-msg">No search result found</p>');
+        }
+      }
+      else{
+        $(activeDiv).children(".noproject-message").remove();
       }
     });
+  $('.tab-filters a').click(function(){
+    $("#search_project").trigger('keyup');
   });
-});*/
+});
+ /***** search functionality completed **********/
 
-$(".proj_status").change(function(){
+ $(".proj_status").change(function(){
   var status=($(this).val()).split("_");
   var project_status=status[0];
   var project_id=status[1];

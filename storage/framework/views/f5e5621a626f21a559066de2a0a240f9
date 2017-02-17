@@ -820,99 +820,45 @@
   }
 });
 
-/* $(window).load(function() {
-   var grid = $('.grid').isotope({});
-   $("#search_project").keyup(function(){
-    var searchstring=$("#search_project").val().toUpperCase();
-    var divtosearch=$(".wrap-project");
-    grid.isotope({
-      filter: function( divtosearch ) {
-        return ($(".pro_name",this).html().indexOf(searchstring)>-1)
-      }
-    });
-  });
-});*/
-
-/***** search functionality started**********/
-// $(window).load(function() {
-//  var grid = $('.grid');
-//  grid.css('min-height', '101px');
-
-//  $("#search_project").keyup(function(){
-//   var activeDiv = $('.ui-tabs-active a').attr('href');
-//   console.log('activeDiv', activeDiv);
-//   var checkgrid= $(activeDiv).isotope();
-//   try {
-//    var searchstring=$("#search_project").val().toUpperCase();
-//    var divtosearch=$(".wrap-project");
-//    checkgrid.isotope({
-//      filter: function( divtosearch ) {
-//       return ($(".pro_name",this).html().indexOf(searchstring)>-1)
-//     }
-
-//   });
-//  }
-//  catch(error)
-//  {}
-//  checkgrid.isotope( 'on', 'layoutComplete', function(isoInstance, laidOutItems) {
-//   console.log(isoInstance.length);
-//   if(isoInstance.length==0){
-//     if ( $(activeDiv).children('.noproject-message').length <= 0 ) {
-//       console.log('error message');
-//       $(activeDiv).append('<p class="noproject-message no-pro-msg">No search result found</p>');
-//     }
-//   }
-//   else
-//    $(activeDiv).children(".noproject-message").remove();   
-// });
-// });
-//  $('.tab-filters a').click(function(){
-//   $("#search_project").trigger('keyup');
-// });
-// });
-
-/***** search functionality completed**********/
-
-$(document).ready(function(){
+ /***** search functionality started **********/
+ $(document).ready(function(){
   $("#search_project").keyup(function(){
 
-        // Retrieve the input field text and reset the count to zero
-        var filter = $(this).val(), count = 0;
+    // Retrieve the input field text and reset the count to zero
+    var filter = $(this).val(), count = 0;
 
-        // Loop through the comment list
-        var activeDiv = $('.ui-tabs-active a').attr('href');
-        $(activeDiv).find('.wrap-project').each(function(){
+      // Loop through the project list
+      var activeDiv = $('.ui-tabs-active a').attr('href');
+      $(activeDiv).find('.wrap-project').each(function(){
 
-            // If the list item does not contain the text phrase fade it out
-            if ($(this).find('.pro_name').text().search(new RegExp(filter, "i")) < 0) {
-              $(this).hide();
+          // If the list item does not contain the text phrase hide it
+          if ($(this).find('.pro_name').text().search(new RegExp(filter, "i")) < 0) {
+            $(this).hide();
 
-            // Show the list item if the phrase matches and increase the count by 1
-          } else {
-            $(this).show();
-            count++;
-          }
-        });
-
-        if(count==0){
-          if ( $(activeDiv).children('.noproject-message').length <= 0 ) {
-            $(activeDiv).append('<p class="noproject-message no-pro-msg">No search result found</p>');
-          }
+          // Show the list item if the phrase matches and increase the count by 1
+        } else {
+          $(this).show();
+          count++;
         }
-        else{
-          $(activeDiv).children(".noproject-message").remove();
-        }
-
-        // Update the count
-        var numberItems = count;
-        // console.log("Number of Comments = "+count);
       });
+
+      if(count==0){
+        // Check if the error message not already exist, then show an error
+        if ( $(activeDiv).children('.noproject-message').length <= 0 ) {
+          $(activeDiv).append('<p class="noproject-message no-pro-msg">No search result found</p>');
+        }
+      }
+      else{
+        $(activeDiv).children(".noproject-message").remove();
+      }
+    });
+  $('.tab-filters a').click(function(){
+    $("#search_project").trigger('keyup');
+  });
 });
+ /***** search functionality completed **********/
 
-
-/////////////////////////////////////////////////////////
-
-$(".proj_status").change(function(){
+ $(".proj_status").change(function(){
   var status=($(this).val()).split("_");
   var project_status=status[0];
   var project_id=status[1];

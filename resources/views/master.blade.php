@@ -32,7 +32,6 @@ header("Pragma: no-cache");
 	</script>
 	<link href="//cdn.datatables.net/plug-ins/1.10.13/features/searchHighlight/dataTables.searchHighlight.css" rel="stylesheet" />
 
-	<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
 	<!-- Current JS -->
 	<script src="{{ asset('js/object.js') }}"></script>
 	<script src="{{ asset('js/retrive.js') }}"></script>

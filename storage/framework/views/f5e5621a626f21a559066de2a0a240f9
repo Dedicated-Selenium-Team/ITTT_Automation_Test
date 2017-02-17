@@ -192,8 +192,10 @@
 ?>
 <div class="timesheet-content all-projects-content">
   <div class="total-projects cf">
-    <h2 class="project-count">Total Number of Projects: <?php echo e($count); ?></h2>
-    <h2 class="project-count">total Number of Projects assigned: <?php echo e(count($myproject)); ?></h2>
+    <div>
+      <h2 class="project-count">Total Number of Projects: <?php echo e($count); ?></h2>
+      <h2 class="project-count">total Number of Projects assigned: <?php echo e(count($myproject)); ?></h2>
+    </div> 
     <input type='text' id='search_project' class="form-control search-function project-search" placeholder="Search Project">
   </div>
 

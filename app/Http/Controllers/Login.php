@@ -98,7 +98,7 @@ public function index($error = null)
  }
 else {
 
-  $user_name =  User::select('username')->where('username', $userdata['username'])->get();
+  $user_name =  User::select('username')->where('username', $userdata['username'])->where('status',1)->get();
   if(count($user_name)>0){
     $error = "Email id or password does not match";
   } 

@@ -606,13 +606,29 @@ $('#project_hrs').on('submit', function(e) {
   
 });
 
-$(document).on("click", '#project_name', function () {
+$('#project_name').on("focus click", function (e) {
   var data = $(this).val();
-  console.log('data', data);
   if (data == "newProjet") {
     $("#create-project").modal('show');
+    $(this).val(0);
+    $(this).removeClass('noValue');
+    e.stopImmediatePropagation();
+    $(this).off("blur");
+  }
+  else{
+    $(this).on("blur",function(){
+      if(data==0){
+        $(this).siblings('.error').text('Please select project name');
+        $(this).siblings('.error').show();
+      }
+      else{
+        $(this).siblings('.error').text('');
+        $(this).siblings('.error').hide();
+      }
+    });
   }
 });
+
 // project_hrs functionality Ends here
 
 var blurHappened = false;

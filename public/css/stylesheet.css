@@ -1989,6 +1989,10 @@ table thead th {
   transform: scale(1.05);
 }
 
+.all-projects-content .search-function { margin-right: 0; }
+
+.total-projects div { display: inline-block; }
+
 /* Add new prject popup starts here */
 .create-new-project .form-group label[for="client_name"],
 .create-new-project .form-group .client-type {

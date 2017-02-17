@@ -235,9 +235,27 @@
         <div class="form-group cf">
           <?php echo Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')); ?>
 
-          <?php echo Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')); ?>
+          <div class="client-type">
+            <input type="radio" name="client" id="new" value="new" checked>
+            <label for="new">new</label>
+            <input type="radio" name="client" id="existing" value="existing">
+            <label for="existing">existing</label>
+          </div>
+          <div class="new-field">
+            <?php echo Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')); ?>
 
-          <p class="error"></p>
+            <p class="error"></p>
+          </div>
+          <div class="existing-field">
+            <select class="existing-client" name="existing_client" id="existing_client">
+              <option value="0">Please select client</option>
+               <?php foreach($client_name_list as $value): ?>
+              <option value="<?php echo e($value); ?>"><?php echo e($value); ?></option>
+              <?php endforeach; ?>
+              <option value="demo">abc</option>
+            </select>
+            <p class="error"></p>
+          </div>
         </div>
 
         <div class="form-group cf">
@@ -585,7 +603,7 @@ $("#project").on('change',function(){
         var comment_text = data.comments;
         var cmnt_replace = comment_text.replace(/\</g, '&lt;');
         var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
-var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
+        var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
         var row1 = '<tr id="time' + data.id + '">'+
         '<td class="break-words">'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
         '<p>' + cmnt_replace1 + '</p>' +'</td>'+
@@ -718,8 +736,29 @@ $('#add-project').on('submit',function(e) {
   blurHappened = true;
   var project_name=$("#project_name1").val();
   var project_code=$("#project_code").val();
-  var client_name=$("#client_name").val();
+  var iserror = 0;
+
+  if($('#new').is(':checked')){
+    $('#existing_client').siblings('.error').text('');
+    client_name=$("#client_name").val();
+  }else {
+    $('#client_name').siblings('.error').text('');
+    client_name=$("#existing_client").val();
+  }
+
   var project_status=$(".status_id").val();
+
+  $(".error").each(function(){
+    if ($(this).text().trim().length) {
+     iserror++;
+   }
+ });
+  console.log('iserror', iserror);
+
+  if(iserror > 0 || client_name == 0){
+   e.preventDefault();
+ }
+ else{
   $.ajax({
     type:'post',
     url:'/project_info',
@@ -735,6 +774,7 @@ $('#add-project').on('submit',function(e) {
       }
     }
   });
+}
 });
 
 </script>

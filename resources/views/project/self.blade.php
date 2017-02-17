@@ -66,7 +66,7 @@ $user_name = Session::get('user')[0]['first_name'];
 {!! Form::close() !!}
 <!-- container heading for addmyself Ends here -->
 <!-- Add New Project Modal Starts Here-->
-<div class="modal fade create-new-project" id="create-project" role="dialog">
+<div class="modal fade create-new-project modal-error-off" id="create-project" role="dialog">
   <div class="modal-dialog">
     <!-- Modal content Starts Here-->
     <div class="modal-content">
@@ -97,8 +97,25 @@ $user_name = Session::get('user')[0]['first_name'];
 
         <div class="form-group cf">
           {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
-          {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
-          <p class="error"></p>
+          <div class="client-type">
+            <input type="radio" name="client" id="new" value="new" checked>
+            <label for="new">new</label>
+            <input type="radio" name="client" id="existing" value="existing">
+            <label for="existing">existing</label>
+          </div>
+          <div class="new-field">
+            {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
+            <p class="error"></p>
+          </div>
+          <div class="existing-field">
+            <select class="existing-client" name="existing_client" id="existing_client">
+              <option value="0">Please select client</option>
+              @foreach($client_name_list as $value)
+              <option value="{{$value}}">{{$value}}</option>
+              @endforeach
+            </select>
+            <p class="error"></p>
+          </div>
         </div>
 
         <div class="form-group cf">
@@ -589,13 +606,29 @@ $('#project_hrs').on('submit', function(e) {
   
 });
 
-$(document).on("click", '#project_name', function () {
+$('#project_name').on("focus click", function (e) {
   var data = $(this).val();
-  console.log('data', data);
   if (data == "newProjet") {
     $("#create-project").modal('show');
+    $(this).val(0);
+    $(this).removeClass('noValue');
+    e.stopImmediatePropagation();
+    $(this).off("blur");
+  }
+  else{
+    $(this).on("blur",function(){
+      if(data==0){
+        $(this).siblings('.error').text('Please select project name');
+        $(this).siblings('.error').show();
+      }
+      else{
+        $(this).siblings('.error').text('');
+        $(this).siblings('.error').hide();
+      }
+    });
   }
 });
+
 // project_hrs functionality Ends here
 
 var blurHappened = false;
@@ -633,8 +666,29 @@ $('#add-project').on('submit',function(e) {
   blurHappened = true;
   var project_name=$("#project_name1").val();
   var project_code=$("#project_code").val();
-  var client_name=$("#client_name").val();
+  var iserror = 0;
+
+  if($('#new').is(':checked')){
+    $('#existing_client').siblings('.error').text('');
+    client_name=$("#client_name").val();
+  }else {
+    $('#client_name').siblings('.error').text('');
+    client_name=$("#existing_client").val();
+  }
+
   var project_status=$(".status_id").val();
+
+  $(".error").each(function(){
+    if ($(this).text().trim().length) {
+     iserror++;
+   }
+ });
+  console.log('iserror', iserror);
+
+  if(iserror > 0 || client_name == 0){
+   e.preventDefault();
+ }
+ else{
   $.ajax({
     type:'post',
     url:'/project_info',
@@ -650,6 +704,7 @@ $('#add-project').on('submit',function(e) {
       }
     }
   });
+}
 });
 
 </script>

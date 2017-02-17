@@ -825,34 +825,37 @@
  $(document).ready(function(){
   $("#search_project").keyup(function(){
 
-        // Retrieve the input field text and reset the count to zero
-        var filter = $(this).val(), count = 0;
+    // Retrieve the input field text and reset the count to zero
+    var filter = $(this).val(), count = 0;
 
-        // Loop through the project list
-        var activeDiv = $('.ui-tabs-active a').attr('href');
-        $(activeDiv).find('.wrap-project').each(function(){
+      // Loop through the project list
+      var activeDiv = $('.ui-tabs-active a').attr('href');
+      $(activeDiv).find('.wrap-project').each(function(){
 
-            // If the list item does not contain the text phrase hide it
-            if ($(this).find('.pro_name').text().search(new RegExp(filter, "i")) < 0) {
-              $(this).hide();
+          // If the list item does not contain the text phrase hide it
+          if ($(this).find('.pro_name').text().search(new RegExp(filter, "i")) < 0) {
+            $(this).hide();
 
-            // Show the list item if the phrase matches and increase the count by 1
-          } else {
-            $(this).show();
-            count++;
-          }
-        });
-
-        if(count==0){
-          // Check if the error message not already exist, then show an error
-          if ( $(activeDiv).children('.noproject-message').length <= 0 ) {
-            $(activeDiv).append('<p class="noproject-message no-pro-msg">No search result found</p>');
-          }
-        }
-        else{
-          $(activeDiv).children(".noproject-message").remove();
+          // Show the list item if the phrase matches and increase the count by 1
+        } else {
+          $(this).show();
+          count++;
         }
       });
+
+      if(count==0){
+        // Check if the error message not already exist, then show an error
+        if ( $(activeDiv).children('.noproject-message').length <= 0 ) {
+          $(activeDiv).append('<p class="noproject-message no-pro-msg">No search result found</p>');
+        }
+      }
+      else{
+        $(activeDiv).children(".noproject-message").remove();
+      }
+    });
+  $('.tab-filters a').click(function(){
+    $("#search_project").trigger('keyup');
+  });
 });
  /***** search functionality completed **********/
 

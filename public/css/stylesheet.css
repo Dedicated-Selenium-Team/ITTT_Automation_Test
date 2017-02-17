@@ -2320,10 +2320,10 @@ table thead th {
 }
 
 .export-functionality span {
-  padding-right: 24px;
+  padding-right: 28px;
   background: url('../images/download.png') no-repeat center right;
   background-size: 20% 100%;
-  color: #0000FF;
+  color: #3b5998;
   cursor: pointer;
   text-transform: uppercase;
 }

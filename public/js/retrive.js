@@ -1161,20 +1161,35 @@ $(document).mouseup(function (e)
   });
 
 // to display download pdf section
-$(document).click(function(event) {
-  var target = $(event.target);
+// $(document).click(function(event) {
+//   var target = $(event.target);
 
-  if (target.parent().attr('class').match(/^export-functionality/)) {
-    $('.export-functionality a').css('display','block');
-  }
-  else {
-    $('.export-functionality a').css('display','none');
-  }
-});
+//   if (target.parent().attr('class').match(/^export-functionality/)) {
+//     $('.export-functionality a').css('display','block');
+//   }
+//   else {
+//     $('.export-functionality a').css('display','none');
+//   }
+// });
 
 // $(document).on('click','.export-functionality span',function(){
 //   $('.export-functionality a').toggle();
 // });
+
+$(function() {
+  $('.export-functionality span').click(function() {
+    $('.export-functionality a').toggle();
+    return false;
+
+  });
+});
+
+$(document).click(function() {
+ $('.export-functionality a').hide();
+});
+
+$(".export-functionality a").click(function(e) {
+  e.stopPropagation(); });
 
 //code for cheking session timeout is starts here
 var timeoutID;

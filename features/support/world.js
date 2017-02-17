@@ -9,17 +9,42 @@ username = "nilesh_vidhate_prdxn",
 accessKey = "4b956187-7b4d-438b-9d18-860ce77eced0",
 driver;
 
-driver = new webdriver.Builder().
-withCapabilities({
+var PLATFORMS = [
+// {
+//     'browserName': 'chrome',
+//     'platformName': 'Android',
+//     'platformVersion': '5.0',
+//     'deviceName': 'Android Emulator',
+//     'username': username,
+//     'accessKey': accessKey,
+//     "name": "Test Android Chrome",
+// },
+{
+	'browserName': 'chrome',
+	'platform': 'Windows 10',
+	'version': '54.0',
+	'username': username,
+	'accessKey': accessKey,
+	"name": "Testing window 10 chrome browser"
+},
+{
 	'browserName': 'firefox',
 	'platform': 'Linux',
 	'version': '45.0',
 	'username': username,
-	'accessKey': accessKey
-}).
-usingServer("http://" + username + ":" + accessKey +
-	"@ondemand.saucelabs.com:80/wd/hub").
-build();
+	'accessKey': accessKey,
+	"name": "Testing Linux firefox browser"
+}
+];
+
+for(var i=0; i<PLATFORMS.length; i++){
+	console.log(PLATFORMS[i]);
+	driver = new webdriver.Builder().
+	withCapabilities(PLATFORMS[i]).
+	usingServer("http://" + username + ":" + accessKey +
+		"@ondemand.saucelabs.com:80/wd/hub").
+	build();
+
 
 // var buildAndroidDriver = function() {
 // 	return new webdriver.Builder().
@@ -109,4 +134,5 @@ var World = function World() {
 
 module.exports.World = World;
 module.exports.getDriver = getDriver;
+}
 

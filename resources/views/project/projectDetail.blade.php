@@ -817,45 +817,83 @@
 });*/
 
 /***** search functionality started**********/
-$(window).load(function() {
- var grid = $('.grid');
- grid.css('min-height', '101px');
- 
- $("#search_project").keyup(function(){
-  var activeDiv = $('.ui-tabs-active a').attr('href');
-  console.log('activeDiv', activeDiv);
-  var checkgrid= $(activeDiv).isotope();
-  try {
-   var searchstring=$("#search_project").val().toUpperCase();
-   var divtosearch=$(".wrap-project");
-   checkgrid.isotope({
-     filter: function( divtosearch ) {
-      return ($(".pro_name",this).html().indexOf(searchstring)>-1)
-    }
+// $(window).load(function() {
+//  var grid = $('.grid');
+//  grid.css('min-height', '101px');
 
-  });
- }
- catch(error)
- {}
- checkgrid.isotope( 'on', 'layoutComplete', function(isoInstance, laidOutItems) {
-  console.log(isoInstance.length);
-  if(isoInstance.length==0){
-    if ( $(activeDiv).children('.noproject-message').length <= 0 ) {
-      console.log('error message');
-      $(activeDiv).append('<p class="noproject-message no-pro-msg">No search result found</p>');
-    }
-  }
-  else
-   $(activeDiv).children(".noproject-message").remove();   
-});
-});
- $('.tab-filters a').click(function(){
-  $("#search_project").trigger('keyup');
-});
-});
+//  $("#search_project").keyup(function(){
+//   var activeDiv = $('.ui-tabs-active a').attr('href');
+//   console.log('activeDiv', activeDiv);
+//   var checkgrid= $(activeDiv).isotope();
+//   try {
+//    var searchstring=$("#search_project").val().toUpperCase();
+//    var divtosearch=$(".wrap-project");
+//    checkgrid.isotope({
+//      filter: function( divtosearch ) {
+//       return ($(".pro_name",this).html().indexOf(searchstring)>-1)
+//     }
+
+//   });
+//  }
+//  catch(error)
+//  {}
+//  checkgrid.isotope( 'on', 'layoutComplete', function(isoInstance, laidOutItems) {
+//   console.log(isoInstance.length);
+//   if(isoInstance.length==0){
+//     if ( $(activeDiv).children('.noproject-message').length <= 0 ) {
+//       console.log('error message');
+//       $(activeDiv).append('<p class="noproject-message no-pro-msg">No search result found</p>');
+//     }
+//   }
+//   else
+//    $(activeDiv).children(".noproject-message").remove();   
+// });
+// });
+//  $('.tab-filters a').click(function(){
+//   $("#search_project").trigger('keyup');
+// });
+// });
 
 /***** search functionality completed**********/
 
+$(document).ready(function(){
+  $("#search_project").keyup(function(){
+
+        // Retrieve the input field text and reset the count to zero
+        var filter = $(this).val(), count = 0;
+
+        // Loop through the comment list
+        var activeDiv = $('.ui-tabs-active a').attr('href');
+        $(activeDiv).find('.wrap-project').each(function(){
+
+            // If the list item does not contain the text phrase fade it out
+            if ($(this).find('.pro_name').text().search(new RegExp(filter, "i")) < 0) {
+              $(this).hide();
+
+            // Show the list item if the phrase matches and increase the count by 1
+          } else {
+            $(this).show();
+            count++;
+          }
+        });
+
+        if(count==0){
+          if ( $(activeDiv).children('.noproject-message').length <= 0 ) {
+            $(activeDiv).append('<p class="noproject-message no-pro-msg">No search result found</p>');
+          }
+        }
+        else{
+          $(activeDiv).children(".noproject-message").remove();
+        }
+
+        // Update the count
+        var numberItems = count;
+        // console.log("Number of Comments = "+count);
+      });
+});
+
+
+/////////////////////////////////////////////////////////
 
 $(".proj_status").change(function(){
   var status=($(this).val()).split("_");

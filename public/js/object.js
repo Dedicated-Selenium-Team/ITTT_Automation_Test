@@ -994,3 +994,43 @@ function validateDate(date,mindate,thisEle){
   thisEle.siblings('.error').hide();
 }
 }
+
+/*************** Week view percentage calculator *******************/
+var weekHours = function() {
+  var intf = {};
+  intf.dayPercents = function(hours,totalHours) {
+    intf.hours = hours;
+    intf.totalHours = totalHours;
+    if(hours.indexOf('-')>-1){
+      var percentDayHours = Number(0).toFixed(2);
+      return percentDayHours
+    }
+    else{
+      var hours_and_minutes=hours.split(":");
+      var hours=Number(hours_and_minutes[0]);
+      var minutes=Number(hours_and_minutes[1]);
+      intf.hours = Number(hours+'.'+minutes);
+      var percentDayHours = Number((intf.hours/intf.totalHours)*100).toFixed(2);
+      return percentDayHours
+    }
+  },
+
+  intf.weekPercents = function(totalPercentHours){
+    intf.numberOfDays = 7;
+    intf.totalPercentHours = totalPercentHours;
+    var percentWeekHours = Number(totalPercentHours / 7).toFixed(2);
+    return percentWeekHours
+  },
+
+  intf.timeFree = function(dayPercent) {
+    if(dayPercent == 100 || dayPercent >= 100){
+      var free = 0;
+    } 
+    else 
+    {
+      var free = 100-dayPercent;
+    }
+    return free;
+  }
+  return intf;
+}

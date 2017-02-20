@@ -144,129 +144,190 @@ $today = date('Y-m-d');
 
   <!-- Timesheet content starts here -->
   <div class="timesheet-content">
-
     <!-- Week View Table Starts here -->
     <div class="table-timesheet-week">
-     <?php $free_time=array();?>
-     <table class="week-table">
-      <tbody>
-        <tr class="head-row">
-          <th>
-            Projects
-          </th>
-          <?php $week_total=array();?>
-          @foreach($period as $periods)
-          <th>
-            <a href=../{{$periods->format("Y-m-d")}}>
-              <p>
-                {{$periods->format("l")}}
-              </p>
-              <p>
-                {{$periods->format("d M")}}
-              </p>
-            </a>
-          </th>
+      <a href="#fixme" class="week-percentage week-calculation">view in percentage</a>
+      <?php $free_time=array();?>
+      <table class="week-table">
+        <tbody>
+          <tr class="head-row">
+            <th>
+              Projects
+            </th>
+            <?php $week_total=array();?>
+            @foreach($period as $periods)
+            <th>
+              <a href=../{{$periods->format("Y-m-d")}}>
+                <p>
+                  {{$periods->format("l")}}
+                </p>
+                <p>
+                  {{$periods->format("d M")}}
+                </p>
+              </a>
+            </th>
+            @endforeach
+            <th>Total Hours</th>
+          </tr>
+          @foreach($projects as $project)
+          <?php $week_total_hrs = 0; ?>
+          <tr>
+           <th class="break-words">
+             {{$project->project_name}} 
+           </th>
+           <?php $total_hrs = array();?>
+           @foreach($project->project_details as $newdata)
+           <td class="day-hours">
+            @if(count($newdata)>0)
+            <?php
+            $total_project_hrs=array();
+            ?>
+            @foreach($newdata as $data)
+
+            @if(strlen($data->hrs_locked)>0)
+            <?php 
+
+            array_push($total_project_hrs,$data->hrs_locked);
+            array_push($total_hrs, $data->hrs_locked);
+
+
+            ?>
+            @endif
+            @endforeach
+            {{getminutes($total_project_hrs)}}
+            @else
+            -
+            @endif
+
+          </td>
           @endforeach
-          <th>Total Hours</th>
-        </tr>
-        @foreach($projects as $project)
-        <?php $week_total_hrs = 0; ?>
-        <tr>
-         <th class="break-words">
-           {{$project->project_name}} 
-         </th>
-         <?php $total_hrs = array();?>
-         @foreach($project->project_details as $newdata)
-         <td>
-          @if(count($newdata)>0)
+
+          <?php $week_total_hrs = getminutes($total_hrs);
+          ?>
+          <td class="week-hours"> {{$week_total_hrs}} </td>
           <?php
-          $total_project_hrs=array();
-          ?>
-          @foreach($newdata as $data)
 
-          @if(strlen($data->hrs_locked)>0)
-          <?php 
-          
-          array_push($total_project_hrs,$data->hrs_locked);
-          array_push($total_hrs, $data->hrs_locked);
-          
-          
-          ?>
-          @endif
-          @endforeach
-          {{getminutes($total_project_hrs)}}
-          @else
-          -
-          @endif
+          $week_total_hrs=str_replace(':', '.', $week_total_hrs); 
+          array_push($week_total,$week_total_hrs);
 
-        </td>
+          ?>
+        </tr>
         @endforeach
 
-        <?php $week_total_hrs = getminutes($total_hrs);
-        ?>
-        <td> {{$week_total_hrs}} </td>
-        <?php
-
-        $week_total_hrs=str_replace(':', '.', $week_total_hrs); 
-        array_push($week_total,$week_total_hrs);
-        
-        ?>
-      </tr>
-      @endforeach
-
-      <tr class="total">
-        <th>Total Hours</th>
-        <?php
-        foreach($daily_total as $daily_total_key=>$daily_total_value)
-        {
-          $total_minutes=getminutes($daily_total_value);
-          if(str_replace(':', '.', $total_minutes)<08.30)
-            array_push($free_time,getdiff_minutes(str_replace(':', '.', $total_minutes)));
-          else
-            array_push($free_time,0);
-          echo "<td>$total_minutes</td>";
-        }
-        echo "<td>".getminutes($week_total)."</td></tr>";
+        <tr class="total">
+          <th>Total Hours</th>
+          <?php
+          foreach($daily_total as $daily_total_key=>$daily_total_value)
+          {
+            $total_minutes=getminutes($daily_total_value);
+            if(str_replace(':', '.', $total_minutes)<08.30)
+              array_push($free_time,getdiff_minutes(str_replace(':', '.', $total_minutes)));
+            else
+              array_push($free_time,0);
+            echo "<td class='day-hours'>$total_minutes</td>";
+          }
+          echo "<td class='week-hours'>".getminutes($week_total)."</td></tr>";
            // <tr class='free-hours'><th>Free Hours</th>";
-        ?>
-        
-        <?php
-        $free_time_size=count($free_time);
+          ?>
 
-        $free_time=array_slice($free_time, 0, $free_time_size-2); 
+          <?php
+          $free_time_size=count($free_time);
+
+          $free_time=array_slice($free_time, 0, $free_time_size-2); 
 //foreach($free_time as $key=>$value)
 //echo "<td>$value</td>";
 //$total_free_time=getminutes($free_time);
 //echo "<td>0:00</td><td>0:00</td><td>$total_free_time</td>";
-        ?>
-        <!--</tr>-->
-      </tbody>
-    </table>
-    <div class="time-details">
-      <p><span class="free-time-title">Free Hours - </span> <span class="free-time">{{getminutes($free_time)}}</span></p>
+          ?>
+          <!--</tr>-->
+        </tbody>
+      </table>
+      <div class="time-details">
+        <p><span class="free-time-title">Free Hours - </span> <span class="free-time">{{getminutes($free_time)}}</span></p>
+      </div>
+      <!-- Day View Table Ends here -->
+
     </div>
-    <!-- Day View Table Ends here -->
 
-  </div>
-  <!-- Timesheet content ends here -->
+    <div class="table-timesheet-week week-in-percent display">
+      <a href="#fixme" class="week-in-hours week-calculation">view in Hours</a>
+      <?php $free_time=array();?>
+      <table class="week-table">
+        <thead>
+          <tr class="head-row">
+            <th>
+              Projects
+            </th>
+            <?php $week_total=array();?>
+            @foreach($period as $periods)
+            <th>
+              <a href=/time-management/{{$periods->format("Y-m-d")}}>
+                <p>
+                  {{$periods->format("l")}}
+                </p>
+                <p>
+                  {{$periods->format("d M")}}
+                </p>
+              </a>
+            </th>
+            @endforeach
+            <th>Total Hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach($projects as $project)
+          <tr>
+           <th class="break-words">
+             {{$project->project_name}} 
+           </th>
+           @foreach($project->project_details as $newdata)
+           <td class="day-hours">
+           </td>
+           @endforeach
 
-</div>
-<!-- Timesheet Data container Starts Here -->
-<script>
- $('.date-pick').datepicker( {
-  changeMonth: true,
-  changeYear: true,
-  onSelect: function(date) {
-    var mydate=new Date(date);
-    var monthNames = ["January", "February", "March", "April", "May", "June",
-    "July", "August", "September", "October", "November", "December"
-    ];
 
-    var curr_date = mydate.getDate();
+           <td class="week-hours"></td>
 
-    var curr_month = mydate.getMonth();
+         </tr>
+         @endforeach
 
-    var curr_year = mydate.getFullYear();
+         <tr class="total">
+          <th>Total Hours</th>
+          <?php
+          foreach($daily_total as $daily_total_key=>$daily_total_value)
+            { ?>
+
+              <td class='day-hours'></td>
+              <?php } ?>
+              <td class='week-hours'></td></tr>
+
+            </tbody>
+          </table>
+          <div class="time-details">
+            <p><span class="free-time-title">Free Hours - </span> <span class="free-time"></span></p>
+          </div>
+          <!-- Day View Table Ends here -->
+
+        </div>
+        <!-- Timesheet content ends here -->
+
+      </div>
+      <!-- Timesheet Data container Starts Here -->
+      <script>
+       $('.date-pick').datepicker( {
+        changeMonth: true,
+        changeYear: true,
+        onSelect: function(date) {
+          var mydate=new Date(date);
+          var monthNames = ["January", "February", "March", "April", "May", "June",
+          "July", "August", "September", "October", "November", "December"
+          ];
+
+          var curr_date = mydate.getDate();
+
+          var curr_month = mydate.getMonth();
+
+          var curr_year = mydate.getFullYear();
 
 //alert(curr_date+"/"+monthNames[curr_month]+"/"+curr_year);
 

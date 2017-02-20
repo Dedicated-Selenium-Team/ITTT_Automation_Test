@@ -155,6 +155,7 @@ $today = date('Y-m-d');
       <!-- Week View Table Starts here -->
       <div class="table-timesheet-week table-timesheet-admin-week ">
         <span class="user-name">{{$userFullName}} Timesheet</span>
+        <a href="#fixme" class="week-percentage week-calculation">view in percentage</a>
         <?php $free_time=array();?>
         <table class="week-table">
           <thead>
@@ -187,7 +188,7 @@ $today = date('Y-m-d');
              </th>
              <?php $total_hrs = array();?>
              @foreach($project->project_details as $newdata)
-             <td>
+             <td class="day-hours">
               @if(count($newdata)>0)
               <?php
               $total_project_hrs=array();
@@ -214,7 +215,7 @@ $today = date('Y-m-d');
 
             <?php $week_total_hrs = getminutes($total_hrs);
             ?>
-            <td> {{$week_total_hrs}} </td>
+            <td class="week-hours"> {{$week_total_hrs}} </td>
             <?php
 
             $week_total_hrs=str_replace(':', '.', $week_total_hrs); 
@@ -234,9 +235,9 @@ $today = date('Y-m-d');
                 array_push($free_time,getdiff_minutes(str_replace(':', '.', $total_minutes)));
               else
                 array_push($free_time,0);
-              echo "<td>$total_minutes</td>";
+              echo "<td class='day-hours'>$total_minutes</td>";
             }
-            echo "<td>".getminutes($week_total)."</td></tr>";
+            echo "<td class='week-hours'>".getminutes($week_total)."</td></tr>";
            // <tr class='free-hours'><th>Free Hours</th>";
             ?>
 
@@ -258,54 +259,114 @@ $today = date('Y-m-d');
         <!-- Day View Table Ends here -->
 
       </div>
-      <!-- Timesheet content ends here -->
 
-    </div>
-    <!-- Timesheet Data container Starts Here -->
-    <script>
+      <div class="table-timesheet-week table-timesheet-admin-week week-in-percent display">
+        <span class="user-name">{{$userFullName}} Timesheet</span>
+        <a href="#fixme" class="week-in-hours week-calculation">view in Hours</a>
+        <?php $free_time=array();?>
+        <table class="week-table">
+          <thead>
+            <tr class="head-row">
+              <th>
+                Projects
+              </th>
+              <?php $week_total=array();?>
+              @foreach($period as $periods)
+              <th>
+                <a href=/time-management/{{$periods->format("Y-m-d")}}/{{$id}}>
+                  <p>
+                    {{$periods->format("l")}}
+                  </p>
+                  <p>
+                    {{$periods->format("d M")}}
+                  </p>
+                </a>
+              </th>
+              @endforeach
+              <th>Total Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach($projects as $project)
+            <tr>
+             <th class="break-words">
+               {{$project->project_name}} 
+             </th>
+             @foreach($project->project_details as $newdata)
+             <td class="day-hours">
+             </td>
+             @endforeach
 
-      var unique_project_id = $("#Unique_pro_id").val();
-      console.log('unique_project_id', unique_project_id);
 
+             <td class="week-hours"></td>
+             
+           </tr>
+           @endforeach
 
-      $('.date-pick').datepicker( {
-        changeMonth: true,
-        changeYear: true,
-        onSelect: function(date) {
-          var mydate=new Date(date);
-          var monthNames = ["January", "February", "March", "April", "May", "June",
-          "July", "August", "September", "October", "November", "December"
-          ];
+           <tr class="total">
+            <th>Total Hours</th>
+            <?php
+            foreach($daily_total as $daily_total_key=>$daily_total_value)
+              { ?>
 
-          var curr_date = mydate.getDate();
+                <td class='day-hours'></td>
+                <?php } ?>
+                <td class='week-hours'></td></tr>
 
-          var curr_month = mydate.getMonth();
+              </tbody>
+            </table>
+            <div class="time-details">
+              <p><span class="free-time-title">Free Hours - </span> <span class="free-time"></span></p>
+            </div>
+            <!-- Day View Table Ends here -->
 
-          var curr_year = mydate.getFullYear();
-          var user_id=$("#user_id").val();
+          </div>
+          <!-- Timesheet content ends here -->
+
+        </div>
+        <!-- Timesheet Data container Starts Here -->
+        <script>
+
+          var unique_project_id = $("#Unique_pro_id").val();
+
+          $('.date-pick').datepicker( {
+            changeMonth: true,
+            changeYear: true,
+            onSelect: function(date) {
+              var mydate=new Date(date);
+              var monthNames = ["January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"
+              ];
+
+              var curr_date = mydate.getDate();
+
+              var curr_month = mydate.getMonth();
+
+              var curr_year = mydate.getFullYear();
+              var user_id=$("#user_id").val();
 //alert(curr_date+"/"+monthNames[curr_month]+"/"+curr_year);
 
 location.href="../../"+curr_date+" "+monthNames[curr_month]+" "+curr_year+"/"+user_id+"/"+unique_project_id;
 }
 });
 
-      var datatable = $('.week-table').DataTable({
-       "bSort":false,
-       "orderable": false,
-       "paging": false,
-       "oLanguage": {"sZeroRecords": "No Task To Show", "sEmptyTable": "No Task To Show"},
-       dom: 'Bfrtip',
-       buttons: [
-       {
-        extend: 'excelHtml5',
-        title: 'Data export'
-      },
-      {
-        extend: 'pdfHtml5',
-        title: 'Data exportation'
-      },
+          var datatable = $('.week-table').DataTable({
+           "bSort":false,
+           "orderable": false,
+           "paging": false,
+           "oLanguage": {"sZeroRecords": "No Task To Show", "sEmptyTable": "No Task To Show"},
+           dom: 'Bfrtip',
+           buttons: [
+           {
+            extend: 'excelHtml5',
+            title: 'Data export'
+          },
+          {
+            extend: 'pdfHtml5',
+            title: 'Data exportation'
+          },
 
-      ]
+          ]
      // "scrollY": true
    });
  </script>

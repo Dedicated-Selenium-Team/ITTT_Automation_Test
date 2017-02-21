@@ -1016,9 +1016,9 @@ var weekHours = function() {
   },
 
   intf.weekPercents = function(totalPercentHours){
-    intf.numberOfDays = 7;
+    intf.working_days = 5;
     intf.totalPercentHours = totalPercentHours;
-    var percentWeekHours = Number(totalPercentHours / 7).toFixed(2);
+    var percentWeekHours = Number(totalPercentHours / intf.working_days).toFixed(2);
     return percentWeekHours
   },
 

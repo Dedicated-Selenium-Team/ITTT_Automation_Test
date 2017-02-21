@@ -1278,12 +1278,12 @@ function startTimer() {
   $('.week-in-percent .week-hours').each(function(item, index) {
     var totalDays = 0;
     var value = 0;
-    $(this).siblings('.day-hours').each(function(item, index) {
-      var day = $(this).text().trim();
-      var day_hrs=Number(day.replace(/\%/g, ''));
+    var hoursForPoject = $(this).siblings('.day-hours');
+    for(var i=0; i<5; i++){
+      var day_hrs=Number($(hoursForPoject[i]).text().replace(/\%/g, ''));
       totalDays = totalDays + day_hrs;
       value = weekHours.weekPercents(totalDays);
-    });
+    }
     var percent_day = $('.week-in-percent').find('.week-hours');
     $(percent_day[item]).text(value+'%');
   });
@@ -1297,7 +1297,7 @@ function startTimer() {
   }
   avgFreeTime = Number(totalFreeTime / 5).toFixed(2);
   $('.week-in-percent .free-time').text(avgFreeTime+'%');
-  
+
 });
 
  $(document).on('click','.week-in-hours',function(e){

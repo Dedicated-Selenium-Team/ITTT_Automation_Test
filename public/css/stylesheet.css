@@ -2030,11 +2030,6 @@ table thead th {
       margin: 20px auto 0; 
     }
 
-    .design-wrap-container .tableData th:nth-of-type(3),
-    .design-wrap-container .tableData td:nth-of-type(3),
-    .desig-table th:nth-of-type(2),
-    .desig-table td:nth-of-type(2) { display: none; }
-
     .total-hrs .tableData { width: 100%; }
 
     .total-hrs .tableData th,

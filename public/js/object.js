@@ -1009,8 +1009,9 @@ var weekHours = function() {
       var hours_and_minutes=hours.split(":");
       var hours=Number(hours_and_minutes[0]);
       var minutes=Number(hours_and_minutes[1]);
-      intf.hours = Number(hours+'.'+minutes);
-      var percentDayHours = Number((intf.hours/intf.totalHours)*100).toFixed(2);
+      var min_percent = Number((minutes/60)*100).toFixed(0);
+      intf.hours = Number(hours+'.'+min_percent);
+      percentDayHours = Number((intf.hours/intf.totalHours)*100).toFixed(2);
       return percentDayHours
     }
   },

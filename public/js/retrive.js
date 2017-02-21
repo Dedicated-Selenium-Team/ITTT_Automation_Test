@@ -1266,10 +1266,9 @@ function startTimer() {
   var total = 0;
   var free = 0;
 
-  $('.day-hours').each(function(item, index) {
+  $(this).parent('.table-timesheet-week').find('.day-hours').each(function(item, index) {
     var day = $(this).text().trim();
-    console.log('day', day);
-    var total = 8.30;
+    var total = 8.5;
     var value = weekHours.dayPercents(day, total);
     var percent_day = $('.week-in-percent').find('.day-hours');
     $(percent_day[item]).text(value+'%');

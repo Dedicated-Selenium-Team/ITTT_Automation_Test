@@ -1273,3 +1273,52 @@ function startTimer() {
   $('#project-day-time')[0].reset();
   $('#project-day-time select').removeClass('noValue');
 });
+
+ /************* Week view calculations in percentage*************/
+ var weekHours = new weekHours();
+
+ $(document).on('click','.week-percentage',function(e){
+  e.preventDefault();
+  $(this).parent('.table-timesheet-week').addClass('display');
+  $(this).parent('.table-timesheet-week').siblings('.week-in-percent').removeClass('display');
+  var total = 0;
+  var free = 0;
+
+  $(this).parent('.table-timesheet-week').find('.day-hours').each(function(item, index) {
+    var day = $(this).text().trim();
+    var total = 8.5;
+    var value = weekHours.dayPercents(day, total);
+    var percent_day = $('.week-in-percent').find('.day-hours');
+    $(percent_day[item]).text(value+'%');
+  });
+
+  $('.week-in-percent .week-hours').each(function(item, index) {
+    var totalDays = 0;
+    var value = 0;
+    var hoursForPoject = $(this).siblings('.day-hours');
+    for(var i=0; i<5; i++){
+      var day_hrs=Number($(hoursForPoject[i]).text().replace(/\%/g, ''));
+      totalDays = totalDays + day_hrs;
+      value = weekHours.weekPercents(totalDays);
+    }
+    var percent_day = $('.week-in-percent').find('.week-hours');
+    $(percent_day[item]).text(value+'%');
+  });
+
+  var working_days = $('.week-in-percent .total .day-hours');
+  var totalFreeTime = 0;
+  for(var i=0; i<5; i++){
+    var workPerDay = Number($(working_days[i]).text().replace(/\%/g, ''));
+    value = weekHours.timeFree(workPerDay);
+    totalFreeTime += value;
+  }
+  avgFreeTime = Number(totalFreeTime / 5).toFixed(2);
+  $('.week-in-percent .free-time').text(avgFreeTime+'%');
+
+});
+
+ $(document).on('click','.week-in-hours',function(e){
+  e.preventDefault();
+  $(this).parent('.week-in-percent').addClass('display');
+  $(this).parent('.week-in-percent').siblings('.table-timesheet-week').removeClass('display');
+});

@@ -1259,8 +1259,8 @@ function startTimer() {
  /************* Week view calculations in percentage*************/
  var weekHours = new weekHours();
 
- $(document).on('click','.week-percentage',function(){
-
+ $(document).on('click','.week-percentage',function(e){
+  e.preventDefault();
   $(this).parent('.table-timesheet-week').addClass('display');
   $(this).parent('.table-timesheet-week').siblings('.week-in-percent').removeClass('display');
   var total = 0;
@@ -1300,7 +1300,8 @@ function startTimer() {
   
 });
 
- $(document).on('click','.week-in-hours',function(){
+ $(document).on('click','.week-in-hours',function(e){
+  e.preventDefault();
   $(this).parent('.week-in-percent').addClass('display');
   $(this).parent('.week-in-percent').siblings('.table-timesheet-week').removeClass('display');
 });

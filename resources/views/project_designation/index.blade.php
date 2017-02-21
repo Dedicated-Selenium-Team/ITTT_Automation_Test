@@ -66,13 +66,13 @@
                 <th>actual</th>
 
                 <?php if (($id)) {
-                 $estimate_url = "../store_project/estimate/".$id;
-                 $planning_url = "../store_project/planning/".$id;
-                 echo "<th>estimate (<a href='$estimate_url' class='estimate-link' title='Click here to see estimation phase estimate details.'>estimation</a>)</th>";
-                 echo "<th>estimate (<a href='$planning_url' class='planning-link' title='Click here to see planning phase estimate details.'>planning</a>)</th>";
-               } else {?>
+                  $estimate_url = "../store_project/estimate/".$id;
+                  // $planning_url = "../store_project/planning/".$id;
+                  echo "<th>estimate (<a href='$estimate_url' class='estimate-link' title='Click here to see estimation phase estimate details.'>estimation</a>)</th>";
+                  echo "<th>estimate (<span class='planning-link' title='Click here to see planning phase estimate details.'>planning</span>)</th>";
+                } else {?>
                  <th>estimate (<a href="#" class="estimate-link" title="Click here to see estimation phase estimate details.">estimation</a>)</th>
-                 <th>estimate (<a href="#" class="planning-link" title="Click here to see planning phase estimate details.">planning</a>)</th>
+                 <th>estimate (<span  class="planning-link" title="Click here to see planning phase estimate details.">planning</span>)</th>
                  <?php
                }
                ?>

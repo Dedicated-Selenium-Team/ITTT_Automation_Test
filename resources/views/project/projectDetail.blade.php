@@ -18,101 +18,101 @@
       <?php
       $role_id = Session::get('user')[0]['role_id'];
       if ($role_id == 1) {?>
-      <li class="myproject cf">
-       <a href="#FIXME" title="Add New Project" class="addProject" data-toggle="modal" data-target="#create-project">Add New Project</a>
-     </li>
-     <?php }if ($role_id == 1 || $role_id == 2) {?>
-     <li>
-       <a href="/myself" title="Add Myself To A Project" class="assign-project">Add myself to a project</a>
-     </li>
-     <?php }?>
-   </ul>
- </nav>
- <!-- Add New Project Button Ends Here  -->
+        <li class="myproject cf">
+         <a href="#FIXME" title="Add New Project" class="addProject" data-toggle="modal" data-target="#create-project">Add New Project</a>
+       </li>
+       <?php }if ($role_id == 1 || $role_id == 2) {?>
+         <li>
+           <a href="/myself" title="Add Myself To A Project" class="assign-project">Add myself to a project</a>
+         </li>
+         <?php }?>
+       </ul>
+     </nav>
+     <!-- Add New Project Button Ends Here  -->
 
- <!-- Add New Project Modal Starts Here-->
- <div class="modal fade create-new-project modal-error-off" id="create-project" role="dialog">
-  <div class="modal-dialog">
+     <!-- Add New Project Modal Starts Here-->
+     <div class="modal fade create-new-project modal-error-off" id="create-project" role="dialog">
+      <div class="modal-dialog">
 
+        <!-- Modal content Starts Here-->
+        <div class="modal-content">
+
+         {!! Form::open(array('id' => 'add-project', 'method' => 'post')) !!}
+
+         <!-- Modal Header Starts Here -->
+         <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h1 class="modal-title">Create New Project</h1>
+        </div>
+        <!-- Modal Header Ends Here -->
+
+        <!-- Modal Body Starts Here -->
+        <div class="modal-body">
+
+          <div class="form-group cf">
+            {!! Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')) !!}
+            {!! Form::text('project_name1', Input::old('project_name1'), array('placeholder' =>'Project name')) !!}
+            <p class="error"></p>
+          </div>
+          
+          <div class="form-group cf">
+            {!! Html::decode(Form::label('project_code','Project Code:')) !!}
+            {!! Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')) !!}
+            <p class="error"></p>
+          </div>
+
+          <div class="form-group cf">
+            {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
+            <div class="client-type">
+              <input type="radio" name="client" id="new" value="new" checked>
+              <label for="new">new</label>
+              <input type="radio" name="client" id="existing" value="existing">
+              <label for="existing">existing</label>
+            </div>
+            <div class="new-field">
+              {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
+              <p class="error"></p>
+            </div>
+            <div class="existing-field">
+              <select class="existing-client" name="existing_client" id="existing_client">
+                <option value="0">Please select client</option>
+                @foreach($client_name_list as $value)
+                <option value="{{$value}}">{{$value}}</option>
+                @endforeach
+              </select>
+              <p class="error"></p>
+            </div>
+          </div>
+
+          <div class="form-group cf">
+           {!! Html::decode(Form::label('status_id','Project Status:')) !!}
+           <select class="status_id" name="status_id" >
+             <option value="1">Estimates</option>
+             <option value="2">Live-Projects</option>
+             <option value="3">Live-Ongoing</option>
+           </select>
+         </div>
+
+       </div>
+       <!-- Modal Body Ends Here -->
+
+       <!-- Modal Footer Starts Here -->
+       <div class="modal-footer">
+        <div class="save-project">
+          {!! Form::submit('Submit')!!}
+          {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
+        </div>
+        <!-- Modal Footer Ends Here -->
+
+      </div>
+      <!-- Modal Footer Ends Here -->
+
+    </div>
     <!-- Modal content Starts Here-->
-    <div class="modal-content">
 
-     {!! Form::open(array('id' => 'add-project', 'method' => 'post')) !!}
-
-     <!-- Modal Header Starts Here -->
-     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-      <h1 class="modal-title">Create New Project</h1>
-    </div>
-    <!-- Modal Header Ends Here -->
-
-    <!-- Modal Body Starts Here -->
-    <div class="modal-body">
-
-      <div class="form-group cf">
-        {!! Html::decode(Form::label('project_name1','Project Name<span class="required">*</span>:')) !!}
-        {!! Form::text('project_name1', Input::old('project_name1'), array('placeholder' =>'Project name')) !!}
-        <p class="error"></p>
-      </div>
-      
-      <div class="form-group cf">
-        {!! Html::decode(Form::label('project_code','Project Code:')) !!}
-        {!! Form::text('project_code', Input::old('project_name'), array('placeholder' =>'Project code')) !!}
-        <p class="error"></p>
-      </div>
-
-      <div class="form-group cf">
-        {!! Html::decode(Form::label('client_name','Client Name<span class="required">*</span>:')) !!}
-        <div class="client-type">
-          <input type="radio" name="client" id="new" value="new" checked>
-          <label for="new">new</label>
-          <input type="radio" name="client" id="existing" value="existing">
-          <label for="existing">existing</label>
-        </div>
-        <div class="new-field">
-          {!! Form::text('client_name', Input::old('client_name'), array('placeholder' =>'Client name')) !!}
-          <p class="error"></p>
-        </div>
-        <div class="existing-field">
-          <select class="existing-client" name="existing_client" id="existing_client">
-            <option value="0">Please select client</option>
-            @foreach($client_name_list as $value)
-            <option value="{{$value}}">{{$value}}</option>
-            @endforeach
-          </select>
-          <p class="error"></p>
-        </div>
-      </div>
-
-      <div class="form-group cf">
-       {!! Html::decode(Form::label('status_id','Project Status:')) !!}
-       <select class="status_id" name="status_id" >
-         <option value="1">Estimates</option>
-         <option value="2">Live-Projects</option>
-         <option value="3">Live-Ongoing</option>
-       </select>
-     </div>
-
-   </div>
-   <!-- Modal Body Ends Here -->
-
-   <!-- Modal Footer Starts Here -->
-   <div class="modal-footer">
-    <div class="save-project">
-      {!! Form::submit('Submit')!!}
-      {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> --}}
-    </div>
-    <!-- Modal Footer Ends Here -->
+    {!! Form::close() !!}
 
   </div>
-  <!-- Modal Footer Ends Here -->
-
-</div>
-<!-- Modal content Starts Here-->
-
-{!! Form::close() !!}
-
-</div>
 </div>
 <!-- Add New Project Modal Ends Here-->
 
@@ -178,7 +178,7 @@
     <div>
       <h2 class="project-count">Total Number of Projects: {{ $count }}</h2>
       <h2 class="project-count">total Number of Projects assigned: {{ count($myproject) }}</h2>
-    </div> 
+    </div>
     <input type='text' id='search_project' class="form-control search-function project-search" placeholder="Search Project">
   </div>
 
@@ -193,622 +193,622 @@
     </ul>
     <div id="tabs-1" class="grid">
       <?php if((count($projects) == 0)) {?>
-      <p class="noproject-message">There are no projects to show.</p>
-      <?php }
-      ?>
+        <p class="noproject-message">There are no projects to show.</p>
+        <?php }
+        ?>
 
-      @foreach( $myproject as $my_allproject  )
-      <div class="wrap-project assigned-projects cf">
+        @foreach( $myproject as $my_allproject  )
+        <div class="wrap-project assigned-projects cf">
 
-        <?php if ($role_id == 1) {?>
-        <div class="actions cf">
+          <?php if ($role_id == 1) {?>
+            <div class="actions cf">
 
-          <span>
-            <?php if($my_allproject->status_id == 1){ ?>
-            estimates
-            <?php } else if($my_allproject->status_id == 2){ ?>
-            Live-Projects
-            <?php } else if($my_allproject->status_id == 3){ ?>
-            Live-Ongoing
-            <?php } else if($my_allproject->status_id == 4){ ?>
-            Completed
-            <?php } else { ?>
-            Hold
-            <?php } ?>
-          </span>
-          <div>
-            <select id="project_action" class="edit-action-arrow">
-             <option value = "1">Please Select</option>
-             <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
-             <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
-             <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-           </select>
+              <span>
+                <?php if($my_allproject->status_id == 1){ ?>
+                  estimates
+                  <?php } else if($my_allproject->status_id == 2){ ?>
+                    Live-Projects
+                    <?php } else if($my_allproject->status_id == 3){ ?>
+                      Live-Ongoing
+                      <?php } else if($my_allproject->status_id == 4){ ?>
+                        Completed
+                        <?php } else { ?>
+                          Hold
+                          <?php } ?>
+                        </span>
+                        <div>
+                          <select id="project_action" class="edit-action-arrow">
+                           <option value = "1">Please Select</option>
+                           <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
+                           <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
+                           <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                         </select>
 
-           <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-             <?php if($my_allproject->status_id == 1) { ?>
-             <option value="0">Please Select</option>
-             <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
-             <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
-             <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
-             <option value="4_{{$my_allproject->project_id }}">Completed</option>
-             <option value="5_{{$my_allproject->project_id }}">Hold</option>
-             <?php } else if($my_allproject->status_id == 2) { ?>
-             <option value="0">Please Select</option>
-             <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
-             <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
-             <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
-             <option value="4_{{$my_allproject->project_id }}">Completed</option>
-             <option value="5_{{$my_allproject->project_id }}">Hold</option>
-             <?php } else if($my_allproject->status_id == 3) { ?>
-             <option value="0">Please Select</option>
-             <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
-             <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
-             <option value="3_{{$my_allproject->project_id }}" disabled>Live-Ongoing</option>
-             <option value="4_{{$my_allproject->project_id }}">Completed</option>
-             <option value="5_{{$my_allproject->project_id }}">Hold</option>
-             <?php } else if($my_allproject->status_id == 4) { ?>
-             <option value="0">Please Select</option>
-             <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
-             <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
-             <option value="3_{{$my_allproject->project_id }}" disabled>Live-Ongoing</option>
-             <option value="4_{{$my_allproject->project_id }}" disabled>Completed</option>
-             <?php } else if($my_allproject->status_id == 5) { ?>
-             <option value="0">Please Select</option>
-             <option value="1_{{$my_allproject->project_id }}">Estimates</option>
-             <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
-             <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
-             <?php } ?> 
-           </select>
-         </div>
-       </div>
-       <?php } 
-       if ($role_id == 2) {?>
-       <div class="actions cf">
+                         <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+                           <?php if($my_allproject->status_id == 1) { ?>
+                             <option value="0">Please Select</option>
+                             <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
+                             <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
+                             <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
+                             <option value="4_{{$my_allproject->project_id }}">Completed</option>
+                             <option value="5_{{$my_allproject->project_id }}">Hold</option>
+                             <?php } else if($my_allproject->status_id == 2) { ?>
+                               <option value="0">Please Select</option>
+                               <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
+                               <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
+                               <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
+                               <option value="4_{{$my_allproject->project_id }}">Completed</option>
+                               <option value="5_{{$my_allproject->project_id }}">Hold</option>
+                               <?php } else if($my_allproject->status_id == 3) { ?>
+                                 <option value="0">Please Select</option>
+                                 <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
+                                 <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
+                                 <option value="3_{{$my_allproject->project_id }}" disabled>Live-Ongoing</option>
+                                 <option value="4_{{$my_allproject->project_id }}">Completed</option>
+                                 <option value="5_{{$my_allproject->project_id }}">Hold</option>
+                                 <?php } else if($my_allproject->status_id == 4) { ?>
+                                   <option value="0">Please Select</option>
+                                   <option value="1_{{$my_allproject->project_id }}" disabled>Estimates</option>
+                                   <option value="2_{{$my_allproject->project_id }}" disabled>Live-Projects</option>
+                                   <option value="3_{{$my_allproject->project_id }}" disabled>Live-Ongoing</option>
+                                   <option value="4_{{$my_allproject->project_id }}" disabled>Completed</option>
+                                   <?php } else if($my_allproject->status_id == 5) { ?>
+                                     <option value="0">Please Select</option>
+                                     <option value="1_{{$my_allproject->project_id }}">Estimates</option>
+                                     <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
+                                     <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
+                                     <?php } ?> 
+                                   </select>
+                                 </div>
+                               </div>
+                               <?php } 
+                               if ($role_id == 2) {?>
+                                 <div class="actions cf">
 
-        <!--<span>Action</span> -->
-        <div>
-         <select id="project_action" class="edit-action-arrow">
-           <option value = "1">Please Select</option>
-           <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-         </select>
-       </div>
-     </div>
-     <?php } ?>
-     <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
-      <!-- <div class="all-project-details"> -->
-      <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
-      <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
-      <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
-      <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
-      <!-- </div> -->
-    </a>
-    <div class="estimate-plan">
-      <span class="estimate-span">
-        <?php if($my_allproject->estimation_status == 0) { ?>
-        <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
-        <?php } else { ?>
-        <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
-        <?php }?>
+                                  <!--<span>Action</span> -->
+                                  <div>
+                                   <select id="project_action" class="edit-action-arrow">
+                                     <option value = "1">Please Select</option>
+                                     <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                   </select>
+                                 </div>
+                               </div>
+                               <?php } ?>
+                               <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
+                                <!-- <div class="all-project-details"> -->
+                                <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
+                                <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
+                                <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
+                                <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
+                                <!-- </div> -->
+                              </a>
+                              <div class="estimate-plan">
+                                <span class="estimate-span">
+                                  <?php if($my_allproject->estimation_status == 0) { ?>
+                                    <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
+                                    <?php } else { ?>
+                                      <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
+                                      <?php }?>
 
-      </span>
-      <span class="planning-span">
-        <?php if($my_allproject->planning_status == 0) { ?>
-        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
-        <?php } else { ?>
-        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
-        <?php }?>
-      </span>
-    </div>
-  </div>
+                                    </span>
+                                    <span class="planning-span">
+                                      <?php if($my_allproject->planning_status == 0) { ?>
+                                        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
+                                        <?php } else { ?>
+                                          <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
+                                          <?php }?>
+                                        </span>
+                                      </div>
+                                    </div>
 
-  @endforeach
+                                    @endforeach
 
-  @foreach( $projects as $project_detail )
+                                    @foreach( $projects as $project_detail )
 
-  <div class="wrap-project unassigned-projects cf">
-    <?php if ($role_id == 1) {
-    ?>
-    <div class="actions cf">
-      <span>
-        <?php if($project_detail->status_id == 1){ ?>
-        estimates
-        <?php } else if($project_detail->status_id == 2){ ?>
-        Live-Projects
-        <?php } else if($project_detail->status_id == 3){ ?>
-        Live-Ongoing
-        <?php } else if($project_detail->status_id == 4){ ?>
-        Completed
-        <?php } else { ?>
-        Hold
-        <?php } ?>
-      </span> 
-      <div>
-        <select id="project_action" class="edit-action-arrow">
-          <option value = "1">Please Select</option>
-          <option value="2_{{$project_detail->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$project_detail->project_id}}">Edit</option>
-          <option value="3_{{$project_detail->project_id }}" data-id="{{$project_detail->project_id}}">Delete</option>
-          <option value="4_{{$project_detail->project_id }}" data-id="{{$project_detail->project_id}}">Archive</option>
-        </select>
+                                    <div class="wrap-project unassigned-projects cf">
+                                      <?php if ($role_id == 1) {
+                                        ?>
+                                        <div class="actions cf">
+                                          <span>
+                                            <?php if($project_detail->status_id == 1){ ?>
+                                              estimates
+                                              <?php } else if($project_detail->status_id == 2){ ?>
+                                                Live-Projects
+                                                <?php } else if($project_detail->status_id == 3){ ?>
+                                                  Live-Ongoing
+                                                  <?php } else if($project_detail->status_id == 4){ ?>
+                                                    Completed
+                                                    <?php } else { ?>
+                                                      Hold
+                                                      <?php } ?>
+                                                    </span> 
+                                                    <div>
+                                                      <select id="project_action" class="edit-action-arrow">
+                                                        <option value = "1">Please Select</option>
+                                                        <option value="2_{{$project_detail->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$project_detail->project_id}}">Edit</option>
+                                                        <option value="3_{{$project_detail->project_id }}" data-id="{{$project_detail->project_id}}">Delete</option>
+                                                        <option value="4_{{$project_detail->project_id }}" data-id="{{$project_detail->project_id}}">Archive</option>
+                                                      </select>
 
-        <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <?php if($project_detail->status_id == 1) { ?>
-          <option value="0">Please Select</option>
-          <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
-          <option value="2_{{$project_detail->project_id }}">Live-Projects</option>
-          <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
-          <option value="4_{{$project_detail->project_id }}">Completed</option>
-          <option value="5_{{$project_detail->project_id }}">Hold</option>
-          <?php } else if($project_detail->status_id == 2) { ?>
-          <option value="0">Please Select</option>
-          <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
-          <option value="2_{{$project_detail->project_id }}" disabled>Live-Projects</option>
-          <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
-          <option value="4_{{$project_detail->project_id }}">Completed</option>
-          <option value="5_{{$project_detail->project_id }}">Hold</option>
-          <?php } else if($project_detail->status_id == 3) { ?>
-          <option value="0">Please Select</option>
-          <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
-          <option value="2_{{$project_detail->project_id }}" disabled>Live-Projects</option>
-          <option value="3_{{$project_detail->project_id }}" disabled>Live-Ongoing</option>
-          <option value="4_{{$project_detail->project_id }}">Completed</option>
-          <option value="5_{{$project_detail->project_id }}">Hold</option>
-          <?php } else if($project_detail->status_id == 4) { ?>
-          <option value="0">Please Select</option>
-          <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
-          <option value="2_{{$project_detail->project_id }}" disabled>Live-Projects</option>
-          <option value="3_{{$project_detail->project_id }}" disabled>Live-Ongoing</option>
-          <option value="4_{{$project_detail->project_id }}" disabled>Completed</option>
-          <?php } else if($project_detail->status_id == 5) { ?>
-          <option value="0">Please Select</option>
-          <option value="1_{{$project_detail->project_id }}">Estimates</option>
-          <option value="2_{{$project_detail->project_id }}">Live-Projects</option>
-          <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
-          <?php } ?>
-        </select>
+                                                      <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+                                                        <?php if($project_detail->status_id == 1) { ?>
+                                                          <option value="0">Please Select</option>
+                                                          <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
+                                                          <option value="2_{{$project_detail->project_id }}">Live-Projects</option>
+                                                          <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
+                                                          <option value="4_{{$project_detail->project_id }}">Completed</option>
+                                                          <option value="5_{{$project_detail->project_id }}">Hold</option>
+                                                          <?php } else if($project_detail->status_id == 2) { ?>
+                                                            <option value="0">Please Select</option>
+                                                            <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
+                                                            <option value="2_{{$project_detail->project_id }}" disabled>Live-Projects</option>
+                                                            <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
+                                                            <option value="4_{{$project_detail->project_id }}">Completed</option>
+                                                            <option value="5_{{$project_detail->project_id }}">Hold</option>
+                                                            <?php } else if($project_detail->status_id == 3) { ?>
+                                                              <option value="0">Please Select</option>
+                                                              <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
+                                                              <option value="2_{{$project_detail->project_id }}" disabled>Live-Projects</option>
+                                                              <option value="3_{{$project_detail->project_id }}" disabled>Live-Ongoing</option>
+                                                              <option value="4_{{$project_detail->project_id }}">Completed</option>
+                                                              <option value="5_{{$project_detail->project_id }}">Hold</option>
+                                                              <?php } else if($project_detail->status_id == 4) { ?>
+                                                                <option value="0">Please Select</option>
+                                                                <option value="1_{{$project_detail->project_id }}" disabled>Estimates</option>
+                                                                <option value="2_{{$project_detail->project_id }}" disabled>Live-Projects</option>
+                                                                <option value="3_{{$project_detail->project_id }}" disabled>Live-Ongoing</option>
+                                                                <option value="4_{{$project_detail->project_id }}" disabled>Completed</option>
+                                                                <?php } else if($project_detail->status_id == 5) { ?>
+                                                                  <option value="0">Please Select</option>
+                                                                  <option value="1_{{$project_detail->project_id }}">Estimates</option>
+                                                                  <option value="2_{{$project_detail->project_id }}">Live-Projects</option>
+                                                                  <option value="3_{{$project_detail->project_id }}">Live-Ongoing</option>
+                                                                  <?php } ?>
+                                                                </select>
 
-      </div>
-    </div>
-    <?php }
-    if ($role_id == 2) {
-    ?>
-    <div class="actions cf">
-      <!--<span>Action</span> -->
-      <div>
-        <select id="project_action" class="edit-action-arrow">
-          <option value = "1">Please Select</option>
-          <option value="4_{{$project_detail->project_id }}" data-id="{{$project_detail->project_id}}">Archive</option>
-        </select>
-      </div>
-    </div>
-    <?php }?>
-    <a href="/project-designation/{{$project_detail->project_id}}" class="count_name">
-      <!-- <div class="all-project-details"> -->
-      <span class="pro_name" title="Project Name: {{ $project_detail->project_name }}">{{ $project_detail->project_name }}</span>
-      <span class="pro_client" title="Client Name: {{ $project_detail->client_name }}">{{ $project_detail->client_name }}</span>
-      <span class="pro_code" title="Project ID: {{ $project_detail->project_id }}">ID: {{ $project_detail->project_id }}</span>
-      <!-- </div> -->
-    </a>
-    <div class="estimate-plan">
-      <span class="estimate-span">
-       <?php if($project_detail->estimation_status == 0) { ?>
-       <a href="/store_project/estimate/{{ $project_detail->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
-       <?php } else { ?>
-       <a href="/store_project/estimate/{{ $project_detail->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
-       <?php } ?>
-     </span>
-     <span class="planning-span">
-      <?php if($project_detail->planning_status == 0) { ?>
-      <a href="/store_project/planning/{{ $project_detail->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
-      <?php } else { ?>
-      <a href="/store_project/planning/{{ $project_detail->project_id }}" title="Planning" class="detail-plan">Planning</a>
-      <?php } ?>
-    </span>
-  </div>
-</div>
-@endforeach
+                                                              </div>
+                                                            </div>
+                                                            <?php }
+                                                            if ($role_id == 2) {
+                                                              ?>
+                                                              <div class="actions cf">
+                                                                <!--<span>Action</span> -->
+                                                                <div>
+                                                                  <select id="project_action" class="edit-action-arrow">
+                                                                    <option value = "1">Please Select</option>
+                                                                    <option value="4_{{$project_detail->project_id }}" data-id="{{$project_detail->project_id}}">Archive</option>
+                                                                  </select>
+                                                                </div>
+                                                              </div>
+                                                              <?php }?>
+                                                              <a href="/project-designation/{{$project_detail->project_id}}" class="count_name">
+                                                                <!-- <div class="all-project-details"> -->
+                                                                <span class="pro_name" title="Project Name: {{ $project_detail->project_name }}">{{ $project_detail->project_name }}</span>
+                                                                <span class="pro_client" title="Client Name: {{ $project_detail->client_name }}">{{ $project_detail->client_name }}</span>
+                                                                <span class="pro_code" title="Project ID: {{ $project_detail->project_id }}">ID: {{ $project_detail->project_id }}</span>
+                                                                <!-- </div> -->
+                                                              </a>
+                                                              <div class="estimate-plan">
+                                                                <span class="estimate-span">
+                                                                 <?php if($project_detail->estimation_status == 0) { ?>
+                                                                   <a href="/store_project/estimate/{{ $project_detail->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
+                                                                   <?php } else { ?>
+                                                                     <a href="/store_project/estimate/{{ $project_detail->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
+                                                                     <?php } ?>
+                                                                   </span>
+                                                                   <span class="planning-span">
+                                                                    <?php if($project_detail->planning_status == 0) { ?>
+                                                                      <a href="/store_project/planning/{{ $project_detail->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
+                                                                      <?php } else { ?>
+                                                                        <a href="/store_project/planning/{{ $project_detail->project_id }}" title="Planning" class="detail-plan">Planning</a>
+                                                                        <?php } ?>
+                                                                      </span>
+                                                                    </div>
+                                                                  </div>
+                                                                  @endforeach
 
-</div>
+                                                                </div>
 
-<div id="tabs-2" class="grid">
-  <?php if(count($estimates_project) == 0) {?>
-  <p class="noproject-message">There are no projects to show.</p>
-  <?php } ?>
+                                                                <div id="tabs-2" class="grid">
+                                                                  <?php if(count($estimates_project) == 0) {?>
+                                                                    <p class="noproject-message">There are no projects to show.</p>
+                                                                    <?php } ?>
 
-  @foreach($estimates_project as $my_allproject  )
-  @if($my_allproject->is_myproject == "Yes")
-  <div class="wrap-project assigned-projects cf">
-   @else
-   <div class="wrap-project cf">
-    @endif
+                                                                    @foreach($estimates_project as $my_allproject  )
+                                                                    @if($my_allproject->is_myproject == "Yes")
+                                                                    <div class="wrap-project assigned-projects cf">
+                                                                     @else
+                                                                     <div class="wrap-project cf">
+                                                                      @endif
 
-    <?php if ($role_id == 1) {?>
-    <div class="actions cf">
-      <!--<span>Action</span> -->
-      <div>
-        <select id="project_action" class="edit-action-arrow">
-          <option value = "1">Please Select</option>
-          <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
-          <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
-          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-        </select>
-        <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <option value="0">Please Select</option>
-          <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
-          <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
-          <option value="4_{{$my_allproject->project_id }}">Completed</option>
-          <option value="5_{{$my_allproject->project_id }}">Hold</option>
-        </select>
-      </div>
-    </div>
-    <?php } 
-    if ($role_id == 2) {?>
-    <div class="actions cf">
-      <!--<span>Action</span> -->
-      <div>
-        <select id="project_action" class="edit-action-arrow">
-          <option value = "1">Please Select</option>
-          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-        </select>
-      </div>
-    </div>
-    <?php }?>
-    <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
-      <!-- <div class="all-project-details"> -->
-      <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
-      <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
-      <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
-      <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
-      <!-- </div> -->
-    </a>
+                                                                      <?php if ($role_id == 1) {?>
+                                                                        <div class="actions cf">
+                                                                          <!--<span>Action</span> -->
+                                                                          <div>
+                                                                            <select id="project_action" class="edit-action-arrow">
+                                                                              <option value = "1">Please Select</option>
+                                                                              <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
+                                                                              <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
+                                                                              <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                                                            </select>
+                                                                            <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+                                                                              <option value="0">Please Select</option>
+                                                                              <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
+                                                                              <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
+                                                                              <option value="4_{{$my_allproject->project_id }}">Completed</option>
+                                                                              <option value="5_{{$my_allproject->project_id }}">Hold</option>
+                                                                            </select>
+                                                                          </div>
+                                                                        </div>
+                                                                        <?php } 
+                                                                        if ($role_id == 2) {?>
+                                                                          <div class="actions cf">
+                                                                            <!--<span>Action</span> -->
+                                                                            <div>
+                                                                              <select id="project_action" class="edit-action-arrow">
+                                                                                <option value = "1">Please Select</option>
+                                                                                <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                                                              </select>
+                                                                            </div>
+                                                                          </div>
+                                                                          <?php }?>
+                                                                          <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
+                                                                            <!-- <div class="all-project-details"> -->
+                                                                            <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
+                                                                            <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
+                                                                            <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
+                                                                            <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
+                                                                            <!-- </div> -->
+                                                                          </a>
 
-    <div class="estimate-plan">
-      <span class="estimate-span">
-        <?php if($my_allproject->estimation_status == 0) { ?>
-        <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
-        <?php } else { ?>
-        <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
-        <?php } ?>
-      </span>
-      <span class="planning-span">
-        <?php if($my_allproject->planning_status == 0) { ?>
-        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
-        <?php } else { ?>
-        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
-        <?php } ?>
-      </span>
-    </div>
-  </div>
-  @endforeach
-</div>
-<div id="tabs-3" class="grid">
+                                                                          <div class="estimate-plan">
+                                                                            <span class="estimate-span">
+                                                                              <?php if($my_allproject->estimation_status == 0) { ?>
+                                                                                <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
+                                                                                <?php } else { ?>
+                                                                                  <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
+                                                                                  <?php } ?>
+                                                                                </span>
+                                                                                <span class="planning-span">
+                                                                                  <?php if($my_allproject->planning_status == 0) { ?>
+                                                                                    <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
+                                                                                    <?php } else { ?>
+                                                                                      <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
+                                                                                      <?php } ?>
+                                                                                    </span>
+                                                                                  </div>
+                                                                                </div>
+                                                                                @endforeach
+                                                                              </div>
+                                                                              <div id="tabs-3" class="grid">
 
- <?php if(count($live_project) == 0) {?>
- <p class="noproject-message">There are no projects to show.</p>
- <?php } ?>
+                                                                               <?php if(count($live_project) == 0) {?>
+                                                                                 <p class="noproject-message">There are no projects to show.</p>
+                                                                                 <?php } ?>
 
- @foreach( $live_project as $my_allproject  )
- @if($my_allproject->is_myproject == "Yes")
- <div class="wrap-project assigned-projects cf">
-   @else
-   <div class="wrap-project cf">
-    @endif
+                                                                                 @foreach( $live_project as $my_allproject  )
+                                                                                 @if($my_allproject->is_myproject == "Yes")
+                                                                                 <div class="wrap-project assigned-projects cf">
+                                                                                   @else
+                                                                                   <div class="wrap-project cf">
+                                                                                    @endif
 
-    <?php if ($role_id == 1) {?>
-    <div class="actions cf">
-      <!--<span>Action</span> -->
-      <div>
-        <select id="project_action" class="edit-action-arrow">
-          <option value = "1">Please Select</option>
-          <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
-          <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
-          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-        </select>
-        <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <option value="0">Please Select</option>
-          <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
-          <option value="4_{{$my_allproject->project_id }}">Completed</option>
-          <option value="5_{{$my_allproject->project_id }}">Hold</option>
-        </select>
-      </div>
-    </div>
-    <?php } 
-    if ($role_id == 2) {?>
-    <div class="actions cf">
-      <!--<span>Action</span> -->
-      <div>
-        <select id="project_action" class="edit-action-arrow">
-          <option value = "1">Please Select</option>
-          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-        </select>
-      </div>
-    </div>
-    <?php }?>
-    <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
-      <!-- <div class="all-project-details"> -->
-      <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
-      <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
-      <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
-      <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
-      <!-- </div> -->
-    </a>
+                                                                                    <?php if ($role_id == 1) {?>
+                                                                                      <div class="actions cf">
+                                                                                        <!--<span>Action</span> -->
+                                                                                        <div>
+                                                                                          <select id="project_action" class="edit-action-arrow">
+                                                                                            <option value = "1">Please Select</option>
+                                                                                            <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
+                                                                                            <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
+                                                                                            <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                                                                          </select>
+                                                                                          <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+                                                                                            <option value="0">Please Select</option>
+                                                                                            <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
+                                                                                            <option value="4_{{$my_allproject->project_id }}">Completed</option>
+                                                                                            <option value="5_{{$my_allproject->project_id }}">Hold</option>
+                                                                                          </select>
+                                                                                        </div>
+                                                                                      </div>
+                                                                                      <?php } 
+                                                                                      if ($role_id == 2) {?>
+                                                                                        <div class="actions cf">
+                                                                                          <!--<span>Action</span> -->
+                                                                                          <div>
+                                                                                            <select id="project_action" class="edit-action-arrow">
+                                                                                              <option value = "1">Please Select</option>
+                                                                                              <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                                                                            </select>
+                                                                                          </div>
+                                                                                        </div>
+                                                                                        <?php }?>
+                                                                                        <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
+                                                                                          <!-- <div class="all-project-details"> -->
+                                                                                          <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
+                                                                                          <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
+                                                                                          <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
+                                                                                          <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
+                                                                                          <!-- </div> -->
+                                                                                        </a>
 
-    <div class="estimate-plan">
-      <span class="estimate-span">
-       <?php if($my_allproject->estimation_status == 0) { ?>
-       <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
-       <?php } else { ?>
-       <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
-       <?php } ?>
-     </span>
-     <span class="planning-span">
-      <?php if($my_allproject->planning_status == 0) { ?>
-      <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
-      <?php } else { ?>
-      <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
-      <?php } ?>
-    </span>
-  </div>
-</div>
-@endforeach
+                                                                                        <div class="estimate-plan">
+                                                                                          <span class="estimate-span">
+                                                                                           <?php if($my_allproject->estimation_status == 0) { ?>
+                                                                                             <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
+                                                                                             <?php } else { ?>
+                                                                                               <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
+                                                                                               <?php } ?>
+                                                                                             </span>
+                                                                                             <span class="planning-span">
+                                                                                              <?php if($my_allproject->planning_status == 0) { ?>
+                                                                                                <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
+                                                                                                <?php } else { ?>
+                                                                                                  <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
+                                                                                                  <?php } ?>
+                                                                                                </span>
+                                                                                              </div>
+                                                                                            </div>
+                                                                                            @endforeach
 
-</div>
-<div id="tabs-4" class="grid">
-  <?php if(count($live_ongoing_project) == 0) {?>
-  <p class="noproject-message">There are no projects to show.</p>
-  <?php } ?>
-  @foreach($live_ongoing_project as $my_allproject  )
-  @if($my_allproject->is_myproject == "Yes")
-  <div class="wrap-project assigned-projects cf">
-   @else
-   <div class="wrap-project cf">
-    @endif
+                                                                                          </div>
+                                                                                          <div id="tabs-4" class="grid">
+                                                                                            <?php if(count($live_ongoing_project) == 0) {?>
+                                                                                              <p class="noproject-message">There are no projects to show.</p>
+                                                                                              <?php } ?>
+                                                                                              @foreach($live_ongoing_project as $my_allproject  )
+                                                                                              @if($my_allproject->is_myproject == "Yes")
+                                                                                              <div class="wrap-project assigned-projects cf">
+                                                                                               @else
+                                                                                               <div class="wrap-project cf">
+                                                                                                @endif
 
-    <?php if ($role_id == 1) {?>
-    <div class="actions cf">
-      <!--<span>Action</span> -->
-      <div>
-        <select id="project_action" class="edit-action-arrow">
-          <option value = "1">Please Select</option>
-          <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
-          <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
-          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-        </select>
-        <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <option value="0">Please Select</option>
-          <option value="4_{{$my_allproject->project_id }}">Completed</option>
-          <option value="5_{{$my_allproject->project_id }}">Hold</option>
-        </select>
-      </div>
-    </div>
-    <?php } 
-    if ($role_id == 2) {?>
-    <div class="actions cf">
-      <!--<span>Action</span> -->
-      <div>
-        <select id="project_action" class="edit-action-arrow">
-          <option value = "1">Please Select</option>
-          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-        </select>
-      </div>
-    </div>
-    <?php }?>
-    <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
-      <!-- <div class="all-project-details"> -->
-      <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
-      <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
-      <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
-      <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
-      <!-- </div> -->
-    </a>
+                                                                                                <?php if ($role_id == 1) {?>
+                                                                                                  <div class="actions cf">
+                                                                                                    <!--<span>Action</span> -->
+                                                                                                    <div>
+                                                                                                      <select id="project_action" class="edit-action-arrow">
+                                                                                                        <option value = "1">Please Select</option>
+                                                                                                        <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
+                                                                                                        <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
+                                                                                                        <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                                                                                      </select>
+                                                                                                      <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+                                                                                                        <option value="0">Please Select</option>
+                                                                                                        <option value="4_{{$my_allproject->project_id }}">Completed</option>
+                                                                                                        <option value="5_{{$my_allproject->project_id }}">Hold</option>
+                                                                                                      </select>
+                                                                                                    </div>
+                                                                                                  </div>
+                                                                                                  <?php } 
+                                                                                                  if ($role_id == 2) {?>
+                                                                                                    <div class="actions cf">
+                                                                                                      <!--<span>Action</span> -->
+                                                                                                      <div>
+                                                                                                        <select id="project_action" class="edit-action-arrow">
+                                                                                                          <option value = "1">Please Select</option>
+                                                                                                          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                                                                                        </select>
+                                                                                                      </div>
+                                                                                                    </div>
+                                                                                                    <?php }?>
+                                                                                                    <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
+                                                                                                      <!-- <div class="all-project-details"> -->
+                                                                                                      <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
+                                                                                                      <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
+                                                                                                      <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
+                                                                                                      <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
+                                                                                                      <!-- </div> -->
+                                                                                                    </a>
 
-    <div class="estimate-plan">
-      <span class="estimate-span">
-        <?php if($my_allproject->estimation_status == 0) { ?>
-        <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
-        <?php } else { ?>
-        <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
-        <?php } ?>
-      </span>
-      <span class="planning-span">
-        <?php if($my_allproject->planning_status == 0) { ?>
-        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
-        <?php } else { ?>
-        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
-        <?php } ?>
-      </span>
-    </div>
-  </div>
-  @endforeach
-</div>
-<div id="tabs-5" class="grid">
-  <?php if(count($completed_project) == 0) {?>
-  <p class="noproject-message">There are no projects to show.</p>
-  <?php } ?>
-  @foreach( $completed_project as $my_allproject  )
-  @if($my_allproject->is_myproject == "Yes")
-  <div class="wrap-project assigned-projects cf">
-   @else
-   <div class="wrap-project cf">
-    @endif
+                                                                                                    <div class="estimate-plan">
+                                                                                                      <span class="estimate-span">
+                                                                                                        <?php if($my_allproject->estimation_status == 0) { ?>
+                                                                                                          <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
+                                                                                                          <?php } else { ?>
+                                                                                                            <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
+                                                                                                            <?php } ?>
+                                                                                                          </span>
+                                                                                                          <span class="planning-span">
+                                                                                                            <?php if($my_allproject->planning_status == 0) { ?>
+                                                                                                              <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
+                                                                                                              <?php } else { ?>
+                                                                                                                <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
+                                                                                                                <?php } ?>
+                                                                                                              </span>
+                                                                                                            </div>
+                                                                                                          </div>
+                                                                                                          @endforeach
+                                                                                                        </div>
+                                                                                                        <div id="tabs-5" class="grid">
+                                                                                                          <?php if(count($completed_project) == 0) {?>
+                                                                                                            <p class="noproject-message">There are no projects to show.</p>
+                                                                                                            <?php } ?>
+                                                                                                            @foreach( $completed_project as $my_allproject  )
+                                                                                                            @if($my_allproject->is_myproject == "Yes")
+                                                                                                            <div class="wrap-project assigned-projects cf">
+                                                                                                             @else
+                                                                                                             <div class="wrap-project cf">
+                                                                                                              @endif
 
-    <?php if ($role_id == 1) {?>
-    <div class="actions cf">
-      <!--<span>Action</span> -->
-      <div>
-       <select id="project_action" class="edit-action-arrow">
-        <option value = "1">Please Select</option>
-        <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
-        <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
-        <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-      </select>
+                                                                                                              <?php if ($role_id == 1) {?>
+                                                                                                                <div class="actions cf">
+                                                                                                                  <!--<span>Action</span> -->
+                                                                                                                  <div>
+                                                                                                                   <select id="project_action" class="edit-action-arrow">
+                                                                                                                    <option value = "1">Please Select</option>
+                                                                                                                    <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
+                                                                                                                    <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
+                                                                                                                    <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                                                                                                  </select>
 
-    </div>
-  </div>
-  <?php } 
-  if ($role_id == 2) {?>
-  <div class="actions cf">
-    <!--<span>Action</span> -->
-    <div>
-      <select id="project_action" class="edit-action-arrow">
-        <option value = "1">Please Select</option>
-        <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-      </select>
-    </div>
-  </div>
-  <?php }?>
-  <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
-    <!-- <div class="all-project-details"> -->
-    <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
-    <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
-    <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
-    <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
-    <!-- </div> -->
-  </a>
-  <div class="estimate-plan">
-    <span class="estimate-span">
-     <?php if($my_allproject->estimation_status == 0) { ?>
-     <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
-     <?php } else { ?>
-     <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
-     <?php } ?>
-   </span>
-   <span class="planning-span">
-    <?php if($my_allproject->planning_status == 0) { ?>
-    <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
-    <?php } else { ?>
-    <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
-    <?php } ?>
-  </span>
-</div>
-</div>
-@endforeach
-</div>
-<div id="tabs-6" class="grid">
-  <?php if(count($hold_project) == 0) {?>
-  <p class="noproject-message">There are no projects to show.</p>
-  <?php } ?>
-  @foreach($hold_project as $my_allproject  )
-  @if($my_allproject->is_myproject == "Yes")
-  <div class="wrap-project assigned-projects cf">
-   @else
-   <div class="wrap-project cf">
-    @endif
+                                                                                                                </div>
+                                                                                                              </div>
+                                                                                                              <?php } 
+                                                                                                              if ($role_id == 2) {?>
+                                                                                                                <div class="actions cf">
+                                                                                                                  <!--<span>Action</span> -->
+                                                                                                                  <div>
+                                                                                                                    <select id="project_action" class="edit-action-arrow">
+                                                                                                                      <option value = "1">Please Select</option>
+                                                                                                                      <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                                                                                                    </select>
+                                                                                                                  </div>
+                                                                                                                </div>
+                                                                                                                <?php }?>
+                                                                                                                <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
+                                                                                                                  <!-- <div class="all-project-details"> -->
+                                                                                                                  <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
+                                                                                                                  <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
+                                                                                                                  <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
+                                                                                                                  <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
+                                                                                                                  <!-- </div> -->
+                                                                                                                </a>
+                                                                                                                <div class="estimate-plan">
+                                                                                                                  <span class="estimate-span">
+                                                                                                                   <?php if($my_allproject->estimation_status == 0) { ?>
+                                                                                                                     <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
+                                                                                                                     <?php } else { ?>
+                                                                                                                       <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
+                                                                                                                       <?php } ?>
+                                                                                                                     </span>
+                                                                                                                     <span class="planning-span">
+                                                                                                                      <?php if($my_allproject->planning_status == 0) { ?>
+                                                                                                                        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
+                                                                                                                        <?php } else { ?>
+                                                                                                                          <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
+                                                                                                                          <?php } ?>
+                                                                                                                        </span>
+                                                                                                                      </div>
+                                                                                                                    </div>
+                                                                                                                    @endforeach
+                                                                                                                  </div>
+                                                                                                                  <div id="tabs-6" class="grid">
+                                                                                                                    <?php if(count($hold_project) == 0) {?>
+                                                                                                                      <p class="noproject-message">There are no projects to show.</p>
+                                                                                                                      <?php } ?>
+                                                                                                                      @foreach($hold_project as $my_allproject  )
+                                                                                                                      @if($my_allproject->is_myproject == "Yes")
+                                                                                                                      <div class="wrap-project assigned-projects cf">
+                                                                                                                       @else
+                                                                                                                       <div class="wrap-project cf">
+                                                                                                                        @endif
 
-    <?php if ($role_id == 1) {?>
-    <div class="actions cf">
-      <!--<span>Action</span> -->
-      <div>
-        <select id="project_action" class="edit-action-arrow">
-          <option value = "1">Please Select</option>
-          <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
-          <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
-          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-        </select>
-        <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
-          <option value="0">Please Select</option>
-          <option value="1_{{$my_allproject->project_id }}">Estimates</option>
-          <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
-          <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
-        </select>
-      </div>
-    </div>
-    <?php } 
-    if ($role_id == 2) {?>
-    <div class="actions cf">
-      <!--<span>Action</span> -->
-      <div>
-        <select id="project_action" class="edit-action-arrow">
-          <option value = "1">Please Select</option>
-          <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
-        </select>
-      </div>
-    </div>
-    <?php }?>
-    <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
-      <!-- <div class="all-project-details"> -->
-      <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
-      <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
-      <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
-      <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
-      <!-- </div> -->
-    </a>
+                                                                                                                        <?php if ($role_id == 1) {?>
+                                                                                                                          <div class="actions cf">
+                                                                                                                            <!--<span>Action</span> -->
+                                                                                                                            <div>
+                                                                                                                              <select id="project_action" class="edit-action-arrow">
+                                                                                                                                <option value = "1">Please Select</option>
+                                                                                                                                <option value="2_{{$my_allproject->project_id }}" data-toggle="modal" class="edit-action" data-id="{{$my_allproject->project_id}}">Edit</option>
+                                                                                                                                <option value="3_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Delete</option>
+                                                                                                                                <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                                                                                                              </select>
+                                                                                                                              <select name="ddlProjectStatus" id="pStatus" class="proj_status" title="Move To">
+                                                                                                                                <option value="0">Please Select</option>
+                                                                                                                                <option value="1_{{$my_allproject->project_id }}">Estimates</option>
+                                                                                                                                <option value="2_{{$my_allproject->project_id }}">Live-Projects</option>
+                                                                                                                                <option value="3_{{$my_allproject->project_id }}">Live-Ongoing</option>
+                                                                                                                              </select>
+                                                                                                                            </div>
+                                                                                                                          </div>
+                                                                                                                          <?php } 
+                                                                                                                          if ($role_id == 2) {?>
+                                                                                                                            <div class="actions cf">
+                                                                                                                              <!--<span>Action</span> -->
+                                                                                                                              <div>
+                                                                                                                                <select id="project_action" class="edit-action-arrow">
+                                                                                                                                  <option value = "1">Please Select</option>
+                                                                                                                                  <option value="4_{{$my_allproject->project_id }}" data-id="{{$my_allproject->project_id}}">Archive</option>
+                                                                                                                                </select>
+                                                                                                                              </div>
+                                                                                                                            </div>
+                                                                                                                            <?php }?>
+                                                                                                                            <a href="/project-designation/{{$my_allproject->project_id}}" class="count_name">
+                                                                                                                              <!-- <div class="all-project-details"> -->
+                                                                                                                              <span class="pro_name" title="Project Name: {{ $my_allproject->project_name }}">{{ $my_allproject->project_name }}</span>
+                                                                                                                              <span class="pro_client" title="Client Name: {{ $my_allproject->client_name }}">{{ $my_allproject->client_name }}</span>
+                                                                                                                              <span class="pro_code" title="Project ID: {{ $my_allproject->project_id }}">ID: {{ $my_allproject->project_id }}</span>
+                                                                                                                              <span class="pro_desig" title="Designation: {{ $my_allproject->designation_name }}">{{ $my_allproject->designation_name }}</span>
+                                                                                                                              <!-- </div> -->
+                                                                                                                            </a>
 
-    <div class="estimate-plan">
-      <span class="estimate-span">
-        <?php if($my_allproject->estimation_status == 0) { ?>
-        <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
-        <?php } else { ?>
-        <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
-        <?php } ?>
-      </span>
-      <span class="planning-span">
-        <?php if($my_allproject->planning_status == 0) { ?>
-        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
-        <?php } else { ?>
-        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
-        <?php } ?>
-      </span>
-    </div>
-  </div>
-  @endforeach
-</div>
-</div>
-</div>
-<!-- All Projects list ends here -->
-<!-- Modal for Delete start here -->
-<div class="modal fade delete-modal" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
-      </div>
-      <div class="modal-body">
-        <h5>Confirm Delete</h5>
-        <p>Are you sure you want to remove this Project?</p>
-        <p class="debug-url"></p>
-      </div>
-      <div class="modal-footer">
-        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
-        <a class="btn btn-danger btn-ok" id="btnYes">Delete</a>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-<!-- Modal for delete ends here -->
+                                                                                                                            <div class="estimate-plan">
+                                                                                                                              <span class="estimate-span">
+                                                                                                                                <?php if($my_allproject->estimation_status == 0) { ?>
+                                                                                                                                  <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan not-filled">Estimation</a>
+                                                                                                                                  <?php } else { ?>
+                                                                                                                                    <a href="/store_project/estimate/{{ $my_allproject->project_id }}" title="Estimation" class="detail-plan">Estimation</a>
+                                                                                                                                    <?php } ?>
+                                                                                                                                  </span>
+                                                                                                                                  <span class="planning-span">
+                                                                                                                                    <?php if($my_allproject->planning_status == 0) { ?>
+                                                                                                                                      <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan not-filled">Planning</a>
+                                                                                                                                      <?php } else { ?>
+                                                                                                                                        <a href="/store_project/planning/{{ $my_allproject->project_id }}" title="Planning" class="detail-plan">Planning</a>
+                                                                                                                                        <?php } ?>
+                                                                                                                                      </span>
+                                                                                                                                    </div>
+                                                                                                                                  </div>
+                                                                                                                                  @endforeach
+                                                                                                                                </div>
+                                                                                                                              </div>
+                                                                                                                            </div>
+                                                                                                                            <!-- All Projects list ends here -->
+                                                                                                                            <!-- Modal for Delete start here -->
+                                                                                                                            <div class="modal fade delete-modal" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                                                                              <div class="modal-dialog modal-sm">
+                                                                                                                                <div class="modal-content">
+                                                                                                                                  <div class="modal-header">
+                                                                                                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                                                                                    <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                                                                                                                                  </div>
+                                                                                                                                  <div class="modal-body">
+                                                                                                                                    <h5>Confirm Delete</h5>
+                                                                                                                                    <p>Are you sure you want to remove this Project?</p>
+                                                                                                                                    <p class="debug-url"></p>
+                                                                                                                                  </div>
+                                                                                                                                  <div class="modal-footer">
+                                                                                                                                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
+                                                                                                                                    <a class="btn btn-danger btn-ok" id="btnYes">Delete</a>
+                                                                                                                                  </div>
+                                                                                                                                </div>
+                                                                                                                              </div>
+                                                                                                                            </div>
+                                                                                                                          </div>
+                                                                                                                          <!-- Modal for delete ends here -->
 
-<!-- Modal for Archive Delete start here -->
-<div class="modal fade delete-modal" id="archive-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Confirm Archive</h4>
-      </div>
-      <div class="modal-body">
-        <h5>Confirm Archive</h5>
-        <p>Are you sure you want to archive this Project?</p>
-        <p class="debug-url"></p>
-      </div>
-      <div class="modal-footer">
-        <a class="btn btn-danger btn-ok" id="btnYes">Archive</a>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Modal for Archiver delete ends here -->
-<script>
- $.ajaxSetup({
+                                                                                                                          <!-- Modal for Archive Delete start here -->
+                                                                                                                          <div class="modal fade delete-modal" id="archive-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                                                                            <div class="modal-dialog modal-sm">
+                                                                                                                              <div class="modal-content">
+                                                                                                                                <div class="modal-header">
+                                                                                                                                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                                                                                  <h4 class="modal-title" id="myModalLabel">Confirm Archive</h4>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-body">
+                                                                                                                                  <h5>Confirm Archive</h5>
+                                                                                                                                  <p>Are you sure you want to archive this Project?</p>
+                                                                                                                                  <p class="debug-url"></p>
+                                                                                                                                </div>
+                                                                                                                                <div class="modal-footer">
+                                                                                                                                  <a class="btn btn-danger btn-ok" id="btnYes">Archive</a>
+                                                                                                                                </div>
+                                                                                                                              </div>
+                                                                                                                            </div>
+                                                                                                                          </div>
+                                                                                                                          <!-- Modal for Archiver delete ends here -->
+                                                                                                                          <script>
+                                                                                                                           $.ajaxSetup({
 
-  headers: {
-    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-  }
-});
+                                                                                                                            headers: {
+                                                                                                                              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                                                                                                                            }
+                                                                                                                          });
 
- /***** search functionality started **********/
- $(document).ready(function(){
-  $("#search_project").keyup(function(){
+                                                                                                                           /***** search functionality started **********/
+                                                                                                                           $(document).ready(function(){
+                                                                                                                            $("#search_project").keyup(function(){
 
     // Retrieve the input field text and reset the count to zero
     var filter = $(this).val(), count = 0;
@@ -838,39 +838,39 @@
         $(activeDiv).children(".noproject-message").remove();
       }
     });
-  $('.tab-filters a').click(function(){
-    $("#search_project").trigger('keyup');
-  });
-});
- /***** search functionality completed **********/
+                                                                                                                            $('.tab-filters a').click(function(){
+                                                                                                                              $("#search_project").trigger('keyup');
+                                                                                                                            });
+                                                                                                                          });
+                                                                                                                           /***** search functionality completed **********/
 
- $(".proj_status").change(function(){
-  var status=($(this).val()).split("_");
-  var project_status=status[0];
-  var project_id=status[1];
-  if(project_status==0)
-    alert("please select project status");
-  else
-  {
-    $.ajax({
-     type: 'POST',
-     url: 'change_project_status',
-     data: {'project_id':project_id,'project_status':project_status},
-     success:function(data)
-     {
-      if(data.success==1){
-        location.reload();
+                                                                                                                           $(".proj_status").change(function(){
+                                                                                                                            var status=($(this).val()).split("_");
+                                                                                                                            var project_status=status[0];
+                                                                                                                            var project_id=status[1];
+                                                                                                                            if(project_status==0)
+                                                                                                                              alert("please select project status");
+                                                                                                                            else
+                                                                                                                            {
+                                                                                                                              $.ajax({
+                                                                                                                               type: 'POST',
+                                                                                                                               url: 'change_project_status',
+                                                                                                                               data: {'project_id':project_id,'project_status':project_status},
+                                                                                                                               success:function(data)
+                                                                                                                               {
+                                                                                                                                if(data.success==1){
+                                                                                                                                  location.reload();
 
-      }
-      else{
-        alert("Something went wrong.Please try again later.");
-      }
-    }
+                                                                                                                                }
+                                                                                                                                else{
+                                                                                                                                  alert("Something went wrong.Please try again later.");
+                                                                                                                                }
+                                                                                                                              }
 
-  });
-  }
+                                                                                                                            });
+                                                                                                                            }
 
-});
+                                                                                                                          });
 
 
                 //  $(".addProject").on('click',function(e){

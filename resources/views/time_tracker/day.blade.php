@@ -126,50 +126,52 @@
  </nav>
  <div class="table-timesheet">
    <div class="export-functionality">
-     <span>download</span>
+    <span>download</span>
+    <div class="export-links"> 
      <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/excel" target="_blank" title="Excel"><input type="button" value="Excel" id="export_excel"></a>
      <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/day/pdf" target="_blank" title="Pdf"><input type="button" value="PDF" id="export_excel"></a>
    </div>
-   <table class="day-table">
-     <tr class="head-row">
-       <th>
-         Project Name
-       </th>
-       <th>
-         Hours
-       </th>
-       <th>
-         Edit
-       </th>
-       <th>
-         Delete
-       </th>
-     </tr>
+ </div>
+ <table class="day-table">
+   <tr class="head-row">
+     <th>
+       Project Name
+     </th>
+     <th>
+       Hours
+     </th>
+     <th>
+       Edit
+     </th>
+     <th>
+       Delete
+     </th>
+   </tr>
 
-     @foreach($daily_project as $today_project)
-     <tr id="time{{$today_project->id}}">
-       <td class="break-words">
-        <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
+   @foreach($daily_project as $today_project)
+   <tr id="time{{$today_project->id}}">
+     <td class="break-words">
+      <h3><span class="project_name">{{$today_project->project_name}}</span> - <span class="project_designation">{{$today_project->designation_name}}</span></h3>
 
-        <p><?php echo $today_project->comments; ?></p>
+      <p><?php echo $today_project->comments; ?></p>
 
-      </td>
-      <td>
-        {{$today_project->hrs_locked}}
-      </td>
-      <td>
-        <button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time" data-id= {{$today_project->id}}>Edit User</button>
-      </td>
-      <td>
-        <button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time" data-id= "{{$today_project->id}}" data-target="#confirm-delete">Delete User</button>
-      </td>
-    </tr>
-    @endforeach
-  </table>
-  <div class="time-details">
-    <p><span class="tot-hours-title">Total Hours - </span> <span class="tot-hours"></span></p>
-    <p><span class="free-time-title">Free Hours - </span> <span class="free-time"></span></p>
-  </div>
+    </td>
+    <td>
+      {{$today_project->hrs_locked}}
+    </td>
+    <td>
+      <button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time" data-id= {{$today_project->id}}>Edit User</button>
+    </td>
+    <td>
+      <button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time" data-id= "{{$today_project->id}}" data-target="#confirm-delete">Delete User</button>
+    </td>
+  </tr>
+  @endforeach
+</table>
+<div class="time-details">
+  <p><span class="tot-hours-title">Total Hours - </span> <span class="tot-hours"></span></p>
+  <p><span class="free-time-title">Free Hours - </span> <span class="free-time"></span></p>
+</div>
 </div>
 <?php } else { ?>
   <nav class = "addProjectNav cf" >

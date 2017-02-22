@@ -2232,39 +2232,37 @@ table thead th {
 /*styling for download*/
 .export-functionality {
   float: right;
-  position: relative;
   margin: 0 0 5px;
 }
 
 .export-functionality a {
-  width: 46px;
-  border: 1px solid #eee;
-  display: none;
-  position: absolute;
-  right: -53px;
-  height: 46px;
+  width: 24px;
+  height: 24px;
   text-indent: -9999px;
 }
 
+.export-functionality .export-links { display: none; }
+
 .export-functionality a:first-of-type { 
-  border-bottom: none;
   background: url('../images/excel.png') no-repeat center center;
-  background-size: 50% 50%;
+  background-size: 100% 100%;
 }
 
 .export-functionality a:last-of-type {
-  border-top: none;
-  top: 67px;
+  margin-left: 10px;
   background: url('../images/pdf.png') no-repeat center center;
-  background-size: 50% 50%;
+  background-size: 100% 100%;
 }
 
 .export-functionality span {
-  padding-right: 28px;
+  width: 24px;
+  height: 25px;
+  display: inline-block;
   background: url('../images/download.png') no-repeat center right;
-  background-size: 20% 100%;
+  background-size: 100% 100%;
   color: #3b5998;
   cursor: pointer;
+  text-indent: -9999px;
   text-transform: uppercase;
 }
 

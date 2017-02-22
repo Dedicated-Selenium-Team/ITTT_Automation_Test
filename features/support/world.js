@@ -11,10 +11,10 @@ var capabilities = {
 	platform:'Linux'
 };
 
-driver = new webdriver.Builder().
-withCapabilities(capabilities).
-usingServer("http://ec2-35-154-116-16.ap-south-1.compute.amazonaws.com:4444/wd/hub").
-build();
+// driver = new webdriver.Builder().
+// withCapabilities(capabilities).
+// usingServer("http://ec2-35-154-116-16.ap-south-1.compute.amazonaws.com:4444/wd/hub").
+// build();
 
 
 // var buildAndroidDriver = function() {
@@ -52,10 +52,10 @@ build();
 // 	var driver = buildChromeDriver();
 // }
 
-// var driver = new webdriver
-// .Builder()
-// .withCapabilities(capabilities)
-// .build();
+var driver = new webdriver
+.Builder()
+.withCapabilities(capabilities)
+.build();
 
 var getDriver = function() {
 	return driver;

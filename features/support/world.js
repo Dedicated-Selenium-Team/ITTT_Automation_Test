@@ -6,9 +6,9 @@ var webdriver = require('selenium-webdriver');
 var driver;
 
 var capabilities = {
-	browserName: 'firefox',
-	platform:'Linux',
-	version:'45.0'
+	browserName: 'chrome',
+	version:'54.0',
+	platform:'Linux'
 };
 
 driver = new webdriver.Builder().

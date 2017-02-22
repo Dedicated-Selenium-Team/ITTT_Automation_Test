@@ -157,8 +157,10 @@ $today = date('Y-m-d');
       <a href="#fixme" class="week-percentage week-calculation">view in percentage</a>
       <div class="export-functionality">
        <span>download</span>
-       <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/week/excel/{{$id}}" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
-       <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/week/pdf/{{$id}}" target="_blank"><input type="button" value="PDF" id="export_excel"></a>
+       <div class="export-links"> 
+         <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/week/excel/{{$id}}" target="_blank"><input type="button" value="Excel" id="export_excel"></a>
+         <a href="/excel_timesheet/{{date('Y-m-d', strtotime($date))}}/week/pdf/{{$id}}" target="_blank"><input type="button" value="PDF" id="export_excel"></a>
+       </div>
      </div>
      <?php $free_time=array();?>
      <table class="week-table">

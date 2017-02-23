@@ -181,12 +181,19 @@
        <a href="#FIXME" title="Add New Project" class="addProject" data-toggle="modal" data-target="#create-new-project">Add New Project</a>
      </li>
      <?php } ?>
+     <li class="myproject cf">
+       <a href="/myself" title="Add Myself To A Project" class="assign-project">Add myself to a project</a>
+     </li>
+   </ul>
+ </nav>
+ <p class="timesheet-message">You are not assigned to any project. Please assign yourself to the project first and start tracking your time.</p>
+ <?php } ?>
 
-   </div>
- </div>
+</div>
+</div>
 
- <!-- Add New Project Modal Starts Here-->
- <div class="modal fade create-new-project modal-error-off" id="create-new-project" role="dialog">
+<!-- Add New Project Modal Starts Here-->
+<div class="modal fade create-new-project modal-error-off" id="create-new-project" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content Starts Here-->
@@ -231,7 +238,7 @@
           <div class="existing-field">
             <select class="existing-client" name="existing_client" id="existing_client">
               <option value="0">Please select client</option>
-              @foreach($client_name_list as $value)
+               @foreach($client_name_list as $value)
               <option value="{{$value}}">{{$value}}</option>
               @endforeach
               <option value="demo">abc</option>
@@ -382,227 +389,227 @@ $("#project").on('change',function(){
       }
 
    //   $('#project option[value="'+option+'"]').attr("disabled", true);
-    }
+ }
 
-    $('#project').prop('disabled', false);
-
-
+ $('#project').prop('disabled', false);
 
 
 
-  }
+
+
+}
 
 });
 });
       //$("#project option:option").attr('disabled','disabled')
 
-/****  Create functionality ****/
-$("#daily-add").on('click',function(e){
-  if($('#create-project').hasClass('reset-form')){
-    $("#project-day-time")[0].reset();
-    $("#project_desig option").remove();
-    var options='<option value="0">Please Select Designation</option><option value="1">PM</option><option value="2">Designer</option><option value="3">FE_Developer</option><option value="4">BE_Developer</option><option value="5">Tester</option><option value="6">Tech Lead</option>';
-    $("#project_desig").append(options);
-    $('#project-day-time select').removeClass('noValue');
-  }
-  $('#create-project').removeClass('reset-form');
+      /****  Create functionality ****/
+      $("#daily-add").on('click',function(e){
+        if($('#create-project').hasClass('reset-form')){
+          $("#project-day-time")[0].reset();
+          $("#project_desig option").remove();
+          var options='<option value="0">Please Select Designation</option><option value="1">PM</option><option value="2">Designer</option><option value="3">FE_Developer</option><option value="4">BE_Developer</option><option value="5">Tester</option><option value="6">Tech Lead</option>';
+          $("#project_desig").append(options);
+          $('#project-day-time select').removeClass('noValue');
+        }
+        $('#create-project').removeClass('reset-form');
         // $("#project-day-time")[0].reset();
-  $('#save').val('Save Entry');
-  $("#project_desig").prop('disabled',false);
-  $("#project").prop('disabled',false);
+        $('#save').val('Save Entry');
+        $("#project_desig").prop('disabled',false);
+        $("#project").prop('disabled',false);
         // $('#project-day-time select').removeClass('noValue');
-});
+      });
 
-/********** Add and update functionality************/
-var obj = new phases();
-$(document).on('change','#hrs_locked',function(){
-  var getData = $(this).val().trim();
-  if(getData.indexOf(":") > -1) {
-    var flag = 1 ;
-    var separator = getData.split(":"),
-    dataBeforeDigit = separator[0], 
-    dataAfterDigit = separator[1];
-    result = obj.timeConvertion(dataBeforeDigit,dataAfterDigit,flag);
-    $('#hidden_Hrs').attr('value',result);
-  } else if(getData.indexOf(".") > -1) {
-    var flag = 0 ;
-    var separator = getData.split(".");
-    databeforeColon = separator[0],
-    dataAfterColon = separator[1],
-    result = obj.timeConvertion(dataAfterColon,databeforeColon,flag);
-    $('#hidden_Hrs').attr('value',result);
-  } else {
-    $('#hidden_Hrs').attr('value',getData);
-  }
-});
+      /********** Add and update functionality************/
+      var obj = new phases();
+      $(document).on('change','#hrs_locked',function(){
+        var getData = $(this).val().trim();
+        if(getData.indexOf(":") > -1) {
+          var flag = 1 ;
+          var separator = getData.split(":"),
+          dataBeforeDigit = separator[0], 
+          dataAfterDigit = separator[1];
+          result = obj.timeConvertion(dataBeforeDigit,dataAfterDigit,flag);
+          $('#hidden_Hrs').attr('value',result);
+        } else if(getData.indexOf(".") > -1) {
+          var flag = 0 ;
+          var separator = getData.split(".");
+          databeforeColon = separator[0],
+          dataAfterColon = separator[1],
+          result = obj.timeConvertion(dataAfterColon,databeforeColon,flag);
+          $('#hidden_Hrs').attr('value',result);
+        } else {
+          $('#hidden_Hrs').attr('value',getData);
+        }
+      });
 
-$('#project-day-time').on('submit',function(e) {
-  e.preventDefault();
-  var update_id = $('#row_id').val();
-  var formData = $('#project-day-time').serialize();
+      $('#project-day-time').on('submit',function(e) {
+        e.preventDefault();
+        var update_id = $('#row_id').val();
+        var formData = $('#project-day-time').serialize();
 
-  var url = $('#project-day-time').attr('action');
+        var url = $('#project-day-time').attr('action');
 
-  var state = $('#save').val();
-  var type = 'post';
-  var iserror = 0;
-  var project_id=$("#project").val();
-  $("#row_id").attr('value',(project_id));
-  if (state == 'Update Entry') {
-    type = 'put';
-    url = url + '/' + update_id+'/'+project_id;
-  }
+        var state = $('#save').val();
+        var type = 'post';
+        var iserror = 0;
+        var project_id=$("#project").val();
+        $("#row_id").attr('value',(project_id));
+        if (state == 'Update Entry') {
+          type = 'put';
+          url = url + '/' + update_id+'/'+project_id;
+        }
 
-  var prjName = $('#project-day-time #project').val();
-  var prjDesig = $('#project_desig').val();
-  var hrs = $('#project-day-time #hrs_locked').val().trim();
-  var regX = /^[0-9]{0,2}([:.][0-9]{1,2})?$/;
+        var prjName = $('#project-day-time #project').val();
+        var prjDesig = $('#project_desig').val();
+        var hrs = $('#project-day-time #hrs_locked').val().trim();
+        var regX = /^[0-9]{0,2}([:.][0-9]{1,2})?$/;
 
-  if(prjName == 0) {
-    $('#project-day-time #project').siblings('.error').text('Please select project name');
-    $('#project-day-time #project').siblings('.error').show();
-  }
-  if (prjDesig == 0) {
-   $('#project_desig').siblings('.error').text('Please select project designation');
-   $('#project-day-time #project_desig').siblings('.error').show();
- }
- if (hrs == '' || Number(hrs) > 16 || hrs == 0) {
-  $('#project-day-time #hrs_locked').siblings('.error').text('Please enter hours to complete a task and it should be less than 16');
-  $('#project-day-time #hrs_locked').siblings('.error').show();
-}
-
-if(Number(hrs) < 16 && Number(hrs) > 0 && !hrs.match(regX)) {
- $('#project-day-time #hrs_locked').siblings('.error').text('Please enter numeric values with two decimal place only');
- $('#project-day-time #hrs_locked').siblings('.error').show();
-}
-
-if(Number(hrs) < 16 && Number(hrs) > 0 && hrs.match(regX)) {
-  $('#project-day-time #hrs_locked').siblings('.error').hide();
-}
-
-var daily_hrs=0;
-
-if (state == 'Update Entry') {
-  var hrs_to_updated=Number($("#time"+update_id).find('td').eq(1).text()); 
-  daily_hrs=(Number(daily_hrs)-hrs_to_updated)+Number(hrs);
-}
-else
-{
- $('.day-table').find('tr').not(':first').each(function(key,value)
- {
-
-  var $tds = $(this).find('td');
-  daily_hrs = Number(daily_hrs)+Number($tds.eq(1).text());
-});
- daily_hrs=daily_hrs+Number(hrs);
-}
-
-    // if(Number(hrs) < 16 && Number(hrs) > 0 && !hrs.match(regX)){
-    //   $('#project-day-time #hrs_locked').siblings('.error').text('maximum decimal places allowed are 2 only');
-    //   $('#project-day-time #hrs_locked').siblings('.error').show();
-    // }
-
-    // if(Number(hrs) < 16 && Number(hrs) > 0 && !hrs.match(regX)){
-    //   $('#project-day-time #hrs_locked').siblings('.error').text('maximum decimal places allowed are 2 only');
-    //   $('#project-day-time #hrs_locked').siblings('.error').show();
-    // }
-
-if(daily_hrs>16)
-{
-  $('#project-day-time #hrs_locked').siblings('.error').text('Total daily hrs should be less than 16');
-  $('#project-day-time #hrs_locked').siblings('.error').show();
-}
-
-
-$(".error").each(function(){
-  if ($(this).text().trim().length) {
-   iserror++;
- }
-});
-
-if(iserror > 0){
- e.preventDefault();
-}
-else{
-
-  var project_id=$("#project").val();
-  $.ajax({
-    type: type,
-    url: url,
-    _METHOD:type,
-    data: formData,
-    headers:{'project_id':project_id},
-    dataType: "json",
-    success: function(data) {
-      var hidden_hrs = $('#hidden_Hrs').val();
-      if(hidden_hrs.indexOf('.') <= -1){
-        hidden_hrs = hidden_hrs+".00";
+        if(prjName == 0) {
+          $('#project-day-time #project').siblings('.error').text('Please select project name');
+          $('#project-day-time #project').siblings('.error').show();
+        }
+        if (prjDesig == 0) {
+         $('#project_desig').siblings('.error').text('Please select project designation');
+         $('#project-day-time #project_desig').siblings('.error').show();
+       }
+       if (hrs == '' || Number(hrs) > 16 || hrs == 0) {
+        $('#project-day-time #hrs_locked').siblings('.error').text('Please enter hours to complete a task and it should be less than 16');
+        $('#project-day-time #hrs_locked').siblings('.error').show();
       }
+
+      if(Number(hrs) < 16 && Number(hrs) > 0 && !hrs.match(regX)) {
+       $('#project-day-time #hrs_locked').siblings('.error').text('Please enter numeric values with two decimal place only');
+       $('#project-day-time #hrs_locked').siblings('.error').show();
+     }
+
+     if(Number(hrs) < 16 && Number(hrs) > 0 && hrs.match(regX)) {
+      $('#project-day-time #hrs_locked').siblings('.error').hide();
+    }
+
+    var daily_hrs=0;
+
+    if (state == 'Update Entry') {
+      var hrs_to_updated=Number($("#time"+update_id).find('td').eq(1).text()); 
+      daily_hrs=(Number(daily_hrs)-hrs_to_updated)+Number(hrs);
+    }
+    else
+    {
+     $('.day-table').find('tr').not(':first').each(function(key,value)
+     {
+
+      var $tds = $(this).find('td');
+      daily_hrs = Number(daily_hrs)+Number($tds.eq(1).text());
+    });
+     daily_hrs=daily_hrs+Number(hrs);
+   }
+
+    // if(Number(hrs) < 16 && Number(hrs) > 0 && !hrs.match(regX)){
+    //   $('#project-day-time #hrs_locked').siblings('.error').text('maximum decimal places allowed are 2 only');
+    //   $('#project-day-time #hrs_locked').siblings('.error').show();
+    // }
+
+    // if(Number(hrs) < 16 && Number(hrs) > 0 && !hrs.match(regX)){
+    //   $('#project-day-time #hrs_locked').siblings('.error').text('maximum decimal places allowed are 2 only');
+    //   $('#project-day-time #hrs_locked').siblings('.error').show();
+    // }
+
+    if(daily_hrs>16)
+    {
+      $('#project-day-time #hrs_locked').siblings('.error').text('Total daily hrs should be less than 16');
+      $('#project-day-time #hrs_locked').siblings('.error').show();
+    }
+
+
+    $(".error").each(function(){
+      if ($(this).text().trim().length) {
+       iserror++;
+     }
+   });
+
+    if(iserror > 0){
+     e.preventDefault();
+   }
+   else{
+
+    var project_id=$("#project").val();
+    $.ajax({
+      type: type,
+      url: url,
+      _METHOD:type,
+      data: formData,
+      headers:{'project_id':project_id},
+      dataType: "json",
+      success: function(data) {
+        var hidden_hrs = $('#hidden_Hrs').val();
+        if(hidden_hrs.indexOf('.') <= -1){
+          hidden_hrs = hidden_hrs+".00";
+        }
 
         // var total_hrs=$('#hidden_Hrs').val().toString().replace(/\./g, ':');
-      var total_hrs=hidden_hrs.toString().replace(/\./g, ':');
+        var total_hrs=hidden_hrs.toString().replace(/\./g, ':');
 
-      if($('#empty').length)
-      {
-        $("#empty").remove();
+        if($('#empty').length)
+        {
+          $("#empty").remove();
+        }
+        if (state == 'Save Entry') {
+          if(data.success==2)
+          {
+            alert("Please check your system date and try again.")
+          }
+          else
+          {
+           for (var i = 0; i < data.project_name.length; i++) {
+            project_name = data.project_name[i].project_name;
+            hrs_locked = data.project_name[i].hrs_locked;
+            comments = data.project_name[i].comments;
+            var cmnt_replace = comments.replace(/\</g, '&lt;');
+            var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');
+            var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
+            p_id = data.project_name[i].id;
+            d_name=data.project_name[i].d_name;
+          }
+          var row = '<tr id="time' + p_id + '">'+
+          '<td class="break-words">'+ '<h3><span class="project_name">' + project_name + '</span> - <span class="project_designation">'+d_name+'</span></h3>' +
+          '<p>' + cmnt_replace1 + '</p>' +'</td>'+
+          '<td>' + total_hrs +'</td>'+
+          '<td>' + '<button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time"data-id="' + p_id + '">Edit User</button>' + '</td>' +
+          '<td>' + '<button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time"data-id="' + p_id + '">Delete User</button>' + '</td>' +
+          '</tr>';
+          $('.head-row').eq(0).after(row);
+          var hours = dayTotalHrs(2,'.day-table');
+          $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']);
+          $('.day-table ~ .time-details .free-time').text(hours['free_time']);
+        }
       }
-      if (state == 'Save Entry') {
-        if(data.success==2)
-        {
-          alert("Please check your system date and try again.")
-        }
-        else
-        {
-         for (var i = 0; i < data.project_name.length; i++) {
-          project_name = data.project_name[i].project_name;
-          hrs_locked = data.project_name[i].hrs_locked;
-          comments = data.project_name[i].comments;
-          var cmnt_replace = comments.replace(/\</g, '&lt;');
-          var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');
-          var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
-          p_id = data.project_name[i].id;
-          d_name=data.project_name[i].d_name;
-        }
-        var row = '<tr id="time' + p_id + '">'+
-        '<td class="break-words">'+ '<h3><span class="project_name">' + project_name + '</span> - <span class="project_designation">'+d_name+'</span></h3>' +
+      else {
+        $('#project-day-time #project_desig[disabled]').siblings('.error').text('');
+        var comment_text = data.comments;
+        var cmnt_replace = comment_text.replace(/\</g, '&lt;');
+        var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
+        var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
+        var row1 = '<tr id="time' + data.id + '">'+
+        '<td class="break-words">'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
         '<p>' + cmnt_replace1 + '</p>' +'</td>'+
         '<td>' + total_hrs +'</td>'+
-        '<td>' + '<button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time"data-id="' + p_id + '">Edit User</button>' + '</td>' +
-        '<td>' + '<button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time"data-id="' + p_id + '">Delete User</button>' + '</td>' +
+        '<td>' + '<button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time"data-id="' + data.id + '">Edit User</button>' + '</td>' +
+        '<td>' + '<button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time"data-id="' + data.id + '">Delete User</button>' + '</td>' +
         '</tr>';
-        $('.head-row').eq(0).after(row);
+        $('#time' + data.id).replaceWith(row1);
         var hours = dayTotalHrs(2,'.day-table');
         $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']);
         $('.day-table ~ .time-details .free-time').text(hours['free_time']);
       }
     }
-    else {
-      $('#project-day-time #project_desig[disabled]').siblings('.error').text('');
-      var comment_text = data.comments;
-      var cmnt_replace = comment_text.replace(/\</g, '&lt;');
-      var cmnt_replace1 = cmnt_replace.replace(/\>/g, '&gt;');        
-      var cmnt_replace1=cmnt_replace.replace(/(?:\r\n|\r|\n)/g, '<br />');
-      var row1 = '<tr id="time' + data.id + '">'+
-      '<td class="break-words">'+ '<h3><span class="project_name">' + data.project_name + '</span> - <span class="project_designation">'+data.designation_name+'</span></h3>' +
-      '<p>' + cmnt_replace1 + '</p>' +'</td>'+
-      '<td>' + total_hrs +'</td>'+
-      '<td>' + '<button type="button" class="btn btn-edit edit" title="Edit" id="edit-day-time"data-id="' + data.id + '">Edit User</button>' + '</td>' +
-      '<td>' + '<button type="button" class="btn btn-delete confirm" title="Delete" id="delete-day-time"data-id="' + data.id + '">Delete User</button>' + '</td>' +
-      '</tr>';
-      $('#time' + data.id).replaceWith(row1);
-      var hours = dayTotalHrs(2,'.day-table');
-      $('.day-table ~ .time-details .tot-hours').text(hours['total_hrs']);
-      $('.day-table ~ .time-details .free-time').text(hours['free_time']);
-    }
+  });
+    $("#project-day-time")[0].reset();
+    $('#project-day-time select').removeClass('noValue');
+    $("#project_desig option").remove();
+    var options='<option value="0">Please Select Designation</option><option value="1">PM</option><option value="2">Designer</option><option value="3">FE_Developer</option><option value="4">BE_Developer</option><option value="5">Tester</option><option value="6">Tech Lead</option>';
+    $("#project_desig").append(options);
+    $('#create-project').modal('hide');
   }
-});
-  $("#project-day-time")[0].reset();
-  $('#project-day-time select').removeClass('noValue');
-  $("#project_desig option").remove();
-  var options='<option value="0">Please Select Designation</option><option value="1">PM</option><option value="2">Designer</option><option value="3">FE_Developer</option><option value="4">BE_Developer</option><option value="5">Tester</option><option value="6">Tech Lead</option>';
-  $("#project_desig").append(options);
-  $('#create-project').modal('hide');
-}
 });
 
 /****  Edit functionality ****/

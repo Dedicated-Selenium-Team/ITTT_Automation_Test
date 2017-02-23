@@ -3,10 +3,11 @@
 var fs = require('fs');
 var webdriver = require('selenium-webdriver');
 
-var webdriver = require('selenium-webdriver'),
-username = "nilesh_vidhate_prdxn",
-accessKey = "4b956187-7b4d-438b-9d18-860ce77eced0",
-driver;
+// var webdriver = require('selenium-webdriver'),
+// username = "nilesh_vidhate_prdxn",
+// accessKey = "4b956187-7b4d-438b-9d18-860ce77eced0",
+
+var driver;
 
 var capabilities ={
 	'browserName': 'firefox',

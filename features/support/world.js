@@ -4,10 +4,9 @@ var fs = require('fs');
 var webdriver = require('selenium-webdriver');
 
 var webdriver = require('selenium-webdriver'),
-username = "nilesh_vidhate_prdxn",
-accessKey = "4b956187-7b4d-438b-9d18-860ce77eced0",
-
-var driver;
+username = "jpratikprdxn",
+accessKey = "7a01ae9e-f246-400e-8610-fb6bb4be29e8",
+driver;
 
 var capabilities ={
 	'browserName': 'chrome',
@@ -110,95 +109,5 @@ var World = function World() {
 };
 
 module.exports.World = World;
-<<<<<<< HEAD
 module.exports.getDriver = getDriver;
-=======
-module.exports.getDriver = getDriver;
-}
 
-'use strict';
-
-var fs = require('fs');
-var webdriver = require('selenium-webdriver');
-var platform = process.env.PLATFORM || "CHROME" || "FIREFOX";
-
-var buildAndroidDriver = function() {
-	return new webdriver.Builder().
-	usingServer('http://localhost:4444/wd/hub').
-	withCapabilities({
-		platformName: 'Android',
-		platformVersion: '4.4',
-		deviceName: 'Android Emulator',
-		browserName: 'Chrome'
-	}).
-	build();
-};
-
-// 'use strict';
-
-// var fs = require('fs');
-// var webdriver = require('selenium-webdriver');
-// var platform = process.env.PLATFORM || "CHROME" || "FIREFOX";
-
-// var buildAndroidDriver = function() {
-// 	return new webdriver.Builder().
-// 	usingServer('http://localhost:4444/wd/hub').
-// 	withCapabilities({
-// 		platformName: 'Android',
-// 		platformVersion: '4.4',
-// 		deviceName: 'Android Emulator',
-// 		browserName: 'Chrome'
-// 	}).
-// 	build();
-// };
-
-// var buildChromeDriver = function() {
-// 	return new webdriver.Builder().
-// 	withCapabilities(webdriver.Capabilities.chrome()).
-// 	build();
-// };
-
-// var buildFirefoxDriver = function() {
-// 	return new webdriver.Builder().
-// 	withCapabilities(webdriver.Capabilities.firefox()).
-// 	build();
-// };
-
-// switch(platform) {
-// 	case 'ANDROID':
-// 	var driver = buildAndroidDriver();
-// 	break;
-// 	case 'FIREFOX':
-// 	var driver = buildFirefoxDriver();
-// 	break;
-// 	default:
-// 	var driver = buildChromeDriver();
-// }
-
-// var getDriver = function() {
-// 	return driver;
-// };
-
-// var World = function World() {
-
-// 	var defaultTimeout = 20000;
-// 	var screenshotPath = "screenshots";
-
-// 	this.webdriver = webdriver;
-// 	this.driver = driver;
-
-// 	if(!fs.existsSync(screenshotPath)) {
-// 		fs.mkdirSync(screenshotPath);
-// 	}
-
-// 	this.waitFor = function(cssLocator, timeout) {
-// 		var waitTimeout = timeout || defaultTimeout;
-// 		return driver.wait(function() {
-// 			return driver.isElementPresent({ css: cssLocator });
-// 		}, waitTimeout);
-// 	};
-// };
-
-// module.exports.World = World;
-// module.exports.getDriver = getDriver;
->>>>>>> 8aaab1a4af7e9e01ff987650f4c4fc729e121e31

@@ -1,0 +1,117 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Click Week or Day view calender",
+    "line":1,
+    "description":"",
+    "id":"click-week-or-day-view-calender",
+    "uri":"features/Week_And_Day_View/week_and_day_view_calender.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click functionality for the day view calender",
+        "line":3,
+        "description":"",
+        "id":"click-week-or-day-view-calender;verify-click-functionality-for-the-day-view-calender",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Week_And_Day_View/week_and_day_view_calender.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":7,
+            "match":{
+              "location":"features/Week_And_Day_View/week_and_day_view_calender.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":8,
+            "match":{
+              "location":"features/Week_And_Day_View/week_and_day_view_calender.feature:8"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"Click on the week and day \"<view>\"",
+            "line":10,
+            "match":{
+              "location":"features/Week_And_Day_View/week_and_day_view_calender.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"The respective \"<table>\" should be get displayed",
+            "line":11,
+            "match":{
+              "location":"features/Week_And_Day_View/week_and_day_view_calender.feature:11"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Click on the Calendar icon",
+            "line":12,
+            "match":{
+              "location":"features/Week_And_Day_View/week_and_day_view_calender.feature:12"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Click on the any date between Week (Let say \"<date>\" \"<month>\" \"<year>\")",
+            "line":13,
+            "match":{
+              "location":"features/Week_And_Day_View/week_and_day_view_calender.feature:13"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":15,
+            "description":"",
+            "id":"click-week-or-day-view-calender;verify-click-functionality-for-the-day-view-calender;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "view",
+                  "date",
+                  "month",
+                  "year",
+                  "table"
+                ],
+                "line":16,
+                "id":"click-week-or-day-view-calender;verify-click-functionality-for-the-day-view-calender;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "a.day",
+                  "15",
+                  "Nov",
+                  "2015",
+                  ".day-table"
+                ],
+                "line":17,
+                "id":"click-week-or-day-view-calender;verify-click-functionality-for-the-day-view-calender;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

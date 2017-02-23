@@ -1,0 +1,173 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Hamburger",
+    "line":1,
+    "description":"",
+    "id":"hamburger",
+    "uri":"features/Hamburger/hamburger_functionality.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click hamburger item list and list hover",
+        "line":3,
+        "description":"",
+        "id":"hamburger;verify-click-hamburger-item-list-and-list-hover",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":7,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click on mouse hamberger",
+            "line":9,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:9"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see list of tab",
+            "line":10,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:10"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on close icon hamburger",
+            "line":11,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:11"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Hamburger should be closed",
+            "line":12,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:12"
+            }
+          },
+          {
+            "comments":[
+              {
+                "value":"# you select list number: 1 => TimeSheet, 2 => Project, 3 => User",
+                "line":14
+              }
+            ],
+            "keyword":"Then ",
+            "name":"I click on mouses hamberger",
+            "line":15,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:15"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see hover effect in list \"<list_num_first>\"",
+            "line":16,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:16"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click on timesheet option in list \"<list_num_first>\"",
+            "line":17,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:17"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I should see Clicked item page open",
+            "line":18,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:18"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"Again I click on mouse hamberger",
+            "line":20,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:20"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Again I click on timesheet option in list \"<list_num_second>\"",
+            "line":21,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:21"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Again I should see Clicked item page open",
+            "line":22,
+            "match":{
+              "location":"features/Hamburger/hamburger_functionality.feature:22"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":24,
+            "description":"",
+            "id":"hamburger;verify-click-hamburger-item-list-and-list-hover;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "list_num_first",
+                  "list_num_second"
+                ],
+                "line":25,
+                "id":"hamburger;verify-click-hamburger-item-list-and-list-hover;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "2",
+                  "1"
+                ],
+                "line":26,
+                "id":"hamburger;verify-click-hamburger-item-list-and-list-hover;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

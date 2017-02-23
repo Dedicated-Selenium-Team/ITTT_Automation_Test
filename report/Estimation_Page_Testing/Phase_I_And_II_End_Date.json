@@ -1,0 +1,142 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Estimation",
+    "line":1,
+    "description":"",
+    "id":"estimation",
+    "uri":"features/Phase_I_And_II_End_Date/phase_I_and_II_end_date.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"To check  the functinality of  calender of Phase 1 or Phase II End Date.",
+        "line":3,
+        "description":"",
+        "id":"estimation;to-check--the-functinality-of--calender-of-phase-1-or-phase-ii-end-date.",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Phase_I_And_II_End_Date/phase_I_and_II_end_date.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Phase_I_And_II_End_Date/phase_I_and_II_end_date.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":7,
+            "match":{
+              "location":"features/Phase_I_And_II_End_Date/phase_I_and_II_end_date.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be in project",
+            "line":8,
+            "match":{
+              "location":"features/Phase_I_And_II_End_Date/phase_I_and_II_end_date.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click on any link of Estimation project (Let us check this project \"<number>\")",
+            "line":9,
+            "match":{
+              "location":"features/Phase_I_And_II_End_Date/phase_I_and_II_end_date.feature:9"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Click on the field of Phase I or Phase II End Date (Let us put \"<Phase ID>\")",
+            "line":10,
+            "match":{
+              "location":"features/Phase_I_And_II_End_Date/phase_I_and_II_end_date.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Then select \"<date>\", \"<month>\" and \"<year>\"",
+            "line":11,
+            "match":{
+              "location":"features/Phase_I_And_II_End_Date/phase_I_and_II_end_date.feature:11"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"The same selected month, year and date should reflect in the Phase I End Date and Phase II End Date field in the format of  mm/dd/yyyy",
+            "line":12,
+            "match":{
+              "location":"features/Phase_I_And_II_End_Date/phase_I_and_II_end_date.feature:12"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":15,
+            "description":"",
+            "id":"estimation;to-check--the-functinality-of--calender-of-phase-1-or-phase-ii-end-date.;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "Estimates",
+                  "number",
+                  "date",
+                  "month",
+                  "year",
+                  "Phase ID"
+                ],
+                "line":16,
+                "id":"estimation;to-check--the-functinality-of--calender-of-phase-1-or-phase-ii-end-date.;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-1",
+                  "5",
+                  "29",
+                  "Dec",
+                  "2016",
+                  "phase-I-end-date"
+                ],
+                "line":17,
+                "id":"estimation;to-check--the-functinality-of--calender-of-phase-1-or-phase-ii-end-date.;;2"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-1",
+                  "5",
+                  "29",
+                  "Dec",
+                  "2016",
+                  "phase-II-end-date"
+                ],
+                "line":18,
+                "id":"estimation;to-check--the-functinality-of--calender-of-phase-1-or-phase-ii-end-date.;;3"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

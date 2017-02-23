@@ -1,0 +1,131 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Project Tab Add",
+    "line":1,
+    "description":"",
+    "id":"project-tab-add",
+    "uri":"features/Add_MySelf_Project/add_myself.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click on add myself button and add project.",
+        "line":3,
+        "description":"",
+        "id":"project-tab-add;verify-click-on-add-myself-button-and-add-project.",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/Add_MySelf_Project/add_myself.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":6,
+            "match":{
+              "location":"features/Add_MySelf_Project/add_myself.feature:6"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":7,
+            "match":{
+              "location":"features/Add_MySelf_Project/add_myself.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be in project",
+            "line":8,
+            "match":{
+              "location":"features/Add_MySelf_Project/add_myself.feature:8"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on add new project button",
+            "line":10,
+            "match":{
+              "location":"features/Add_MySelf_Project/add_myself.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see a popup",
+            "line":11,
+            "match":{
+              "location":"features/Add_MySelf_Project/add_myself.feature:11"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I enter detail like \"<project_name>\" and \"<project_code>\" and \"<client_name>\"",
+            "line":12,
+            "match":{
+              "location":"features/Add_MySelf_Project/add_myself.feature:12"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on submit button",
+            "line":13,
+            "match":{
+              "location":"features/Add_MySelf_Project/add_myself.feature:13"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"Project \"<project_name>\" should be added in project list",
+            "line":14,
+            "match":{
+              "location":"features/Add_MySelf_Project/add_myself.feature:14"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":16,
+            "description":"",
+            "id":"project-tab-add;verify-click-on-add-myself-button-and-add-project.;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "project_name",
+                  "designation",
+                  "project_code",
+                  "client_name"
+                ],
+                "line":17,
+                "id":"project-tab-add;verify-click-on-add-myself-button-and-add-project.;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "Break Loose",
+                  "FE_Developer",
+                  "1234",
+                  "Test"
+                ],
+                "line":18,
+                "id":"project-tab-add;verify-click-on-add-myself-button-and-add-project.;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

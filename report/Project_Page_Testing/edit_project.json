@@ -1,0 +1,123 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Click On edit link",
+    "line":1,
+    "description":"As an internet user\nI want to be able to click on edit icon",
+    "id":"click-on-edit-link",
+    "uri":"features/edit_project/edit_check.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"Verify click functionality for edit link",
+        "line":5,
+        "description":"",
+        "id":"click-on-edit-link;verify-click-functionality-for-edit-link",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"I open site in browser\"<url>\"",
+            "line":6,
+            "match":{
+              "location":"features/edit_project/edit_check.feature:6"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I have to enter \"<username>\" and \"<password>\"",
+            "line":7,
+            "match":{
+              "location":"features/edit_project/edit_check.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click button for login",
+            "line":8,
+            "match":{
+              "location":"features/edit_project/edit_check.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click on mouse hamberger",
+            "line":9,
+            "match":{
+              "location":"features/edit_project/edit_check.feature:9"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click Project in list",
+            "line":10,
+            "match":{
+              "location":"features/edit_project/edit_check.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I check hover and tooltip on edit option",
+            "line":11,
+            "match":{
+              "location":"features/edit_project/edit_check.feature:11"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I click on edit icon",
+            "line":12,
+            "match":{
+              "location":"features/edit_project/edit_check.feature:12"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should be see client name and project name",
+            "line":13,
+            "match":{
+              "location":"features/edit_project/edit_check.feature:13"
+            }
+          },
+          {
+            "keyword":"And ",
+            "name":"I should see update button",
+            "line":14,
+            "match":{
+              "location":"features/edit_project/edit_check.feature:14"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":16,
+            "description":"",
+            "id":"click-on-edit-link;verify-click-functionality-for-edit-link;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password"
+                ],
+                "line":17,
+                "id":"click-on-edit-link;verify-click-functionality-for-edit-link;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123"
+                ],
+                "line":18,
+                "id":"click-on-edit-link;verify-click-functionality-for-edit-link;;2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

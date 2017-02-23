@@ -1,0 +1,145 @@
+[
+  {
+    "keyword":"Feature",
+    "name":"Project Tab",
+    "line":1,
+    "description":"",
+    "id":"project-tab",
+    "uri":"features/AllProjectTab_Check_MoveTo/check_moveto_button_functionality.feature",
+    "elements":[
+      {
+        "keyword":"Scenario Outline",
+        "name":"verify the click functionality of the move to button in Project Tabs",
+        "line":3,
+        "description":"",
+        "id":"project-tab;verify-the-click-functionality-of-the-move-to-button-in-project-tabs",
+        "type":"scenario_outline",
+        "steps":[
+          {
+            "keyword":"Given ",
+            "name":"Open browser and Start Application \"<url>\"",
+            "line":5,
+            "match":{
+              "location":"features/AllProjectTab_Check_MoveTo/check_moveto_button_functionality.feature:5"
+            }
+          },
+          {
+            "keyword":"When ",
+            "name":"I enter valid \"<username>\" and \"<password>\"",
+            "line":7,
+            "match":{
+              "location":"features/AllProjectTab_Check_MoveTo/check_moveto_button_functionality.feature:7"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be logged in and home page should be open",
+            "line":8,
+            "match":{
+              "location":"features/AllProjectTab_Check_MoveTo/check_moveto_button_functionality.feature:8"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"User should be in project",
+            "line":9,
+            "match":{
+              "location":"features/AllProjectTab_Check_MoveTo/check_moveto_button_functionality.feature:9"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click the \"<Project_Tab>\", projects of estimates phase appears in WP",
+            "line":10,
+            "match":{
+              "location":"features/AllProjectTab_Check_MoveTo/check_moveto_button_functionality.feature:10"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I should see the mouse pointer changes to the hand pointer on hovering on Move To button (Let us check this project \"<project_number>\" and \"<Tab>\")",
+            "line":11,
+            "match":{
+              "location":"features/AllProjectTab_Check_MoveTo/check_moveto_button_functionality.feature:11"
+            }
+          },
+          {
+            "keyword":"And ",
+            "name":"tool tip appears on hovering on move to button (Let us check this project \"<project_number>\" and \"<Tab>\")",
+            "line":12,
+            "match":{
+              "location":"features/AllProjectTab_Check_MoveTo/check_moveto_button_functionality.feature:12"
+            }
+          },
+          {
+            "keyword":"Then ",
+            "name":"I click the Move to button (Let us check this project \"<project_number>\" and \"<Tab>\")",
+            "line":13,
+            "match":{
+              "location":"features/AllProjectTab_Check_MoveTo/check_moveto_button_functionality.feature:13"
+            }
+          }
+        ],
+        "examples":[
+          {
+            "keyword":"Examples",
+            "name":"",
+            "line":15,
+            "description":"",
+            "id":"project-tab;verify-the-click-functionality-of-the-move-to-button-in-project-tabs;",
+            "rows":[
+              {
+                "cells":[
+                  "url",
+                  "username",
+                  "password",
+                  "Project_Tab",
+                  "project_number",
+                  "Tab"
+                ],
+                "line":16,
+                "id":"project-tab;verify-the-click-functionality-of-the-move-to-button-in-project-tabs;;1"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-2",
+                  "5",
+                  "tabs-2"
+                ],
+                "line":17,
+                "id":"project-tab;verify-the-click-functionality-of-the-move-to-button-in-project-tabs;;2"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-3",
+                  "5",
+                  "tabs-3"
+                ],
+                "line":18,
+                "id":"project-tab;verify-the-click-functionality-of-the-move-to-button-in-project-tabs;;3"
+              },
+              {
+                "cells":[
+                  "http://timetrackingwip.prdxnstaging.com/",
+                  "admin@prdxn.com",
+                  "admin123",
+                  "ui-id-4",
+                  "5",
+                  "tabs-4"
+                ],
+                "line":19,
+                "id":"project-tab;verify-the-click-functionality-of-the-move-to-button-in-project-tabs;;4"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

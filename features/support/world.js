@@ -2,27 +2,39 @@
 
 var fs = require('fs');
 var webdriver = require('selenium-webdriver');
+var platform = process.env.PLATFORM || "CHROME" || "FIREFOX";
 
 var webdriver = require('selenium-webdriver'),
-username = "jpratikprdxn",
-accessKey = "7a01ae9e-f246-400e-8610-fb6bb4be29e8",
+username = "nilesh_vidhate_prdxn",
+accessKey = "4b956187-7b4d-438b-9d18-860ce77eced0",
 driver;
 
-var capabilities ={
+var PLATFORMS = [{
 	'browserName': 'chrome',
 	'platform': 'Windows 10',
 	'version': '54.0',
 	'username': username,
 	'accessKey': accessKey,
-	"name": "Testing window 10 chrome browser"
-};
+	'name': 'Tesing using Chrome in Windows 10'
+},
+{
+	'browserName': 'firefox',
+	'platform': 'Linux',
+	'version': '45.0',
+	'username': username,
+	'accessKey': accessKey,
+	'name': 'Tesing using Firfox in Linux' 
+}];
 
-
-driver = new webdriver.Builder().
-withCapabilities(capabilities).
-usingServer("http://" + username + ":" + accessKey +
-	"@ondemand.saucelabs.com:80/wd/hub").
-build();
+for(var i=0; i<PLATFORMS.length; i++){
+	console.log(PLATFORMS[i]);
+	
+	driver = new webdriver.Builder().
+	withCapabilities(PLATFORMS[i]).
+	usingServer("http://" + username + ":" + accessKey +
+		"@ondemand.saucelabs.com:80/wd/hub").
+	build();
+}
 
 
 // for android devices
@@ -53,6 +65,17 @@ build();
 // 	}).
 // 	usingServer("http://" + username + ":" + accessKey +
 // 		"@ondemand.saucelabs.com:80/wd/hub").
+// 	build();
+// };
+
+// switch(platform) {
+// 	case 'ANDROID':
+// 	var driver = buildAndroidDriver();
+// 	break;
+// 	default:
+// 	var driver = buildFirefoxDriver();
+// }
+
 
 
 // var buildAndroidDriver = function() {

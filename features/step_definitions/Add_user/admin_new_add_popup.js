@@ -72,25 +72,14 @@ module.exports = function() {
     });
     
 
-    //click on close icon
-    this.When(/^I click on cross symbol top right$/, function(){
-      this.driver.findElement({ css: '.close' }).then(function(close){
-        close.click()
-      });
-      this.driver.sleep(1000);
+  //click on close icon
+  this.When(/^I click on cross symbol top right$/, function(){
+    this.driver.findElement({ css: '.close' }).then(function(close){
+      close.click()
     });
+    this.driver.sleep(1000);
+  });
 
-    //pop close confirmation
-    this.Then(/^popup should be close$/, function(){
-      this.driver.findElement({ css:'.admin-info #user' }).then(function(error_list){
-        var displayDate=error_list.getAttribute("style").then(function(field){
-          if(field=="display: none;"){
-            console.log("");
-            console.log("Result==>>after clicked on close icon popup is closed");
-          }
-        });
-      });
-    });
 
   //click on add new
   this.When(/^I click on ad new button$/, function(){

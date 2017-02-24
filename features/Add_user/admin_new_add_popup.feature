@@ -14,7 +14,6 @@ When I click save entry button with empty field
 Then I should see errore message
 
 When I click on cross symbol top right 
-Then popup should be close
 
 When I click on ad new button
 When I enter the "<name>", "<contact>", "<username>", "<password>", "<month>", "<year>", "<date>"

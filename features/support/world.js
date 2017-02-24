@@ -1,7 +1,6 @@
 'use strict';
 
 var fs = require('fs');
-var webdriver = require('selenium-webdriver');
 
 var webdriver = require('selenium-webdriver'),
 username = "jpratikprdxn",
@@ -16,7 +15,6 @@ var capabilities ={
 	'accessKey': accessKey,
 	"name": "Testing window 10 chrome browser"
 };
-
 
 driver = new webdriver.Builder().
 withCapabilities(capabilities).

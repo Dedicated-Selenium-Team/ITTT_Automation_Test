@@ -5,8 +5,8 @@ var webdriver = require('selenium-webdriver');
 var platform = process.env.PLATFORM || "CHROME" || "FIREFOX";
 
 var webdriver = require('selenium-webdriver'),
-username = "nilesh_vidhate_prdxn",
-accessKey = "4b956187-7b4d-438b-9d18-860ce77eced0",
+username = "jpratikprdxn",
+accessKey = "7a01ae9e-f246-400e-8610-fb6bb4be29e8",
 driver;
 
 var PLATFORMS = [{
